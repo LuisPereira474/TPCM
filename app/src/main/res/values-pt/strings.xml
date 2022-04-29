@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">TPCM</string>
-    <string name="username">Nome de utilizador</string>
+    <string name="username">Nome de Utilizador</string>
     <string name="password">Palavra-passe</string>
     <string name="signup">Registar-se</string>
     <string name="confirmpassword">Confirmar Palavra-passe</string>
