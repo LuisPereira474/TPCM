@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tv1"
+        android:id="@+id/ccLabelName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/username"
@@ -19,23 +19,24 @@
         android:textColor="@color/azul"/>
 
     <EditText
-        android:id="@+id/et1"
+        android:id="@+id/ccInputName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/tv1"
+        android:layout_alignTop="@id/ccLabelName"
         android:layout_marginTop="40dp"
         android:background="@drawable/border"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:textSize="20sp"
-
+        android:padding="4dp"
+        android:paddingStart="8dp"
         />
     <TextView
-        android:id="@+id/tv2"
+        android:id="@+id/ccLabelEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/email"
-        android:layout_alignTop="@id/et1"
+        android:layout_alignTop="@id/ccInputName"
         android:layout_marginTop="60dp"
         android:paddingHorizontal="50dp"
         android:textSize="20sp"
@@ -43,44 +44,49 @@
         android:textColor="@color/azul"/>
 
     <EditText
-        android:id="@+id/et2"
+        android:id="@+id/ccInputEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/tv2"
+        android:layout_alignTop="@id/ccLabelEmail"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="40dp"
         android:layout_marginRight="50dp"
         android:background="@drawable/border"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:padding="4dp"
+        android:paddingStart="8dp"/>
     <TextView
-        android:id="@+id/tv3"
+        android:id="@+id/ccLabelPasse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/password"
-        android:layout_alignTop="@id/et2"
+        android:layout_alignTop="@id/ccInputEmail"
         android:layout_marginTop="60dp"
         android:paddingHorizontal="50dp"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/azul"/>
+        android:textColor="@color/azul"
+        />
 
     <EditText
-        android:id="@+id/et3"
+        android:id="@+id/ccInputPasse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/tv3"
+        android:layout_alignTop="@id/ccLabelPasse"
         android:layout_marginTop="40dp"
         android:background="@drawable/border"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:padding="4dp"
+        android:paddingStart="8dp"/>
 
     <TextView
-        android:id="@+id/tv4"
+        android:id="@+id/ccLabelConfirmPasse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/confirmpassword"
-        android:layout_alignTop="@id/et3"
+        android:layout_alignTop="@id/ccInputPasse"
         android:layout_marginTop="60dp"
         android:paddingHorizontal="50dp"
         android:textSize="20sp"
@@ -88,34 +94,39 @@
         android:textColor="@color/azul"/>
 
     <EditText
-        android:id="@+id/et4"
+        android:id="@+id/ccInputConfirmPasse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/tv4"
+        android:layout_alignTop="@id/ccLabelConfirmPasse"
         android:layout_marginTop="40dp"
         android:background="@drawable/border"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:padding="4dp"
+        android:paddingStart="8dp"/>
 
     <Button
-        android:id="@+id/btn1"
+        android:id="@+id/loginBtt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/et4"
+        android:layout_alignTop="@id/ccInputConfirmPasse"
         android:layout_marginStart="50dp"
         android:layout_marginTop="90dp"
         android:backgroundTint="@color/principal"
         android:text="@string/login" />
 
 
-    <ImageButton
+    <Button
+        android:id="@+id/ccSubmitBtt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/seta"
-        android:layout_alignTop="@id/et4"
-        android:layout_marginTop="80dp"
-        android:layout_marginStart="240dp"/>
+        android:layout_below="@+id/ccInputConfirmPasse"
+        android:layout_alignRight="@id/ccInputConfirmPasse"
+        android:layout_marginTop="50dp"
+        android:background="@android:color/transparent"
+        android:drawableRight="@drawable/ic_baseline_arrow_forward_24"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
