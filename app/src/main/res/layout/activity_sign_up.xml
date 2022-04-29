@@ -16,7 +16,8 @@
         android:paddingHorizontal="50dp"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/azul"/>
+        android:textColor="@color/azul"
+        android:drawableLeft="@drawable/ic_person"/>
 
     <EditText
         android:id="@+id/ccInputName"
@@ -41,7 +42,8 @@
         android:paddingHorizontal="50dp"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/azul"/>
+        android:textColor="@color/azul"
+        android:drawableLeft="@drawable/ic_email" />
 
     <EditText
         android:id="@+id/ccInputEmail"
@@ -67,6 +69,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/azul"
+        android:drawableLeft="@drawable/ic_lock"
         />
 
     <EditText
@@ -93,7 +96,8 @@
         android:paddingHorizontal="50dp"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/azul"/>
+        android:textColor="@color/azul"
+        android:drawableLeft="@drawable/ic_lock"/>
 
     <EditText
         android:id="@+id/ccInputConfirmPasse"
