@@ -23,14 +23,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/ccLabelName"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/border"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="40dp"
         android:layout_marginRight="50dp"
-        android:textSize="20sp"
+        android:background="@drawable/border"
         android:padding="4dp"
         android:paddingStart="8dp"
-        />
+        android:textSize="20sp"
+        android:inputType="text"/>
     <TextView
         android:id="@+id/ccLabelEmail"
         android:layout_width="wrap_content"
@@ -52,9 +52,10 @@
         android:layout_marginTop="40dp"
         android:layout_marginRight="50dp"
         android:background="@drawable/border"
-        android:textSize="20sp"
         android:padding="4dp"
-        android:paddingStart="8dp"/>
+        android:paddingStart="8dp"
+        android:textSize="20sp"
+        android:inputType="text"/>
     <TextView
         android:id="@+id/ccLabelPasse"
         android:layout_width="wrap_content"
@@ -73,13 +74,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/ccLabelPasse"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/border"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="40dp"
         android:layout_marginRight="50dp"
-        android:textSize="20sp"
+        android:background="@drawable/border"
         android:padding="4dp"
-        android:paddingStart="8dp"/>
+        android:paddingStart="8dp"
+        android:textSize="20sp"
+        android:inputType="textPassword"/>
 
     <TextView
         android:id="@+id/ccLabelConfirmPasse"
@@ -98,13 +100,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/ccLabelConfirmPasse"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/border"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="40dp"
         android:layout_marginRight="50dp"
-        android:textSize="20sp"
+        android:background="@drawable/border"
         android:padding="4dp"
-        android:paddingStart="8dp"/>
+        android:paddingStart="8dp"
+        android:textSize="20sp"
+        android:inputType="textPassword"/>
 
     <Button
         android:id="@+id/loginBtt"
@@ -114,7 +117,8 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="90dp"
         android:backgroundTint="@color/principal"
-        android:text="@string/login" />
+        android:text="@string/Back"
+        android:onClick="loginPage"/>
 
 
     <Button
@@ -122,11 +126,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ccInputConfirmPasse"
-        android:layout_alignRight="@id/ccInputConfirmPasse"
-        android:layout_marginTop="50dp"
+        android:layout_alignEnd="@id/ccInputConfirmPasse"
+        android:layout_marginTop="40dp"
         android:background="@android:color/transparent"
-        android:drawableRight="@drawable/ic_baseline_arrow_forward_24"
-        />
+        android:drawableEnd="@drawable/ic_baseline_arrow_forward_24"
+        android:onClick="signUpSubmit" />
 
     <LinearLayout
         android:layout_width="match_parent"

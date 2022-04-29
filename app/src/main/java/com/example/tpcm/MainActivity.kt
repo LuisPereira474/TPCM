@@ -1,5 +1,6 @@
 package com.example.tpcm
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -34,5 +35,10 @@ class MainActivity : AppCompatActivity() {
                     Log.w("TAG", "Error getting documents.", task.exception)
                 }
             })
+    }
+
+    fun signUpPage(view: View) {
+        val intent = Intent(this@MainActivity, SignUp::class.java)
+        startActivity(intent)
     }
 }

@@ -68,6 +68,7 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="170dp"
         android:backgroundTint="@color/principal"
+        android:onClick="signUpPage"
         android:text="@string/signup" />
 
 
@@ -80,7 +81,7 @@
         android:layout_marginTop="120dp"
         android:background="@android:color/transparent"
         android:drawableRight="@drawable/ic_baseline_arrow_forward_24"
-        android:onClick="loginSubmit" />
+        android:onClick="loginSubmit"/>
 
     <LinearLayout
         android:layout_width="match_parent"
