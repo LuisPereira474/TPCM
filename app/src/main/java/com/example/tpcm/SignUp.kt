@@ -6,9 +6,6 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.OnSuccessListener
-import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
@@ -28,35 +25,29 @@ class SignUp : AppCompatActivity() {
     }
 
     fun signUpSubmit(view: View) {
-        var password = findViewById<EditText>(R.id.ccInputPasse).text
-        var confPassword = findViewById<EditText>(R.id.ccInputConfirmPasse).text
+        var password = findViewById<EditText>(R.id.ccInputPasse).text.toString()
+        var confPassword = findViewById<EditText>(R.id.ccInputConfirmPasse).text.toString()
+        var email = findViewById<EditText>(R.id.ccInputEmail).text.toString()
+        var nome = findViewById<EditText>(R.id.ccInputName).text.toString()
         val user = hashMapOf(
-            "email" to findViewById<EditText>(R.id.ccInputEmail).text,
+            "email" to email,
             "foto" to "teste",
             "idUser" to UUID.randomUUID().toString(),
-            "nome" to findViewById<EditText>(R.id.ccInputName).text,
+            "nome" to nome,
             "password" to password,
             "pontos" to 0,
-            //adicionar opçao sexo
-            "sexo" to true,
+            "sexo" to true
         )
-        Log.d("TAG", "aqui")
 
+        Log.d("TAG", user.toString())
 
-        //if (password.toString() == confPassword.toString()) {
+        if (password.toString() == confPassword.toString()) {
 
             db.collection("utilizador")
                 .add(user)
-                .addOnSuccessListener(OnSuccessListener<DocumentReference> { documentReference ->
-                    Log.d(
-                        "TAG",
-                        "DocumentSnapshot added with ID: " + documentReference.id
-                    )
-                })
-                .addOnFailureListener(OnFailureListener { e ->
-                    Log.w("TAG", "Error adding document", e)
-                })
-        //}
+                .addOnSuccessListener { Log.d("TAG", "DocumentSnapshot successfully written!") }
+                .addOnFailureListener { e -> Log.w("TAG", "Error writing document", e) }
+        }
     }
 
 }
