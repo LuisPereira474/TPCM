@@ -3,123 +3,118 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".SignUp"
     android:background="@drawable/rua"
     android:orientation="vertical">
 
-    <TextView
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/ccLabelName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/username"
-        android:layout_marginTop="50dp"
-        android:paddingHorizontal="50dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/azul"
-        android:drawableLeft="@drawable/ic_person"/>
-
-    <EditText
-        android:id="@+id/ccInputName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/ccLabelName"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="40dp"
         android:layout_marginRight="50dp"
-        android:background="@drawable/border"
-        android:padding="4dp"
         android:paddingStart="8dp"
         android:textSize="20sp"
-        android:inputType="text"/>
-    <TextView
+        android:inputType="text"
+        android:hint="@string/username"
+        app:startIconDrawable="@drawable/ic_person"
+        app:endIconMode="clear_text"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ccInputName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/ccLabelEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/email"
-        android:layout_alignTop="@id/ccInputName"
-        android:layout_marginTop="60dp"
-        android:paddingHorizontal="50dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/azul"
-        android:drawableLeft="@drawable/ic_email" />
-
-    <EditText
-        android:id="@+id/ccInputEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/ccLabelEmail"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="100dp"
         android:layout_marginRight="50dp"
-        android:background="@drawable/border"
-        android:padding="4dp"
         android:paddingStart="8dp"
         android:textSize="20sp"
-        android:inputType="text"/>
-    <TextView
+        android:inputType="text"
+        android:hint="@string/email"
+        app:startIconDrawable="@drawable/ic_email"
+        app:endIconMode="clear_text"
+        android:layout_alignTop="@id/ccLabelName"
+
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ccInputEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/ccLabelPasse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/password"
-        android:layout_alignTop="@id/ccInputEmail"
-        android:layout_marginTop="60dp"
-        android:paddingHorizontal="50dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/azul"
-        android:drawableLeft="@drawable/ic_lock"
-        />
-
-    <EditText
-        android:id="@+id/ccInputPasse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/ccLabelPasse"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="100dp"
         android:layout_marginRight="50dp"
-        android:background="@drawable/border"
-        android:padding="4dp"
         android:paddingStart="8dp"
         android:textSize="20sp"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword"
+        android:hint="@string/password"
+        app:startIconDrawable="@drawable/ic_lock"
+        app:endIconMode="password_toggle"
+        android:layout_alignTop="@id/ccLabelEmail"
 
-    <TextView
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ccInputPasse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/ccLabelConfirmPasse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/confirmpassword"
-        android:layout_alignTop="@id/ccInputPasse"
-        android:layout_marginTop="60dp"
-        android:paddingHorizontal="50dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/azul"
-        android:drawableLeft="@drawable/ic_lock"/>
-
-    <EditText
-        android:id="@+id/ccInputConfirmPasse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/ccLabelConfirmPasse"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="100dp"
         android:layout_marginRight="50dp"
-        android:background="@drawable/border"
-        android:padding="4dp"
         android:paddingStart="8dp"
         android:textSize="20sp"
-        android:inputType="textPassword"/>
+        android:hint="@string/confirmpassword"
+        app:startIconDrawable="@drawable/ic_lock"
+        app:endIconMode="password_toggle"
+        android:layout_alignTop="@id/ccLabelPasse"
+
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ccInputConfirmPasse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <Button
         android:id="@+id/loginBtt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/ccInputConfirmPasse"
+        android:layout_alignTop="@id/ccLabelConfirmPasse"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="120dp"
         android:backgroundTint="@color/principal"
         android:text="@string/Back"
         android:onClick="loginPage"/>
@@ -129,12 +124,13 @@
         android:id="@+id/ccSubmitBtt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ccInputConfirmPasse"
-        android:layout_alignEnd="@id/ccInputConfirmPasse"
-        android:layout_marginTop="40dp"
+        android:layout_below="@+id/ccLabelConfirmPasse"
+        android:layout_alignEnd="@id/ccLabelConfirmPasse"
+        android:layout_marginTop="35dp"
         android:background="@android:color/transparent"
         android:drawableEnd="@drawable/ic_baseline_arrow_forward_24"
         android:onClick="signUpSubmit" />
+
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -7,66 +7,65 @@
     tools:context=".MainActivity"
     android:background="@drawable/rua">
 
-    <TextView
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/emailNameLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:paddingHorizontal="50dp"
-        android:text="@string/email"
-        android:textColor="@color/azul"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/inputEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/emailNameLabel"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="100dp"
         android:layout_marginRight="50dp"
-        android:background="@drawable/border"
+        android:paddingStart="8dp"
         android:textSize="20sp"
         android:inputType="text"
-        android:padding="4dp"
-        android:paddingStart="8dp"
-        />
+        android:hint="@string/email"
+        app:startIconDrawable="@drawable/ic_email"
+        app:endIconMode="clear_text"
 
-    <TextView
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/passwordLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/password"
-        android:layout_alignTop="@id/inputEmail"
-        android:layout_marginTop="70dp"
-        android:paddingHorizontal="50dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/azul"
-        />
-
-    <EditText
-        android:id="@+id/inputPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/passwordLabel"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/border"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="100dp"
         android:layout_marginRight="50dp"
+        android:paddingStart="8dp"
         android:textSize="20sp"
         android:inputType="textPassword"
-        android:padding="4dp"
-        android:paddingStart="8dp"/>
+        android:hint="@string/password"
+        app:startIconDrawable="@drawable/ic_lock"
+        app:endIconMode="password_toggle"
+        android:layout_alignTop="@id/emailNameLabel"
+
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
 
     <Button
         android:id="@+id/signUpBtt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/inputPass"
+        android:layout_alignTop="@id/passwordLabel"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="210dp"
         android:backgroundTint="@color/principal"
         android:onClick="signUpPage"
         android:text="@string/signup" />
@@ -76,8 +75,8 @@
         android:id="@+id/submitBtt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/inputPass"
-        android:layout_alignRight="@id/inputPass"
+        android:layout_below="@+id/passwordLabel"
+        android:layout_alignRight="@id/passwordLabel"
         android:layout_marginTop="120dp"
         android:background="@android:color/transparent"
         android:drawableRight="@drawable/ic_baseline_arrow_forward_24"
