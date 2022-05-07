@@ -1,4 +1,4 @@
-package com.example.tpcm
+package com.example.tpcm.aplication
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,9 +6,10 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.example.tpcm.MainActivity
+import com.example.tpcm.R
 import com.example.tpcm.database.Connection
 import com.google.firebase.firestore.FirebaseFirestore
-import java.util.*
 
 
 class SignUp : AppCompatActivity() {

@@ -7,4 +7,5 @@
     <string name="confirmpassword">Confirmar Palavra-passe</string>
     <string name="login">Iniciar sessão</string>
     <string name="Back">Voltar</string>
+    <string name="popUpPoints">Deseja mesmo confirmar a boleia?</string>
 </resources>

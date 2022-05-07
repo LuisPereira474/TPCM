@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TPCM">
         <activity
-            android:name=".SignUp"
+            android:name=".aplication.PopUpWindow"
+            android:exported="false" />
+        <activity
+            android:name=".aplication.SignUp"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
