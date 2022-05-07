@@ -5,23 +5,35 @@ import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.tpcm.R
 import java.util.regex.Pattern
 
 object Connection {
     @SuppressLint("StaticFieldLeak")
     private var db = FirebaseFirestore.getInstance()
 
-    fun login(email: String, password: String) {
+    fun login(email: String, password: String, errorLogin : TextView) {
+
         db.collection("utilizador")
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
+                    var confirmLogin = false
+                    var idUser = ""
                     for (document in task.result!!) {
                         if ((document.data["email"] as String) == email && (document.data["password"] as String) == password) {
-                            Log.d("TAG", (document.data["idUser"] as String?).toString())
+                            confirmLogin=true
+                            idUser = (document.data["idUser"] as String?).toString()
                         }
-
+                    }
+                    if (confirmLogin == true){
+                        Log.d("TAG", idUser)
+                    }else{
+                        errorLogin.setVisibility(View.VISIBLE);
                     }
                 } else {
                     Log.w("TAG", "Error getting documents.", task.exception)

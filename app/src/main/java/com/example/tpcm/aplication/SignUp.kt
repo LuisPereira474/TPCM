@@ -32,7 +32,7 @@ class SignUp : AppCompatActivity() {
         var email = findViewById<EditText>(R.id.ccInputEmail).text.toString()
         var nome = findViewById<EditText>(R.id.ccInputName).text.toString()
 
-        if (password == confPassword) {
+        if (password == confPassword && email.isNotEmpty() && password.isNotEmpty() && nome.isNotEmpty()) {
             Connection.singUp(email,nome,password)
         }else{
             Log.d("TAG", "Passwords não correspondem")
