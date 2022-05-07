@@ -9,4 +9,8 @@
     <string name="Back">Voltar</string>
     <string name="popUpPoints">Deseja mesmo confirmar a boleia?</string>
     <string name="errorLogin">Credênciais erradas!</string>
+    <string name="erroSignUpEmail">Nome de utilizador ou Email  já utilizados!</string>
+    <string name="erroSignUpPass">Passwords não correspondem!</string>
+    <string name="errorMissingFields">Faltam campos!</string>
+    <string name="errorInvalidEmail">Email invalido!</string>
 </resources>

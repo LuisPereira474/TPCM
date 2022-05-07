@@ -9,4 +9,8 @@
     <string name="Back">Back</string>
     <string name="popUpPoints">Do you really want to confirm the ride?</string>
     <string name="errorLogin">Wrong credentials!</string>
+    <string name="erroSignUpEmail">Username or Email already used!</string>
+    <string name="erroSignUpPass">Passwords do not match!</string>
+    <string name="errorMissingFields">Fields are missing!</string>
+    <string name="errorInvalidEmail">Invalid Email!</string>
 </resources>

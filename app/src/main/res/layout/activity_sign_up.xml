@@ -107,6 +107,51 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:id="@+id/erroSignUpEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/erroSignUpEmail"
+        android:layout_below="@+id/ccLabelConfirmPasse"
+        android:textColor="#FF0000"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="5dp"
+        android:textSize="16sp"
+        android:visibility="invisible"/>
+    <TextView
+        android:id="@+id/erroSignUpPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/erroSignUpPass"
+        android:layout_below="@+id/ccLabelConfirmPasse"
+        android:textColor="#FF0000"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="5dp"
+        android:textSize="16sp"
+        android:visibility="invisible"/>
+    <TextView
+        android:id="@+id/errorMissingFields"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/errorMissingFields"
+        android:layout_below="@+id/ccLabelConfirmPasse"
+        android:textColor="#FF0000"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="5dp"
+        android:textSize="16sp"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/errorInvalidEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/errorInvalidEmail"
+        android:layout_below="@+id/ccLabelConfirmPasse"
+        android:textColor="#FF0000"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="5dp"
+        android:textSize="16sp"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/loginBtt"

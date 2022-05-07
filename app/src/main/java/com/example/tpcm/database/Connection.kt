@@ -1,22 +1,18 @@
 package com.example.tpcm.database
 
 import android.annotation.SuppressLint
-import com.google.firebase.firestore.FirebaseFirestore
-import java.util.*
-import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.EditText
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import com.example.tpcm.R
+import com.google.firebase.firestore.FirebaseFirestore
+import java.util.*
 import java.util.regex.Pattern
 
 object Connection {
     @SuppressLint("StaticFieldLeak")
     private var db = FirebaseFirestore.getInstance()
 
-    fun login(email: String, password: String, errorLogin : TextView) {
+    fun login(email: String, password: String, errorLogin: TextView) {
 
         db.collection("utilizador")
             .get()
@@ -26,13 +22,13 @@ object Connection {
                     var idUser = ""
                     for (document in task.result!!) {
                         if ((document.data["email"] as String) == email && (document.data["password"] as String) == password) {
-                            confirmLogin=true
+                            confirmLogin = true
                             idUser = (document.data["idUser"] as String?).toString()
                         }
                     }
-                    if (confirmLogin == true){
+                    if (confirmLogin == true) {
                         Log.d("TAG", idUser)
-                    }else{
+                    } else {
                         errorLogin.setVisibility(View.VISIBLE);
                     }
                 } else {
@@ -41,7 +37,7 @@ object Connection {
             }
     }
 
-    fun singUp(email: String, nome: String, password: String) {
+    fun singUp(email: String, nome: String, password: String, erroSignUpEmail: TextView, errorInvalidEmail: TextView) {
         val user = hashMapOf(
             "email" to email,
             "foto" to "teste",
@@ -52,7 +48,7 @@ object Connection {
             "sexo" to true
         )
 
-        if(isValidString(email)){
+        if (isValidString(email)) {
             db.collection("utilizador")
                 .get()
                 .addOnCompleteListener { task ->
@@ -73,18 +69,25 @@ object Connection {
                                         "DocumentSnapshot successfully written!"
                                     )
                                 }
-                                .addOnFailureListener { e -> Log.w("TAG", "Error writing document", e) }
+                                .addOnFailureListener { e ->
+                                    Log.w(
+                                        "TAG",
+                                        "Error writing document",
+                                        e
+                                    )
+                                }
                         } else {
                             Log.d("TAG", "Email já registado")
+                            erroSignUpEmail.setVisibility(View.VISIBLE);
                         }
                     } else {
                         Log.w("TAG", "Error getting documents.", task.exception)
                     }
                 }
-        }else{
+        } else {
             Log.w("TAG", "Invalid Email")
+            errorInvalidEmail.setVisibility(View.VISIBLE);
         }
-
 
 
     }
@@ -98,7 +101,8 @@ object Connection {
                 "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
                 ")+"
     )
-    private fun isValidString(str: String): Boolean{
+
+    private fun isValidString(str: String): Boolean {
         return EMAIL_ADDRESS_PATTERN.matcher(str).matches()
     }
 
