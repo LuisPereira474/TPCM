@@ -15,4 +15,7 @@
     <string name="errorInvalidEmail">Email invalido!</string>
     <string name="LabelValor">Valor:</string>
     <string name="LabelLugaresDisponiveis">Lugares Disponíveis:</string>
+    <string name="LabelPontoEncontro">Ponto de Encontro:</string>
+    <string name="LabelAvaliacao">Avaliação:</string>
+    <string name="botaoObterQrCode">Obter QR Code</string>
 </resources>
