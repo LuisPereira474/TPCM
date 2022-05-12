@@ -13,4 +13,6 @@
     <string name="erroSignUpPass">Passwords não correspondem!</string>
     <string name="errorMissingFields">Faltam campos!</string>
     <string name="errorInvalidEmail">Email invalido!</string>
+    <string name="LabelValor">Valor:</string>
+    <string name="LabelLugaresDisponiveis">Lugares Disponíveis:</string>
 </resources>

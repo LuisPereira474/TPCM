@@ -13,4 +13,9 @@
     <string name="erroSignUpPass">Passwords do not match!</string>
     <string name="errorMissingFields">Fields are missing!</string>
     <string name="errorInvalidEmail">Invalid Email!</string>
+    <string name="LabelValor">Cost:</string>
+    <string name="LabelLugaresDisponiveis">Seats Available:</string>
+    <string name="LabelPontoEncontro">Meeting Location</string>
+    <string name="LabelAvaliacao">Evaluation</string>
+    <string name="botaoObterQrCode">Get QR Code</string>
 </resources>

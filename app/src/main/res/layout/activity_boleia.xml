@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/CardInfoBoleia"
+        android:layout_width="match_parent"
+        android:layout_height="430dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="75dp"
+        android:backgroundTint="@color/cinzento">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvTituloViagem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Porto - Viana"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="60dp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvNomeCondutor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvTituloViagem"
+                android:layout_alignLeft="@+id/tvTituloViagem"
+                android:layout_marginTop="20dp"
+                android:text="Zé Pedro"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/tvDataBoleia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvNomeCondutor"
+                android:layout_alignLeft="@+id/tvTituloViagem"
+                android:layout_marginTop="5dp"
+                android:text="23 Março 2012" />
+            <TextView
+                android:id="@+id/tvModeloCarro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvDataBoleia"
+                android:layout_alignLeft="@+id/tvTituloViagem"
+                android:layout_marginTop="5dp"
+                android:text="Wolksagen Polo 2013 (Preto)"/>
+
+            <TextView
+                android:id="@+id/tvLabelValor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvModeloCarro"
+                android:layout_alignLeft="@+id/tvTituloViagem"
+                android:layout_marginTop="30dp"
+                android:text="@string/LabelValor"/>
+
+            <TextView
+                android:id="@+id/tvValorBoleia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvModeloCarro"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/tvLabelValor"
+                android:layout_marginTop="30dp"
+                android:text="5€"/>
+
+            <TextView
+                android:id="@+id/tvLabelLugaresDisponiveis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvLabelValor"
+                android:layout_alignLeft="@+id/tvTituloViagem"
+                android:layout_marginTop="30dp"
+                android:text="@string/LabelLugaresDisponiveis"/>
+            <TextView
+                android:id="@+id/tvLabelPontoEncontro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvLabelLugaresDisponiveis"
+                android:layout_alignLeft="@+id/tvTituloViagem"
+                android:layout_marginTop="30dp"
+                android:text="@string/LabelPontoEncontro"/>
+
+            <TextView
+                android:id="@+id/tvPontoEncontro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvLabelLugaresDisponiveis"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="30dp"
+                android:layout_toRightOf="@+id/tvLabelPontoEncontro"
+                android:text="Vila do Conde, Porto, 23, 4452-233" />
+
+            <TextView
+                android:id="@+id/tvLabelAvaliacao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvLabelPontoEncontro"
+                android:layout_alignLeft="@+id/tvTituloViagem"
+                android:layout_marginTop="30dp"
+                android:text="@string/LabelAvaliacao"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/CardInfoBoleia"
+        android:layout_alignLeft="@+id/CardInfoBoleia"
+        android:layout_marginTop="20dp"
+        android:text="@string/botaoObterQrCode"
+        android:backgroundTint="@color/principal" />
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/CardInfoBoleia"
+        android:layout_alignRight="@+id/CardInfoBoleia"
+        android:layout_marginTop="20dp"
+        app:icon="@drawable/icon"
+        />
+
+</RelativeLayout>
