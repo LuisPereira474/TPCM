@@ -13,4 +13,8 @@
     <string name="erroSignUpPass">Passwords do not match!</string>
     <string name="errorMissingFields">Fields are missing!</string>
     <string name="errorInvalidEmail">Invalid Email!</string>
+    <string name="search">Search</string>
+    <string name="rides">Rides</string>
+    <string name="services">Services</string>
+    <string name="profile">Profile</string>
 </resources>
