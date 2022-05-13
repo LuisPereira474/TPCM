@@ -32,9 +32,10 @@ class MainActivity : AppCompatActivity() {
         if (email.isEmpty() || password.isEmpty()) {
             errorLogin.setVisibility(View.VISIBLE);
         } else {
-//            Connection.login(email, password, errorLogin)
-            val intent = Intent(this@MainActivity, Boleia::class.java)
-            startActivity(intent)
+            if (Connection.login(email, password, errorLogin)){
+                val intent = Intent(this@MainActivity, Boleia::class.java)
+                startActivity(intent)
+            }
 
         }
     }
