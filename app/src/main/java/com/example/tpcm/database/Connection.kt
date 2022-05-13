@@ -1,9 +1,11 @@
 package com.example.tpcm.database
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import com.example.tpcm.aplication.SignUp
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 import java.util.regex.Pattern
@@ -26,8 +28,8 @@ object Connection {
                             idUser = (document.data["idUser"] as String?).toString()
                         }
                     }
-                    if (confirmLogin == true) {
-                        Log.d("TAG", idUser)
+                    if (confirmLogin) {
+                        Log.w("TAG", "iduser $idUser")
                     } else {
                         errorLogin.setVisibility(View.VISIBLE);
                     }
