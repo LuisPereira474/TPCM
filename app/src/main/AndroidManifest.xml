@@ -15,9 +15,6 @@
             android:name=".aplication.Boleia"
             android:exported="false" />
         <activity
-            android:name=".aplication.boleia"
-            android:exported="false" />
-        <activity
             android:name=".aplication.PopUpWindow"
             android:exported="false" />
         <activity
