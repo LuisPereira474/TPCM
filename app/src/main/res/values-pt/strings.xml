@@ -13,4 +13,8 @@
     <string name="erroSignUpPass">Passwords não correspondem!</string>
     <string name="errorMissingFields">Faltam campos!</string>
     <string name="errorInvalidEmail">Email invalido!</string>
+    <string name="search">Procurar</string>
+    <string name="ride">Boleia</string>
+    <string name="services">Serviços</string>
+    <string name="AddRide">Adicionar Boleia</string>
 </resources>

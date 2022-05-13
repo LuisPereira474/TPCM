@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_procura"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="@string/search"/>
+
+    <item
+        android:id="@+id/menu_boleias"
+        android:icon="@drawable/ic_baseline_directions_car_24"
+        android:title="@string/ride"/>
+
+    <item
+        android:id="@+id/menu_servicos"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="@string/services"/>
+
+    <item
+        android:id="@+id/menu_perfil"
+        android:icon="@drawable/ic_person"
+        android:title="@string/perfil"/>
+</menu>

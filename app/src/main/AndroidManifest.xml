@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TPCM">
         <activity
+            android:name=".aplication.CriarBoleia"
+            android:exported="false" />
+        <activity
             android:name=".aplication.PopUpWindow"
             android:exported="false" />
         <activity
