@@ -18,4 +18,13 @@
     <string name="perfil" translatable="false">Perfil</string>
     <string name="services">Services</string>
     <string name="AddRide">Add Ride</string>
+    <string name="search">Search</string>
+    <string name="rides">Rides</string>
+    <string name="services">Services</string>
+    <string name="profile">Profile</string>
+    <string name="LabelValor">Cost:</string>
+    <string name="LabelLugaresDisponiveis">Seats Available:</string>
+    <string name="LabelPontoEncontro">Meeting Location:</string>
+    <string name="LabelAvaliacao">Evaluation:</string>
+    <string name="botaoObterQrCode">Get QR Code</string>
 </resources>

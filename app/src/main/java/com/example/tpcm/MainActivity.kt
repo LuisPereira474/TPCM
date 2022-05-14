@@ -6,9 +6,9 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.tpcm.aplication.Boleia
 import com.example.tpcm.aplication.SignUp
 import com.example.tpcm.database.Connection
-import com.example.tpcm.aplication.PopUpWindow
 
 
 class MainActivity : AppCompatActivity() {
@@ -29,10 +29,14 @@ class MainActivity : AppCompatActivity() {
         val password = findViewById<EditText>(R.id.inputPass).text.toString()
         val errorLogin = findViewById<TextView>(R.id.errorLogin)
         errorLogin.setVisibility(View.INVISIBLE);
-        if (email.isEmpty() || password.isEmpty()){
+        if (email.isEmpty() || password.isEmpty()) {
             errorLogin.setVisibility(View.VISIBLE);
-        }else{
-            Connection.login(email,password,errorLogin)
+        } else {
+            if (Connection.login(email, password, errorLogin)){
+                val intent = Intent(this@MainActivity, Boleia::class.java)
+                startActivity(intent)
+            }
+
         }
     }
 

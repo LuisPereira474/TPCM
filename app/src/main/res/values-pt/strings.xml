@@ -17,4 +17,13 @@
     <string name="ride">Boleia</string>
     <string name="services">Serviços</string>
     <string name="AddRide">Adicionar Boleia</string>
+    <string name="LabelValor">Valor:</string>
+    <string name="LabelLugaresDisponiveis">Lugares Disponíveis:</string>
+    <string name="LabelPontoEncontro">Ponto de Encontro:</string>
+    <string name="LabelAvaliacao">Avaliação:</string>
+    <string name="botaoObterQrCode">Obter QR Code</string>
+    <string name="search">Procurar</string>
+    <string name="rides">Boleias</string>
+    <string name="services">Serviços</string>
+    <string name="profile">Perfil</string>
 </resources>

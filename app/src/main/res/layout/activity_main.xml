@@ -17,7 +17,6 @@
         android:layout_marginRight="50dp"
         android:paddingStart="8dp"
         android:textSize="20sp"
-        android:inputType="text"
         android:hint="@string/email"
         app:startIconDrawable="@drawable/ic_email"
         app:endIconMode="clear_text"
@@ -27,6 +26,7 @@
             android:id="@+id/inputEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="text"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -42,7 +42,6 @@
         android:layout_marginRight="50dp"
         android:paddingStart="8dp"
         android:textSize="20sp"
-        android:inputType="textPassword"
         android:hint="@string/password"
         app:startIconDrawable="@drawable/ic_lock"
         app:endIconMode="password_toggle"
@@ -53,6 +52,7 @@
             android:id="@+id/inputPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textPassword"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
