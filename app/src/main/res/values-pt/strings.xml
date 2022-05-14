@@ -13,10 +13,8 @@
     <string name="erroSignUpPass">Passwords não correspondem!</string>
     <string name="errorMissingFields">Faltam campos!</string>
     <string name="errorInvalidEmail">Email invalido!</string>
-    <string name="search">Procurar</string>
     <string name="ride">Boleia</string>
-    <string name="services">Serviços</string>
-    <string name="AddRide">Adicionar Boleia</string>
+    <string name="AddRide">Criar Boleia</string>
     <string name="LabelValor">Valor:</string>
     <string name="LabelLugaresDisponiveis">Lugares Disponíveis:</string>
     <string name="LabelPontoEncontro">Ponto de Encontro:</string>
@@ -26,4 +24,14 @@
     <string name="rides">Boleias</string>
     <string name="services">Serviços</string>
     <string name="profile">Perfil</string>
+    <string name="msgRide">Já podes prestar boleias!!!</string>
+    <string name="from">De:</string>
+    <string name="to">Para:</string>
+    <string name="meetingPoint">Ponto de encontro:</string>
+    <string name="date">Data:</string>
+    <string name="car">Carro:</string>
+    <string name="price">Preço (€):</string>
+    <string name="seats">Lugares disponíveis:</string>
+    <string name="obs">Observações:</string>
+    <string name="confirm">Confirmar</string>
 </resources>

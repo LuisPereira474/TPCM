@@ -13,11 +13,9 @@
     <string name="erroSignUpPass">Passwords do not match!</string>
     <string name="errorMissingFields">Fields are missing!</string>
     <string name="errorInvalidEmail">Invalid Email!</string>
-    <string name="search">Search</string>
     <string name="ride">Ride</string>
     <string name="perfil" translatable="false">Perfil</string>
-    <string name="services">Services</string>
-    <string name="AddRide">Add Ride</string>
+    <string name="AddRide">Create Ride</string>
     <string name="search">Search</string>
     <string name="rides">Rides</string>
     <string name="services">Services</string>
@@ -27,4 +25,14 @@
     <string name="LabelPontoEncontro">Meeting Location:</string>
     <string name="LabelAvaliacao">Evaluation:</string>
     <string name="botaoObterQrCode">Get QR Code</string>
+    <string name="msgRide">You can now create rides!!!</string>
+    <string name="from">From:</string>
+    <string name="to">To:</string>
+    <string name="meetingPoint">Meeting point:</string>
+    <string name="car">Car:</string>
+    <string name="date">Date:</string>
+    <string name="price">Price (€):</string>
+    <string name="seats">Available seats:</string>
+    <string name="obs">Observations:</string>
+    <string name="confirm">Confirm</string>
 </resources>

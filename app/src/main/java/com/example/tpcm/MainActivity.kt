@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.tpcm.aplication.AddBoleiaSemHist
 import com.example.tpcm.aplication.Boleia
 import com.example.tpcm.aplication.SignUp
 import com.example.tpcm.database.Connection
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity() {
             errorLogin.setVisibility(View.VISIBLE);
         } else {
             if (Connection.login(email, password, errorLogin)){
-                val intent = Intent(this@MainActivity, Boleia::class.java)
+                val intent = Intent(this@MainActivity, AddBoleiaSemHist::class.java)
                 startActivity(intent)
             }
 

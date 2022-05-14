@@ -34,31 +34,6 @@ object Connection {
         return false
     }
 
-//    fun login(email: String, password: String, errorLogin: TextView) {
-//
-//        db.collection("utilizador")
-//            .get()
-//            .addOnCompleteListener { task ->
-//                if (task.isSuccessful) {
-//                    var confirmLogin = false
-//                    var idUser = ""
-//                    for (document in task.result!!) {
-//                        if ((document.data["email"] as String) == email && (document.data["password"] as String) == password) {
-//                            confirmLogin = true
-//                            idUser = (document.data["idUser"] as String?).toString()
-//                        }
-//                    }
-//                    if (confirmLogin) {
-//                        Log.w("TAG", "iduser $idUser")
-//                    } else {
-//                        errorLogin.setVisibility(View.VISIBLE);
-//                    }
-//                } else {
-//                    Log.w("TAG", "Error getting documents.", task.exception)
-//                }
-//            }
-//    }
-
     fun singUp(
         email: String,
         nome: String,
@@ -132,6 +107,36 @@ object Connection {
 
     private fun isValidString(str: String): Boolean {
         return EMAIL_ADDRESS_PATTERN.matcher(str).matches()
+    }
+
+    fun createRide(from:String,to:String,meeting:String,car:String,date:String,price:String,seats:String,obs:String){
+
+        val boleia = hashMapOf(
+            "idBoleia" to UUID.randomUUID().toString(),
+            "from" to from,
+            "to" to "to",
+            "meeting" to meeting,
+            "car" to car,
+            "date" to date,
+            "price" to price,
+            "seats" to seats,
+            "obs" to seats
+        )
+        db.collection("boleia")
+            .add(boleia)
+            .addOnSuccessListener {
+                Log.d(
+                    "TAG",
+                    "DocumentSnapshot successfully written!"
+                )
+            }
+            .addOnFailureListener { e ->
+                Log.w(
+                    "TAG",
+                    "Error writing document",
+                    e
+                )
+            }
     }
 
 }
