@@ -1,6 +1,8 @@
 package com.example.tpcm
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
@@ -29,11 +31,18 @@ class MainActivity : AppCompatActivity() {
         val email = findViewById<EditText>(R.id.inputEmail).text.toString()
         val password = findViewById<EditText>(R.id.inputPass).text.toString()
         val errorLogin = findViewById<TextView>(R.id.errorLogin)
+        var idUser = ""
         errorLogin.setVisibility(View.INVISIBLE);
         if (email.isEmpty() || password.isEmpty()) {
             errorLogin.setVisibility(View.VISIBLE);
         } else {
-            if (Connection.login(email, password, errorLogin)){
+            idUser = Connection.login(email, password, errorLogin)
+            if (idUser!=""){
+                val sharedPreferences: SharedPreferences =
+                    getSharedPreferences("idUser", Context.MODE_PRIVATE)
+                sharedPreferences.edit()
+                    .putString("idUser", idUser)
+                    .apply()
                 val intent = Intent(this@MainActivity, AddBoleiaSemHist::class.java)
                 startActivity(intent)
             }

@@ -1,6 +1,8 @@
 package com.example.tpcm.database
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.SharedPreferences
 import android.util.Log
 import android.view.View
 import android.widget.TextView
@@ -13,10 +15,10 @@ object Connection {
     private var db = FirebaseFirestore.getInstance()
     private var utilizadores = db.collection("utilizador").get()
 
-    fun login(email: String, password: String, errorLogin: TextView):Boolean {
+    fun login(email: String, password: String, errorLogin: TextView):String {
+        var idUser = ""
         if (utilizadores.isSuccessful) {
             var confirmLogin = false
-            var idUser = ""
             for (document in utilizadores.result!!) {
                 if ((document.data["email"] as String) == email && (document.data["password"] as String) == password) {
                     confirmLogin = true
@@ -24,14 +26,14 @@ object Connection {
                 }
             }
             if (confirmLogin) {
-                return true
+                return idUser
             } else {
-                errorLogin.setVisibility(View.VISIBLE);
+                errorLogin.visibility = View.VISIBLE;
             }
         } else {
             Log.w("TAG", "Error getting documents.", utilizadores.exception)
         }
-        return false
+        return idUser
     }
 
     fun singUp(
@@ -109,9 +111,10 @@ object Connection {
         return EMAIL_ADDRESS_PATTERN.matcher(str).matches()
     }
 
-    fun createRide(from:String,to:String,meeting:String,car:String,date:String,price:String,seats:String,obs:String){
+    fun createRide(from:String,to:String,meeting:String,car:String,date:String,price:String,seats:String,obs:String,idUser:String){
 
         val boleia = hashMapOf(
+            "idCriador" to idUser,
             "idBoleia" to UUID.randomUUID().toString(),
             "from" to from,
             "to" to "to",
