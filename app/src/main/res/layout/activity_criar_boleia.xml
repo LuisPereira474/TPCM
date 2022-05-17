@@ -1,129 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".aplication.CriarBoleia"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".aplication.CriarBoleia">
 
-    <EditText
-        android:id="@+id/fromCriarBoleia"
+    <ScrollView
+        android:id="@+id/ScrollView01"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:hint="@string/from"
-        android:padding="10dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="30dp"
-        />
+        android:layout_height="665dp"
+        android:scrollbarSize="10dp"
+        android:fastScrollAlwaysVisible="true"
+        >
 
-    <EditText
-        android:id="@+id/toCriarBoleia"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:layout_below="@+id/fromCriarBoleia"
-        android:hint="@string/to"
-        android:padding="10dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="30dp"
-        />
-    <EditText
-        android:id="@+id/meetingCriarBoleia"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:layout_below="@+id/toCriarBoleia"
-        android:hint="@string/meetingPoint"
-        android:padding="10dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="30dp"
-        />
-    <EditText
-        android:id="@+id/carCriarBoleia"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:layout_below="@+id/meetingCriarBoleia"
-        android:hint="@string/car"
-        android:padding="10dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="30dp"
-        />
-    <EditText
-        android:id="@+id/dateCriarBoleia"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:layout_below="@+id/carCriarBoleia"
-        android:hint="@string/date"
-        android:padding="10dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="30dp"
-        />
-    <EditText
-        android:id="@+id/priceCriarBoleia"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:layout_below="@+id/dateCriarBoleia"
-        android:hint="@string/price"
-        android:padding="10dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="30dp"
-        />
-    <EditText
-        android:id="@+id/seatsCriarBoleia"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:layout_below="@+id/priceCriarBoleia"
-        android:hint="@string/seats"
-        android:padding="10dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="30dp"
-        />
-    <EditText
-        android:id="@+id/obsCriarBoleia"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:layout_below="@+id/seatsCriarBoleia"
-        android:hint="@string/obs"
-        android:padding="10dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="30dp"
-        />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
 
-    <Button
-        android:id="@+id/insertComponentAddComponent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/obsCriarBoleia"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="@color/principal"
-        android:text="@string/confirm"
-        android:textColor="@color/white"
-        app:cornerRadius="20dp"
-        android:onClick="addRide"/>
+            <EditText
+                android:id="@+id/fromCriarBoleia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dateCriarBoleia"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:hint="@string/from"
+                android:inputType="text"
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/toCriarBoleia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/fromCriarBoleia"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:hint="@string/to"
+                android:inputType="text"
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/meetingCriarBoleia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/toCriarBoleia"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:hint="@string/meetingPoint"
+                android:inputType="text"
+                android:padding="10dp"/>
+
+            <DatePicker
+                android:id="@+id/dateCriarBoleia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/toCriarBoleia"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner" />
+
+            <EditText
+                android:id="@+id/carCriarBoleia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/meetingCriarBoleia"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:hint="@string/car"
+                android:inputType="text"
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/priceCriarBoleia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/carCriarBoleia"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:hint="@string/price"
+                android:inputType="text"
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/seatsCriarBoleia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/priceCriarBoleia"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:hint="@string/seats"
+                android:inputType="text"
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/obsCriarBoleia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/seatsCriarBoleia"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:hint="@string/obs"
+                android:inputType="text"
+                android:padding="10dp" />
+
+            <Button
+                android:id="@+id/insertComponentAddComponent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/obsCriarBoleia"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="30dp"
+                android:backgroundTint="@color/principal"
+                android:onClick="addRide"
+                android:text="@string/confirm"
+                android:textColor="@color/white"
+                app:cornerRadius="20dp" />
+        </RelativeLayout>
+
+    </ScrollView>
 
     <!--Nav Bar-->
     <com.google.android.material.bottomnavigation.BottomNavigationView

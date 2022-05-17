@@ -17,7 +17,7 @@ import com.example.tpcm.database.Connection
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_criar_boleia)
 
 //        val intent = Intent(this@MainActivity, PopUpWindow::class.java)
 //        val string: String = getString(R.string.popUpPoints)
