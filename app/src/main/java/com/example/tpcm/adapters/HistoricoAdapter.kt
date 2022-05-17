@@ -1,5 +1,6 @@
 package com.example.tpcm.adapters
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,8 +27,16 @@ class HistoricoAdapter(
 
     override fun onBindViewHolder(holder: HistoricoViewHolder, position: Int) {
         val currentLinha = linhas[position]
+        val green: Int = Color.parseColor("#54C000")
+        val red: Int = Color.parseColor("#FF3939")
+
         holder.fromTo.text = currentLinha.fromTo
-        holder.date.text = currentLinha.date.toString()
+        holder.date.text = currentLinha.date
+        if (currentLinha.flag){
+            holder.flag.setBackgroundColor(red)
+        }else{
+            holder.flag.setBackgroundColor(green)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -40,4 +49,5 @@ class HistoricoViewHolder(
 ) : RecyclerView.ViewHolder(itemView) {
     val fromTo: TextView = itemView.fromTo
     val date: TextView = itemView.date
+    val flag: TextView = itemView.flag
 }

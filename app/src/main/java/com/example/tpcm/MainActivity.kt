@@ -17,14 +17,7 @@ import com.example.tpcm.database.Connection
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_criar_boleia)
-
-//        val intent = Intent(this@MainActivity, PopUpWindow::class.java)
-//        val string: String = getString(R.string.popUpPoints)
-//        intent.putExtra("popuptext", string)
-//        intent.putExtra("popupbtn", "CONFIRMAR")
-//        intent.putExtra("darkstatusbar", false)
-//        startActivity(intent)
+        setContentView(R.layout.activity_main)
     }
 
     fun loginSubmit(view: View) {
@@ -32,9 +25,9 @@ class MainActivity : AppCompatActivity() {
         val password = findViewById<EditText>(R.id.inputPass).text.toString()
         val errorLogin = findViewById<TextView>(R.id.errorLogin)
         var idUser = ""
-        errorLogin.setVisibility(View.INVISIBLE);
+        errorLogin.visibility = View.INVISIBLE;
         if (email.isEmpty() || password.isEmpty()) {
-            errorLogin.setVisibility(View.VISIBLE);
+            errorLogin.visibility = View.VISIBLE;
         } else {
             idUser = Connection.login(email, password, errorLogin)
             if (idUser!=""){

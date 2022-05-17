@@ -1,5 +1,6 @@
 package com.example.tpcm.aplication
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -16,6 +17,10 @@ import com.google.firebase.firestore.QueryDocumentSnapshot
 import kotlinx.android.synthetic.main.activity_historico_user.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class HistoricoUser : AppCompatActivity() {
 
@@ -61,6 +66,7 @@ class HistoricoUser : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     fun getHistorico() {
 
         val shared = getSharedPreferences("idUser", MODE_PRIVATE)
@@ -73,14 +79,17 @@ class HistoricoUser : AppCompatActivity() {
             document = Connection.historicoUser(idUser)
 
             for (doc in document!!) {
+                val date = SimpleDateFormat("dd-MM-yyyy").parse(doc.value.data["date"] as String)
                 myList.add(
                     Historico(
-                        "${doc.value.data["origem"]}-${doc.value.data["destino"]}",
-                        "${doc.value.data["data"]}"
+                        "${doc.value.data["from"]}-${doc.value.data["to"]}",
+                        "${doc.value.data["date"]}",
+                        date < Calendar.getInstance().time
                     )
                 )
 
             }
+
             runOnUiThread {
                 linhasHistorico.adapter = HistoricoAdapter(myList)
                 linhasHistorico.layoutManager = LinearLayoutManager(this@HistoricoUser)
