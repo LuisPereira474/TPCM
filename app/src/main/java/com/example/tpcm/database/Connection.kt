@@ -1,12 +1,12 @@
 package com.example.tpcm.database
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.content.SharedPreferences
 import android.util.Log
 import android.view.View
 import android.widget.TextView
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QueryDocumentSnapshot
+import kotlinx.coroutines.*
 import java.util.*
 import java.util.regex.Pattern
 
@@ -15,7 +15,7 @@ object Connection {
     private var db = FirebaseFirestore.getInstance()
     private var utilizadores = db.collection("utilizador").get()
 
-    fun login(email: String, password: String, errorLogin: TextView):String {
+    fun login(email: String, password: String, errorLogin: TextView): String {
         var idUser = ""
         if (utilizadores.isSuccessful) {
             var confirmLogin = false
@@ -83,7 +83,7 @@ object Connection {
                                 }
                         } else {
                             Log.d("TAG", "Email já registado")
-                            erroSignUpEmail.setVisibility(View.VISIBLE);
+                            erroSignUpEmail.visibility = View.VISIBLE;
                         }
                     } else {
                         Log.w("TAG", "Error getting documents.", task.exception)
@@ -91,7 +91,7 @@ object Connection {
                 }
         } else {
             Log.w("TAG", "Invalid Email")
-            errorInvalidEmail.setVisibility(View.VISIBLE);
+            errorInvalidEmail.visibility = View.VISIBLE;
         }
 
 
@@ -111,19 +111,29 @@ object Connection {
         return EMAIL_ADDRESS_PATTERN.matcher(str).matches()
     }
 
-    fun createRide(from:String,to:String,meeting:String,car:String,date:String,price:String,seats:String,obs:String,idUser:String){
+    fun createRide(
+        from: String,
+        to: String,
+        meeting: String,
+        car: String,
+        date: String,
+        price: String,
+        seats: String,
+        obs: String,
+        idUser: String
+    ) {
 
         val boleia = hashMapOf(
             "idCriador" to idUser,
             "idBoleia" to UUID.randomUUID().toString(),
             "from" to from,
-            "to" to "to",
+            "to" to to,
             "meeting" to meeting,
             "car" to car,
             "date" to date,
             "price" to price,
             "seats" to seats,
-            "obs" to seats
+            "obs" to obs
         )
         db.collection("boleia")
             .add(boleia)
@@ -140,6 +150,33 @@ object Connection {
                     e
                 )
             }
+    }
+
+    @DelicateCoroutinesApi
+    suspend fun historicoUser(idUser: String): HashMap<Int, QueryDocumentSnapshot> {
+        val boleia = HashMap<Int, QueryDocumentSnapshot>()
+        var count = 0
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("boleia")
+                    .whereEqualTo("idCriador", idUser)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                count++
+                                boleia[count] = document
+                            }
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                        }
+                    }
+            }
+        }
+        while (boleia.isEmpty()){
+            delay(1)
+        }
+        return boleia
     }
 
 }

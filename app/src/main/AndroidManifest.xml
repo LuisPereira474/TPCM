@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TPCM">
         <activity
-            android:name=".aplication.AddBoleiaNaoHabilitado"
+            android:name=".aplication.HistoricoUser"
             android:exported="false" />
         <activity
             android:name=".aplication.AddBoleiaSemHist"

@@ -6,17 +6,26 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tpcm.R
+import com.example.tpcm.adapters.HistoricoAdapter
 import com.example.tpcm.database.Connection
+import com.example.tpcm.models.Historico
+import com.google.firebase.firestore.QueryDocumentSnapshot
+import kotlinx.android.synthetic.main.activity_historico_user.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
+class HistoricoUser : AppCompatActivity() {
 
-class CriarBoleia : AppCompatActivity() {
+    private lateinit var myList: ArrayList<Historico>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_criar_boleia)
+        setContentView(R.layout.activity_historico_user)
+        getHistorico()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -33,13 +42,10 @@ class CriarBoleia : AppCompatActivity() {
                 true
             }
             R.id.nav_rides -> {
-
-                val intent = Intent(this@CriarBoleia, HistoricoUser::class.java)
-                startActivity(intent)
                 true
             }
             R.id.nav_services -> {
-                val intent = Intent(this@CriarBoleia, AddBoleiaSemHist::class.java)
+                val intent = Intent(this@HistoricoUser, AddBoleiaSemHist::class.java)
                 startActivity(intent)
                 true
             }
@@ -55,20 +61,30 @@ class CriarBoleia : AppCompatActivity() {
         }
     }
 
-    fun addRide(view: View) {
-        val from = findViewById<EditText>(R.id.fromCriarBoleia).text.toString()
-        val to = findViewById<EditText>(R.id.toCriarBoleia).text.toString()
-        val meeting = findViewById<EditText>(R.id.meetingCriarBoleia).text.toString()
-        val car = findViewById<EditText>(R.id.carCriarBoleia).text.toString()
-        val date = findViewById<EditText>(R.id.dateCriarBoleia).text.toString()
-        val price = findViewById<EditText>(R.id.priceCriarBoleia).text.toString()
-        val seats = findViewById<EditText>(R.id.seatsCriarBoleia).text.toString()
-        val obs = findViewById<EditText>(R.id.obsCriarBoleia).text.toString()
+    fun getHistorico() {
 
         val shared = getSharedPreferences("idUser", MODE_PRIVATE)
         val idUser = shared.getString("idUser", "").toString()
-        Connection.createRide(from,to,meeting,car,date,price,seats,obs,idUser)
-        val intent = Intent(this@CriarBoleia, AddBoleiaSemHist::class.java)
-        startActivity(intent)
+
+        myList = ArrayList<Historico>()
+
+        var document: HashMap<Int, QueryDocumentSnapshot>? = null
+        GlobalScope.launch {
+            document = Connection.historicoUser(idUser)
+
+            for (doc in document!!) {
+                myList.add(
+                    Historico(
+                        "${doc.value.data["origem"]}-${doc.value.data["destino"]}",
+                        "${doc.value.data["data"]}"
+                    )
+                )
+
+            }
+            runOnUiThread {
+                linhasHistorico.adapter = HistoricoAdapter(myList)
+                linhasHistorico.layoutManager = LinearLayoutManager(this@HistoricoUser)
+            }
+        }
     }
 }

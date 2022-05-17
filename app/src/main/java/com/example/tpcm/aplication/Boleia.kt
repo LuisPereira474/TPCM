@@ -1,5 +1,6 @@
 package com.example.tpcm.aplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -27,13 +28,13 @@ class Boleia : AppCompatActivity() {
                 true
             }
             R.id.nav_rides -> {
-                Log.d("teste","entrou")
-                // Respond to navigation item 2 click
+                val intent = Intent(this@Boleia, HistoricoUser::class.java)
+                startActivity(intent)
                 true
             }
             R.id.nav_services -> {
-                Log.d("teste","entrou")
-                // Respond to navigation item 2 click
+                val intent = Intent(this@Boleia, AddBoleiaSemHist::class.java)
+                startActivity(intent)
                 true
             }
             R.id.nav_profile -> {
