@@ -30,13 +30,11 @@ class AddBoleiaSemHist : AppCompatActivity() {
                 true
             }
             R.id.nav_rides -> {
-                Log.d("teste", "entrou")
-                // Respond to navigation item 2 click
+                val intent = Intent(this@AddBoleiaSemHist, HistoricoUser::class.java)
+                startActivity(intent)
                 true
             }
             R.id.nav_services -> {
-                Log.d("teste", "entrou")
-                // Respond to navigation item 2 click
                 true
             }
             R.id.nav_profile -> {

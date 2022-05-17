@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TPCM">
         <activity
+            android:name=".aplication.HistoricoUser"
+            android:exported="false" />
+        <activity
             android:name=".aplication.AddBoleiaSemHist"
             android:exported="false" />
         <activity
