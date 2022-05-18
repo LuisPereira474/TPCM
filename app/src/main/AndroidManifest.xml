@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TPCM">
         <activity
+            android:name=".aplication.EditarPerfil"
+            android:exported="false" />
+        <activity
+            android:name=".aplication.Perfil"
+            android:exported="false" />
+        <activity
             android:name=".aplication.HistoricoUser"
             android:exported="false" />
         <activity

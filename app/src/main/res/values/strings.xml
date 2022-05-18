@@ -14,7 +14,7 @@
     <string name="errorMissingFields">Fields are missing!</string>
     <string name="errorInvalidEmail">Invalid Email!</string>
     <string name="ride">Ride</string>
-    <string name="perfil" translatable="false">Perfil</string>
+    <string name="perfil">Profile</string>
     <string name="AddRide">Create Ride</string>
     <string name="search">Search</string>
     <string name="rides">Rides</string>
@@ -37,4 +37,8 @@
     <string name="confirm">Confirm</string>
     <string name="msgNaoHabilitado">You are not yet able to take rides!!!</string>
     <string name="infoTornarCondutor">Go to My Profile > Become a Driver...</string>
+    <string name="editperfil">Edit Profile</string>
+    <string name="points">Points</string>
+    <string name="claimpts">Claim Bónus</string>
+    <string name="makemedriver">Make me driver</string>
 </resources>

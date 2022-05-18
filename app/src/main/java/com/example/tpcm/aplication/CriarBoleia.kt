@@ -50,8 +50,8 @@ class CriarBoleia : AppCompatActivity() {
                 true
             }
             R.id.nav_profile -> {
-                Log.d("teste", "entrou")
-                // Respond to navigation item 2 click
+                val intent = Intent(this@CriarBoleia, Perfil::class.java)
+                startActivity(intent)                // Respond to navigation item 2 click
                 true
             }
             else -> {

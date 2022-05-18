@@ -1,19 +1,19 @@
 package com.example.tpcm.aplication
 
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import com.example.tpcm.R
 
-class AddBoleiaSemHist : AppCompatActivity() {
+class Perfil : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_boleia_sem_hist)
+        setContentView(R.layout.activity_perfil)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -30,15 +30,16 @@ class AddBoleiaSemHist : AppCompatActivity() {
                 true
             }
             R.id.nav_rides -> {
-                val intent = Intent(this@AddBoleiaSemHist, HistoricoUser::class.java)
+                val intent = Intent(this@Perfil, HistoricoUser::class.java)
                 startActivity(intent)
                 true
             }
             R.id.nav_services -> {
+
                 true
             }
             R.id.nav_profile -> {
-                val intent = Intent(this@AddBoleiaSemHist, Perfil::class.java)
+                val intent = Intent(this@Perfil, AddBoleiaSemHist::class.java)
                 startActivity(intent)
                 // Respond to navigation item 2 click
                 true
@@ -50,8 +51,8 @@ class AddBoleiaSemHist : AppCompatActivity() {
         }
     }
 
-    fun addRide(view: View) {
-        val intent = Intent(this@AddBoleiaSemHist, CriarBoleia::class.java)
+    fun EditProfile(view: View) {
+        val intent = Intent(this@Perfil, EditarPerfil::class.java)
         startActivity(intent)
     }
 }
