@@ -14,18 +14,19 @@ object Connection {
 
     fun login(email: String, password: String) {
         db.collection("utilizador")
+            .whereEqualTo("email", email)
+            .whereEqualTo("password",password)
             .get()
             .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    for (document in task.result!!) {
-                        if ((document.data["email"] as String) == email && (document.data["password"] as String) == password) {
-                            Log.d("TAG", (document.data["idUser"] as String?).toString())
-                        }
+                Log.d("TAG", task.result.documents[0]["idUser"].toString())
+            }
+            .addOnFailureListener{ e ->
+                Log.w(
+                    "TAG",
+                    "Error On Login",
+                    e
+                )
 
-                    }
-                } else {
-                    Log.w("TAG", "Error getting documents.", task.exception)
-                }
             }
     }
 
@@ -41,28 +42,27 @@ object Connection {
         )
 
         if(isValidString(email)){
-            db.collection("utilizador")
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        var checkEmail = true
-                        for (document in task.result!!) {
-                            if ((document.data["email"] as String) == email) {
-                                checkEmail = false
-                                break
-                            }
-                        }
-                        if (checkEmail) {
+            val checkEmail = db.collection("utilizador")
+                .whereEqualTo("email",email)
+                .get().addOnCompleteListener{ task ->
+                    if (task.isSuccessful){
+                        if(task.result.isEmpty){
                             db.collection("utilizador")
-                                .add(user)
-                                .addOnSuccessListener {
-                                    Log.d(
-                                        "TAG",
-                                        "DocumentSnapshot successfully written!"
-                                    )
-                                }
-                                .addOnFailureListener { e -> Log.w("TAG", "Error writing document", e) }
-                        } else {
+                            .add(user)
+                            .addOnSuccessListener {
+                                Log.d(
+                                    "TAG",
+                                    "DocumentSnapshot successfully written!"
+                                )
+                            }
+                            .addOnFailureListener { e ->
+                                Log.w(
+                                    "TAG",
+                                    "Error writing document",
+                                    e
+                                )
+                            }
+                        }else {
                             Log.d("TAG", "Email já registado")
                         }
                     } else {
