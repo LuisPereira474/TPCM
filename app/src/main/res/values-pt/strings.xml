@@ -41,4 +41,5 @@
     <string name="points">Pontos</string>
     <string name="claimpts">Reclamar Bónus</string>
     <string name="makemedriver">Tornar-me condutor</string>
+    <string name="cancel">Cancelar</string>
 </resources>

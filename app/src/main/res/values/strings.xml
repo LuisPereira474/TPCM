@@ -41,4 +41,5 @@
     <string name="points">Points</string>
     <string name="claimpts">Claim Bónus</string>
     <string name="makemedriver">Make me driver</string>
+    <string name="cancel">Cancel</string>
 </resources>
