@@ -36,4 +36,5 @@
     <string name="confirm">Confirmar</string>
     <string name="msgNaoHabilitado">Ainda não está habilitado a prestar boleias!!!</string>
     <string name="infoTornarCondutor">" Aceda em Meu perfil > Tornar-me condutor... "</string>
+    <string name="textSearchBoleia">Que boleia está à procura?</string>
 </resources>

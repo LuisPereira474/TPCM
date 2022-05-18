@@ -37,4 +37,5 @@
     <string name="confirm">Confirm</string>
     <string name="msgNaoHabilitado">You are not yet able to take rides!!!</string>
     <string name="infoTornarCondutor">Go to My Profile > Become a Driver...</string>
+    <string name="textSearchBoleia">What ride are you looking for?</string>
 </resources>

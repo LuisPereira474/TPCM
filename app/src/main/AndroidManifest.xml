@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TPCM">
         <activity
+            android:name=".aplication.SearchBoleiaList"
+            android:exported="false" />
+        <activity
+            android:name=".aplication.SearchBoleia"
+            android:exported="false" />
+        <activity
             android:name=".aplication.HistoricoUser"
             android:exported="false" />
         <activity

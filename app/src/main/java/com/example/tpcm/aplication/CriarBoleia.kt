@@ -34,12 +34,11 @@ class CriarBoleia : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.nav_search -> {
-                Log.d("teste", "entrou")
-                // Respond to navigation item 2 click
+                val intent = Intent(this@CriarBoleia, SearchBoleia::class.java)
+                startActivity(intent)
                 true
             }
             R.id.nav_rides -> {
-
                 val intent = Intent(this@CriarBoleia, HistoricoUser::class.java)
                 startActivity(intent)
                 true
