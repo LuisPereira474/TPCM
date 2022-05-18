@@ -53,35 +53,28 @@ object Connection {
             "sexo" to true
         )
 
-        if (isValidString(email)) {
-            db.collection("utilizador")
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        var checkEmail = true
-                        for (document in task.result!!) {
-                            if ((document.data["email"] as String) == email) {
-                                checkEmail = false
-                                break
-                            }
-                        }
-                        if (checkEmail) {
+        if(isValidString(email)){
+            val checkEmail = db.collection("utilizador")
+                .whereEqualTo("email",email)
+                .get().addOnCompleteListener{ task ->
+                    if (task.isSuccessful){
+                        if(task.result.isEmpty){
                             db.collection("utilizador")
-                                .add(user)
-                                .addOnSuccessListener {
-                                    Log.d(
-                                        "TAG",
-                                        "DocumentSnapshot successfully written!"
-                                    )
-                                }
-                                .addOnFailureListener { e ->
-                                    Log.w(
-                                        "TAG",
-                                        "Error writing document",
-                                        e
-                                    )
-                                }
-                        } else {
+                            .add(user)
+                            .addOnSuccessListener {
+                                Log.d(
+                                    "TAG",
+                                    "DocumentSnapshot successfully written!"
+                                )
+                            }
+                            .addOnFailureListener { e ->
+                                Log.w(
+                                    "TAG",
+                                    "Error writing document",
+                                    e
+                                )
+                            }
+                        }else {
                             Log.d("TAG", "Email já registado")
                             erroSignUpEmail.visibility = View.VISIBLE;
                         }
