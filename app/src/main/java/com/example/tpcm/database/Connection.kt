@@ -6,7 +6,9 @@ import android.content.SharedPreferences
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 import java.util.*
 import java.util.regex.Pattern
 
@@ -14,6 +16,7 @@ object Connection {
     @SuppressLint("StaticFieldLeak")
     private var db = FirebaseFirestore.getInstance()
     private var utilizadores = db.collection("utilizador").get()
+
 
     fun login(email: String, password: String, errorLogin: TextView):String {
         var idUser = ""
@@ -140,6 +143,24 @@ object Connection {
                     e
                 )
             }
+    }
+
+    //Obtém uma boleia
+    fun getRide(id: String): QuerySnapshot? {
+        val ride = db.collection("boleia").whereEqualTo("idBoleia", id).get()
+            .addOnCompleteListener{
+                Log.d(
+                    "TAG",
+                    "Ride obtained Successfully"
+                )
+            }
+            .addOnFailureListener {
+                Log.d(
+                    "TAG",
+                    "Error getting the ride"
+                )
+            }
+        return ride.result;
     }
 
 }
