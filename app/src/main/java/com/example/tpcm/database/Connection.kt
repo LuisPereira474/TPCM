@@ -179,4 +179,23 @@ object Connection {
         return boleia
     }
 
+    fun evaluateRide(idRideUser: String, evaluation: Int){
+        val ride = db.collection("boleia_utilizador")
+            .document(idRideUser)
+            .update("avaliacao", evaluation)
+            .addOnSuccessListener {
+                Log.d(
+                    "TAG",
+                    "Evaluation Updated"
+                )
+            }
+            .addOnFailureListener{ e ->
+                Log.w(
+                    "TAG",
+                    "Error writing document",
+                    e
+                )
+            }
+    }
+
 }
