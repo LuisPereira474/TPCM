@@ -85,6 +85,7 @@ class SearchBoleiaList : AppCompatActivity() {
 
             for (doc in document!!) {
                 val date = SimpleDateFormat("dd-MM-yyyy").parse(doc.value.data["date"] as String)
+                Log.d("teste","$doc")
                 if(date > Calendar.getInstance().time) {
                     myList.add(
                         Search(

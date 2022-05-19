@@ -1,6 +1,8 @@
 package com.example.tpcm.aplication
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -45,10 +47,17 @@ class SignUp : AppCompatActivity() {
             erroSignUpPass.visibility = View.VISIBLE;
         } else {
             GlobalScope.launch {
-                val successSignUp =
+                val idUser =
                     Connection.singUp(email, nome, password, erroSignUpEmail, errorInvalidEmail)
-                Log.d("teste", "$successSignUp")
-                if (successSignUp) {
+                if (idUser!="") {
+                    val sharedPreferences: SharedPreferences =
+                        getSharedPreferences("idUser", Context.MODE_PRIVATE)
+                    sharedPreferences.edit()
+                        .clear()
+                        .apply()
+                    sharedPreferences.edit()
+                        .putString("idUser", idUser)
+                        .apply()
                     val intent = Intent(this@SignUp, AddBoleiaSemHist::class.java)
                     startActivity(intent)
                 }
