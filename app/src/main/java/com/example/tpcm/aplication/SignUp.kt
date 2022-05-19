@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.tpcm.MainActivity
 import com.example.tpcm.R
 import com.example.tpcm.database.Connection
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class SignUp : AppCompatActivity() {
@@ -37,12 +39,20 @@ class SignUp : AppCompatActivity() {
         errorMissingFields.visibility = View.INVISIBLE;
         errorInvalidEmail.visibility = View.INVISIBLE;
 
-        if(email.isEmpty() || password.isEmpty() || nome.isEmpty()){
+        if (email.isEmpty() || password.isEmpty() || nome.isEmpty()) {
             errorMissingFields.visibility = View.VISIBLE;
-        }else if(password != confPassword){
+        } else if (password != confPassword) {
             erroSignUpPass.visibility = View.VISIBLE;
-        }else{
-            Connection.singUp(email,nome,password,erroSignUpEmail,errorInvalidEmail)
+        } else {
+            GlobalScope.launch {
+                val successSignUp =
+                    Connection.singUp(email, nome, password, erroSignUpEmail, errorInvalidEmail)
+                Log.d("teste", "$successSignUp")
+                if (successSignUp) {
+                    val intent = Intent(this@SignUp, AddBoleiaSemHist::class.java)
+                    startActivity(intent)
+                }
+            }
         }
     }
 
