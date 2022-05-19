@@ -30,7 +30,6 @@ class HistoricoUser : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_historico_user)
         getHistorico()
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

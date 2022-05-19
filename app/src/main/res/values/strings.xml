@@ -38,4 +38,7 @@
     <string name="msgNaoHabilitado">You are not yet able to take rides!!!</string>
     <string name="infoTornarCondutor">Go to My Profile > Become a Driver...</string>
     <string name="textSearchBoleia">What ride are you looking for?</string>
+    <string name="erroMissingFrom">Missing from!</string>
+    <string name="erroMissingTo">Missing to!</string>
+    <string name="searchNoResults">There are no rides that match your search.</string>
 </resources>

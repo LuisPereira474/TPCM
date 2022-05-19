@@ -32,15 +32,15 @@ class SignUp : AppCompatActivity() {
         val erroSignUpEmail = findViewById<TextView>(R.id.erroSignUpEmail)
         val errorMissingFields = findViewById<TextView>(R.id.errorMissingFields)
         val errorInvalidEmail = findViewById<TextView>(R.id.errorInvalidEmail)
-        erroSignUpPass.setVisibility(View.INVISIBLE);
-        erroSignUpEmail.setVisibility(View.INVISIBLE);
-        errorMissingFields.setVisibility(View.INVISIBLE);
-        errorInvalidEmail.setVisibility(View.INVISIBLE);
+        erroSignUpPass.visibility = View.INVISIBLE;
+        erroSignUpEmail.visibility = View.INVISIBLE;
+        errorMissingFields.visibility = View.INVISIBLE;
+        errorInvalidEmail.visibility = View.INVISIBLE;
 
         if(email.isEmpty() || password.isEmpty() || nome.isEmpty()){
-            errorMissingFields.setVisibility(View.VISIBLE);
+            errorMissingFields.visibility = View.VISIBLE;
         }else if(password != confPassword){
-            erroSignUpPass.setVisibility(View.VISIBLE);
+            erroSignUpPass.visibility = View.VISIBLE;
         }else{
             Connection.singUp(email,nome,password,erroSignUpEmail,errorInvalidEmail)
         }

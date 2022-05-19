@@ -179,4 +179,42 @@ object Connection {
         return boleia
     }
 
+    @DelicateCoroutinesApi
+    suspend fun getBoleias(from: String,to: String,date: String): HashMap<String, QueryDocumentSnapshot> {
+        val boleia = HashMap<String, QueryDocumentSnapshot>()
+        var canContinue = false
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("boleia")
+                    .whereEqualTo("from", from)
+                    .whereEqualTo("to", to)
+                    .whereEqualTo("date", date)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                if (utilizadores.isSuccessful) {
+                                    for (users in utilizadores.result!!) {
+                                        if ((users.data["idUser"] as String) == document.data["idCriador"]) {
+                                            boleia[(users.data["nome"] as String?).toString()] = document
+                                        }
+                                    }
+
+                                } else {
+                                    Log.w("TAG", "Error getting documents.", utilizadores.exception)
+                                }
+                            }
+                            canContinue=true
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                        }
+                    }
+            }
+        }
+        while (boleia.isEmpty() && !canContinue){
+            delay(1)
+        }
+        return boleia
+    }
+
 }

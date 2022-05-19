@@ -1,42 +1,36 @@
 package com.example.tpcm.adapters
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tpcm.R
-import com.example.tpcm.models.Historico
-import kotlinx.android.synthetic.main.historico_line.view.*
+import com.example.tpcm.models.Search
+import kotlinx.android.synthetic.main.search_line.view.*
+
 
 class SearchAdapter(
-    private val linhas: ArrayList<Historico>
-) : RecyclerView.Adapter<HistoricoViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoricoViewHolder {
-        return HistoricoViewHolder(
+    private val linhas: ArrayList<Search>
+) : RecyclerView.Adapter<SearchViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
+        return SearchViewHolder(
             LayoutInflater
                 .from(parent.context)
                 .inflate(
-                    R.layout.historico_line,
+                    R.layout.search_line,
                     parent,
                     false
                 )
         )
     }
 
-    override fun onBindViewHolder(holder: HistoricoViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         val currentLinha = linhas[position]
-        val green: Int = Color.parseColor("#54C000")
-        val red: Int = Color.parseColor("#FF3939")
-
         holder.fromTo.text = currentLinha.fromTo
         holder.date.text = currentLinha.date
-        if (currentLinha.flag){
-            holder.flag.setBackgroundColor(red)
-        }else{
-            holder.flag.setBackgroundColor(green)
-        }
+        holder.price.text = currentLinha.price
+        holder.nomeCriador.text = currentLinha.nomeCriador
     }
 
     override fun getItemCount(): Int {
@@ -49,5 +43,7 @@ class SearchViewHolder(
 ) : RecyclerView.ViewHolder(itemView) {
     val fromTo: TextView = itemView.fromTo
     val date: TextView = itemView.date
-    val flag: TextView = itemView.flag
+    val price: TextView = itemView.price
+    val nomeCriador: TextView = itemView.nomeCriador
+
 }
