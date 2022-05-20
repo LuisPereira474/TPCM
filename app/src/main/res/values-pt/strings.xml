@@ -42,4 +42,8 @@
     <string name="claimpts">Reclamar Bónus</string>
     <string name="makemedriver">Tornar-me condutor</string>
     <string name="cancel">Cancelar</string>
+    <string name="textSearchBoleia">Que boleia está à procura?</string>
+    <string name="erroMissingFrom">Falta o ponto de partida!</string>
+    <string name="erroMissingTo">Falta o destino!</string>
+    <string name="searchNoResults">Não há boleias que correspondam à pesquisa.</string>
 </resources>

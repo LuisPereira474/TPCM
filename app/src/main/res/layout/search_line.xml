@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginTop="30dp"
+    android:background="@drawable/historico_rounded_border"
+    android:backgroundTint="#C4C4C4">
+
+        <TextView
+            android:id="@+id/fromTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:text="Porto-Viana"/>
+
+
+        <TextView
+            android:id="@+id/date"
+            android:text="1 Fevereiro 2021"
+            android:layout_below="@+id/fromTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"/>
+
+        <TextView
+            android:id="@+id/price"
+            android:text="15€"
+            android:layout_below="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"/>
+
+        <TextView
+            android:id="@+id/nomeCriador"
+            android:text="Zé Pedro"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"/>
+
+</RelativeLayout>

@@ -13,36 +13,45 @@ import java.util.regex.Pattern
 object Connection {
     @SuppressLint("StaticFieldLeak")
     private var db = FirebaseFirestore.getInstance()
-    private var utilizadores = db.collection("utilizador").get()
 
-    fun login(email: String, password: String, errorLogin: TextView): String {
+    suspend fun login(email: String, password: String, errorLogin: TextView): String {
         var idUser = ""
-        if (utilizadores.isSuccessful) {
-            var confirmLogin = false
-            for (document in utilizadores.result!!) {
-                if ((document.data["email"] as String) == email && (document.data["password"] as String) == password) {
-                    confirmLogin = true
-                    idUser = (document.data["idUser"] as String?).toString()
-                }
+        var confirmLogin = false
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("utilizador")
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+
+                            for (document in task.result!!) {
+                                if ((document.data["email"] as String) == email && (document.data["password"] as String) == password) {
+                                    confirmLogin = true
+                                    idUser = (document.data["idUser"] as String?).toString()
+                                }
+                            }
+                            if (!confirmLogin) {
+                                errorLogin.visibility = View.VISIBLE;
+                            }
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                        }
+                    }
             }
-            if (confirmLogin) {
-                return idUser
-            } else {
-                errorLogin.visibility = View.VISIBLE;
-            }
-        } else {
-            Log.w("TAG", "Error getting documents.", utilizadores.exception)
+        }
+        while (!confirmLogin) {
+            delay(1)
         }
         return idUser
     }
 
-    fun singUp(
+    suspend fun singUp(
         email: String,
         nome: String,
         password: String,
         erroSignUpEmail: TextView,
         errorInvalidEmail: TextView
-    ) {
+    ): String {
         val user = hashMapOf(
             "email" to email,
             "foto" to "teste",
@@ -52,49 +61,83 @@ object Connection {
             "pontos" to 0,
             "sexo" to true
         )
-
-        if (isValidString(email)) {
-            db.collection("utilizador")
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        var checkEmail = true
-                        for (document in task.result!!) {
-                            if ((document.data["email"] as String) == email) {
-                                checkEmail = false
-                                break
+        var idUser = ""
+        var canContinue = false
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                if (isValidString(email)) {
+                    db.collection("utilizador")
+                        .whereEqualTo("nome", nome)
+                        .get()
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                if (task.result.isEmpty) {
+                                    db.collection("utilizador")
+                                        .whereEqualTo("email", email)
+                                        .get()
+                                        .addOnCompleteListener { task ->
+                                            if (task.isSuccessful) {
+                                                if (task.result.isEmpty) {
+                                                    db.collection("utilizador")
+                                                        .add(user)
+                                                        .addOnSuccessListener {
+                                                            db.collection("utilizador")
+                                                                .get()
+                                                                .addOnCompleteListener { task ->
+                                                                    if (task.isSuccessful) {
+                                                                        for (document in task.result!!) {
+                                                                            if ((document.data["email"] as String) == email) {
+                                                                                idUser = (document.data["idUser"] as String?).toString()
+                                                                            }
+                                                                        }
+                                                                        canContinue = true
+                                                                    } else {
+                                                                        canContinue = true
+                                                                        Log.w("TAG", "Error getting documents.", task.exception)
+                                                                    }
+                                                                }
+                                                            Log.d(
+                                                                "TAG",
+                                                                "DocumentSnapshot successfully written!"
+                                                            )
+                                                        }
+                                                        .addOnFailureListener { e ->
+                                                            Log.w(
+                                                                "TAG",
+                                                                "Error writing document",
+                                                                e
+                                                            )
+                                                        }
+                                                } else {
+                                                    Log.d("TAG", "Email já registado")
+                                                    erroSignUpEmail.visibility = View.VISIBLE;
+                                                    canContinue = true
+                                                }
+                                            } else {
+                                                Log.w(
+                                                    "TAG",
+                                                    "Error getting documents.",
+                                                    task.exception
+                                                )
+                                            }
+                                        }
+                                } else {
+                                    Log.d("TAG", "Email já registado")
+                                    erroSignUpEmail.visibility = View.VISIBLE;
+                                    canContinue = true
+                                }
                             }
                         }
-                        if (checkEmail) {
-                            db.collection("utilizador")
-                                .add(user)
-                                .addOnSuccessListener {
-                                    Log.d(
-                                        "TAG",
-                                        "DocumentSnapshot successfully written!"
-                                    )
-                                }
-                                .addOnFailureListener { e ->
-                                    Log.w(
-                                        "TAG",
-                                        "Error writing document",
-                                        e
-                                    )
-                                }
-                        } else {
-                            Log.d("TAG", "Email já registado")
-                            erroSignUpEmail.visibility = View.VISIBLE;
-                        }
-                    } else {
-                        Log.w("TAG", "Error getting documents.", task.exception)
-                    }
+                } else {
+                    Log.w("TAG", "Invalid Email")
+                    errorInvalidEmail.visibility = View.VISIBLE;
                 }
-        } else {
-            Log.w("TAG", "Invalid Email")
-            errorInvalidEmail.visibility = View.VISIBLE;
+            }
         }
-
-
+        while (!canContinue) {
+            delay(1)
+        }
+        return idUser
     }
 
     private val EMAIL_ADDRESS_PATTERN: Pattern = Pattern.compile(
@@ -173,9 +216,66 @@ object Connection {
                     }
             }
         }
-        while (boleia.isEmpty()){
+        while (boleia.isEmpty()) {
             delay(1)
         }
+        return boleia
+    }
+
+    @DelicateCoroutinesApi
+    suspend fun getBoleias(
+        from: String,
+        to: String,
+        date: String
+    ): HashMap<String, QueryDocumentSnapshot> {
+        val boleia = HashMap<String, QueryDocumentSnapshot>()
+        var canContinue = false
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("boleia")
+                    .whereEqualTo("from", from)
+                    .whereEqualTo("to", to)
+                    .whereEqualTo("date", date)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                db.collection("utilizador")
+                                    .get()
+                                    .addOnCompleteListener { task2 ->
+                                        if (task2.isSuccessful) {
+                                            for (users in task2.result!!) {
+                                                if ((users.data["idUser"] as String) == document.data["idCriador"]) {
+                                                    boleia[(users.data["nome"] as String?).toString()] =
+                                                        document
+                                                }
+                                            }
+                                            canContinue = true
+                                        } else {
+                                            Log.w(
+                                                "TAG",
+                                                "Error getting documents.",
+                                                task2.exception
+                                            )
+                                            canContinue = true
+                                        }
+                                    }
+                            }
+                            if (task.result.isEmpty){
+                                canContinue = true
+                            }
+                        } else {
+                            canContinue = true
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                        }
+                    }
+            }
+        }
+
+        while (boleia.isEmpty() && !canContinue) {
+            delay(1)
+        }
+
         return boleia
     }
 

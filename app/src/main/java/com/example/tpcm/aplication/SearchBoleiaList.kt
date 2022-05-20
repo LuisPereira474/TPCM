@@ -7,14 +7,16 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tpcm.R
-import com.example.tpcm.adapters.HistoricoAdapter
+import com.example.tpcm.adapters.SearchAdapter
 import com.example.tpcm.database.Connection
-import com.example.tpcm.models.Historico
+import com.example.tpcm.models.Search
 import com.google.firebase.firestore.QueryDocumentSnapshot
-import kotlinx.android.synthetic.main.activity_historico_user.*
+import kotlinx.android.synthetic.main.activity_search_boleia_list.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -22,14 +24,14 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
-class HistoricoUser : AppCompatActivity() {
+class SearchBoleiaList : AppCompatActivity() {
 
-    private lateinit var myList: ArrayList<Historico>
+    private lateinit var myList: ArrayList<Search>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_historico_user)
-        getHistorico()
+        setContentView(R.layout.activity_search_boleia_list)
+        getBoleias()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -41,15 +43,17 @@ class HistoricoUser : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.nav_search -> {
-                val intent = Intent(this@HistoricoUser, SearchBoleia::class.java)
+                val intent = Intent(this@SearchBoleiaList, SearchBoleia::class.java)
                 startActivity(intent)
                 true
             }
             R.id.nav_rides -> {
+                val intent = Intent(this@SearchBoleiaList, HistoricoUser::class.java)
+                startActivity(intent)
                 true
             }
             R.id.nav_services -> {
-                val intent = Intent(this@HistoricoUser, AddBoleiaSemHist::class.java)
+                val intent = Intent(this@SearchBoleiaList, AddBoleiaSemHist::class.java)
                 startActivity(intent)
                 true
             }
@@ -66,32 +70,42 @@ class HistoricoUser : AppCompatActivity() {
     }
 
     @SuppressLint("SimpleDateFormat")
-    fun getHistorico() {
+    fun getBoleias() {
+        val from = intent.getStringExtra(PARAM_FROM)
+        val to = intent.getStringExtra(PARAM_TO)
+        val date = intent.getStringExtra(PARAM_DATE)
+        myList = ArrayList<Search>()
 
-        val shared = getSharedPreferences("idUser", MODE_PRIVATE)
-        val idUser = shared.getString("idUser", "").toString()
-
-        myList = ArrayList<Historico>()
-
-        var document: HashMap<Int, QueryDocumentSnapshot>? = null
+        var document: HashMap<String, QueryDocumentSnapshot>? = null
         GlobalScope.launch {
-            document = Connection.historicoUser(idUser)
+            val errorNoResults = findViewById<TextView>(R.id.errorNoResults)
+            errorNoResults.visibility = View.INVISIBLE
+
+            document = Connection.getBoleias(from.toString(), to.toString(), date.toString())
 
             for (doc in document!!) {
                 val date = SimpleDateFormat("dd-MM-yyyy").parse(doc.value.data["date"] as String)
-                myList.add(
-                    Historico(
-                        "${doc.value.data["from"]}-${doc.value.data["to"]}",
-                        "${doc.value.data["date"]}",
-                        date < Calendar.getInstance().time
+                Log.d("teste","$doc")
+                if(date > Calendar.getInstance().time) {
+                    myList.add(
+                        Search(
+                            "${doc.value.data["from"]}-${doc.value.data["to"]}",
+                            "${doc.value.data["date"]}",
+                            "${doc.value.data["price"]}",
+                            doc.key,
+                        )
                     )
-                )
+                }
 
             }
-
             runOnUiThread {
-                linhasHistorico.adapter = HistoricoAdapter(myList)
-                linhasHistorico.layoutManager = LinearLayoutManager(this@HistoricoUser)
+                if (myList.isEmpty()) {
+                    errorNoResults.visibility = View.VISIBLE
+                } else {
+
+                    linhasSearch.adapter = SearchAdapter(myList)
+                    linhasSearch.layoutManager = LinearLayoutManager(this@SearchBoleiaList)
+                }
             }
         }
     }
