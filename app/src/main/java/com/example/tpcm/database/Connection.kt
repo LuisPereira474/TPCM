@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.TextView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QueryDocumentSnapshot
+import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.coroutines.*
 import java.util.*
 import java.util.regex.Pattern
@@ -87,13 +88,18 @@ object Connection {
                                                                     if (task.isSuccessful) {
                                                                         for (document in task.result!!) {
                                                                             if ((document.data["email"] as String) == email) {
-                                                                                idUser = (document.data["idUser"] as String?).toString()
+                                                                                idUser =
+                                                                                    (document.data["idUser"] as String?).toString()
                                                                             }
                                                                         }
                                                                         canContinue = true
                                                                     } else {
                                                                         canContinue = true
-                                                                        Log.w("TAG", "Error getting documents.", task.exception)
+                                                                        Log.w(
+                                                                            "TAG",
+                                                                            "Error getting documents.",
+                                                                            task.exception
+                                                                        )
                                                                     }
                                                                 }
                                                             Log.d(
@@ -261,7 +267,7 @@ object Connection {
                                         }
                                     }
                             }
-                            if (task.result.isEmpty){
+                            if (task.result.isEmpty) {
                                 canContinue = true
                             }
                         } else {
@@ -277,6 +283,31 @@ object Connection {
         }
 
         return boleia
+    }
+
+    @DelicateCoroutinesApi
+    suspend fun getProfileUser(idUser: String): QueryDocumentSnapshot? {
+        var user: QueryDocumentSnapshot? = null
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("utilizador")
+                    .whereEqualTo("idUser", idUser)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                user = document
+                            }
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                        }
+                    }
+            }
+        }
+        while (user == null) {
+            delay(1)
+        }
+        return user
     }
 
 }

@@ -7,7 +7,7 @@
     tools:context=".aplication.Perfil">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/PerfilAvatar"
+        android:id="@+id/perfilAvatar"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="20dp"
@@ -17,8 +17,8 @@
         android:src="@drawable/avatar_girl"/>
 
     <TextView
-        android:id="@+id/PerfilName"
-        android:layout_alignStart="@+id/PerfilAvatar"
+        android:id="@+id/perfilName"
+        android:layout_alignStart="@+id/perfilAvatar"
         android:layout_marginStart="170dp"
         android:layout_marginTop="40dp"
         android:layout_width="wrap_content"
@@ -28,9 +28,9 @@
         android:textStyle="bold"
         />
     <TextView
-        android:id="@+id/PerfilEmail"
-        android:layout_below="@+id/PerfilName"
-        android:layout_alignStart="@+id/PerfilAvatar"
+        android:id="@+id/perfilEmail"
+        android:layout_below="@+id/perfilName"
+        android:layout_alignStart="@+id/perfilAvatar"
         android:layout_marginStart="170dp"
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
@@ -44,14 +44,14 @@
         android:id="@+id/EditBtt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/PerfilEmail"
-        android:layout_alignStart="@+id/PerfilAvatar"
+        android:layout_below="@+id/perfilEmail"
+        android:layout_alignStart="@+id/perfilAvatar"
         android:layout_marginStart="170dp"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/principal"
         android:textSize="10dp"
         android:padding="0dp"
-        android:onClick="EditProfile"
+        android:onClick="editProfile"
         android:text="@string/editperfil" />
 
     <TextView
@@ -59,16 +59,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/points"
-        android:layout_below="@+id/PerfilAvatar"
+        android:layout_below="@+id/perfilAvatar"
         android:layout_marginTop="70dp"
         android:layout_marginStart="90dp"
         android:textStyle="bold"/>
 
     <TextView
-        android:id="@+id/Points"
+        android:id="@+id/points"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/PerfilAvatar"
+        android:layout_below="@+id/perfilAvatar"
         android:layout_alignStart="@+id/labelPoints"
         android:layout_marginStart="55dp"
         android:layout_marginTop="70dp"
@@ -80,17 +80,17 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/ClaimPointsBtt"
+        android:id="@+id/claimPointsBtt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/PerfilAvatar"
-        android:layout_alignStart="@+id/Points"
+        android:layout_below="@+id/perfilAvatar"
+        android:layout_alignStart="@+id/points"
         android:layout_marginStart="90dp"
         android:layout_marginTop="50dp"
         android:backgroundTint="@color/principal"
         android:textSize="10dp"
         android:padding="0dp"
-        android:onClick="EditProfile"
+        android:onClick="editProfile"
         android:text="@string/claimpts" />
 
 
@@ -103,7 +103,7 @@
         android:layout_centerHorizontal="true"
         android:backgroundTint="@color/principal"
         android:textSize="14dp"
-        android:onClick="EditProfile"
+        android:onClick="editProfile"
         android:text="@string/makemedriver"
         android:drawableRight="@drawable/ic_baseline_card_membership_24"/>
 

@@ -48,6 +48,7 @@ dependencies {
 
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.0.3'
+
     //Implementações usadas na pagina de perfil(Avatar)
     implementation 'de.hdodenhof:circleimageview:3.0.0'
     implementation'com.squareup.picasso:picasso:2.71828'
