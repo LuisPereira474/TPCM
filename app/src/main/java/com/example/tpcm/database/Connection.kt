@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.TextView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QueryDocumentSnapshot
-import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.SetOptions
 import kotlinx.coroutines.*
 import java.util.*
 import java.util.regex.Pattern
@@ -308,6 +308,40 @@ object Connection {
             delay(1)
         }
         return user
+    }
+
+    @DelicateCoroutinesApi
+    suspend fun editProfile(idUser: String, editName: String, editEmail: String) {
+        var user: QueryDocumentSnapshot? = null
+        val data = hashMapOf(
+            "nome" to editName,
+            "email" to editEmail
+        )
+
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("utilizador")
+                    .whereEqualTo("idUser", idUser)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                user = document
+                                db.collection("utilizador").document(user!!.id)
+                                    .set(data, SetOptions.merge())
+                            }
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                        }
+                    }
+
+            }
+        }
+        while (user == null) {
+            delay(1)
+        }
+
+//        return user
     }
 
 }
