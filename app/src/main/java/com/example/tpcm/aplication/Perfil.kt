@@ -25,8 +25,8 @@ class Perfil : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.nav_search -> {
-                Log.d("teste", "entrou")
-                // Respond to navigation item 2 click
+                val intent = Intent(this@Perfil, SearchBoleia::class.java)
+                startActivity(intent)
                 true
             }
             R.id.nav_rides -> {
@@ -35,17 +35,16 @@ class Perfil : AppCompatActivity() {
                 true
             }
             R.id.nav_services -> {
-
+                val intent = Intent(this@Perfil, AddBoleiaSemHist::class.java)
+                startActivity(intent)
                 true
             }
             R.id.nav_profile -> {
                 val intent = Intent(this@Perfil, AddBoleiaSemHist::class.java)
                 startActivity(intent)
-                // Respond to navigation item 2 click
                 true
             }
             else -> {
-                Log.d("teste", "entrou")
                 super.onOptionsItemSelected(item)
             }
         }

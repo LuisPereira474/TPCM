@@ -51,12 +51,11 @@ class SearchBoleia : AppCompatActivity() {
                 true
             }
             R.id.nav_profile -> {
-                Log.d("teste", "entrou")
-                // Respond to navigation item 2 click
+                val intent = Intent(this@SearchBoleia, Perfil::class.java)
+                startActivity(intent)
                 true
             }
             else -> {
-                Log.d("teste", "entrou")
                 super.onOptionsItemSelected(item)
             }
         }

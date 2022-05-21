@@ -40,11 +40,9 @@ class Boleia : AppCompatActivity() {
             R.id.nav_profile -> {
                 val intent = Intent(this@Boleia, Perfil::class.java)
                 startActivity(intent)
-                // Respond to navigation item 2 click
                 true
             }
             else -> {
-                Log.d("teste","entrou")
                 super.onOptionsItemSelected(item)
             }
         }
