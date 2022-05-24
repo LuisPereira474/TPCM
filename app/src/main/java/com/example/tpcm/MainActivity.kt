@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tpcm.aplication.AddBoleiaSemHist
+import com.example.tpcm.aplication.ScanQrCode
 import com.example.tpcm.aplication.SignUp
 import com.example.tpcm.database.Connection
 import kotlinx.coroutines.GlobalScope
@@ -18,7 +19,7 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_scan_qr_code)
+        setContentView(R.layout.activity_main)
     }
 
     fun loginSubmit(view: View) {
@@ -50,7 +51,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun signUpPage(view: View) {
-        val intent = Intent(this@MainActivity, SignUp::class.java)
+        val intent = Intent(this@MainActivity, ScanQrCode::class.java)
         startActivity(intent)
     }
 }
