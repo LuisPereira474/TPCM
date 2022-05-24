@@ -46,4 +46,5 @@
     <string name="claimpts">Claim Bónus</string>
     <string name="makemedriver">Make me driver</string>
     <string name="cancel">Cancel</string>
+    <string name="scan">SCAN</string>
 </resources>

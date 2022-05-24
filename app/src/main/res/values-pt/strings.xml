@@ -46,4 +46,5 @@
     <string name="erroMissingFrom">Falta o ponto de partida!</string>
     <string name="erroMissingTo">Falta o destino!</string>
     <string name="searchNoResults">Não há boleias que correspondam à pesquisa.</string>
+    <string name="scan">SCAN</string>
 </resources>

@@ -30,9 +30,25 @@
         <entry key="..\:/Users/Utilizador/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="..\:/Users/Utilizador/AndroidStudioProjects/TPCM/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.3625" />
         <entry key="..\:/Users/Utilizador/AndroidStudioProjects/TPCM/app/src/main/res/menu/nav_menu.xml" value="0.3625" />
+        <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/drawable/border.xml" value="0.196" />
+        <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/drawable/historico_rounded_border.xml" value="0.196" />
+        <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/drawable/ic_baseline_qr_code_scanner_200.xml" value="0.3275" />
+        <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/drawable/rounded_btt.xml" value="0.196" />
+        <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_add_boleia_nao_habilitado.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_add_boleia_sem_hist.xml" value="0.2758152173913043" />
+        <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_boleia.xml" value="0.2758152173913043" />
+        <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_criar_boleia.xml" value="0.2758152173913043" />
         <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_editar_perfil.xml" value="0.2817028985507246" />
-        <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_perfil.xml" value="0.2758152173913043" />
-        <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_sign_up.xml" value="0.16621376811594202" />
+        <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_historico_user.xml" value="0.2758152173913043" />
+        <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_main.xml" value="0.2758152173913043" />
+        <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_perfil.xml" value="0.25" />
+        <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_pop_up_window.xml" value="0.2758152173913043" />
+        <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_scan_qr_code.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_search_boleia.xml" value="0.67" />
+        <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_search_boleia_list.xml" value="0.2758152173913043" />
+        <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
+        <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/historico_line.xml" value="0.2758152173913043" />
+        <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/search_line.xml" value="0.2758152173913043" />
       </map>
     </option>
   </component>

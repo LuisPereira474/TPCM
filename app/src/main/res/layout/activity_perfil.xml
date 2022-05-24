@@ -42,17 +42,24 @@
 
     <Button
         android:id="@+id/EditBtt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_below="@+id/perfilEmail"
         android:layout_alignStart="@+id/perfilAvatar"
         android:layout_marginStart="170dp"
         android:layout_marginTop="20dp"
-        android:backgroundTint="@color/principal"
-        android:textSize="10dp"
-        android:padding="0dp"
         android:onClick="editProfile"
-        android:text="@string/editperfil" />
+        android:text="@string/editperfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/principal"
+        android:padding="10dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:cornerRadius="20dp"
+        app:strokeColor="@color/principal"
+        app:strokeWidth="1dp"/>
 
     <TextView
         android:id="@+id/labelPoints"
@@ -61,7 +68,7 @@
         android:text="@string/points"
         android:layout_below="@+id/perfilAvatar"
         android:layout_marginTop="70dp"
-        android:layout_marginStart="90dp"
+        android:layout_marginStart="50dp"
         android:textStyle="bold"/>
 
     <TextView
@@ -81,31 +88,46 @@
 
     <Button
         android:id="@+id/claimPointsBtt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_below="@+id/perfilAvatar"
         android:layout_alignStart="@+id/points"
-        android:layout_marginStart="90dp"
+        android:layout_marginStart="80dp"
         android:layout_marginTop="50dp"
-        android:backgroundTint="@color/principal"
-        android:textSize="10dp"
-        android:padding="0dp"
         android:onClick="editProfile"
-        android:text="@string/claimpts" />
+        android:text="@string/claimpts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/principal"
+        android:padding="10dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:cornerRadius="20dp"
+        app:strokeColor="@color/principal"
+        app:strokeWidth="1dp"/>
 
 
     <Button
         android:id="@+id/registarCondutor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-       android:layout_alignBottom="@+id/bottom_navigation"
+        android:layout_alignBottom="@+id/bottom_navigation"
         android:layout_marginBottom="130dp"
         android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/principal"
-        android:textSize="14dp"
         android:onClick="editProfile"
         android:text="@string/makemedriver"
-        android:drawableRight="@drawable/ic_baseline_card_membership_24"/>
+        android:drawableRight="@drawable/ic_baseline_card_membership_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/principal"
+        android:padding="10dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="19sp"
+        app:cornerRadius="20dp"
+        app:strokeColor="@color/principal"
+        app:strokeWidth="1dp"/>
 
 
     <!--Nav Bar-->

@@ -71,14 +71,23 @@
 
     <Button
         android:id="@+id/signUpBtt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_alignTop="@id/passwordLabel"
         android:layout_marginStart="50dp"
         android:layout_marginTop="210dp"
-        android:backgroundTint="@color/principal"
         android:onClick="signUpPage"
-        android:text="@string/signup" />
+        android:text="@string/signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/principal"
+        android:padding="10dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="19sp"
+        app:cornerRadius="20dp"
+        app:strokeColor="@color/principal"
+        app:strokeWidth="1dp"/>
 
 
     <Button
