@@ -47,4 +47,5 @@
     <string name="makemedriver">Make me driver</string>
     <string name="cancel">Cancel</string>
     <string name="scan">SCAN</string>
+    <string name="botaoLerQrCode">Scan QR Code</string>
 </resources>

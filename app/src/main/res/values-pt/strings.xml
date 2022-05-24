@@ -47,4 +47,6 @@
     <string name="erroMissingTo">Falta o destino!</string>
     <string name="searchNoResults">Não há boleias que correspondam à pesquisa.</string>
     <string name="scan">SCAN</string>
+    <string name="botaoLerQrCode">Scan QR Code</string>
+    <string name="email" translatable="false">Email</string>
 </resources>
