@@ -11,7 +11,9 @@ import com.example.tpcm.models.Historico
 import kotlinx.android.synthetic.main.historico_line.view.*
 
 class HistoricoAdapter(
+
     private val linhas: ArrayList<Historico>
+
 ) : RecyclerView.Adapter<HistoricoViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoricoViewHolder {
         return HistoricoViewHolder(
