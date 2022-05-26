@@ -31,6 +31,7 @@ class SearchAdapter(
         holder.date.text = currentLinha.date
         holder.price.text = currentLinha.price
         holder.nomeCriador.text = currentLinha.nomeCriador
+        holder.idBoleia.text = currentLinha.idBoleia
     }
 
     override fun getItemCount(): Int {
@@ -45,5 +46,6 @@ class SearchViewHolder(
     val date: TextView = itemView.date
     val price: TextView = itemView.price
     val nomeCriador: TextView = itemView.nomeCriador
+    val idBoleia: TextView = itemView.idBoleia
 
 }

@@ -341,7 +341,12 @@ object Connection {
             delay(1)
         }
 
-//        return user
+    }
+
+    fun acceptBoleia(idUser: String,idBoleia: String){
+
+
+
     }
 
 }

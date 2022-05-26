@@ -92,6 +92,7 @@ class SearchBoleiaList : AppCompatActivity() {
                             "${doc.value.data["date"]}",
                             "${doc.value.data["price"]}",
                             doc.key,
+                            "${doc.value.data["idBoleia"]}"
                         )
                     )
                 }
@@ -107,5 +108,15 @@ class SearchBoleiaList : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    fun acceptBoleia(view: View){
+        val shared = getSharedPreferences("idUser", MODE_PRIVATE)
+        val idUser = shared.getString("idUser", "").toString()
+
+        val idBoleia=findViewById<TextView>(R.id.idBoleia)
+
+        //Connection.acceptBoleia(idUser)
+        Log.d("TAG","$idBoleia")
     }
 }

@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun signUpPage(view: View) {
-        val intent = Intent(this@MainActivity, ScanQrCode::class.java)
+        val intent = Intent(this@MainActivity, SignUp::class.java)
         startActivity(intent)
     }
 }
