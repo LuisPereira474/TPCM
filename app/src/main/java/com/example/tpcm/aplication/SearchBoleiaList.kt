@@ -102,21 +102,27 @@ class SearchBoleiaList : AppCompatActivity() {
                 if (myList.isEmpty()) {
                     errorNoResults.visibility = View.VISIBLE
                 } else {
+                    var adapter = SearchAdapter(myList)
+                    linhasSearch.adapter = adapter
+                    adapter.setOnItemClickListener(object : SearchAdapter.onItemClickListener{
+                        override fun onItemClick(idBoleia: TextView) {
+                            acceptBoleia(idBoleia)
+                        }
 
-                    linhasSearch.adapter = SearchAdapter(myList)
+
+                    })
                     linhasSearch.layoutManager = LinearLayoutManager(this@SearchBoleiaList)
                 }
             }
         }
     }
 
-    fun acceptBoleia(view: View){
+    fun acceptBoleia(idBoleia: TextView){
         val shared = getSharedPreferences("idUser", MODE_PRIVATE)
         val idUser = shared.getString("idUser", "").toString()
 
-        val idBoleia=findViewById<TextView>(R.id.idBoleia)
 
         //Connection.acceptBoleia(idUser)
-        Log.d("TAG","$idBoleia")
+        Log.d("TAG","${idBoleia.text}")
     }
 }

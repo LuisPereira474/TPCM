@@ -81,6 +81,7 @@
 
 
         <Button
+            android:id="@+id/confirmButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
@@ -94,6 +95,5 @@
             app:iconPadding="0dp"
             android:onClick="acceptBoleia"
             />
-
 
 </RelativeLayout>
