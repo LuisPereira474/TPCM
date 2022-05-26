@@ -50,4 +50,6 @@
     <string name="botaoLerQrCode">Scan QR Code</string>
     <string name="wishList">Lista de Desejos</string>
     <string name="moreInfo">Mais Info</string>
+    <string name="success">Sucesso!</string>
+    <string name="error">Erro!</string>
 </resources>

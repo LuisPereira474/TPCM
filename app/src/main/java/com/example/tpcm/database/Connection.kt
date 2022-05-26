@@ -343,10 +343,53 @@ object Connection {
 
     }
 
-    fun acceptBoleia(idUser: String,idBoleia: String){
+    suspend fun acceptBoleia(idUser: String, idBoleia: String):Int {
+        var canGo = false
+        var successFail=0
+        val data = hashMapOf(
+            "idUser" to idUser,
+            "idBoleia" to idBoleia
+        )
+
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("boleia_utilizador")
+                    .whereEqualTo("idBoleia", idBoleia)
+                    .whereEqualTo("idUser", idUser)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            if (task.result.size() > 0) {
+                                Log.d("TAG", "Erro.")
+                                successFail=1
+                                canGo = true
+                            } else {
+                                db.collection("boleia_utilizador")
+                                    .add(data)
+                                    .addOnCompleteListener { task ->
+                                        canGo = if (task.isSuccessful) {
+                                            successFail=2
+                                            Log.d("TAG", "Success.")
+                                            true
+                                        } else {
+                                            Log.w("TAG", "Error getting documents.", task.exception)
+                                            true
+                                        }
+                                    }
+                            }
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                            canGo = true
+                        }
+                    }
 
 
-
+            }
+        }
+        while (!canGo||successFail==0) {
+            delay(1)
+        }
+    return successFail
     }
 
 }
