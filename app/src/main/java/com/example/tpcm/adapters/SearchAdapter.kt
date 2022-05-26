@@ -13,6 +13,17 @@ import kotlinx.android.synthetic.main.search_line.view.*
 class SearchAdapter(
     private val linhas: ArrayList<Search>
 ) : RecyclerView.Adapter<SearchViewHolder>() {
+
+    private lateinit var mListener: onItemClickListener
+
+    interface onItemClickListener {
+        fun onItemClick(idBoleia: TextView)
+    }
+
+    fun setOnItemClickListener(listener: onItemClickListener) {
+        mListener = listener
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         return SearchViewHolder(
             LayoutInflater
@@ -21,7 +32,8 @@ class SearchAdapter(
                     R.layout.search_line,
                     parent,
                     false
-                )
+                ),
+            mListener
         )
     }
 
@@ -40,7 +52,8 @@ class SearchAdapter(
 }
 
 class SearchViewHolder(
-    itemView: View
+    itemView: View,
+    listener: SearchAdapter.onItemClickListener
 ) : RecyclerView.ViewHolder(itemView) {
     val fromTo: TextView = itemView.fromTo
     val date: TextView = itemView.date
@@ -48,4 +61,9 @@ class SearchViewHolder(
     val nomeCriador: TextView = itemView.nomeCriador
     val idBoleia: TextView = itemView.idBoleia
 
+    init {
+        itemView.confirmButton.setOnClickListener{
+            listener.onItemClick(idBoleia)
+        }
+    }
 }
