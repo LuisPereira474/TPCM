@@ -105,8 +105,6 @@ class SearchBoleiaList : AppCompatActivity() {
                         override fun onItemClick(idBoleia: TextView) {
                             acceptBoleia(idBoleia)
                         }
-
-
                     })
                     linhasSearch.layoutManager = LinearLayoutManager(this@SearchBoleiaList)
                 }
@@ -130,7 +128,7 @@ class SearchBoleiaList : AppCompatActivity() {
         }
     }
 
-    fun createDialog(msg: String) {
+    private fun createDialog(msg: String) {
         val dialog = Dialog(this@SearchBoleiaList)
         dialog.setContentView(R.layout.dialog_box)
         dialog.window?.setBackgroundDrawable(getDrawable(R.drawable.dialog_background))

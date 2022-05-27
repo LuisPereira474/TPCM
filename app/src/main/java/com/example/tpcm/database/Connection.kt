@@ -160,18 +160,18 @@ object Connection {
         return EMAIL_ADDRESS_PATTERN.matcher(str).matches()
     }
 
-    fun createRide(
+    suspend fun createRide(
         from: String,
         to: String,
         meeting: String,
         car: String,
         date: String,
         price: String,
-        seats: String,
+        seats: Int,
         obs: String,
         idUser: String
-    ) {
-
+    ): Int {
+        var result = 0
         val boleia = hashMapOf(
             "idCriador" to idUser,
             "idBoleia" to UUID.randomUUID().toString(),
@@ -187,18 +187,24 @@ object Connection {
         db.collection("boleia")
             .add(boleia)
             .addOnSuccessListener {
+                result = 2
                 Log.d(
                     "TAG",
                     "DocumentSnapshot successfully written!"
                 )
             }
             .addOnFailureListener { e ->
+                result = 1
                 Log.w(
                     "TAG",
                     "Error writing document",
                     e
                 )
             }
+        while (result == 0) {
+            delay(1)
+        }
+        return result
     }
 
     @DelicateCoroutinesApi
@@ -343,39 +349,20 @@ object Connection {
 
     }
 
-    suspend fun acceptBoleia(idUser: String, idBoleia: String):Int {
+    suspend fun acceptBoleia(idUser: String, idBoleia: String): Int {
         var canGo = false
-        var successFail=0
-        val data = hashMapOf(
-            "idUser" to idUser,
-            "idBoleia" to idBoleia
-        )
+        var successFail = 0
+        var seatsAvailabel = -1
 
         GlobalScope.launch {
             withContext(Dispatchers.Default) {
-                db.collection("boleia_utilizador")
+                db.collection("boleia")
                     .whereEqualTo("idBoleia", idBoleia)
-                    .whereEqualTo("idUser", idUser)
                     .get()
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            if (task.result.size() > 0) {
-                                Log.d("TAG", "Erro.")
-                                successFail=1
-                                canGo = true
-                            } else {
-                                db.collection("boleia_utilizador")
-                                    .add(data)
-                                    .addOnCompleteListener { task ->
-                                        canGo = if (task.isSuccessful) {
-                                            successFail=2
-                                            Log.d("TAG", "Success.")
-                                            true
-                                        } else {
-                                            Log.w("TAG", "Error getting documents.", task.exception)
-                                            true
-                                        }
-                                    }
+                            for (document in task.result!!) {
+                                seatsAvailabel = Integer.parseInt(document.data["seats"].toString())
                             }
                         } else {
                             Log.w("TAG", "Error getting documents.", task.exception)
@@ -386,10 +373,78 @@ object Connection {
 
             }
         }
-        while (!canGo||successFail==0) {
+        while (seatsAvailabel == -1) {
             delay(1)
         }
-    return successFail
+        if (seatsAvailabel > 0) {
+            val data = hashMapOf(
+                "idUser" to idUser,
+                "idBoleia" to idBoleia
+            )
+
+            GlobalScope.launch {
+                withContext(Dispatchers.Default) {
+                    db.collection("boleia_utilizador")
+                        .whereEqualTo("idBoleia", idBoleia)
+                        .whereEqualTo("idUser", idUser)
+                        .get()
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                if (task.result.size() > 0) {
+                                    Log.d("TAG", "Erro.")
+                                    successFail = 1
+                                    canGo = true
+                                } else {
+                                    db.collection("boleia")
+                                        .whereEqualTo("idBoleia", idBoleia)
+                                        .get()
+                                        .addOnCompleteListener { task ->
+                                            if (task.isSuccessful) {
+                                                for (document in task.result!!) {
+                                                    seatsAvailabel = Integer.parseInt(document.data["seats"].toString())
+                                                    if (seatsAvailabel > 0) {
+                                                        db.collection("boleia").document(document.id)
+                                                            .update("seats", seatsAvailabel - 1)
+                                                    }
+                                                }
+                                            } else {
+                                                Log.w("TAG", "Error getting documents.", task.exception)
+                                                canGo = true
+                                            }
+                                        }
+                                    db.collection("boleia_utilizador")
+                                        .add(data)
+                                        .addOnCompleteListener { task ->
+                                            canGo = if (task.isSuccessful) {
+                                                successFail = 2
+                                                Log.d("TAG", "Success.")
+                                                true
+                                            } else {
+                                                Log.w(
+                                                    "TAG",
+                                                    "Error getting documents.",
+                                                    task.exception
+                                                )
+                                                true
+                                            }
+                                        }
+                                }
+                            } else {
+                                Log.w("TAG", "Error getting documents.", task.exception)
+                                canGo = true
+                            }
+                        }
+
+
+                }
+            }
+            while (!canGo || successFail == 0) {
+                delay(1)
+            }
+        } else {
+            successFail = 1
+        }
+        return successFail
     }
 
 }
