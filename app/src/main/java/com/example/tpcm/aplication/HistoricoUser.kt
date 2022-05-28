@@ -99,7 +99,7 @@ class HistoricoUser : AppCompatActivity() {
 
                 adapter.setOnItemClickListener(object : HistoricoAdapter.onItemClickListener {
                     override fun onItemClick(idBoleia: TextView) {
-                        val intent = Intent(this@HistoricoUser, Boleia::class.java).apply {
+                        val intent = Intent(this@HistoricoUser, BoleiaCondutor::class.java).apply {
                             putExtra(PARAM_ID,idBoleia.text.toString())
                         }
                         startActivity(intent)
