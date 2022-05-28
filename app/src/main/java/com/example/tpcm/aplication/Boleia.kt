@@ -10,18 +10,29 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.tpcm.R
 import com.example.tpcm.database.Connection
 import com.google.firebase.firestore.QueryDocumentSnapshot
-import de.hdodenhof.circleimageview.CircleImageView
-import kotlinx.android.synthetic.main.activity_perfil.*
+import kotlinx.android.synthetic.main.activity_boleia.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+
+const val PARAM_ID_BOLEIA = "idBoleia"
+const val PARAM_ID_USER = "idUser"
 
 class Boleia : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_boleia)
+
+        val shared = getSharedPreferences("idUser", MODE_PRIVATE)
+        val idUser = shared.getString("idUser", "").toString()
+
         val idBoleia = intent.getStringExtra(PARAM_ID)
         if (idBoleia != null) {
             getDadosBoleia(idBoleia)
+        }
+        generateQrCode.setOnClickListener {
+            if (idBoleia != null) {
+                getQrCode(idBoleia, idUser)
+            }
         }
     }
 
@@ -76,7 +87,8 @@ class Boleia : AppCompatActivity() {
             boleia = Connection.getDadosBoleia(idBoleia)
             profile = Connection.getProfileUser(idUser)
             runOnUiThread {
-                tvTituloViagem.text = boleia!!.data["from"].toString() + "-" + boleia!!.data["to"].toString()
+                tvTituloViagem.text =
+                    boleia!!.data["from"].toString() + "-" + boleia!!.data["to"].toString()
                 tvNomeCondutor.text = profile!!.data["nome"].toString()
                 tvDataBoleia.text = boleia!!.data["date"].toString()
                 tvModeloCarro.text = boleia!!.data["car"].toString()
@@ -85,5 +97,13 @@ class Boleia : AppCompatActivity() {
             }
         }
 
+    }
+
+    fun getQrCode(idBoleia: String, idUser: String) {
+        val intent = Intent(this@Boleia, QrCode::class.java).apply {
+            putExtra(PARAM_ID_BOLEIA,idBoleia)
+            putExtra(PARAM_ID_USER,idUser)
+        }
+        startActivity(intent)
     }
 }

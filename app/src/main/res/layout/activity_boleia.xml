@@ -204,6 +204,7 @@
         </androidx.cardview.widget.CardView>
 
         <Button
+            android:id="@+id/generateQrCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/CardInfoBoleia"
@@ -211,7 +212,7 @@
             android:layout_marginTop="20dp"
             android:backgroundTint="@color/principal"
             android:text="@string/botaoObterQrCode"
-            app:cornerRadius="20dp" />
+            app:cornerRadius="20dp"/>
 
         <ImageButton
             android:layout_width="48dp"
