@@ -472,4 +472,43 @@ object Connection {
         return boleia
     }
 
+    @DelicateCoroutinesApi
+    suspend fun historicoUserAceites(idUser: String): HashMap<Int, QueryDocumentSnapshot> {
+        val boleia = HashMap<Int, QueryDocumentSnapshot>()
+        var count = 0
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("boleia_utilizador")
+                    .whereEqualTo("idUser", idUser)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                db.collection("boleia")
+                                    .whereEqualTo("idCriador", idUser)
+                                    .whereEqualTo("idBoleia",document.data["idBoleia"])
+                                    .get()
+                                    .addOnCompleteListener { task ->
+                                        if (task.isSuccessful) {
+                                            for (document in task.result!!) {
+                                                count++
+                                                boleia[count] = document
+                                            }
+                                        } else {
+                                            Log.w("TAG", "Error getting documents.", task.exception)
+                                        }
+                                    }
+                            }
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                        }
+                    }
+            }
+        }
+        while (boleia.isEmpty()) {
+            delay(1)
+        }
+        return boleia
+    }
+
 }
