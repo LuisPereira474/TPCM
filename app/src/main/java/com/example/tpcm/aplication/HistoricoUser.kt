@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -49,12 +50,10 @@ class HistoricoUser : AppCompatActivity() {
                 true
             }
             R.id.nav_rides -> {
-                val intent = Intent(this@HistoricoUser, HistoricoUser::class.java)
-                startActivity(intent)
                 true
             }
             R.id.nav_services -> {
-                val intent = Intent(this@HistoricoUser, AddBoleiaSemHist::class.java)
+                val intent = Intent(this@HistoricoUser, HistoricoUser::class.java)
                 startActivity(intent)
                 true
             }
@@ -110,5 +109,10 @@ class HistoricoUser : AppCompatActivity() {
                 linhasHistorico.layoutManager = LinearLayoutManager(this@HistoricoUser)
             }
         }
+    }
+
+    fun addRide(view: View) {
+        val intent = Intent(this@HistoricoUser, CriarBoleia::class.java)
+        startActivity(intent)
     }
 }

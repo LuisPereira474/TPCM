@@ -41,12 +41,11 @@ class SearchBoleia : AppCompatActivity() {
                 true
             }
             R.id.nav_rides -> {
-                val intent = Intent(this@SearchBoleia, HistoricoUser::class.java)
-                startActivity(intent)
+
                 true
             }
             R.id.nav_services -> {
-                val intent = Intent(this@SearchBoleia, AddBoleiaSemHist::class.java)
+                val intent = Intent(this@SearchBoleia, HistoricoUser::class.java)
                 startActivity(intent)
                 true
             }

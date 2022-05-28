@@ -58,7 +58,7 @@ class SignUp : AppCompatActivity() {
                     sharedPreferences.edit()
                         .putString("idUser", idUser)
                         .apply()
-                    val intent = Intent(this@SignUp, AddBoleiaSemHist::class.java)
+                    val intent = Intent(this@SignUp, SearchBoleia::class.java)
                     startActivity(intent)
                 }
             }
