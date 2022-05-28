@@ -1,13 +1,12 @@
 package com.example.tpcm.aplication
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
+import android.view.*
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +17,8 @@ import com.example.tpcm.database.Connection
 import com.example.tpcm.models.Historico
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import kotlinx.android.synthetic.main.activity_historico_user.*
+import kotlinx.android.synthetic.main.dialog_box.*
+import kotlinx.android.synthetic.main.dialog_help_info.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -34,6 +35,9 @@ class HistoricoUser : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_historico_user)
         getHistorico()
+        btnHelpPageHistoricoUser.setOnClickListener{
+            createDialog()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -116,5 +120,22 @@ class HistoricoUser : AppCompatActivity() {
     fun addRide(view: View) {
         val intent = Intent(this@HistoricoUser, CriarBoleia::class.java)
         startActivity(intent)
+    }
+
+    private fun createDialog() {
+        val dialog = Dialog(this@HistoricoUser)
+        dialog.setContentView(R.layout.dialog_help_info)
+        dialog.window?.setBackgroundDrawable(getDrawable(R.drawable.dialog_background))
+        dialog.window?.setLayout(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        dialog.setCancelable(false)
+        dialog.show()
+
+        dialog.findViewById<Button>(R.id.okHelpInfo).setOnClickListener {
+            dialog.dismiss()
+        }
+
     }
 }
