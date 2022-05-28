@@ -52,4 +52,6 @@
     <string name="moreInfo">More Info</string>
     <string name="success">Success!</string>
     <string name="error">Error!</string>
+    <string name="infoQrPage">Your QR Code!</string>
+    <string name="labelQrCodePage">Show at the time of the ride</string>
 </resources>
