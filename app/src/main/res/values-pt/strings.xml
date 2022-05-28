@@ -52,4 +52,6 @@
     <string name="moreInfo">Mais Info</string>
     <string name="success">Sucesso!</string>
     <string name="error">Erro!</string>
+    <string name="infoQrPage">O seu Qr Code!</string>
+    <string name="labelQrCodePage">Mostre no momento da boleia</string>
 </resources>
