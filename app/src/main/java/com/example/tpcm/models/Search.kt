@@ -4,5 +4,6 @@ data class Search(
     val fromTo: String,
     val date: String,
     val price: String,
-    val nomeCriador: String
+    val nomeCriador: String,
+    val idBoleia: String
 ){}

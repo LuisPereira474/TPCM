@@ -1,18 +1,19 @@
 package com.example.tpcm.adapters
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tpcm.R
-import com.example.tpcm.models.Search
-import kotlinx.android.synthetic.main.search_line.view.*
+import com.example.tpcm.models.Aceites
+import kotlinx.android.synthetic.main.boleias_aceites_line.view.*
 
 
-class SearchAdapter(
-    private val linhas: ArrayList<Search>
-) : RecyclerView.Adapter<SearchViewHolder>() {
+class AceitesAdapter(
+    private val linhas: ArrayList<Aceites>
+) : RecyclerView.Adapter<AceitesViewHolder>() {
 
     private lateinit var mListener: onItemClickListener
 
@@ -24,12 +25,12 @@ class SearchAdapter(
         mListener = listener
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
-        return SearchViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AceitesViewHolder {
+        return AceitesViewHolder(
             LayoutInflater
                 .from(parent.context)
                 .inflate(
-                    R.layout.search_line,
+                    R.layout.boleias_aceites_line,
                     parent,
                     false
                 ),
@@ -37,12 +38,18 @@ class SearchAdapter(
         )
     }
 
-    override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: AceitesViewHolder, position: Int) {
         val currentLinha = linhas[position]
+        val green: Int = Color.parseColor("#54C000")
+        val red: Int = Color.parseColor("#FF3939")
+
         holder.fromTo.text = currentLinha.fromTo
         holder.date.text = currentLinha.date
-        holder.price.text = currentLinha.price
-        holder.nomeCriador.text = currentLinha.nomeCriador
+        if (currentLinha.flag){
+            holder.flag.setBackgroundColor(red)
+        }else{
+            holder.flag.setBackgroundColor(green)
+        }
         holder.idBoleia.text = currentLinha.idBoleia
     }
 
@@ -51,18 +58,17 @@ class SearchAdapter(
     }
 }
 
-class SearchViewHolder(
+class AceitesViewHolder(
     itemView: View,
-    listener: SearchAdapter.onItemClickListener
+    listener: AceitesAdapter.onItemClickListener
 ) : RecyclerView.ViewHolder(itemView) {
-    val fromTo: TextView = itemView.fromTo
-    val date: TextView = itemView.date
-    val price: TextView = itemView.price
-    val nomeCriador: TextView = itemView.nomeCriador
-    val idBoleia: TextView = itemView.idBoleia
+    val fromTo: TextView = itemView.fromToAceites
+    val date: TextView = itemView.dateAceites
+    val flag: TextView = itemView.flagAceites
+    val idBoleia: TextView = itemView.idBoleiaAceites
 
     init {
-        itemView.confirmButton.setOnClickListener{
+        itemView.setOnClickListener{
             listener.onItemClick(idBoleia)
         }
     }

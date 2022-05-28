@@ -1,7 +1,6 @@
 package com.example.tpcm.models
 
-
-data class Historico(
+data class Aceites(
     val fromTo: String,
     val date: String,
     val flag: Boolean,

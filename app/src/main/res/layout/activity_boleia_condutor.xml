@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".aplication.Boleia">
+    tools:context=".aplication.BoleiaCondutor">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
         <androidx.cardview.widget.CardView
             android:id="@+id/CardInfoBoleia"
             android:layout_width="match_parent"
@@ -19,83 +17,84 @@
             android:layout_marginTop="75dp"
             android:backgroundTint="@color/cinzento"
             app:cornerRadius="50dp">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+               <TextView
+                   android:id="@+id/boleiaCondutor"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Boleia"
+                   android:textSize="30sp"
+                   android:textStyle="bold"
+                   android:layout_centerHorizontal="true"
+                   android:layout_marginTop="20dp"/>
+
                 <TextView
-                    android:id="@+id/tvTituloViagem"
+                    android:id="@+id/tvTituloViagemBoleiaCondutor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
-                    android:layout_marginTop="60dp"
-                    android:fontFamily="sans-serif-black"
+                    android:layout_marginTop="110dp"
+                    android:textStyle="bold"
                     android:text="Porto - Viana"
                     android:textSize="20sp" />
 
-                <ImageView
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_person"
-                    android:layout_toRightOf="@id/tvTituloViagem"
-                    android:layout_marginLeft="45dp"
-                    android:layout_alignTop="@id/tvTituloViagem"
-                    />
-
                 <TextView
-                    android:id="@+id/tvNomeCondutor"
+                    android:id="@+id/tvNomeCondutorBoleiaCondutor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvTituloViagem"
-                    android:layout_alignLeft="@+id/tvTituloViagem"
-                    android:layout_marginTop="20dp"
+                    android:layout_below="@+id/tvTituloViagemBoleiaCondutor"
+                    android:layout_alignLeft="@+id/tvTituloViagemBoleiaCondutor"
+                    android:layout_marginTop="10dp"
                     android:clickable="true"
                     android:text="Zé Pedro"
                     android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/tvDataBoleia"
+                    android:id="@+id/tvDataBoleiaBoleiaCondutor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvNomeCondutor"
-                    android:layout_alignLeft="@+id/tvTituloViagem"
+                    android:layout_below="@+id/tvNomeCondutorBoleiaCondutor"
+                    android:layout_alignLeft="@+id/tvTituloViagemBoleiaCondutor"
                     android:layout_marginTop="5dp"
                     android:text="23 Março 2012" />
-
                 <TextView
-                    android:id="@+id/tvModeloCarro"
+                    android:id="@+id/tvModeloCarroBoleiaCondutor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvDataBoleia"
-                    android:layout_alignLeft="@+id/tvTituloViagem"
+                    android:layout_below="@+id/tvDataBoleiaBoleiaCondutor"
+                    android:layout_alignLeft="@+id/tvTituloViagemBoleiaCondutor"
                     android:layout_marginTop="5dp"
-                    android:text="Wolksagen Polo 2013 (Preto)" />
+                    android:text="Wolksagen Polo 2013 (Preto)"/>
 
                 <TextView
-                    android:id="@+id/tvLabelValor"
+                    android:id="@+id/tvLabelValorBoleiaCondutor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvModeloCarro"
-                    android:layout_alignLeft="@+id/tvTituloViagem"
+                    android:layout_below="@+id/tvModeloCarroBoleiaCondutor"
+                    android:layout_alignLeft="@+id/tvTituloViagemBoleiaCondutor"
                     android:layout_marginTop="30dp"
                     android:text="@string/LabelValor"/>
 
                 <TextView
-                    android:id="@+id/tvValorBoleia"
+                    android:id="@+id/tvValorBoleiaBoleiaCondutor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvModeloCarro"
+                    android:layout_below="@+id/tvModeloCarroBoleiaCondutor"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/tvLabelValor"
+                    android:layout_toRightOf="@+id/tvLabelValorBoleiaCondutor"
                     android:layout_marginTop="30dp"
                     android:text="5€"/>
 
                 <TextView
-                    android:id="@+id/tvLabelLugaresDisponiveis"
+                    android:id="@+id/tvLabelLugaresDisponiveisBoleiaCondutor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvLabelValor"
-                    android:layout_alignLeft="@+id/tvTituloViagem"
+                    android:layout_below="@+id/tvLabelValorBoleiaCondutor"
+                    android:layout_alignLeft="@+id/tvTituloViagemBoleiaCondutor"
                     android:layout_marginTop="30dp"
                     android:text="@string/LabelLugaresDisponiveis" />
 
@@ -103,10 +102,10 @@
                     android:id="@+id/Lugar1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvValorBoleia"
+                    android:layout_below="@+id/tvValorBoleiaBoleiaCondutor"
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="4dp"
-                    android:layout_toRightOf="@+id/tvLabelLugaresDisponiveis"
+                    android:layout_toRightOf="@+id/tvLabelLugaresDisponiveisBoleiaCondutor"
                     android:drawableEnd="@drawable/ic_baseline_event_seat_24" />
                 <TextView
                     android:id="@+id/Lugar2"
@@ -114,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/Lugar1"
                     android:layout_alignTop="@+id/Lugar1"
-                    android:layout_below="@+id/tvValorBoleia"
+                    android:layout_below="@+id/tvValorBoleiaBoleiaCondutor"
                     android:drawableEnd="@drawable/ic_baseline_event_seat_24" />
 
                 <TextView
@@ -123,14 +122,14 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/Lugar2"
                     android:layout_marginLeft="20dp"
-                    android:layout_toRightOf="@+id/tvLabelLugaresDisponiveis"
+                    android:layout_toRightOf="@+id/tvLabelLugaresDisponiveisBoleiaCondutor"
                     android:drawableEnd="@drawable/ic_baseline_event_seat_24" />
 
                 <TextView
                     android:id="@+id/Lugar4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvValorBoleia"
+                    android:layout_below="@+id/tvValorBoleiaBoleiaCondutor"
                     android:layout_alignTop="@+id/Lugar3"
                     android:layout_toRightOf="@+id/Lugar3"
                     android:drawableEnd="@drawable/ic_baseline_event_seat_24" />
@@ -141,7 +140,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/Lugar4"
                     android:layout_alignTop="@+id/Lugar3"
-                    android:layout_below="@+id/tvValorBoleia"
+                    android:layout_below="@+id/tvValorBoleiaBoleiaCondutor"
                     android:drawableEnd="@drawable/ic_baseline_event_seat_24" />
                 <TextView
                     android:id="@+id/Lugar6"
@@ -150,7 +149,7 @@
                     android:layout_below="@+id/Lugar3"
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="4dp"
-                    android:layout_toRightOf="@+id/tvLabelLugaresDisponiveis"
+                    android:layout_toRightOf="@+id/tvLabelLugaresDisponiveisBoleiaCondutor"
                     android:drawableEnd="@drawable/ic_baseline_event_seat_24" />
                 <TextView
                     android:id="@+id/Lugar7"
@@ -158,69 +157,50 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/Lugar6"
                     android:layout_alignTop="@+id/Lugar6"
-                    android:layout_below="@+id/tvValorBoleia"
+                    android:layout_below="@+id/tvValorBoleiaBoleiaCondutor"
                     android:drawableEnd="@drawable/ic_baseline_event_seat_24" />
 
                 <TextView
-                    android:id="@+id/tvLabelPontoEncontro"
+                    android:id="@+id/tvLabelPontoEncontroBoleiaCondutor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvLabelLugaresDisponiveis"
-                    android:layout_alignLeft="@+id/tvTituloViagem"
-                    android:layout_marginTop="30dp"
+                    android:layout_below="@+id/tvLabelLugaresDisponiveisBoleiaCondutor"
+                    android:layout_alignLeft="@+id/tvTituloViagemBoleiaCondutor"
+                    android:layout_marginTop="45dp"
                     android:text="@string/LabelPontoEncontro" />
 
                 <TextView
-                    android:id="@+id/tvPontoEncontro"
+                    android:id="@+id/tvPontoEncontroBoleiaCondutor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvLabelLugaresDisponiveis"
+                    android:layout_below="@+id/tvLabelLugaresDisponiveisBoleiaCondutor"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_toRightOf="@+id/tvLabelPontoEncontro"
+                    android:layout_marginTop="45dp"
+                    android:layout_toRightOf="@+id/tvLabelPontoEncontroBoleiaCondutor"
                     android:text="Vila do Conde, Porto, 23, 4452-233" />
 
-                <TextView
-                    android:id="@+id/tvLabelAvaliacao"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvLabelPontoEncontro"
-                    android:layout_alignLeft="@+id/tvTituloViagem"
-                    android:layout_marginTop="30dp"
-                    android:text="@string/LabelAvaliacao" />
-
-                <RatingBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="45dp"
-                    android:layout_alignBottom="@+id/tvLabelAvaliacao"
-                    android:layout_marginLeft="-46dp"
-                    android:layout_marginBottom="-12dp"
-                    android:layout_toRightOf="@+id/tvLabelAvaliacao"
-                    android:scaleX="0.5"
-                    android:scaleY="0.5"/>
 
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
 
         <Button
-            android:id="@+id/generateQrCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/CardInfoBoleia"
             android:layout_alignLeft="@+id/CardInfoBoleia"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="60dp"
             android:backgroundTint="@color/principal"
-            android:text="@string/botaoObterQrCode"
-            app:cornerRadius="20dp"/>
+            android:text="@string/botaoLerQrCode"
+            app:cornerRadius="20dp"
+            android:onClick="scanQrCode"/>
 
         <ImageButton
-            android:id="@+id/btnAbrirChat"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_below="@id/CardInfoBoleia"
             android:layout_alignRight="@+id/CardInfoBoleia"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="60dp"
             android:backgroundTint="@color/white"
             android:src="@drawable/ic_baseline_chat_24" />
 
@@ -236,6 +216,5 @@
             app:itemTextColor="@color/white"
             app:labelVisibilityMode="labeled"
             app:menu="@menu/bottom_navigation_menu" />
-    </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>

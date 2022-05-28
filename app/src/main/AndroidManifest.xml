@@ -3,6 +3,7 @@
     package="com.example.tpcm">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -11,6 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TPCM">
+        <activity
+            android:name=".aplication.HistBoleiasAceites"
+            android:exported="false" />
+        <activity
+            android:name=".aplication.QrCode"
+            android:exported="false" />
+        <activity
+            android:name=".aplication.BoleiaCondutor"
+            android:exported="false" />
+        <activity
+            android:name=".aplication.ScanQrCode"
+            android:exported="false" />
         <activity
             android:name=".aplication.EditarPerfil"
             android:exported="false" />
@@ -36,11 +49,14 @@
             android:name=".aplication.CriarBoleia"
             android:exported="false" />
         <activity
-            android:name=".aplication.PopUpWindow"
-            android:exported="false" />
-        <activity
             android:name=".aplication.SignUp"
             android:exported="false" />
+        <activity
+            android:name=".aplication.CaptureActivityPortrait"
+            android:screenOrientation="sensorPortrait"
+            android:stateNotNeeded="true"
+            android:theme="@style/zxing_CaptureTheme"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
