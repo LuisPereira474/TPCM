@@ -20,6 +20,16 @@
             android:textStyle="bold"
             android:text="Porto-Viana"/>
 
+        <TextView
+            android:id="@+id/idBoleia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:text="idBoleia"
+            android:visibility="invisible"/>
+
 
         <TextView
             android:id="@+id/date"

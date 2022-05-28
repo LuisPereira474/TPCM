@@ -61,6 +61,7 @@
                     android:layout_alignLeft="@+id/tvTituloViagem"
                     android:layout_marginTop="5dp"
                     android:text="23 Março 2012" />
+
                 <TextView
                     android:id="@+id/tvModeloCarro"
                     android:layout_width="wrap_content"
@@ -68,7 +69,7 @@
                     android:layout_below="@+id/tvDataBoleia"
                     android:layout_alignLeft="@+id/tvTituloViagem"
                     android:layout_marginTop="5dp"
-                    android:text="Wolksagen Polo 2013 (Preto)"/>
+                    android:text="Wolksagen Polo 2013 (Preto)" />
 
                 <TextView
                     android:id="@+id/tvLabelValor"

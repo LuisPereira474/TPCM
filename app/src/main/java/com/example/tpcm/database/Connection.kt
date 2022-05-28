@@ -447,4 +447,29 @@ object Connection {
         return successFail
     }
 
+    suspend fun getDadosBoleia(idBoleia: String): QueryDocumentSnapshot? {
+
+        var boleia: QueryDocumentSnapshot? = null
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("boleia")
+                    .whereEqualTo("idBoleia", idBoleia)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                boleia = document
+                            }
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                        }
+                    }
+            }
+        }
+        while (boleia == null) {
+            delay(1)
+        }
+        return boleia
+    }
+
 }

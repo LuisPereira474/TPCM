@@ -7,10 +7,12 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tpcm.R
 import com.example.tpcm.adapters.HistoricoAdapter
+import com.example.tpcm.adapters.SearchAdapter
 import com.example.tpcm.database.Connection
 import com.example.tpcm.models.Historico
 import com.google.firebase.firestore.QueryDocumentSnapshot
@@ -22,6 +24,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
+const val PARAM_ID = "idBoleia"
 class HistoricoUser : AppCompatActivity() {
 
     private lateinit var myList: ArrayList<Historico>
@@ -84,14 +87,26 @@ class HistoricoUser : AppCompatActivity() {
                     Historico(
                         "${doc.value.data["from"]}-${doc.value.data["to"]}",
                         "${doc.value.data["date"]}",
-                        date < Calendar.getInstance().time
+                        date < Calendar.getInstance().time,
+                        "${doc.value.data["idBoleia"]}"
                     )
                 )
 
             }
 
             runOnUiThread {
-                linhasHistorico.adapter = HistoricoAdapter(myList)
+                var adapter = HistoricoAdapter(myList)
+                linhasHistorico.adapter = adapter
+
+                adapter.setOnItemClickListener(object : HistoricoAdapter.onItemClickListener {
+                    override fun onItemClick(idBoleia: TextView) {
+                        val intent = Intent(this@HistoricoUser, Boleia::class.java).apply {
+                            putExtra(PARAM_ID,idBoleia.text.toString())
+                        }
+                        startActivity(intent)
+                    }
+                })
+
                 linhasHistorico.layoutManager = LinearLayoutManager(this@HistoricoUser)
             }
         }
