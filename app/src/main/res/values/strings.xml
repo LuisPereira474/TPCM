@@ -57,4 +57,5 @@
     <string name="information">INFORMATION</string>
     <string name="redflag">Represents the rides already taken, the deadline has passed</string>
     <string name="greenflag">Represents the rides that are yet to take place</string>
+    <string name="textHelpQrCode">Here, you will have access to the QR Code associated with this trip. You can use it at the time of the ride to prove that it is you by presenting it to the driver of the car</string>
 </resources>
