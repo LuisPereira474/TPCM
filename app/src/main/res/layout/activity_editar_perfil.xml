@@ -10,11 +10,11 @@
         android:id="@+id/editPerfilAvatar"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/avatar_girl"
         app:civ_border_color="@color/black"
-        app:civ_border_width="2dp"
-        android:src="@drawable/avatar_girl"/>
+        app:civ_border_width="2dp" />
 
     <TextView
         android:id="@+id/editNameLabel"

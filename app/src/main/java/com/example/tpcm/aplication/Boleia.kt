@@ -7,13 +7,31 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
+import androidx.appcompat.app.AlertDialog
 import com.example.tpcm.R
+import kotlinx.android.synthetic.main.activity_boleia.*
 
 class Boleia : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_boleia)
+
+        btnAbrirChat.setOnClickListener {
+
+            val view = View.inflate(this, R.layout.chat, null)
+
+            val builder = AlertDialog.Builder(this)
+            builder.setView(view)
+
+            val dialog = builder.create()
+            dialog.show()
+            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        }
     }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.bottom_navigation_menu,menu)

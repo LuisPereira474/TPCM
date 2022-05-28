@@ -3,6 +3,32 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Escola/3ano/ComputacaoMovel/TPCM/app/src/main/res/drawable-anydpi/ic_car.xml" value="0.276" />
+        <entry key="..\:/Escola/3ano/ComputacaoMovel/TPCM/app/src/main/res/drawable-anydpi/ic_gear.xml" value="0.276" />
+        <entry key="..\:/Escola/3ano/ComputacaoMovel/TPCM/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.276" />
+        <entry key="..\:/Escola/3ano/ComputacaoMovel/TPCM/app/src/main/res/drawable/border.xml" value="0.276" />
+        <entry key="..\:/Escola/3ano/ComputacaoMovel/TPCM/app/src/main/res/drawable/custom_chat_box.xml" value="0.276" />
+        <entry key="..\:/Escola/3ano/ComputacaoMovel/TPCM/app/src/main/res/drawable/custom_chat_box_right.xml" value="0.276" />
+        <entry key="..\:/Escola/3ano/ComputacaoMovel/TPCM/app/src/main/res/drawable/historico_rounded_border.xml" value="0.276" />
+        <entry key="..\:/Escola/3ano/ComputacaoMovel/TPCM/app/src/main/res/drawable/ic_baseline_arrow_forward_24.xml" value="0.276" />
+        <entry key="..\:/Escola/3ano/ComputacaoMovel/TPCM/app/src/main/res/drawable/ic_baseline_card_membership_24.xml" value="0.276" />
+        <entry key="..\:/Escola/3ano/ComputacaoMovel/TPCM/app/src/main/res/drawable/ic_baseline_chat_24.xml" value="0.276" />
+        <entry key="..\:/Escola/3ano/ComputacaoMovel/TPCM/app/src/main/res/drawable/ic_baseline_directions_car_24.xml" value="0.276" />
+        <entry key="..\:/Escola/3ano/ComputacaoMovel/TPCM/app/src/main/res/drawable/ic_baseline_event_seat_24.xml" value="0.276" />
+        <entry key="..\:/Escola/3ano/ComputacaoMovel/TPCM/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.276" />
+        <entry key="..\:/Escola/3ano/ComputacaoMovel/TPCM/app/src/main/res/drawable/ic_baseline_send.xml" value="0.276" />
+        <entry key="..\:/Escola/3ano/ComputacaoMovel/TPCM/app/src/main/res/drawable/ic_baseline_star_border_24.xml" value="0.276" />
+        <entry key="..\:/Escola/3ano/ComputacaoMovel/TPCM/app/src/main/res/drawable/ic_baseline_star_rate_24.xml" value="0.276" />
+        <entry key="..\:/Escola/3ano/ComputacaoMovel/TPCM/app/src/main/res/drawable/ic_email.xml" value="0.276" />
+        <entry key="..\:/Escola/3ano/ComputacaoMovel/TPCM/app/src/main/res/drawable/ic_launcher_background.xml" value="0.276" />
+        <entry key="..\:/Escola/3ano/ComputacaoMovel/TPCM/app/src/main/res/drawable/ic_lock.xml" value="0.276" />
+        <entry key="..\:/Escola/3ano/ComputacaoMovel/TPCM/app/src/main/res/drawable/rounded_btt.xml" value="0.276" />
+        <entry key="..\:/Escola/3ano/ComputacaoMovel/TPCM/app/src/main/res/layout/activity_boleia.xml" value="0.36666666666666664" />
+        <entry key="..\:/Escola/3ano/ComputacaoMovel/TPCM/app/src/main/res/layout/activity_editar_perfil.xml" value="0.36666666666666664" />
+        <entry key="..\:/Escola/3ano/ComputacaoMovel/TPCM/app/src/main/res/layout/activity_perfil.xml" value="0.36666666666666664" />
+        <entry key="..\:/Escola/3ano/ComputacaoMovel/TPCM/app/src/main/res/layout/chat.xml" value="0.36666666666666664" />
+        <entry key="..\:/Escola/3ano/ComputacaoMovel/TPCM/app/src/main/res/layout/chat_item_left.xml" value="0.36666666666666664" />
+        <entry key="..\:/Escola/3ano/ComputacaoMovel/TPCM/app/src/main/res/layout/chat_item_right.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Utilizador/AndroidStudioProjects/TPCM/app/src/main/res/drawable-anydpi/ic_car.xml" value="0.325" />
         <entry key="..\:/Users/Utilizador/AndroidStudioProjects/TPCM/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.22" />
         <entry key="..\:/Users/Utilizador/AndroidStudioProjects/TPCM/app/src/main/res/drawable/border.xml" value="0.22" />
