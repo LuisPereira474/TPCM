@@ -54,4 +54,7 @@
     <string name="error">Error!</string>
     <string name="infoQrPage">Your QR Code!</string>
     <string name="labelQrCodePage">Show at the time of the ride</string>
+    <string name="information">INFORMATION</string>
+    <string name="redflag">Represents the rides already taken, the deadline has passed</string>
+    <string name="greenflag">Represents the rides that are yet to take place</string>
 </resources>
