@@ -41,7 +41,8 @@ class CriarBoleia : AppCompatActivity() {
                 true
             }
             R.id.nav_rides -> {
-
+                val intent = Intent(this@CriarBoleia, HistBoleiasAceites::class.java)
+                startActivity(intent)
                 true
             }
             R.id.nav_services -> {
