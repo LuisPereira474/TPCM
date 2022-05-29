@@ -1,9 +1,9 @@
 package com.example.tpcm.models
 
-
-data class Historico(
+data class Search(
     val fromTo: String,
     val date: String,
-    val flag: Boolean,
+    val price: String,
+    val nomeCriador: String,
     val idBoleia: String
 ){}

@@ -14,7 +14,7 @@
     <string name="errorMissingFields">Fields are missing!</string>
     <string name="errorInvalidEmail">Invalid Email!</string>
     <string name="ride">Ride</string>
-    <string name="perfil" translatable="false">Perfil</string>
+    <string name="perfil">Profile</string>
     <string name="AddRide">Create Ride</string>
     <string name="search">Search</string>
     <string name="rides">Rides</string>
@@ -37,4 +37,25 @@
     <string name="confirm">Confirm</string>
     <string name="msgNaoHabilitado">You are not yet able to take rides!!!</string>
     <string name="infoTornarCondutor">Go to My Profile > Become a Driver...</string>
+    <string name="textSearchBoleia">What ride are you looking for?</string>
+    <string name="erroMissingFrom">Missing from!</string>
+    <string name="erroMissingTo">Missing to!</string>
+    <string name="searchNoResults">There are no rides that match your search.</string>
+    <string name="editperfil">Edit Profile</string>
+    <string name="points">Points</string>
+    <string name="claimpts">Claim Bonus</string>
+    <string name="makemedriver">Make me driver</string>
+    <string name="cancel">Cancel</string>
+    <string name="scan">SCAN</string>
+    <string name="botaoLerQrCode">Scan QR Code</string>
+    <string name="wishList">Wish List</string>
+    <string name="moreInfo">More Info</string>
+    <string name="success">Success!</string>
+    <string name="error">Error!</string>
+    <string name="infoQrPage">Your QR Code!</string>
+    <string name="labelQrCodePage">Show at the time of the ride</string>
+    <string name="information">INFORMATION</string>
+    <string name="redflag">Represents the rides already taken, the deadline has passed</string>
+    <string name="greenflag">Represents the rides that are yet to take place</string>
+    <string name="textHelpQrCode">Here, you will have access to the QR Code associated with this trip. You can use it at the time of the ride to prove that it is you by presenting it to the driver of the car</string>
 </resources>

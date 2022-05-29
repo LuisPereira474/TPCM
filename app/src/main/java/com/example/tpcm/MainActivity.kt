@@ -9,9 +9,12 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tpcm.aplication.AddBoleiaSemHist
-import com.example.tpcm.aplication.Boleia
+import com.example.tpcm.aplication.ScanQrCode
+import com.example.tpcm.aplication.SearchBoleia
 import com.example.tpcm.aplication.SignUp
 import com.example.tpcm.database.Connection
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
@@ -29,15 +32,20 @@ class MainActivity : AppCompatActivity() {
         if (email.isEmpty() || password.isEmpty()) {
             errorLogin.visibility = View.VISIBLE;
         } else {
-            idUser = Connection.login(email, password, errorLogin)
-            if (idUser!=""){
-                val sharedPreferences: SharedPreferences =
-                    getSharedPreferences("idUser", Context.MODE_PRIVATE)
-                sharedPreferences.edit()
-                    .putString("idUser", idUser)
-                    .apply()
-                val intent = Intent(this@MainActivity, AddBoleiaSemHist::class.java)
-                startActivity(intent)
+            GlobalScope.launch {
+                idUser = Connection.login(email, password, errorLogin)
+                if (idUser != "") {
+                    val sharedPreferences: SharedPreferences =
+                        getSharedPreferences("idUser", Context.MODE_PRIVATE)
+                    sharedPreferences.edit()
+                        .clear()
+                        .apply()
+                    sharedPreferences.edit()
+                        .putString("idUser", idUser)
+                        .apply()
+                    val intent = Intent(this@MainActivity, SearchBoleia::class.java)
+                    startActivity(intent)
+                }
             }
 
         }

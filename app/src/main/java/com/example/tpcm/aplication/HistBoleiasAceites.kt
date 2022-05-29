@@ -1,24 +1,20 @@
 package com.example.tpcm.aplication
 
 import android.annotation.SuppressLint
-import android.app.Dialog
 import android.content.Intent
-import android.os.Bundle
-import android.util.Log
-import android.view.*
-import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tpcm.R
-import com.example.tpcm.adapters.HistoricoAdapter
-import com.example.tpcm.adapters.SearchAdapter
+import com.example.tpcm.adapters.AceitesAdapter
 import com.example.tpcm.database.Connection
-import com.example.tpcm.models.Historico
+import com.example.tpcm.models.Aceites
 import com.google.firebase.firestore.QueryDocumentSnapshot
-import kotlinx.android.synthetic.main.activity_historico_user.*
-import kotlinx.android.synthetic.main.dialog_box.*
-import kotlinx.android.synthetic.main.dialog_help_info.*
+import kotlinx.android.synthetic.main.activity_hist_boleias_aceites.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -26,18 +22,13 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
-const val PARAM_ID = "idBoleia"
-class HistoricoUser : AppCompatActivity() {
-
-    private lateinit var myList: ArrayList<Historico>
-
+const val PARAM_ID_BOLEIA_ACEITE = "idBoleia"
+class HistBoleiasAceites : AppCompatActivity() {
+    private lateinit var myList: ArrayList<Aceites>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_historico_user)
+        setContentView(R.layout.activity_hist_boleias_aceites)
         getHistorico()
-        btnHelpPageHistoricoUser.setOnClickListener{
-            createDialog()
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -49,22 +40,22 @@ class HistoricoUser : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.nav_search -> {
-                val intent = Intent(this@HistoricoUser, SearchBoleia::class.java)
+                val intent = Intent(this@HistBoleiasAceites, SearchBoleia::class.java)
                 startActivity(intent)
                 true
             }
             R.id.nav_rides -> {
-                val intent = Intent(this@HistoricoUser, HistBoleiasAceites::class.java)
+                val intent = Intent(this@HistBoleiasAceites, HistBoleiasAceites::class.java)
                 startActivity(intent)
                 true
             }
             R.id.nav_services -> {
-                val intent = Intent(this@HistoricoUser, HistoricoUser::class.java)
+                val intent = Intent(this@HistBoleiasAceites, HistoricoUser::class.java)
                 startActivity(intent)
                 true
             }
             R.id.nav_profile -> {
-                val intent = Intent(this@HistoricoUser, Perfil::class.java)
+                val intent = Intent(this@HistBoleiasAceites, Perfil::class.java)
                 startActivity(intent)
                 true
             }
@@ -80,16 +71,16 @@ class HistoricoUser : AppCompatActivity() {
         val shared = getSharedPreferences("idUser", MODE_PRIVATE)
         val idUser = shared.getString("idUser", "").toString()
 
-        myList = ArrayList<Historico>()
+        myList = ArrayList<Aceites>()
 
         var document: HashMap<Int, QueryDocumentSnapshot>? = null
         GlobalScope.launch {
-            document = Connection.historicoUser(idUser)
+            document = Connection.historicoUserAceites(idUser)
 
             for (doc in document!!) {
                 val date = SimpleDateFormat("dd-MM-yyyy").parse(doc.value.data["date"] as String)
                 myList.add(
-                    Historico(
+                    Aceites(
                         "${doc.value.data["from"]}-${doc.value.data["to"]}",
                         "${doc.value.data["date"]}",
                         date < Calendar.getInstance().time,
@@ -100,42 +91,20 @@ class HistoricoUser : AppCompatActivity() {
             }
 
             runOnUiThread {
-                var adapter = HistoricoAdapter(myList)
-                linhasHistorico.adapter = adapter
+                var adapter = AceitesAdapter(myList)
+                linhasHistoricoAceites.adapter = adapter
 
-                adapter.setOnItemClickListener(object : HistoricoAdapter.onItemClickListener {
+                adapter.setOnItemClickListener(object : AceitesAdapter.onItemClickListener {
                     override fun onItemClick(idBoleia: TextView) {
-                        val intent = Intent(this@HistoricoUser, BoleiaCondutor::class.java).apply {
-                            putExtra(PARAM_ID,idBoleia.text.toString())
+                        val intent = Intent(this@HistBoleiasAceites, Boleia::class.java).apply {
+                            putExtra(PARAM_ID_BOLEIA_ACEITE,idBoleia.text.toString())
                         }
                         startActivity(intent)
                     }
                 })
 
-                linhasHistorico.layoutManager = LinearLayoutManager(this@HistoricoUser)
+                linhasHistoricoAceites.layoutManager = LinearLayoutManager(this@HistBoleiasAceites)
             }
         }
-    }
-
-    fun addRide(view: View) {
-        val intent = Intent(this@HistoricoUser, CriarBoleia::class.java)
-        startActivity(intent)
-    }
-
-    private fun createDialog() {
-        val dialog = Dialog(this@HistoricoUser)
-        dialog.setContentView(R.layout.dialog_help_info)
-        dialog.window?.setBackgroundDrawable(getDrawable(R.drawable.dialog_background))
-        dialog.window?.setLayout(
-            ViewGroup.LayoutParams.WRAP_CONTENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        )
-        dialog.setCancelable(false)
-        dialog.show()
-
-        dialog.findViewById<Button>(R.id.okHelpInfo).setOnClickListener {
-            dialog.dismiss()
-        }
-
     }
 }

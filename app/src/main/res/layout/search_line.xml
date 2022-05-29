@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="110dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginTop="30dp"
+    android:background="@drawable/historico_rounded_border"
+    android:backgroundTint="#C4C4C4">
+
+        <TextView
+            android:id="@+id/fromTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:text="Porto-Viana"/>
+
+        <TextView
+            android:id="@+id/idBoleia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:text="idBoleia"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/date"
+            android:text="1 Fevereiro 2021"
+            android:layout_below="@+id/fromTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"/>
+
+        <TextView
+            android:id="@+id/price"
+            android:text="15€"
+            android:layout_below="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"/>
+
+        <TextView
+            android:id="@+id/nomeCriador"
+            android:text="Zé Pedro"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/moreInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/moreInfo"
+            android:layout_below="@+id/price"
+            android:layout_alignLeft="@+id/price"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:drawableEnd="@drawable/ic_info"
+            android:drawablePadding="7dp"/>
+
+
+        <TextView
+            android:id="@+id/wishList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/wishList"
+            android:textColor="#FF3939"
+            android:layout_toRightOf="@+id/moreInfo"
+            android:layout_alignTop="@+id/moreInfo"
+            android:layout_marginLeft="70dp"
+            android:drawableEnd="@drawable/ic_baseline_favorite_24"
+            android:drawablePadding="7dp"/>
+
+
+        <Button
+            android:id="@+id/confirmButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="-6dp"
+            android:backgroundTint="#7EB565"
+            app:strokeColor="@color/black"
+            app:strokeWidth="1dp"
+            app:icon="@drawable/ic_check"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            android:onClick="acceptBoleia"
+            />
+
+</RelativeLayout>

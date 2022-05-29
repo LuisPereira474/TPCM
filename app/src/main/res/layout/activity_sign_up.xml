@@ -155,14 +155,23 @@
 
     <Button
         android:id="@+id/loginBtt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_alignTop="@id/ccLabelConfirmPasse"
         android:layout_marginStart="50dp"
         android:layout_marginTop="120dp"
-        android:backgroundTint="@color/principal"
         android:onClick="loginPage"
-        android:text="@string/Back" />
+        android:text="@string/Back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/principal"
+        android:padding="10dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="19sp"
+        app:cornerRadius="20dp"
+        app:strokeColor="@color/principal"
+        app:strokeWidth="1dp"/>
 
 
     <Button
