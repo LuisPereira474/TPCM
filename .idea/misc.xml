@@ -35,6 +35,7 @@
         <entry key="..\:/Users/Utilizador/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_boleia_condutor.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Utilizador/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_criar_boleia.xml" value="0.264" />
         <entry key="..\:/Users/Utilizador/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_editar_perfil.xml" value="0.33" />
+        <entry key="..\:/Users/Utilizador/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_hist_boleias_aceites.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Utilizador/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_historico_user.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Utilizador/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_login.xml" value="0.30344202898550726" />
         <entry key="..\:/Users/Utilizador/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -46,8 +47,10 @@
         <entry key="..\:/Users/Utilizador/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_search_boleia_list.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Utilizador/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="..\:/Users/Utilizador/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_wish_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Utilizador/AndroidStudioProjects/TPCM/app/src/main/res/layout/boleias_aceites_line.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Utilizador/AndroidStudioProjects/TPCM/app/src/main/res/layout/dialog_box.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Utilizador/AndroidStudioProjects/TPCM/app/src/main/res/layout/dialog_changepassword.xml" value="0.33" />
+        <entry key="..\:/Users/Utilizador/AndroidStudioProjects/TPCM/app/src/main/res/layout/dialog_confirm_ride.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Utilizador/AndroidStudioProjects/TPCM/app/src/main/res/layout/dialog_help_info.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Utilizador/AndroidStudioProjects/TPCM/app/src/main/res/layout/dialog_help_qrcode.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Utilizador/AndroidStudioProjects/TPCM/app/src/main/res/layout/historico_line.xml" value="0.36666666666666664" />

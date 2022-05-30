@@ -62,4 +62,6 @@
     <string name="atual_pass">Current password</string>
     <string name="new_pass">New password</string>
     <string name="confirm_pass">Confirm new password</string>
+    <string name="bonus">Bonus:</string>
+    <string name="title_dialog_confirm_ride">Do you really want to confirm the ride?</string>
 </resources>

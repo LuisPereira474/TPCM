@@ -62,4 +62,5 @@
     <string name="atual_pass">Palavra passe atual</string>
     <string name="new_pass">Nova palavra passe</string>
     <string name="confirm_pass">Confirmar nova palavra passe</string>
+    <string name="bonus">Bónus:</string>
 </resources>
