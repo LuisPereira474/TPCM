@@ -58,4 +58,5 @@
     <string name="information">INFORMAÇÃO</string>
     <string name="greenflag">Representa as boleias que ainda se vão realizar</string>
     <string name="textHelpQrCode">Aqui, terás acesso ao Qr Code associado a esta viagem. Poderás usá-lo no momento da boleia para comprovares que és mesmo tu apresentando ao condutor do carro</string>
+    <string name="change_pass">Alterar Palavra Passe</string>
 </resources>
