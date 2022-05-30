@@ -63,4 +63,7 @@
     <string name="new_pass">Nova palavra passe</string>
     <string name="confirm_pass">Confirmar nova palavra passe</string>
     <string name="bonus">Bónus:</string>
+    <string name="title_dialog_confirm_ride">Deseja mesmo confirmar a boleia?</string>
+    <string name="introduzir_cartao_cidadao">Inserir Cartão de Cidação</string>
+    <string name="cartaConducao">Inserir Carta de condução</string>
 </resources>

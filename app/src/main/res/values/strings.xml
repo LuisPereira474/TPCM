@@ -64,4 +64,6 @@
     <string name="confirm_pass">Confirm new password</string>
     <string name="bonus">Bonus:</string>
     <string name="title_dialog_confirm_ride">Do you really want to confirm the ride?</string>
+    <string name="introduzir_cartao_cidadao">Insert ID</string>
+    <string name="cartaConducao">Insert Driver\'s License</string>
 </resources>
