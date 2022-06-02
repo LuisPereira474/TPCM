@@ -67,4 +67,6 @@
     <string name="introduzir_cartao_cidadao">Inserir Cartão de Cidação</string>
     <string name="cartaConducao">Inserir Carta de condução</string>
     <string name="errorChangePassWrong">Password atual errada.</string>
+    <string name="right_qrcode">Passageiro confirmado!</string>
+    <string name="wrong_qrcode">Código não corresponde  a nenhum passageiro!</string>
 </resources>
