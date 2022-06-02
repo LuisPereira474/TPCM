@@ -86,4 +86,9 @@ class Perfil : AppCompatActivity() {
         val intent = Intent(this@Perfil, EditarPerfil::class.java)
         startActivity(intent)
     }
+
+    fun sendToWishlist(view: View) {
+        val intent = Intent(this@Perfil, WishList::class.java)
+        startActivity(intent)
+    }
 }

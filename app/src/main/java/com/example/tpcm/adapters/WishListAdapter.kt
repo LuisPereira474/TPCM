@@ -19,7 +19,7 @@ class WishListAdapter(
             LayoutInflater
                 .from(parent.context)
                 .inflate(
-                    R.layout.search_line,
+                    R.layout.wish_list_line,
                     parent,
                     false
                 )

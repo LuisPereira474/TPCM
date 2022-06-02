@@ -52,22 +52,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="50dp"
-                    android:textStyle="bold"
-                    android:textSize="17sp"
-                    android:layout_marginRight="30dp"
                     android:layout_marginLeft="30dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginRight="30dp"
                     android:gravity="center"
                     android:text="@string/popUpPoints"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/labelBonus"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:text="@string/bonus"
                     android:layout_below="@+id/titlePopUp"
-                    android:layout_marginLeft="70dp"
+                    android:layout_marginLeft="60dp"
                     android:layout_marginTop="30dp"
                     android:textSize="17sp"/>
 
@@ -81,8 +81,9 @@
                     android:textColor="@color/black"
                     android:background="@drawable/border_qrcode"
                     android:layout_toRightOf="@+id/labelBonus"
-                    android:layout_alignTop="@+id/labelBonus"
+                    android:layout_below="@+id/titlePopUp"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp"
                     android:gravity="center"
                     android:padding="7dp"/>
 
@@ -92,7 +93,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/points"
                     android:layout_toRightOf="@+id/valueBonus"
-                    android:layout_alignTop="@+id/labelBonus"
+                    android:layout_below="@+id/titlePopUp"
+                    android:layout_marginTop="31dp"
                     android:layout_marginLeft="15dp"
                     android:textStyle="bold"/>
 

@@ -4,8 +4,7 @@ import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -22,6 +21,40 @@ class EditarPerfil : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_perfil)
         getProfile()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.bottom_navigation_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.nav_search -> {
+                val intent = Intent(this@EditarPerfil, SearchBoleia::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.nav_rides -> {
+                val intent = Intent(this@EditarPerfil, HistBoleiasAceites::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.nav_services -> {
+                val intent = Intent(this@EditarPerfil, HistoricoUser::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.nav_profile -> {
+                val intent = Intent(this@EditarPerfil, Perfil::class.java)
+                startActivity(intent)
+                true
+            }
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
+        }
     }
 
     private fun getProfile() {

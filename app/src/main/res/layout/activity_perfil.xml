@@ -51,7 +51,8 @@
         android:text="@string/wishList"
         android:textColor="#FF3939"
         android:drawableEnd="@drawable/ic_baseline_favorite_24"
-        android:drawablePadding="7dp"/>
+        android:drawablePadding="7dp"
+        android:onClick="sendToWishlist"/>
 
 
     <TextView
