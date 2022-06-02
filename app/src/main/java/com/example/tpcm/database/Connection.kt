@@ -557,12 +557,12 @@ object Connection {
         return success
     }
 
-    suspend fun scanQrCodeResult(resultQr: String): Boolean {
+    suspend fun scanQrCodeResult(resultQr: String,idBoleia: String): Boolean {
         var result = false
         var canGo = false
         val resultArray = resultQr.split(",")
 
-        val idBoleia = resultArray[0]
+        val idBoleiaQr = resultArray[0]
         val idUser = resultArray[1]
 
         GlobalScope.launch {
@@ -573,7 +573,7 @@ object Connection {
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             for (document in task.result!!) {
-                                if (document.data["idUser"] == idUser) {
+                                if (document.data["idBoleia"] == idBoleiaQr && document.data["idUser"] == idUser) {
                                     result = true
                                 }
                             }

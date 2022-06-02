@@ -3,8 +3,7 @@ package com.example.tpcm.aplication
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -30,6 +29,40 @@ class ScanQrCode : AppCompatActivity() {
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.bottom_navigation_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.nav_search -> {
+                val intent = Intent(this@ScanQrCode, SearchBoleia::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.nav_rides -> {
+                val intent = Intent(this@ScanQrCode, HistBoleiasAceites::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.nav_services -> {
+                val intent = Intent(this@ScanQrCode, HistoricoUser::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.nav_profile -> {
+                val intent = Intent(this@ScanQrCode, Perfil::class.java)
+                startActivity(intent)
+                true
+            }
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
+        }
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
@@ -39,8 +72,8 @@ class ScanQrCode : AppCompatActivity() {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
             } else {
                 GlobalScope.launch {
-
-                    val result = Connection.scanQrCodeResult(result.contents)
+                    val idBoleia = intent.getStringExtra(PARAM_ID_BOLEIA)
+                    val result = Connection.scanQrCodeResult(result.contents, idBoleia.toString())
                     runOnUiThread {
                         if (result) {
                             dialog.setContentView(R.layout.dialog_right_qrcode)

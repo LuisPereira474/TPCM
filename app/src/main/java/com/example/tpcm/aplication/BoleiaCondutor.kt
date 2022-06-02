@@ -88,7 +88,10 @@ class BoleiaCondutor : AppCompatActivity() {
     }
 
     fun scanQrCode(view: View) {
-        val intent = Intent(this@BoleiaCondutor, ScanQrCode::class.java)
+        val idBoleia = intent.getStringExtra(PARAM_ID)
+        val intent = Intent(this@BoleiaCondutor, ScanQrCode::class.java).apply {
+            putExtra(PARAM_ID_BOLEIA,idBoleia)
+        }
         startActivity(intent)
     }
 }

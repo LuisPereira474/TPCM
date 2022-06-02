@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tpcm.R
@@ -76,5 +77,10 @@ class QrCode : AppCompatActivity() {
                 super.onOptionsItemSelected(item)
             }
         }
+    }
+
+    fun backQrCodePage(view: View) {
+        val intent = Intent(this@QrCode, HistBoleiasAceites::class.java)
+        startActivity(intent)
     }
 }
