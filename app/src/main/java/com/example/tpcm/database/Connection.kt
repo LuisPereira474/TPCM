@@ -511,4 +511,40 @@ object Connection {
         return boleia
     }
 
+    suspend fun changePasswords(idUser:String,valueCurrentPass:String, valueNewPass:String):Boolean{
+        var success=false
+
+        var user: QueryDocumentSnapshot? = null
+        val data = hashMapOf(
+            "password" to valueNewPass
+        )
+
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("utilizador")
+                    .whereEqualTo("idUser", idUser)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                user = document
+                                if(document.data["password"]==valueCurrentPass){
+                                    db.collection("utilizador").document(user!!.id)
+                                        .set(data, SetOptions.merge())
+                                    success = true
+                                }
+                            }
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                        }
+                    }
+
+            }
+        }
+        while (user == null) {
+            delay(1)
+        }
+        return success
+    }
+
 }

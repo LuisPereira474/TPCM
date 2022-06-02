@@ -1,16 +1,15 @@
 package com.example.tpcm.aplication
 
+import android.app.Dialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
 import android.util.Log
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.example.tpcm.R
 import com.example.tpcm.database.Connection
 import com.google.firebase.firestore.QueryDocumentSnapshot
@@ -41,9 +40,9 @@ class EditarPerfil : AppCompatActivity() {
                 editName.setText(profile!!.data["nome"].toString(), TextView.BufferType.EDITABLE)
                 editEmail.setText(profile!!.data["email"].toString(), TextView.BufferType.EDITABLE)
 
-                if(profile!!.data["sexo"]==true){
+                if (profile!!.data["sexo"] == true) {
                     editPerfilAvatar.setImageResource(R.drawable.avatar_boy)
-                }else{
+                } else {
                     editPerfilAvatar.setImageResource(R.drawable.avatar_girl)
                 }
             }
@@ -70,10 +69,59 @@ class EditarPerfil : AppCompatActivity() {
             errorMissingFields.visibility = View.VISIBLE;
         } else {
             GlobalScope.launch {
-                Connection.editProfile(idUser,editName.text.toString(),editEmail.text.toString())
+                Connection.editProfile(idUser, editName.text.toString(), editEmail.text.toString())
                 val intent = Intent(this@EditarPerfil, Perfil::class.java)
                 startActivity(intent)
             }
         }
     }
+
+
+    fun changePasswordPopUp(view: View) {
+        val shared = getSharedPreferences("idUser", MODE_PRIVATE)
+        val idUser = shared.getString("idUser", "").toString()
+        val dialog = Dialog(this@EditarPerfil)
+        dialog.setContentView(R.layout.dialog_changepassword)
+        dialog.window?.setBackgroundDrawable(getDrawable(R.drawable.dialog_background))
+        dialog.window?.setLayout(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        dialog.setCancelable(false)
+
+        dialog.show()
+
+        dialog.findViewById<TextView>(R.id.iconClosePopUpChangePass).setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.findViewById<Button>(R.id.confirmChangePass).setOnClickListener {
+            runOnUiThread {
+                dialog.findViewById<TextView>(R.id.erroChangePassWrong).visibility = View.INVISIBLE
+                dialog.findViewById<TextView>(R.id.erroChangePassDoNotMatch).visibility = View.INVISIBLE
+                dialog.findViewById<TextView>(R.id.erroChangePassEmpty).visibility = View.INVISIBLE
+            }
+            GlobalScope.launch {
+                if (dialog.findViewById<EditText>(R.id.valueNewPass).text.isEmpty() || dialog.findViewById<EditText>(R.id.valueConfirmNewPass).text.isEmpty() || dialog.findViewById<EditText>(R.id.valueCurrentPass).text.isEmpty()) {
+                    runOnUiThread {
+                        dialog.findViewById<TextView>(R.id.erroChangePassEmpty).visibility = View.VISIBLE
+                    }
+                } else if (dialog.findViewById<EditText>(R.id.valueNewPass).text.toString() == dialog.findViewById<EditText>(R.id.valueConfirmNewPass).text.toString()) {
+                    val result = Connection.changePasswords(idUser,dialog.findViewById<EditText>(R.id.valueCurrentPass).text.toString(),dialog.findViewById<EditText>(R.id.valueNewPass).text.toString())
+                    if (!result) {
+                        runOnUiThread {
+                            dialog.findViewById<TextView>(R.id.erroChangePassWrong).visibility = View.VISIBLE
+                        }
+                    }else{
+                        dialog.dismiss()
+                    }
+                } else {
+                    runOnUiThread {
+                        dialog.findViewById<TextView>(R.id.erroChangePassDoNotMatch).visibility = View.VISIBLE
+                    }
+                }
+            }
+
+        }
+    }
+
 }

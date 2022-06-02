@@ -66,4 +66,5 @@
     <string name="title_dialog_confirm_ride">Deseja mesmo confirmar a boleia?</string>
     <string name="introduzir_cartao_cidadao">Inserir Cartão de Cidação</string>
     <string name="cartaConducao">Inserir Carta de condução</string>
+    <string name="errorChangePassWrong">Password atual errada.</string>
 </resources>

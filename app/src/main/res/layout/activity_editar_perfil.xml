@@ -79,22 +79,20 @@
         android:inputType="text"/>
 
 
-
     <Button
         android:id="@+id/btnChangePass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/editEmail"
+        android:layout_alignLeft="@+id/editEmail"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#FFFFFF"
+        android:onClick="changePasswordPopUp"
         android:text="@string/change_pass"
         android:textColor="#979797"
-        android:backgroundTint="#FFFFFF"
         app:cornerRadius="20dp"
         app:strokeColor="#707070"
-        app:strokeWidth="1dp"
-        android:layout_below="@+id/editEmail"
-        android:layout_marginTop="40dp"
-        android:layout_alignLeft="@+id/editEmail"
-
-        />
+        app:strokeWidth="1dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
