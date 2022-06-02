@@ -15,7 +15,9 @@ import kotlinx.android.synthetic.main.historico_line.view.idBoleia
 import kotlinx.android.synthetic.main.search_line.view.*
 
 class HistoricoAdapter(
+
     private val linhas: ArrayList<Historico>
+
 ) : RecyclerView.Adapter<HistoricoViewHolder>() {
 
     private lateinit var mListener: onItemClickListener

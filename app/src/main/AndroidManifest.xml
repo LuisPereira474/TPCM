@@ -19,6 +19,9 @@
             android:name=".aplication.QrCode"
             android:exported="false" />
         <activity
+            android:name=".aplication.WishList"
+            android:exported="false" />
+        <activity
             android:name=".aplication.BoleiaCondutor"
             android:exported="false" />
         <activity
