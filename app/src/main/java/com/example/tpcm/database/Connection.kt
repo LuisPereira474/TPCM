@@ -21,15 +21,15 @@ object Connection {
         GlobalScope.launch {
             withContext(Dispatchers.Default) {
                 db.collection("utilizador")
+                    .whereEqualTo("email", email)
+                    .whereEqualTo("password", password)
                     .get()
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
 
                             for (document in task.result!!) {
-                                if ((document.data["email"] as String) == email && (document.data["password"] as String) == password) {
-                                    confirmLogin = true
-                                    idUser = (document.data["idUser"] as String?).toString()
-                                }
+                                confirmLogin = true
+                                idUser = (document.data["idUser"] as String?).toString()
                             }
                             if (!confirmLogin) {
                                 errorLogin.visibility = View.VISIBLE;
@@ -557,7 +557,7 @@ object Connection {
         return success
     }
 
-    suspend fun scanQrCodeResult(resultQr: String,idBoleia: String): Boolean {
+    suspend fun scanQrCodeResult(resultQr: String, idBoleia: String): Boolean {
         var result = false
         var canGo = false
         val resultArray = resultQr.split(",")
