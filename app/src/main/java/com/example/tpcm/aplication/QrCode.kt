@@ -25,7 +25,7 @@ class QrCode : AppCompatActivity() {
         val qrCode = findViewById<ImageView>(R.id.qrCode)
         val writer = QRCodeWriter()
 
-        val data = "$idBoleia-$idUser"
+        val data = "$idBoleia,$idUser"
 
         try {
             val bitMatrix = writer.encode(data, BarcodeFormat.QR_CODE, 512, 512)

@@ -1,14 +1,19 @@
 package com.example.tpcm.aplication
 
+import android.app.Dialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.tpcm.R
+import com.example.tpcm.database.Connection
 import com.google.zxing.integration.android.IntentIntegrator
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class ScanQrCode : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,13 +33,45 @@ class ScanQrCode : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+        val dialog = Dialog(this@ScanQrCode)
         if (result != null) {
             if (result.contents == null) {
-                Log.d("MainActivity", "Cancelled scan")
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
             } else {
-                Log.d("MainActivity", "Scanned")
-                Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_LONG).show()
+                GlobalScope.launch {
+
+                    val result = Connection.scanQrCodeResult(result.contents)
+                    runOnUiThread {
+                        if (result) {
+                            dialog.setContentView(R.layout.dialog_right_qrcode)
+                            dialog.window?.setBackgroundDrawable(getDrawable(R.drawable.dialog_background))
+                            dialog.window?.setLayout(
+                                ViewGroup.LayoutParams.WRAP_CONTENT,
+                                ViewGroup.LayoutParams.WRAP_CONTENT
+                            )
+                            dialog.setCancelable(false)
+                            dialog.show()
+                            dialog.findViewById<TextView>(R.id.iconClosePopUpRightQr)
+                                .setOnClickListener {
+                                    dialog.dismiss()
+                                }
+
+                        } else {
+                            dialog.setContentView(R.layout.dialog_wrong_qrcode)
+                            dialog.window?.setBackgroundDrawable(getDrawable(R.drawable.dialog_background))
+                            dialog.window?.setLayout(
+                                ViewGroup.LayoutParams.WRAP_CONTENT,
+                                ViewGroup.LayoutParams.WRAP_CONTENT
+                            )
+                            dialog.setCancelable(false)
+                            dialog.show()
+                            dialog.findViewById<TextView>(R.id.iconClosePopUpWrongQr)
+                                .setOnClickListener {
+                                    dialog.dismiss()
+                                }
+                        }
+                    }
+                }
             }
         }
     }

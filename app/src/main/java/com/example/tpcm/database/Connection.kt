@@ -401,14 +401,20 @@ object Connection {
                                         .addOnCompleteListener { task ->
                                             if (task.isSuccessful) {
                                                 for (document in task.result!!) {
-                                                    seatsAvailabel = Integer.parseInt(document.data["seats"].toString())
+                                                    seatsAvailabel =
+                                                        Integer.parseInt(document.data["seats"].toString())
                                                     if (seatsAvailabel > 0) {
-                                                        db.collection("boleia").document(document.id)
+                                                        db.collection("boleia")
+                                                            .document(document.id)
                                                             .update("seats", seatsAvailabel - 1)
                                                     }
                                                 }
                                             } else {
-                                                Log.w("TAG", "Error getting documents.", task.exception)
+                                                Log.w(
+                                                    "TAG",
+                                                    "Error getting documents.",
+                                                    task.exception
+                                                )
                                                 canGo = true
                                             }
                                         }
@@ -486,7 +492,7 @@ object Connection {
                             for (document in task.result!!) {
                                 db.collection("boleia")
                                     .whereEqualTo("idCriador", idUser)
-                                    .whereEqualTo("idBoleia",document.data["idBoleia"])
+                                    .whereEqualTo("idBoleia", document.data["idBoleia"])
                                     .get()
                                     .addOnCompleteListener { task ->
                                         if (task.isSuccessful) {
@@ -511,8 +517,12 @@ object Connection {
         return boleia
     }
 
-    suspend fun changePasswords(idUser:String,valueCurrentPass:String, valueNewPass:String):Boolean{
-        var success=false
+    suspend fun changePasswords(
+        idUser: String,
+        valueCurrentPass: String,
+        valueNewPass: String
+    ): Boolean {
+        var success = false
 
         var user: QueryDocumentSnapshot? = null
         val data = hashMapOf(
@@ -528,7 +538,7 @@ object Connection {
                         if (task.isSuccessful) {
                             for (document in task.result!!) {
                                 user = document
-                                if(document.data["password"]==valueCurrentPass){
+                                if (document.data["password"] == valueCurrentPass) {
                                     db.collection("utilizador").document(user!!.id)
                                         .set(data, SetOptions.merge())
                                     success = true
@@ -545,6 +555,42 @@ object Connection {
             delay(1)
         }
         return success
+    }
+
+    suspend fun scanQrCodeResult(resultQr: String): Boolean {
+        var result = false
+        var canGo = false
+        val resultArray = resultQr.split(",")
+
+        val idBoleia = resultArray[0]
+        val idUser = resultArray[1]
+
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("boleia_utilizador")
+                    .whereEqualTo("idBoleia", idBoleia)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                if (document.data["idUser"] == idUser) {
+                                    result = true
+                                }
+                            }
+                            canGo = true
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                            canGo = true
+                        }
+                    }
+
+            }
+        }
+        while (!canGo) {
+            delay(1)
+        }
+
+        return result
     }
 
 }
