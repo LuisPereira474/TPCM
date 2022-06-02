@@ -61,7 +61,7 @@
             android:text="@string/moreInfo"
             android:layout_below="@+id/price"
             android:layout_alignLeft="@+id/price"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:drawableEnd="@drawable/ic_info"
             android:drawablePadding="7dp"/>
@@ -75,7 +75,7 @@
             android:textColor="#FF3939"
             android:layout_toRightOf="@+id/moreInfo"
             android:layout_alignTop="@+id/moreInfo"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="50dp"
             android:drawableEnd="@drawable/ic_baseline_favorite_24"
             android:drawablePadding="7dp"/>
 
