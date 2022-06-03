@@ -7,7 +7,7 @@
     <string name="email" translatable="false">Email</string>
     <string name="login">Login</string>
     <string name="Back">Back</string>
-    <string name="popUpPoints">Do you really want to confirm the ride?</string>
+    <string name="popUpPoints">Points earned</string>
     <string name="errorLogin">Wrong credentials!</string>
     <string name="erroSignUpEmail">Username or Email already used!</string>
     <string name="erroSignUpPass">Passwords do not match!</string>
@@ -63,7 +63,7 @@
     <string name="new_pass">New password</string>
     <string name="confirm_pass">Confirm new password</string>
     <string name="bonus">Bonus:</string>
-    <string name="title_dialog_confirm_ride">Do you really want to confirm the ride?</string>
+    <string name="title_dialog_accept_ride">Do you really want to confirm the ride?</string>
     <string name="introduzir_cartao_cidadao">Insert ID</string>
     <string name="cartaConducao">Insert Driver\'s License</string>
     <string name="errorChangePassWrong">Current password wrong.</string>
