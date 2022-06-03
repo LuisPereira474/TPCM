@@ -80,7 +80,7 @@
                     android:backgroundTint="@color/principal"
                     android:padding="0dp"
                     android:text="OK"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="45dp"
                     app:cornerRadius="20dp"
                     android:layout_centerHorizontal="true"/>
 
