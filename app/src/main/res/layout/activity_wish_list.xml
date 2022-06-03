@@ -30,6 +30,22 @@
         android:layout_marginTop="20dp"
         />
 
+    <TextView
+        android:id="@+id/errorNoResultsWhislist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/emptyWishlist"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="50dp"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:backgroundTint="#C4C4C4"
+        android:background="@drawable/historico_rounded_border"
+        android:padding="10dp"
+        android:visibility="invisible"
+        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/linhasWishList"
         android:layout_width="match_parent"

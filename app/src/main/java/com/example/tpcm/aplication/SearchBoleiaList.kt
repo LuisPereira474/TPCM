@@ -105,6 +105,10 @@ class SearchBoleiaList : AppCompatActivity() {
                         override fun onItemClick(idBoleia: TextView) {
                             acceptBoleia(idBoleia)
                         }
+
+                        override fun onWishlistClick(idBoleia: TextView) {
+                            addWishlist(idBoleia)
+                        }
                     })
                     linhasSearch.layoutManager = LinearLayoutManager(this@SearchBoleiaList)
                 }
@@ -123,6 +127,23 @@ class SearchBoleiaList : AppCompatActivity() {
             } else {
                 runOnUiThread {
                     createDialog(resources.getString(R.string.success))
+                }
+            }
+        }
+    }
+
+    fun addWishlist(idBoleia: TextView) {
+        val shared = getSharedPreferences("idUser", MODE_PRIVATE)
+        val idUser = shared.getString("idUser", "").toString()
+        GlobalScope.launch {
+            val result = Connection.addToWishList(idUser, idBoleia.text.toString())
+            if (result == 0) {
+                runOnUiThread {
+                    createDialog(resources.getString(R.string.success))
+                }
+            } else {
+                runOnUiThread {
+                    createDialog(resources.getString(R.string.error))
                 }
             }
         }

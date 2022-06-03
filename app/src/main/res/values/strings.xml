@@ -71,4 +71,5 @@
     <string name="wrong_qrcode">Code does not match to no passengers!</string>
     <string name="remove">Remove</string>
     <string name="text_info_homepage">In the Boleiasss app, you can search for the rides you need, indicating the origin and destination and the date you want. It is possible to consult the rides that you have already taken or those that will still happen. In addition, you can become a driver and take a ride, earning more and more points and enjoying them.</string>
+    <string name="emptyWishlist">Wishlist is empty.</string>
 </resources>

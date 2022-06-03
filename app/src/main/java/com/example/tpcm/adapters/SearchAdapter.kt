@@ -18,6 +18,7 @@ class SearchAdapter(
 
     interface onItemClickListener {
         fun onItemClick(idBoleia: TextView)
+        fun onWishlistClick(idBoleia: TextView)
     }
 
     fun setOnItemClickListener(listener: onItemClickListener) {
@@ -64,6 +65,9 @@ class SearchViewHolder(
     init {
         itemView.confirmButton.setOnClickListener{
             listener.onItemClick(idBoleia)
+        }
+        itemView.wishList.setOnClickListener{
+            listener.onWishlistClick(idBoleia)
         }
     }
 }

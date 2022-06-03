@@ -593,4 +593,85 @@ object Connection {
         return result
     }
 
+    suspend fun addToWishList(idUser: String, idBoleia: String): Int {
+        var successFail = -1
+        val data = hashMapOf(
+            "idUser" to idUser,
+            "idBoleia" to idBoleia
+        )
+        db.collection("wishlist")
+            .whereEqualTo("idBoleia", idBoleia)
+            .whereEqualTo("idUser", idUser)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    if (task.result.isEmpty) {
+
+                        db.collection("wishlist")
+                            .add(data)
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    successFail = 0
+                                    Log.d("TAG", "Success.")
+                                } else {
+                                    Log.w(
+                                        "TAG",
+                                        "Error getting documents.",
+                                        task.exception
+                                    )
+                                    successFail = 1
+                                }
+                            }
+                    } else {
+                        successFail = 2
+                    }
+                } else {
+                    successFail = 3
+                    Log.w("TAG", "Error getting documents.", task.exception)
+                }
+            }
+
+        while (successFail == -1) {
+            delay(1)
+        }
+        return successFail
+    }
+
+
+    @DelicateCoroutinesApi
+    suspend fun getWishlist(idUser: String): HashMap<String, QueryDocumentSnapshot> {
+        val wishlist = HashMap<String, QueryDocumentSnapshot>()
+        var canContinue = false
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("wishlist")
+                    .whereEqualTo("idUser", idUser)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                GlobalScope.launch {
+                                    val boleia = getDadosBoleia(document.data["idBoleia"].toString())
+                                    wishlist[(boleia!!.data["idCriador"] as String?).toString()] = boleia
+                                    canContinue = true
+                                }
+                            }
+                            if (task.result.isEmpty) {
+                                canContinue = true
+                            }
+                        } else {
+                            canContinue = true
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                        }
+                    }
+            }
+        }
+
+        while (wishlist.isEmpty() && !canContinue) {
+            delay(1)
+        }
+
+        return wishlist
+    }
+
 }

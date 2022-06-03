@@ -71,4 +71,5 @@
     <string name="wrong_qrcode">Código não corresponde  a nenhum passageiro!</string>
     <string name="remove">Remover</string>
     <string name="text_info_homepage">Na aplicação Boleiasss, poderás procurar as boleias de que precisas indicando a origem e o destino e a data de que desejas.  É possível consultares as boleias que já realizares ou aquelas que ainda irão acontecer. Além disso podes te tornar condutor e prestar tu boleias, adiquirindo cada vez mais pontos e assim usufruir dos mesmos.</string>
+    <string name="emptyWishlist">A ista de desejos está vazia.</string>
 </resources>
