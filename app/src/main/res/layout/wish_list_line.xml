@@ -66,6 +66,18 @@
         android:drawableEnd="@drawable/ic_info"
         android:drawablePadding="7dp"/>
 
+    <TextView
+        android:id="@+id/removeWishList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/remove"
+        android:textColor="#990202"
+        android:layout_toRightOf="@id/moreInfoWishList"
+        android:layout_alignTop="@+id/moreInfoWishList"
+        android:layout_marginLeft="60dp"
+        android:drawableEnd="@drawable/ic_baseline_delete_24"
+        android:drawablePadding="7dp"/>
+
 
     <Button
         android:id="@+id/acceptBolWishList"
