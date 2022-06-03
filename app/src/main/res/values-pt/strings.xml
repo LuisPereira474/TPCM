@@ -69,4 +69,5 @@
     <string name="errorChangePassWrong">Password atual errada.</string>
     <string name="right_qrcode">Passageiro confirmado!</string>
     <string name="wrong_qrcode">Código não corresponde  a nenhum passageiro!</string>
+    <string name="remove">Remover</string>
 </resources>
