@@ -674,4 +674,32 @@ object Connection {
         return wishlist
     }
 
+    suspend fun removeWishList(idUser: String, idBoleia: String): Int {
+        var successFail = -1
+        db.collection("wishlist")
+            .whereEqualTo("idBoleia", idBoleia)
+            .whereEqualTo("idUser", idUser)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    if (!task.result.isEmpty) {
+                        for (document in task.result){
+                            db.collection("wishlist").document(document.id).delete()
+                            successFail = 0
+                        }
+                    } else {
+                        successFail = 1
+                    }
+                } else {
+                    successFail = 2
+                    Log.w("TAG", "Error getting documents.", task.exception)
+                }
+            }
+
+        while (successFail == -1) {
+            delay(1)
+        }
+        return successFail
+    }
+
 }
