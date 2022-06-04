@@ -35,6 +35,9 @@ class WishList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wish_list)
         getWishlist()
+        backButtonWishList.setOnClickListener{
+            onBackPressed()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -71,10 +74,6 @@ class WishList : AppCompatActivity() {
         }
     }
 
-    fun sendToProfile(view: View) {
-        val intent = Intent(this@WishList, Perfil::class.java)
-        startActivity(intent)
-    }
 
     @SuppressLint("SimpleDateFormat")
     fun getWishlist() {
@@ -119,6 +118,13 @@ class WishList : AppCompatActivity() {
 
                         override fun onRemoveWishlistClick(idBoleia: TextView) {
                             removeWishlist(idBoleia)
+                        }
+
+                        override fun onRecyclerClick(idBoleia: TextView) {
+                            val intent = Intent(this@WishList, MoreInfo::class.java).apply {
+                                putExtra(PARAM_ID_BOLEIA,idBoleia.text.toString())
+                            }
+                            startActivity(intent)
                         }
                     })
                     linhasWishList.layoutManager = LinearLayoutManager(this@WishList)

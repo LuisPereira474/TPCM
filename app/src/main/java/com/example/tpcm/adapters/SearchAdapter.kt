@@ -19,6 +19,7 @@ class SearchAdapter(
     interface onItemClickListener {
         fun onItemClick(idBoleia: TextView)
         fun onWishlistClick(idBoleia: TextView)
+        fun onRecyclerClick(idBoleia: TextView)
     }
 
     fun setOnItemClickListener(listener: onItemClickListener) {
@@ -68,6 +69,9 @@ class SearchViewHolder(
         }
         itemView.wishList.setOnClickListener{
             listener.onWishlistClick(idBoleia)
+        }
+        itemView.setOnClickListener{
+            listener.onRecyclerClick(idBoleia)
         }
     }
 }

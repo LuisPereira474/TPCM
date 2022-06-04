@@ -109,6 +109,13 @@ class SearchBoleiaList : AppCompatActivity() {
                         override fun onWishlistClick(idBoleia: TextView) {
                             addWishlist(idBoleia)
                         }
+
+                        override fun onRecyclerClick(idBoleia: TextView) {
+                            val intent = Intent(this@SearchBoleiaList, MoreInfo::class.java).apply {
+                                putExtra(PARAM_ID_BOLEIA,idBoleia.text.toString())
+                            }
+                            startActivity(intent)
+                        }
                     })
                     linhasSearch.layoutManager = LinearLayoutManager(this@SearchBoleiaList)
                 }

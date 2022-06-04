@@ -21,6 +21,7 @@ class WishListAdapter(
     interface onItemClickListener {
         fun onItemClick(idBoleia: TextView)
         fun onRemoveWishlistClick(idBoleia: TextView)
+        fun onRecyclerClick(idBoleia: TextView)
     }
 
     fun setOnItemClickListener(listener: onItemClickListener) {
@@ -70,6 +71,9 @@ class WishListViewHolder(
         }
         itemView.removeWishList.setOnClickListener{
             listener.onRemoveWishlistClick(idBoleia)
+        }
+        itemView.setOnClickListener{
+            listener.onRecyclerClick(idBoleia)
         }
     }
 }
