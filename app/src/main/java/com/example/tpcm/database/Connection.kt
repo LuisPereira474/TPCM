@@ -353,6 +353,7 @@ object Connection {
         var canGo = false
         var successFail = 0
         var seatsAvailabel = -1
+        var idCriador = ""
 
         GlobalScope.launch {
             withContext(Dispatchers.Default) {
@@ -363,6 +364,7 @@ object Connection {
                         if (task.isSuccessful) {
                             for (document in task.result!!) {
                                 seatsAvailabel = Integer.parseInt(document.data["seats"].toString())
+                                idCriador = document.data["idCriador"].toString()
                             }
                         } else {
                             Log.w("TAG", "Error getting documents.", task.exception)
@@ -423,6 +425,7 @@ object Connection {
                                         .addOnCompleteListener { task ->
                                             canGo = if (task.isSuccessful) {
                                                 successFail = 2
+                                                addPoints(idUser, idCriador)
                                                 Log.d("TAG", "Success.")
                                                 true
                                             } else {
@@ -451,6 +454,43 @@ object Connection {
             successFail = 1
         }
         return successFail
+    }
+
+    fun addPoints(idUser: String, idCriador: String) {
+        db.collection("utilizador")
+            .whereEqualTo("idUser", idUser)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    for (document in task.result!!) {
+                        val data = hashMapOf(
+                            "pontos" to document.data["pontos"].toString().toInt()+1
+                        )
+                        db.collection("utilizador").document(document!!.id)
+                            .set(data, SetOptions.merge())
+
+                    }
+                } else {
+                    Log.w("TAG", "Error getting documents.", task.exception)
+                }
+            }
+        db.collection("utilizador")
+            .whereEqualTo("idUser", idCriador)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    for (document in task.result!!) {
+                        val data = hashMapOf(
+                            "pontos" to document.data["pontos"].toString().toInt()+1
+                        )
+                        db.collection("utilizador").document(document!!.id)
+                            .set(data, SetOptions.merge())
+
+                    }
+                } else {
+                    Log.w("TAG", "Error getting documents.", task.exception)
+                }
+            }
     }
 
     suspend fun getDadosBoleia(idBoleia: String): QueryDocumentSnapshot? {
@@ -651,8 +691,10 @@ object Connection {
                         if (task.isSuccessful) {
                             for (document in task.result!!) {
                                 GlobalScope.launch {
-                                    val boleia = getDadosBoleia(document.data["idBoleia"].toString())
-                                    wishlist[(boleia!!.data["idCriador"] as String?).toString()] = boleia
+                                    val boleia =
+                                        getDadosBoleia(document.data["idBoleia"].toString())
+                                    wishlist[(boleia!!.data["idCriador"] as String?).toString()] =
+                                        boleia
                                     canContinue = true
                                 }
                             }
@@ -683,7 +725,7 @@ object Connection {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     if (!task.result.isEmpty) {
-                        for (document in task.result){
+                        for (document in task.result) {
                             db.collection("wishlist").document(document.id).delete()
                             successFail = 0
                         }
