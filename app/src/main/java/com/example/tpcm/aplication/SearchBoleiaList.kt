@@ -127,11 +127,18 @@ class SearchBoleiaList : AppCompatActivity() {
         val shared = getSharedPreferences("idUser", MODE_PRIVATE)
         val idUser = shared.getString("idUser", "").toString()
         GlobalScope.launch {
-            if (Connection.acceptBoleia(idUser, idBoleia.text.toString()) == 1) {
+            var result = Connection.acceptBoleia(idUser, idBoleia.text.toString())
+            if (result == 1) {
                 runOnUiThread {
                     createDialog(resources.getString(R.string.error))
                 }
-            } else {
+            }
+            else if(result==3){
+                runOnUiThread {
+                    createDialog(resources.getString(R.string.seatsFinish))
+                }
+            }
+            else {
                 runOnUiThread {
                     createDialog(resources.getString(R.string.success))
                 }

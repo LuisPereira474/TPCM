@@ -451,7 +451,7 @@ object Connection {
                 delay(1)
             }
         } else {
-            successFail = 1
+            successFail = 3
         }
         return successFail
     }

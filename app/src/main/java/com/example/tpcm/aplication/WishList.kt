@@ -137,12 +137,18 @@ class WishList : AppCompatActivity() {
         val shared = getSharedPreferences("idUser", MODE_PRIVATE)
         val idUser = shared.getString("idUser", "").toString()
         GlobalScope.launch {
-            if (Connection.acceptBoleia(idUser, idBoleia.text.toString()) == 1) {
-                Connection.removeWishList(idUser, idBoleia.text.toString())
+            var result = Connection.acceptBoleia(idUser, idBoleia.text.toString())
+            if (result == 1) {
                 runOnUiThread {
                     createDialog(resources.getString(R.string.error))
                 }
-            } else {
+            }
+            else if(result==3){
+                runOnUiThread {
+                    createDialog(resources.getString(R.string.seatsFinish))
+                }
+            }
+            else {
                 runOnUiThread {
                     createDialog(resources.getString(R.string.success))
                 }
