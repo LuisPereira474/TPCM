@@ -90,6 +90,7 @@ class MoreInfo : AppCompatActivity() {
                 tvModeloCarro.text = boleia!!.data["car"].toString()
                 tvValorBoleia.text = boleia!!.data["price"].toString()
                 tvPontoEncontro.text = boleia!!.data["meeting"].toString()
+                valueLugaresDisponiveisMoreInfo.text = boleia!!.data["seats"].toString()
             }
         }
 
