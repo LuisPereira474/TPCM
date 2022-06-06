@@ -89,6 +89,17 @@
         app:strokeColor="@color/principal"
         app:strokeWidth="1dp"/>
 
+    <Button
+        android:id="@+id/maps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/passwordLabel"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="90dp"
+        android:backgroundTint="@color/principal"
+        android:onClick="goMaps"
+        android:text="maps" />
+
 
     <Button
         android:id="@+id/submitBtt"

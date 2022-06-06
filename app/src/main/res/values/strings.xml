@@ -46,6 +46,10 @@
     <string name="claimpts">Claim Bonus</string>
     <string name="makemedriver">Make me driver</string>
     <string name="cancel">Cancel</string>
+    <string name="title_activity_maps">Maps</string>
+    <string name="title_activity_maps_atividade">MapsAtividade</string>
+    <string name="destination">Destination</string>
+    <string name="departure">Departure</string>
     <string name="scan">SCAN</string>
     <string name="botaoLerQrCode">Scan QR Code</string>
     <string name="wishList">Wish List</string>

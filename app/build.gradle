@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android-extensions'
     id 'com.google.gms.google-services'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -31,6 +32,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -41,6 +45,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'com.google.firebase:firebase-firestore-ktx:24.1.1'
     implementation 'org.chromium.net:cronet-embedded:76.3809.111'
+    implementation 'com.google.android.gms:play-services-maps:17.0.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -52,6 +57,10 @@ dependencies {
     //Implementações usadas na pagina de perfil(Avatar)
     implementation 'de.hdodenhof:circleimageview:3.0.0'
     implementation'com.squareup.picasso:picasso:2.71828'
+
+    //Implementações para usar maps
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
 
     //QR code
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
