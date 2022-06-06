@@ -12,8 +12,8 @@
         android:id="@+id/emailNameLabel"
         android:layout_width="270dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="130dp"
         android:layout_marginRight="50dp"
         android:paddingStart="8dp"
         android:textSize="20sp"
@@ -37,8 +37,8 @@
         android:id="@+id/passwordLabel"
         android:layout_width="270dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="120dp"
         android:layout_marginRight="50dp"
         android:paddingStart="8dp"
         android:textSize="20sp"
@@ -95,27 +95,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/signUpBtt"
-        android:layout_marginTop="137dp"
+        android:layout_marginTop="227dp"
         android:layout_marginLeft="55dp"
         android:background="@android:color/transparent"
         android:drawableRight="@drawable/ic_baseline_arrow_forward_24"
         android:onClick="loginSubmit"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/principal"
-        android:orientation="vertical">
+
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="7dp"
-            android:layout_marginTop="20sp"
-            android:src="@drawable/logo"/>
+            android:layout_width="400dp"
+            android:layout_height="130dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/logo_withoutback"/>
 
-    </LinearLayout>
 
 </RelativeLayout>
