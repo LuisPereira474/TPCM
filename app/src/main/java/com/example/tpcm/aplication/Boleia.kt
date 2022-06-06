@@ -1,5 +1,6 @@
 package com.example.tpcm.aplication
 
+import android.content.ClipData
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -10,13 +11,16 @@ import androidx.appcompat.app.AlertDialog
 import com.example.tpcm.R
 import kotlinx.android.synthetic.main.activity_boleia.*
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tpcm.R
+import androidx.recyclerview.widget.RecyclerView
 import com.example.tpcm.database.Connection
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import kotlinx.android.synthetic.main.activity_boleia.*
+import kotlinx.android.synthetic.main.search_line.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.io.Console
 
 const val PARAM_ID_BOLEIA = "idBoleia"
 const val PARAM_ID_USER = "idUser"
@@ -29,27 +33,32 @@ class Boleia : AppCompatActivity() {
         setContentView(R.layout.activity_boleia)
 
         btnAbrirChat.setOnClickListener {
+            val shared = getSharedPreferences("idUser", MODE_PRIVATE)
+            val idUser = shared.getString("idUser", "").toString()
 
-            val view = View.inflate(this, R.layout.chat, null)
+            val idBoleia = intent.getStringExtra(PARAM_ID).toString()
 
-            val builder = AlertDialog.Builder(this)
-            builder.setView(view)
-
-            val dialog = builder.create()
-            dialog.show()
-            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        val shared = getSharedPreferences("idUser", MODE_PRIVATE)
-        val idUser = shared.getString("idUser", "").toString()
-
-        val idBoleia = intent.getStringExtra(PARAM_ID)
-        if (idBoleia != null) {
-            getDadosBoleia(idBoleia)
+            openChat(idBoleia, idUser);
         }
-        generateQrCode.setOnClickListener {
+
+
+
+
+            val shared = getSharedPreferences("idUser", MODE_PRIVATE)
+            val idUser = shared.getString("idUser", "").toString()
+
+            val idBoleia = intent.getStringExtra(PARAM_ID)
             if (idBoleia != null) {
-                getQrCode(idBoleia, idUser)
+                getDadosBoleia(idBoleia)
             }
-        }
+            generateQrCode.setOnClickListener {
+                if (idBoleia != null) {
+                    getQrCode(idBoleia, idUser)
+                }
+            }
+
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -121,4 +130,15 @@ class Boleia : AppCompatActivity() {
         }
         startActivity(intent)
     }
+
+    fun openChat(idBoleia: String, idUser:String){
+        val intent = Intent(this@Boleia, Chat::class.java).apply {
+            putExtra(PARAM_ID_BOLEIA, idBoleia)
+            putExtra(PARAM_ID_USER, idUser)
+        }
+
+        startActivity(intent)
+    }
+
+
 }
