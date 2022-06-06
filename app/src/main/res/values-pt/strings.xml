@@ -69,4 +69,8 @@
     <string name="errorChangePassWrong">Password atual errada.</string>
     <string name="right_qrcode">Passageiro confirmado!</string>
     <string name="wrong_qrcode">Código não corresponde  a nenhum passageiro!</string>
+    <string name="yearCar">Ano</string>
+    <string name="modelCar">Modelo</string>
+    <string name="brandCar">Marca</string>
+    <string name="submitEvaluation">Enviar</string>
 </resources>

@@ -70,15 +70,40 @@
                 android:datePickerMode="spinner" />
 
             <EditText
-                android:id="@+id/carCriarBoleia"
-                android:layout_width="match_parent"
+                android:id="@+id/brandCarCriarBoleia"
+                android:layout_width="75dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/meetingCriarBoleia"
-                android:layout_centerHorizontal="true"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="30dp"
-                android:hint="@string/car"
+                android:hint="@string/brandCar"
+                android:inputType="text"
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/modelCarCriarBoleia"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/meetingCriarBoleia"
+                android:layout_toRightOf="@+id/brandCarCriarBoleia"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:hint="@string/modelCar"
+                android:inputType="text"
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/yearCarCriarBoleia"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/meetingCriarBoleia"
+                android:layout_toRightOf="@+id/modelCarCriarBoleia"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:hint="@string/yearCar"
                 android:inputType="text"
                 android:padding="10dp" />
 
@@ -86,7 +111,7 @@
                 android:id="@+id/priceCriarBoleia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/carCriarBoleia"
+                android:layout_below="@+id/modelCarCriarBoleia"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="30dp"

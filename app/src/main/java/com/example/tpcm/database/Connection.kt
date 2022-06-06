@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import com.example.tpcm.carAPI.Car
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.SetOptions
@@ -164,7 +165,7 @@ object Connection {
         from: String,
         to: String,
         meeting: String,
-        car: String,
+        car: Car,
         date: String,
         price: String,
         seats: Int,
@@ -178,7 +179,10 @@ object Connection {
             "from" to from,
             "to" to to,
             "meeting" to meeting,
-            "car" to car,
+            "carBrand" to car.make,
+            "carModel" to car.model,
+            "carYear" to car.year,
+            "carFuelType" to car.fuel_type,
             "date" to date,
             "price" to price,
             "seats" to seats,
@@ -516,6 +520,88 @@ object Connection {
         }
         return boleia
     }
+
+    @DelicateCoroutinesApi
+    suspend fun evaluateRide(idUser: String, idBoleia: String, evaluation: Float) {
+        var ride: QueryDocumentSnapshot? = null
+        var data = hashMapOf(
+            "idBoleia" to idBoleia,
+            "idUser" to idUser,
+            "avaliacao" to evaluation
+        )
+
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("boleia_utilizador")
+                    .whereEqualTo("idUser", idUser)
+                    .whereEqualTo("idBoleia", idBoleia)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                ride = document
+                                db.collection("boleia_utilizador").document(ride!!.id)
+                                    .set(data, SetOptions.merge())
+                            }
+
+                            db.collection("boleia")
+                                .whereEqualTo("idBoleia", idBoleia)
+                                .get()
+                                .addOnCompleteListener { task ->
+                                    if (task.isSuccessful) {
+                                        for (doc in task.result) {
+                                            ride = doc
+                                            GlobalScope.launch {
+                                                var avaliacao = getRideEvaluation(ride!!.id)
+                                                db.collection("boleia").document(ride!!.id)
+                                                    .set(
+                                                        hashMapOf("avaliacao" to avaliacao),
+                                                        SetOptions.merge()
+                                                    )
+                                            }
+                                        }
+                                    }
+                                }
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                        }
+                    }
+
+            }
+        }
+    }
+
+    @DelicateCoroutinesApi
+    suspend fun getRideEvaluation(idRide: String): Float {
+        var rideEvaluation = -1.0F
+        var sum: Float = 0.0F
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                Log.d("TAGG", "Qualquer coisa")
+                val result = db.collection("boleia_utilizador")
+                    .whereEqualTo("idBoleia", idRide)
+                    .get()
+                    .result
+                if (!result.isEmpty) {
+                    for (document in result) {
+                        Log.d("TAGG", document.data["avaliacao"].toString())
+                        sum += document.data["avaliacao"] as Float
+                    }
+                    rideEvaluation = sum / result.size()
+                } else {
+                    Log.w("TAG", "Error getting documents.")
+                }
+
+
+            }
+
+        }
+        while (rideEvaluation < 1.0F) {
+            delay(1)
+        }
+        return rideEvaluation
+    }
+
 
     suspend fun changePasswords(
         idUser: String,

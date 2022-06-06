@@ -55,4 +55,6 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this@MainActivity, SignUp::class.java)
         startActivity(intent)
     }
+
+
 }
