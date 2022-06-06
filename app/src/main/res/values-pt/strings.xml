@@ -7,7 +7,7 @@
     <string name="confirmpassword">Confirmar Palavra-passe</string>
     <string name="login">Iniciar sessão</string>
     <string name="Back">Voltar</string>
-    <string name="popUpPoints">Deseja mesmo confirmar a boleia?</string>
+    <string name="popUpPoints">Pontos ganhos</string>
     <string name="errorLogin">Credênciais erradas!</string>
     <string name="erroSignUpEmail">Nome de utilizador ou Email  já utilizados!</string>
     <string name="erroSignUpPass">Passwords não correspondem!</string>
@@ -63,7 +63,7 @@
     <string name="new_pass">Nova palavra passe</string>
     <string name="confirm_pass">Confirmar nova palavra passe</string>
     <string name="bonus">Bónus:</string>
-    <string name="title_dialog_confirm_ride">Deseja mesmo confirmar a boleia?</string>
+    <string name="title_dialog_accept_ride">Deseja mesmo confirmar a boleia?</string>
     <string name="introduzir_cartao_cidadao">Inserir Cartão de Cidação</string>
     <string name="cartaConducao">Inserir Carta de condução</string>
     <string name="errorChangePassWrong">Password atual errada.</string>
@@ -73,4 +73,7 @@
     <string name="modelCar">Modelo</string>
     <string name="brandCar">Marca</string>
     <string name="submitEvaluation">Enviar</string>
+    <string name="remove">Remover</string>
+    <string name="text_info_homepage">Na aplicação Boleiasss, poderás procurar as boleias de que precisas indicando a origem e o destino e a data de que desejas.  É possível consultares as boleias que já realizares ou aquelas que ainda irão acontecer. Além disso podes te tornar condutor e prestar tu boleias, adiquirindo cada vez mais pontos e assim usufruir dos mesmos.</string>
+    <string name="emptyWishlist">A ista de desejos está vazia.</string>
 </resources>
