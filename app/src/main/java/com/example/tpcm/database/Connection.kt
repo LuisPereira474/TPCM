@@ -401,14 +401,20 @@ object Connection {
                                         .addOnCompleteListener { task ->
                                             if (task.isSuccessful) {
                                                 for (document in task.result!!) {
-                                                    seatsAvailabel = Integer.parseInt(document.data["seats"].toString())
+                                                    seatsAvailabel =
+                                                        Integer.parseInt(document.data["seats"].toString())
                                                     if (seatsAvailabel > 0) {
-                                                        db.collection("boleia").document(document.id)
+                                                        db.collection("boleia")
+                                                            .document(document.id)
                                                             .update("seats", seatsAvailabel - 1)
                                                     }
                                                 }
                                             } else {
-                                                Log.w("TAG", "Error getting documents.", task.exception)
+                                                Log.w(
+                                                    "TAG",
+                                                    "Error getting documents.",
+                                                    task.exception
+                                                )
                                                 canGo = true
                                             }
                                         }
@@ -486,7 +492,7 @@ object Connection {
                             for (document in task.result!!) {
                                 db.collection("boleia")
                                     .whereEqualTo("idCriador", idUser)
-                                    .whereEqualTo("idBoleia",document.data["idBoleia"])
+                                    .whereEqualTo("idBoleia", document.data["idBoleia"])
                                     .get()
                                     .addOnCompleteListener { task ->
                                         if (task.isSuccessful) {
@@ -511,23 +517,69 @@ object Connection {
         return boleia
     }
 
-    fun evaluateRide(idRideUser: String, evaluation: Int){
-        val ride = db.collection("boleia_utilizador")
-            .document(idRideUser)
-            .update("avaliacao", evaluation)
-            .addOnSuccessListener {
-                Log.d(
-                    "TAG",
-                    "Evaluation Updated"
-                )
+    @DelicateCoroutinesApi
+    suspend fun evaluateRide(idUser: String, idBoleia: String, evaluation: Float) {
+        var ride: QueryDocumentSnapshot? = null
+        var data = hashMapOf(
+            "idBoleia" to idBoleia,
+            "idUser" to idUser,
+            "avaliacao" to evaluation
+        )
+
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("boleia_utilizador")
+                    .whereEqualTo("idUser", idUser)
+                    .whereEqualTo("idBoleia", idBoleia)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                ride = document
+                                db.collection("boleia_utilizador").document(ride!!.id)
+                                    .set(data, SetOptions.merge())
+                            }
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                        }
+                    }
+
             }
-            .addOnFailureListener{ e ->
-                Log.w(
-                    "TAG",
-                    "Error writing document",
-                    e
-                )
-            }
+        }
     }
+
+    @DelicateCoroutinesApi
+    suspend fun getRideEvaluation(idRide: String): Float {
+        var rideEvaluation = -1.0F
+        var sum: Float = 0.0F
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                Log.d("TAGG", "Qualquer coisa")
+                val result = db.collection("boleia_utilizador")
+                    .whereEqualTo("idBoleia", idRide)
+                    .get()
+                    .result
+
+
+                if (!result.isEmpty) {
+                    for (document in result) {
+                        Log.d("TAGG", document.data["avaliacao"].toString())
+                        sum += document.data["avaliacao"] as Float
+                    }
+                    rideEvaluation = sum / result.size()
+                } else {
+                    Log.w("TAG", "Error getting documents.")
+                }
+
+
+            }
+
+        }
+        while (rideEvaluation < 1.0F) {
+            delay(1)
+        }
+        return rideEvaluation
+    }
+
 
 }

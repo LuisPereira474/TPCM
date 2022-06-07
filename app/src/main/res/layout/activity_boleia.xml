@@ -22,7 +22,6 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
                 <TextView
                     android:id="@+id/tvTituloViagem"
                     android:layout_width="wrap_content"
@@ -190,6 +189,7 @@
                     android:text="@string/LabelAvaliacao" />
 
                 <RatingBar
+                    android:id="@+id/RB_RideEvaluation"
                     android:layout_width="wrap_content"
                     android:layout_height="45dp"
                     android:layout_alignBottom="@+id/tvLabelAvaliacao"
@@ -197,7 +197,17 @@
                     android:layout_marginBottom="-12dp"
                     android:layout_toRightOf="@+id/tvLabelAvaliacao"
                     android:scaleX="0.5"
-                    android:scaleY="0.5"/>
+                    android:scaleY="0.5" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/RB_RideEvaluation"
+                    android:layout_centerHorizontal="true"
+                    android:onClick="evaluateRide"
+                    android:text="@string/submitEvaluation"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
 
             </RelativeLayout>
 
