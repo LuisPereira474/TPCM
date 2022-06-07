@@ -74,4 +74,5 @@
     <string name="emptyWishlist">A ista de desejos está vazia.</string>
     <string name="missing_citizen_car">Falta número Cartão Cidadão</string>
     <string name="missing_driver_license">Falta número Carta Condução</string>
+    <string name="text_dialog_make_me_driver">" Insira os valores equivalentes aos respresentados nas figuras "</string>
 </resources>
