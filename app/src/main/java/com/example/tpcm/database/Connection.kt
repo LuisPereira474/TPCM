@@ -651,8 +651,10 @@ object Connection {
                         if (task.isSuccessful) {
                             for (document in task.result!!) {
                                 GlobalScope.launch {
-                                    val boleia = getDadosBoleia(document.data["idBoleia"].toString())
-                                    wishlist[(boleia!!.data["idCriador"] as String?).toString()] = boleia
+                                    val boleia =
+                                        getDadosBoleia(document.data["idBoleia"].toString())
+                                    wishlist[(boleia!!.data["idCriador"] as String?).toString()] =
+                                        boleia
                                     canContinue = true
                                 }
                             }
@@ -683,7 +685,7 @@ object Connection {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     if (!task.result.isEmpty) {
-                        for (document in task.result){
+                        for (document in task.result) {
                             db.collection("wishlist").document(document.id).delete()
                             successFail = 0
                         }
@@ -700,6 +702,52 @@ object Connection {
             delay(1)
         }
         return successFail
+    }
+
+    suspend fun makeMeDriver(numCC: String, numCarta: String, idUser: String) {
+        var successFail = -1
+
+        val data = hashMapOf(
+            "idUser" to idUser,
+            "numCC" to numCC,
+            "numCarta" to numCarta,
+            "avaliacao" to 0
+        )
+
+
+        db.collection("condutor")
+            .whereEqualTo("idUser", idUser)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    if (task.result.isEmpty) {
+                        db.collection("condutor")
+                            .add(data)
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    successFail = 0
+                                    Log.d("TAG", "Success.")
+                                } else {
+                                    Log.w(
+                                        "TAG",
+                                        "Error getting documents.",
+                                        task.exception
+                                    )
+                                    successFail = 1
+                                }
+                            }
+                    } else {
+                        successFail = 2
+                    }
+                } else {
+                    successFail = 3
+                    Log.w("TAG", "Error getting documents.", task.exception)
+                }
+            }
+
+        while (successFail == -1) {
+            delay(1)
+        }
     }
 
 }

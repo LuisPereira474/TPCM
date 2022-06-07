@@ -90,6 +90,7 @@
             app:cornerRadius="20dp"
             app:strokeColor="@color/principal"
             app:strokeWidth="1dp"
+            android:onClick="submitMakeMeDriver"
             />
     </LinearLayout>
     <!--Nav Bar-->
