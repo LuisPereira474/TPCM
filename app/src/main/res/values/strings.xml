@@ -64,12 +64,14 @@
     <string name="confirm_pass">Confirm new password</string>
     <string name="bonus">Bonus:</string>
     <string name="title_dialog_accept_ride">Do you really want to confirm the ride?</string>
-    <string name="introduzir_cartao_cidadao">Insert ID</string>
-    <string name="cartaConducao">Insert Driver\'s License</string>
+    <string name="introduzir_cartao_cidadao">Citizen Card number</string>
+    <string name="cartaConducao">Driver\'s License number</string>
     <string name="errorChangePassWrong">Current password wrong.</string>
     <string name="right_qrcode">Confirmed passenger!</string>
     <string name="wrong_qrcode">Code does not match to no passengers!</string>
     <string name="remove">Remove</string>
     <string name="text_info_homepage">In the Boleiasss app, you can search for the rides you need, indicating the origin and destination and the date you want. It is possible to consult the rides that you have already taken or those that will still happen. In addition, you can become a driver and take a ride, earning more and more points and enjoying them.</string>
     <string name="emptyWishlist">Wishlist is empty.</string>
+    <string name="missing_citizen_car">Missing Citizen Card number</string>
+    <string name="missing_driver_license">Missing Driver´s License number</string>
 </resources>
