@@ -53,7 +53,8 @@ class Boleia : AppCompatActivity() {
                 true
             }
             R.id.nav_rides -> {
-
+                val intent = Intent(this@Boleia, HistBoleiasAceites::class.java)
+                startActivity(intent)
                 true
             }
             R.id.nav_services -> {
@@ -102,6 +103,7 @@ class Boleia : AppCompatActivity() {
                 tvModeloCarro.text = boleia!!.data["car"].toString()
                 tvValorBoleia.text = boleia!!.data["price"].toString()
                 tvPontoEncontro.text = boleia!!.data["meeting"].toString()
+                valueLugaresDisponiveis.text = boleia!!.data["seats"].toString()
 
                 var rating = boleia!!.data["avaliacao"].toString().toFloat()
 
@@ -139,5 +141,3 @@ class Boleia : AppCompatActivity() {
     }
 
 }
-
-

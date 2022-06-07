@@ -47,7 +47,7 @@ class Perfil : AppCompatActivity() {
                 true
             }
             R.id.nav_profile -> {
-                val intent = Intent(this@Perfil, AddBoleiaSemHist::class.java)
+                val intent = Intent(this@Perfil, Perfil::class.java)
                 startActivity(intent)
                 true
             }
@@ -84,6 +84,11 @@ class Perfil : AppCompatActivity() {
 
     fun editProfile(view: View) {
         val intent = Intent(this@Perfil, EditarPerfil::class.java)
+        startActivity(intent)
+    }
+
+    fun sendToWishlist(view: View) {
+        val intent = Intent(this@Perfil, WishList::class.java)
         startActivity(intent)
     }
 }

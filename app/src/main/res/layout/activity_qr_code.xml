@@ -45,6 +45,7 @@
     </RelativeLayout>
 
     <Button
+        android:id="@+id/backQrCodePage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/bottom_navigation"
@@ -53,7 +54,8 @@
         android:backgroundTint="@color/principal"
         android:text="@string/Back"
         android:textAllCaps="false"
-        app:cornerRadius="20dp" />
+        app:cornerRadius="20dp"
+        android:onClick="backQrCodePage"/>
 
     <Button
         android:id="@+id/btnHelpPageQrCode"
@@ -63,7 +65,7 @@
         android:drawableEnd="@drawable/ic_baseline_help_24"
         android:layout_above="@+id/bottom_navigation"
         android:layout_marginBottom="30dp"
-        android:layout_marginLeft="300dp"/>
+        android:layout_marginLeft="270dp"/>
 
 
     <!--Nav Bar-->

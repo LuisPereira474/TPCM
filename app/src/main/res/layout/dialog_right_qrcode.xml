@@ -24,10 +24,10 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/popup_help_view"
             android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_height="260dp"
             android:layout_centerInParent="true"
             android:layout_margin="2dp"
-            app:cardBackgroundColor="@android:color/white"
+            app:cardBackgroundColor="#FFFFFF"
             app:cardCornerRadius="3dp"
             app:cardElevation="0dp"
             app:cardMaxElevation="0dp"
@@ -38,51 +38,35 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/titlePopUpHelp"
+                    android:id="@+id/iconClosePopUpRightQr"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/information"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="15dp"/>
-
-                <View
-                    android:id="@+id/helpPopUpView"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_below="@+id/titlePopUpHelp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@android:color/darker_gray"/>
-
+                    android:drawableStart="@drawable/ic_baseline_cancel_24"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"/>
 
                 <TextView
-                    android:id="@+id/textHelpQrCode"
+                    android:id="@+id/iconRight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/textHelpQrCode"
-                    android:layout_below="@+id/helpPopUpView"
-                    android:gravity="center"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginLeft="20dp"
+                    android:drawableEnd="@drawable/ic_baseline_check_circle_outline_24"
+                    android:layout_marginTop="25dp"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginRight="20dp"/>
+                    />
 
-
-
-                <Button
-                    android:id="@+id/okHelpInfo"
-                    android:layout_width="50dp"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/textHelpQrCode"
-                    android:backgroundTint="@color/principal"
-                    android:padding="0dp"
-                    android:text="OK"
-                    android:layout_marginTop="45dp"
-                    app:cornerRadius="20dp"
-                    android:layout_centerHorizontal="true"/>
+                    android:text="@string/right_qrcode"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/iconRight"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_marginTop="15dp"/>
+
+
 
 
             </RelativeLayout>

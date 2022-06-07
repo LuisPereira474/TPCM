@@ -6,23 +6,29 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
 import android.widget.TextView
 import com.example.tpcm.R
 import com.example.tpcm.database.Connection
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import kotlinx.android.synthetic.main.activity_boleia.*
+import kotlinx.android.synthetic.main.activity_more_info.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class BoleiaCondutor : AppCompatActivity() {
+class MoreInfo : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_boleia_condutor)
+        setContentView(R.layout.activity_more_info)
 
-        val idBoleia = intent.getStringExtra(PARAM_ID)
+        val shared = getSharedPreferences("idUser", MODE_PRIVATE)
+        val idUser = shared.getString("idUser", "").toString()
+
+        val idBoleia = intent.getStringExtra(PARAM_ID_BOLEIA)
         if (idBoleia != null) {
             getDadosBoleia(idBoleia)
+        }
+        backMoreInfoMoreInfo.setOnClickListener{
+            onBackPressed()
         }
     }
 
@@ -35,21 +41,22 @@ class BoleiaCondutor : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.nav_search -> {
-                val intent = Intent(this@BoleiaCondutor, SearchBoleia::class.java)
+                val intent = Intent(this@MoreInfo, SearchBoleia::class.java)
                 startActivity(intent)
                 true
             }
             R.id.nav_rides -> {
-
+                val intent = Intent(this@MoreInfo, HistBoleiasAceites::class.java)
+                startActivity(intent)
                 true
             }
             R.id.nav_services -> {
-                val intent = Intent(this@BoleiaCondutor, HistoricoUser::class.java)
+                val intent = Intent(this@MoreInfo, HistoricoUser::class.java)
                 startActivity(intent)
                 true
             }
             R.id.nav_profile -> {
-                val intent = Intent(this@BoleiaCondutor, Perfil::class.java)
+                val intent = Intent(this@MoreInfo, Perfil::class.java)
                 startActivity(intent)
                 true
             }
@@ -63,12 +70,12 @@ class BoleiaCondutor : AppCompatActivity() {
 
         val shared = getSharedPreferences("idUser", MODE_PRIVATE)
         val idUser = shared.getString("idUser", "").toString()
-        val tvTituloViagem = findViewById<TextView>(R.id.tvTituloViagemBoleiaCondutor)
-        val tvNomeCondutor = findViewById<TextView>(R.id.tvNomeCondutorBoleiaCondutor)
-        val tvDataBoleia = findViewById<TextView>(R.id.tvDataBoleiaBoleiaCondutor)
-        val tvModeloCarro = findViewById<TextView>(R.id.tvModeloCarroBoleiaCondutor)
-        val tvValorBoleia = findViewById<TextView>(R.id.tvValorBoleiaBoleiaCondutor)
-        val tvPontoEncontro = findViewById<TextView>(R.id.tvPontoEncontroBoleiaCondutor)
+        val tvTituloViagem = findViewById<TextView>(R.id.tvTituloViagemMoreInfo)
+        val tvNomeCondutor = findViewById<TextView>(R.id.tvNomeCondutorMoreInfo)
+        val tvDataBoleia = findViewById<TextView>(R.id.tvDataBoleiaMoreInfo)
+        val tvModeloCarro = findViewById<TextView>(R.id.tvModeloCarroMoreInfo)
+        val tvValorBoleia = findViewById<TextView>(R.id.tvValorBoleiaMoreInfo)
+        val tvPontoEncontro = findViewById<TextView>(R.id.tvPontoEncontroMoreInfo)
 
         var boleia: QueryDocumentSnapshot?
         var profile: QueryDocumentSnapshot?
@@ -83,17 +90,9 @@ class BoleiaCondutor : AppCompatActivity() {
                 tvModeloCarro.text = boleia!!.data["car"].toString()
                 tvValorBoleia.text = boleia!!.data["price"].toString()
                 tvPontoEncontro.text = boleia!!.data["meeting"].toString()
-                valueLugaresDisponiveis.text = boleia!!.data["seats"].toString()
+                valueLugaresDisponiveisMoreInfo.text = boleia!!.data["seats"].toString()
             }
         }
 
-    }
-
-    fun scanQrCode(view: View) {
-        val idBoleia = intent.getStringExtra(PARAM_ID)
-        val intent = Intent(this@BoleiaCondutor, ScanQrCode::class.java).apply {
-            putExtra(PARAM_ID_BOLEIA,idBoleia)
-        }
-        startActivity(intent)
     }
 }

@@ -1,18 +1,19 @@
 package com.example.tpcm.aplication
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
+import android.view.*
+import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.TextView
 import com.example.tpcm.R
+import kotlinx.android.synthetic.main.activity_historico_user.*
+import kotlinx.android.synthetic.main.activity_search_boleia.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -25,6 +26,9 @@ class SearchBoleia : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_boleia)
+        btnHelpPageSearchBoleia.setOnClickListener{
+            createDialog()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -97,5 +101,22 @@ class SearchBoleia : AppCompatActivity() {
         val date: Date = cal.time
         val sdf = SimpleDateFormat("dd-MM-yyyy")
         return sdf.format(date)
+    }
+
+    private fun createDialog() {
+        val dialog = Dialog(this@SearchBoleia)
+        dialog.setContentView(R.layout.dialog_help_homepage)
+        dialog.window?.setBackgroundDrawable(getDrawable(R.drawable.dialog_background))
+        dialog.window?.setLayout(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        dialog.setCancelable(false)
+        dialog.show()
+
+        dialog.findViewById<Button>(R.id.okHelpHomePage).setOnClickListener {
+            dialog.dismiss()
+        }
+
     }
 }
