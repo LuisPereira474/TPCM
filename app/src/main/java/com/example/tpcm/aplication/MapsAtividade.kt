@@ -39,7 +39,7 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var locationRequest: com.google.android.gms.location.LocationRequest
 
-    private var x=0
+    lateinit var markerDestino: Marker
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -162,15 +162,10 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-
     fun searchLocation(partida: String) {
 
-        lateinit var location: String
+        var location: String = partida
 
-        var markerDestino: Marker
-        x++
-
-        location = partida
         var addressList: List<Address>? = null
 
         val geoCoder = Geocoder(this)
@@ -183,17 +178,22 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
         }
         val address = addressList!![0]
         val latLng = LatLng(address.latitude, address.longitude)
-        if(x!=0){
+        if(markerDestino != null ){
             markerDestino.remove()
-            markerDestino != null
             Toast.makeText(applicationContext, "Provide location!", Toast.LENGTH_SHORT).show()
         }
-            markerDestino =  mMap!!.addMarker(MarkerOptions().position(latLng).title(location))
-            mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12f))
-            Toast.makeText(applicationContext, "$markerDestino", Toast.LENGTH_SHORT).show()
+        var aux = mMap!!.addMarker(MarkerOptions().position(latLng).title(location))
+        markerDestino = aux
+        Log.d("TAG","$markerDestino")
+        Log.d("TAG","$aux")
 
+//        markerDestino?.set(0, aux)
+        mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12f))
+/*
+        Log.d("TAG","${markerDestino[0]}")
+*/
+    }
 
-}
     override fun onPause() {
         super.onPause()
         fusedLocationClient.removeLocationUpdates(locationCallback)
