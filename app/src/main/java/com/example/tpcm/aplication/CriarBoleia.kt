@@ -112,7 +112,7 @@ class CriarBoleia : AppCompatActivity() {
 
         dialog.findViewById<Button>(R.id.popup_ok_btt).setOnClickListener {
             dialog.dismiss()
-            val intent = Intent(this@CriarBoleia, AddBoleiaSemHist::class.java)
+            val intent = Intent(this@CriarBoleia, HistoricoUser::class.java)
             startActivity(intent)
         }
 
