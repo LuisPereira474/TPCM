@@ -37,15 +37,6 @@ class Boleia : AppCompatActivity() {
                 getQrCode(idBoleia, idUser)
             }
         }
-
-        GlobalScope.launch {
-            if (idBoleia != null) {
-                Connection.updateRideEvaluation(
-                    idBoleia,
-                    Connection.calculateRideEvaluation(idBoleia)
-                )
-            }
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -126,8 +117,8 @@ class Boleia : AppCompatActivity() {
 
     fun getQrCode(idBoleia: String, idUser: String) {
         val intent = Intent(this@Boleia, QrCode::class.java).apply {
-            putExtra(PARAM_ID_BOLEIA, idBoleia)
-            putExtra(PARAM_ID_USER, idUser)
+            putExtra(PARAM_ID_BOLEIA,idBoleia)
+            putExtra(PARAM_ID_USER,idUser)
         }
         startActivity(intent)
     }
