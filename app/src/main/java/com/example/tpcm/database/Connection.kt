@@ -795,5 +795,63 @@ object Connection {
 
     }
 
+    @DelicateCoroutinesApi
+    suspend fun calculateUserEvaluation(idCriador: String): Float {
+        var sum = 0.0F
+        var count = 0
+        var userEvaluation = 0.0F
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("boleia")
+                    .whereEqualTo("idCriador", idCriador)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                sum += document["avaliacao"].toString().toFloat()
+                                count++
+                            }
+
+
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                        }
+                    }
+            }
+        }
+        while (sum == 0.0F) {
+            delay(1)
+        }
+        userEvaluation = sum / count
+        return userEvaluation
+
+    }
+
+    @DelicateCoroutinesApi
+    suspend fun updateUserEvaluation(idUser: String, evaluation: Float) {
+
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("condutor")
+                    .whereEqualTo("idUtilizador", idUser)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                db.collection("condutor").document(document!!.id)
+                                    .set(
+                                        hashMapOf("avaliacao" to evaluation),
+                                        SetOptions.merge()
+                                    )
+                            }
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                        }
+                    }
+            }
+        }
+
+    }
+
 }
 
