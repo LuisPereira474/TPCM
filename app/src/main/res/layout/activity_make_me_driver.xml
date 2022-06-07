@@ -9,41 +9,102 @@
 
 
     <TextView
-        android:id="@+id/textCartaoCidadao"
+        android:id="@+id/titlePageMakeMeDriver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="nº cc"
+        android:text="@string/makemedriver"
+        android:textStyle="bold"
         android:textSize="30sp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"/>
 
-    <EditText
-        android:id="@+id/valueCartaoCidadao"
-        android:layout_width="200dp"
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#878787"
+        android:layout_below="@+id/titlePageMakeMeDriver"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        />
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/textCartaoCidadao"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/textCartaoCidadao"
-        android:layout_alignTop="@+id/textCartaoCidadao"
-        android:inputType="text"
-        android:layout_marginLeft="20dp"/>
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="50dp"
+        android:layout_below="@+id/view"
+        android:paddingStart="8dp"
+        android:textSize="20sp"
+        app:startIconDrawable="@drawable/ic_person"
+        android:hint="@string/introduzir_cartao_cidadao"
+        app:endIconMode="clear_text"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/valueCartaoCidadao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/textCartaConducao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_below="@+id/textCartaoCidadao"
+        android:paddingStart="8dp"
+        android:textSize="20sp"
+        app:startIconDrawable="@drawable/ic_baseline_directions_car_24"
+        android:hint="@string/cartaConducao"
+        app:endIconMode="clear_text"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/valueCartaConducao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 
     <TextView
-        android:id="@+id/textCartaConducao"
-        android:layout_width="wrap_content"
+        android:id="@+id/errorMissingCitizenCard"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="nº carta c."
-        android:textSize="30sp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="150dp"/>
+        android:text="@string/missing_citizen_car"
+        android:layout_below="@+id/textCartaoCidadao"
+        android:textColor="#FF0000"
+        android:layout_marginStart="65dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginTop="5dp"
+        android:textSize="16sp"
+        android:visibility="invisible"/>
 
-    <EditText
-        android:id="@+id/valueCartaConducao"
-        android:layout_width="200dp"
+    <TextView
+        android:id="@+id/errorMissingDriverLicense"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/textCartaConducao"
-        android:layout_alignTop="@+id/textCartaConducao"
-        android:inputType="text"
-        android:layout_marginLeft="20dp"/>
+        android:text="@string/missing_driver_license"
+        android:layout_below="@+id/textCartaConducao"
+        android:textColor="#FF0000"
+        android:layout_marginStart="65dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginTop="5dp"
+        android:textSize="16sp"
+        android:visibility="invisible"/>
 
 
 
@@ -69,9 +130,11 @@
             android:textColor="@color/white"
             android:textSize="19sp"
             app:cornerRadius="20dp"
-            app:strokeColor="@color/principal"
-            app:strokeWidth="1dp"
+            app:strokeColor="#FFFFFF"
+            app:strokeWidth="2dp"
             />
+
+
 
         <Button
             android:id="@+id/confirmMakeMeDriver"
@@ -88,8 +151,8 @@
             android:textColor="@color/white"
             android:textSize="19sp"
             app:cornerRadius="20dp"
-            app:strokeColor="@color/principal"
-            app:strokeWidth="1dp"
+            app:strokeColor="#FFFFFF"
+            app:strokeWidth="2dp"
             />
     </LinearLayout>
     <!--Nav Bar-->
