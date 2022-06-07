@@ -546,40 +546,68 @@ object Connection {
 
             }
         }
+
     }
 
     @DelicateCoroutinesApi
-    suspend fun getRideEvaluation(idRide: String): Float {
-        var rideEvaluation = -1.0F
-        var sum: Float = 0.0F
+    suspend fun calculateRideEvaluation(idBoleia: String): Float {
+        var sum = 0.0F
+        var count = 0
+        var rideEvaluation = 0.0F
         GlobalScope.launch {
             withContext(Dispatchers.Default) {
-                Log.d("TAGG", "Qualquer coisa")
-                val result = db.collection("boleia_utilizador")
-                    .whereEqualTo("idBoleia", idRide)
+                db.collection("boleia_utilizador")
+                    .whereEqualTo("idBoleia", idBoleia)
                     .get()
-                    .result
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                sum += document["avaliacao"].toString().toFloat()
+                                count++
+                            }
 
 
-                if (!result.isEmpty) {
-                    for (document in result) {
-                        Log.d("TAGG", document.data["avaliacao"].toString())
-                        sum += document.data["avaliacao"] as Float
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                        }
                     }
-                    rideEvaluation = sum / result.size()
-                } else {
-                    Log.w("TAG", "Error getting documents.")
-                }
-
-
             }
-
         }
-        while (rideEvaluation < 1.0F) {
+        while(sum == 0.0F) {
             delay(1)
         }
+        rideEvaluation = sum/count
         return rideEvaluation
+
+
+
     }
+    @DelicateCoroutinesApi
+    suspend fun updateRideEvaluation(idBoleia: String, evaluation: Float) {
+
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("boleia")
+                    .whereEqualTo("idBoleia", idBoleia)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                db.collection("boleia").document(document!!.id)
+                                    .set(
+                                        hashMapOf("avaliacao" to evaluation),
+                                        SetOptions.merge()
+                                    )
+                            }
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                        }
+                    }
+            }
+        }
+
+    }
+
 
 
 }

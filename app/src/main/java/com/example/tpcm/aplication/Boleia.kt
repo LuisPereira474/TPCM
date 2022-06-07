@@ -37,6 +37,15 @@ class Boleia : AppCompatActivity() {
                 getQrCode(idBoleia, idUser)
             }
         }
+
+        GlobalScope.launch {
+            if (idBoleia != null) {
+                Connection.updateRideEvaluation(
+                    idBoleia,
+                    Connection.calculateRideEvaluation(idBoleia)
+                )
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -89,6 +98,11 @@ class Boleia : AppCompatActivity() {
         GlobalScope.launch {
             boleia = Connection.getDadosBoleia(idBoleia)
             profile = Connection.getProfileUser(idUser)
+
+
+            Connection.updateRideEvaluation(idBoleia, Connection.calculateRideEvaluation(idBoleia))
+
+
             runOnUiThread {
                 tvTituloViagem.text =
                     boleia!!.data["from"].toString() + "-" + boleia!!.data["to"].toString()
@@ -97,11 +111,12 @@ class Boleia : AppCompatActivity() {
                 tvModeloCarro.text = boleia!!.data["car"].toString()
                 tvValorBoleia.text = boleia!!.data["price"].toString()
                 tvPontoEncontro.text = boleia!!.data["meeting"].toString()
-                var rating = boleia!!.data["avaliacao"].toString().toInt()
 
-                if(rating.toFloat()>=0 && rating.toFloat() <= 5){
-                    rbAvaliacao.rating = rating.toFloat()
-                }else{
+                var rating = boleia!!.data["avaliacao"].toString().toFloat()
+
+                if (rating >= 0 && rating <= 5) {
+                    rbAvaliacao.rating = rating
+                } else {
                     rbAvaliacao.rating = 3.0F
                 }
             }
@@ -111,23 +126,22 @@ class Boleia : AppCompatActivity() {
 
     fun getQrCode(idBoleia: String, idUser: String) {
         val intent = Intent(this@Boleia, QrCode::class.java).apply {
-            putExtra(PARAM_ID_BOLEIA,idBoleia)
-            putExtra(PARAM_ID_USER,idUser)
+            putExtra(PARAM_ID_BOLEIA, idBoleia)
+            putExtra(PARAM_ID_USER, idUser)
         }
         startActivity(intent)
     }
 
 
-
-    fun evaluateRide(view: View){
+    fun evaluateRide(view: View) {
         val shared = getSharedPreferences("idUser", MODE_PRIVATE)
         val idUser = shared.getString("idUser", "").toString()
         val idBoleia = intent.getStringExtra(PARAM_ID)
         val ratingBar = findViewById<RatingBar>(R.id.RB_RideEvaluation)
         GlobalScope.launch {
             if (idBoleia != null) {
-                Connection.evaluateRide(idUser, idBoleia,ratingBar.rating)
-            }else{
+                Connection.evaluateRide(idUser, idBoleia, ratingBar.rating)
+            } else {
                 Log.d("TAGG", "Something went wrong")
             }
         }
