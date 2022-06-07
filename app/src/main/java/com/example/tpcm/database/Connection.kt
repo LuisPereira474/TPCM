@@ -184,23 +184,40 @@ object Connection {
             "seats" to seats,
             "obs" to obs
         )
-        db.collection("boleia")
-            .add(boleia)
-            .addOnSuccessListener {
-                result = 2
-                Log.d(
-                    "TAG",
-                    "DocumentSnapshot successfully written!"
-                )
+        db.collection("condutor")
+            .whereEqualTo("idUser", idUser)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    if(!task.result.isEmpty) {
+                        for (document in task.result!!) {
+                            db.collection("boleia")
+                                .add(boleia)
+                                .addOnSuccessListener {
+                                    result = 2
+                                    Log.d(
+                                        "TAG",
+                                        "DocumentSnapshot successfully written!"
+                                    )
+                                }
+                                .addOnFailureListener { e ->
+                                    result = 1
+                                    Log.w(
+                                        "TAG",
+                                        "Error writing document",
+                                        e
+                                    )
+                                }
+                        }
+                    }else{
+                        result=1
+                    }
+                } else {
+                    result=1
+                    Log.w("TAG", "Error getting documents.", task.exception)
+                }
             }
-            .addOnFailureListener { e ->
-                result = 1
-                Log.w(
-                    "TAG",
-                    "Error writing document",
-                    e
-                )
-            }
+
         while (result == 0) {
             delay(1)
         }
