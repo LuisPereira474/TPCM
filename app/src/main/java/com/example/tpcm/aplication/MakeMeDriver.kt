@@ -27,6 +27,10 @@ class MakeMeDriver : AppCompatActivity() {
         goBackMakeMeDriver.setOnClickListener {
             onBackPressed()
         }
+
+        btnHelpPageMakeMeDriver.setOnClickListener {
+            createDialog()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
