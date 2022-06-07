@@ -97,7 +97,13 @@ class Boleia : AppCompatActivity() {
                 tvModeloCarro.text = boleia!!.data["car"].toString()
                 tvValorBoleia.text = boleia!!.data["price"].toString()
                 tvPontoEncontro.text = boleia!!.data["meeting"].toString()
-                rbAvaliacao.rating = 3.0F
+                var rating = boleia!!.data["avaliacao"].toString().toInt()
+
+                if(rating.toFloat()>=0 && rating.toFloat() <= 5){
+                    rbAvaliacao.rating = rating.toFloat()
+                }else{
+                    rbAvaliacao.rating = 3.0F
+                }
             }
         }
 
