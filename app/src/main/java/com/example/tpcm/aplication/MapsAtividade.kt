@@ -39,7 +39,8 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var locationRequest: com.google.android.gms.location.LocationRequest
 
-    lateinit var markerDestino: Marker
+    private var markerDestino: Marker?= null
+    private var markerPartida: Marker?= null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,19 +57,6 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
 
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(p0: LocationResult) {
-                /*Log.d("**** SARA", p0.toString())
-                super.onLocationResult(p0)
-                lastLocation = p0.lastLocation
-                Log.d("**** SARA", lastLocation.toString())
-                var loc = LatLng(lastLocation.latitude, lastLocation.longitude)
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 15.0f))
-                findViewById<TextView>(R.id.txtcoordenadas).setText("Lat: " + loc.latitude + " - Long: " + loc.longitude)
-                Log.d("**** SARA", "new location received - " + loc.latitude + " -" + loc.longitude)
-                val address = getAddress(lastLocation.latitude, lastLocation.longitude)
-                findViewById<TextView>(R.id.txtmorada).setText("Morada: " + address)
-                findViewById<TextView>(R.id.txtdistancia).setText("Distância: " + calculateDistance(
-                    lastLocation.latitude, lastLocation.longitude,
-                    continenteLat, continenteLong).toString())*/
             }
         }
 
@@ -140,59 +128,79 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
         val textInputLayout = findViewById<EditText>(R.id.ccInputPartida)
 
         val partida = textInputLayout.text.toString()
+        val destino = ""
         /*searchLocation(partida)*/
         if (partida == null || partida == "") {
             Toast.makeText(applicationContext, "Provide location!", Toast.LENGTH_SHORT).show()
         } else {
-            searchLocation(partida)
+            searchLocation(partida, destino)
 
         }
     }
 
     fun searchChegada(view: View) {
         val textInputLayout = findViewById<EditText>(R.id.ccInputChegada)
-
         val destino = textInputLayout.text.toString()
-        /*searchLocation(partida)*/
+        val partida = ""
         if (destino == null || destino == "") {
             Toast.makeText(applicationContext, "Provide location!", Toast.LENGTH_SHORT).show()
         } else {
-            Toast.makeText(applicationContext, "$destino", Toast.LENGTH_SHORT).show()
+            searchLocation(partida, destino)
+        }
+    }
+
+    fun searchLocation(partida: String, destino: String) {
+
+        if(destino == ""){
+            var location: String = partida
+            var partidaList: List<Address>? = null
+
+            val geoCoder = Geocoder(this)
+            try {
+
+                 partidaList  = geoCoder.getFromLocationName(location, 1)
+
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+            val addressPartida = partidaList!![0]
+            val latLng = LatLng(addressPartida.latitude, addressPartida.longitude)
+            if(markerPartida != null ){
+                markerPartida?.remove()
+            }
+            var morada = getAddress(addressPartida.latitude, addressPartida.longitude)
+            markerPartida = mMap!!.addMarker(MarkerOptions().position(latLng).title(morada))
+
+            mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12f))
+
+
+        }else if(partida == ""){
+            var location: String = destino
+            var destinoList: List<Address>? = null
+
+            val geoCoder = Geocoder(this)
+            try {
+
+                 destinoList  = geoCoder.getFromLocationName(location, 1)
+
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+            val addressDestino = destinoList!![0]
+            val latLng = LatLng(addressDestino.latitude, addressDestino.longitude)
+            if(markerDestino != null ){
+                markerDestino?.remove()
+            }
+
+            var morada = getAddress(addressDestino.latitude, addressDestino.longitude)
+
+            markerDestino = mMap!!.addMarker(MarkerOptions().position(latLng).title(morada))
+
+            mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12f))
 
         }
     }
 
-    fun searchLocation(partida: String) {
-
-        var location: String = partida
-
-        var addressList: List<Address>? = null
-
-        val geoCoder = Geocoder(this)
-        try {
-
-            addressList = geoCoder.getFromLocationName(location, 1)
-
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-        val address = addressList!![0]
-        val latLng = LatLng(address.latitude, address.longitude)
-        if(markerDestino != null ){
-            markerDestino.remove()
-            Toast.makeText(applicationContext, "Provide location!", Toast.LENGTH_SHORT).show()
-        }
-        var aux = mMap!!.addMarker(MarkerOptions().position(latLng).title(location))
-        markerDestino = aux
-        Log.d("TAG","$markerDestino")
-        Log.d("TAG","$aux")
-
-//        markerDestino?.set(0, aux)
-        mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12f))
-/*
-        Log.d("TAG","${markerDestino[0]}")
-*/
-    }
 
     override fun onPause() {
         super.onPause()
@@ -204,6 +212,14 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
         super.onResume()
         startLocationUpdates()
         Log.d("**** TPCM", "onResume - startLocationUpdates")
+    }
+
+    fun cancel(view: View) {
+        Toast.makeText(applicationContext, "Destino!", Toast.LENGTH_SHORT).show()
+
+    }
+    fun confirm(view: View) {
+
     }
 
 }

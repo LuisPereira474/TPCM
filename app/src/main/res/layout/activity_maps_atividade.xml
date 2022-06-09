@@ -131,6 +131,7 @@
             android:layout_weight="1"
             android:text="@string/cancel"
             android:layout_margin="5dp"
+            android:onClick="cancel"
             />
         <Button
             android:id="@+id/Button03"
@@ -138,7 +139,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/confirm"
-            android:layout_margin="5dp"/>
+            android:layout_margin="5dp"
+            android:onClick="confirm"/>
     </LinearLayout>
 
 </RelativeLayout>
