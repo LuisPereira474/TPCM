@@ -35,8 +35,7 @@
 
         <activity
             android:name=".aplication.MapsAtividade"
-            android:exported="false"
-            android:label="@string/title_activity_maps_atividade" />
+            android:exported="false"/>
         <activity
             android:name=".aplication.HistBoleiasAceites"
             android:exported="false" />

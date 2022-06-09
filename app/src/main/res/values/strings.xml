@@ -46,8 +46,6 @@
     <string name="claimpts">Claim Bonus</string>
     <string name="makemedriver">Make me driver</string>
     <string name="cancel">Cancel</string>
-    <string name="title_activity_maps">Maps</string>
-    <string name="title_activity_maps_atividade">MapsAtividade</string>
     <string name="destination">Destination</string>
     <string name="departure">Departure</string>
     <string name="scan">SCAN</string>
@@ -73,4 +71,5 @@
     <string name="errorChangePassWrong">Current password wrong.</string>
     <string name="right_qrcode">Confirmed passenger!</string>
     <string name="wrong_qrcode">Code does not match to no passengers!</string>
+    <string name="locationError">Provide a valid location!</string>
 </resources>

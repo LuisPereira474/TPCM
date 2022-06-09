@@ -20,7 +20,6 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
@@ -131,7 +130,7 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
         val destino = ""
         /*searchLocation(partida)*/
         if (partida == null || partida == "") {
-            Toast.makeText(applicationContext, "Provide location!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, getString(R.string.locationError), Toast.LENGTH_SHORT).show()
         } else {
             searchLocation(partida, destino)
 
@@ -143,7 +142,7 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
         val destino = textInputLayout.text.toString()
         val partida = ""
         if (destino == null || destino == "") {
-            Toast.makeText(applicationContext, "Provide location!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, getString(R.string.locationError), Toast.LENGTH_SHORT).show()
         } else {
             searchLocation(partida, destino)
         }
@@ -153,49 +152,52 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
 
         if (destino == "") {
             var location: String = partida
-            var partidaList: List<Address>? = null
+            var partidaList: List<Address>?
 
             val geoCoder = Geocoder(this)
             try {
-
                 partidaList = geoCoder.getFromLocationName(location, 1)
-                val addressPartida = partidaList!![0]
-                Log.d("TAG", "${addressPartida}")
+                if (partidaList.isNotEmpty()) {
+                    val addressPartida = partidaList!![0]
+                    val latLng = LatLng(addressPartida.latitude, addressPartida.longitude)
+                    if (markerPartida != null) {
+                        markerPartida?.remove()
+                    }
+                    var morada = getAddress(addressPartida.latitude, addressPartida.longitude)
+                    markerPartida = mMap!!.addMarker(MarkerOptions().position(latLng).title(morada))
 
-
-                val latLng = LatLng(addressPartida.latitude, addressPartida.longitude)
-                if (markerPartida != null) {
-                    markerPartida?.remove()
+                    mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12f))
+                }else{
+                    Toast.makeText(applicationContext, getString(R.string.locationError), Toast.LENGTH_SHORT).show()
                 }
-                var morada = getAddress(addressPartida.latitude, addressPartida.longitude)
-                markerPartida = mMap!!.addMarker(MarkerOptions().position(latLng).title(morada))
-
-                mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12f))
             } catch (e: IOException) {
                 e.printStackTrace()
             }
 
 
         } else if (partida == "") {
-            var location: String = destino
-            var destinoList: List<Address>? = null
+            val location: String = destino
+            val destinoList: List<Address>?
 
             val geoCoder = Geocoder(this)
             try {
-
                 destinoList = geoCoder.getFromLocationName(location, 1)
-                val addressDestino = destinoList!![0]
-                Log.d("TAG", "${addressDestino}")
-                val latLng = LatLng(addressDestino.latitude, addressDestino.longitude)
-                if (markerDestino != null) {
-                    markerDestino?.remove()
+                if (destinoList.isNotEmpty()) {
+                    val addressDestino = destinoList!![0]
+
+                    val latLng = LatLng(addressDestino.latitude, addressDestino.longitude)
+                    if (markerDestino != null) {
+                        markerDestino?.remove()
+                    }
+
+                    var morada = getAddress(addressDestino.latitude, addressDestino.longitude)
+
+                    markerDestino = mMap!!.addMarker(MarkerOptions().position(latLng).title(morada))
+
+                    mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12f))
+                }else{
+                    Toast.makeText(applicationContext, getString(R.string.locationError), Toast.LENGTH_SHORT).show()
                 }
-
-                var morada = getAddress(addressDestino.latitude, addressDestino.longitude)
-
-                markerDestino = mMap!!.addMarker(MarkerOptions().position(latLng).title(morada))
-
-                mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12f))
             } catch (e: IOException) {
                 e.printStackTrace()
             }
