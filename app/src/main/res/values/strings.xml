@@ -75,4 +75,6 @@
     <string name="missing_citizen_car">Missing Citizen Card number</string>
     <string name="missing_driver_license">Missing Driver´s License number</string>
     <string name="text_dialog_make_me_driver">Enter the values ​​equivalent to those represented in the figures</string>
+    <string name="makeMeDriverSuccess">Congratulations, you are now able to create rides!!</string>
+    <string name="makeMeDriverError">You are already able to take rides!</string>
 </resources>

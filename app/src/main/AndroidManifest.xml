@@ -52,6 +52,9 @@
             android:name=".aplication.AddBoleiaSemHist"
             android:exported="false" />
         <activity
+            android:name=".aplication.AddBoleiaNaoHabilitado"
+            android:exported="false" />
+        <activity
             android:name=".aplication.Boleia"
             android:exported="false" />
         <activity

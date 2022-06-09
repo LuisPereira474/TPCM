@@ -1,35 +1,31 @@
 package com.example.tpcm.aplication
 
-import android.content.Intent
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
-import android.widget.EditText
-import androidx.appcompat.app.AppCompatActivity
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.example.tpcm.R
 import com.example.tpcm.database.Connection
 import kotlinx.android.synthetic.main.activity_make_me_driver.*
+import kotlinx.android.synthetic.main.dialog_box.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.android.synthetic.main.activity_make_me_driver.*
-import kotlinx.android.synthetic.main.activity_search_boleia.*
 
 class MakeMeDriver : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_make_me_driver)
+
         goBackMakeMeDriver.setOnClickListener {
             onBackPressed()
         }
 
         btnHelpPageMakeMeDriver.setOnClickListener {
-            createDialog()
+            createDialogHelp()
         }
     }
 
@@ -90,17 +86,31 @@ class MakeMeDriver : AppCompatActivity() {
             }
             else -> {
                 GlobalScope.launch {
-                    Connection.makeMeDriver(numCC, numCarta, idUser)
+                    val result = Connection.makeMeDriver(numCC, numCarta, idUser)
+                    when (result) {
+                        0 -> {
+                            runOnUiThread {
+                                createDialog(getString(R.string.makeMeDriverSuccess))
+                            }
+                        }
+                        2 -> {
+                            runOnUiThread {
+                                createDialog(getString(R.string.makeMeDriverError))
+                            }
+                        }
+                        else -> {
+                            runOnUiThread {
+                                createDialog(getString(R.string.error))
+                            }
+                        }
+                    }
                 }
             }
         }
 
-        btnHelpPageMakeMeDriver.setOnClickListener{
-            createDialog()
-        }
     }
 
-    private fun createDialog() {
+    private fun createDialogHelp() {
         val dialog = Dialog(this@MakeMeDriver)
         dialog.setContentView(R.layout.dialog_help_make_me_driver)
         dialog.window?.setBackgroundDrawable(getDrawable(R.drawable.dialog_background))
@@ -117,6 +127,23 @@ class MakeMeDriver : AppCompatActivity() {
 
     }
 
+    private fun createDialog(msg: String) {
+        val dialog = Dialog(this@MakeMeDriver)
+        dialog.setContentView(R.layout.dialog_box)
+        dialog.window?.setBackgroundDrawable(getDrawable(R.drawable.dialog_background))
+        dialog.window?.setLayout(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        dialog.popup_window_text.text = msg
+        dialog.setCancelable(false)
+        dialog.show()
+
+        dialog.findViewById<Button>(R.id.popup_ok_btt).setOnClickListener {
+            dialog.dismiss()
+        }
+
+    }
 
 
 }

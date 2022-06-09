@@ -189,7 +189,7 @@ object Connection {
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    if(!task.result.isEmpty) {
+                    if (!task.result.isEmpty) {
                         for (document in task.result!!) {
                             db.collection("boleia")
                                 .add(boleia)
@@ -209,11 +209,11 @@ object Connection {
                                     )
                                 }
                         }
-                    }else{
-                        result=1
+                    } else {
+                        result = 1
                     }
                 } else {
-                    result=1
+                    result = 1
                     Log.w("TAG", "Error getting documents.", task.exception)
                 }
             }
@@ -228,6 +228,7 @@ object Connection {
     suspend fun historicoUser(idUser: String): HashMap<Int, QueryDocumentSnapshot> {
         val boleia = HashMap<Int, QueryDocumentSnapshot>()
         var count = 0
+        var canGo = false
         GlobalScope.launch {
             withContext(Dispatchers.Default) {
                 db.collection("boleia")
@@ -235,17 +236,23 @@ object Connection {
                     .get()
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            for (document in task.result!!) {
-                                count++
-                                boleia[count] = document
+                            if (task.result.isEmpty) {
+                                canGo = true
+                            } else {
+                                for (document in task.result!!) {
+                                    count++
+                                    boleia[count] = document
+                                }
+                                canGo = true
                             }
                         } else {
                             Log.w("TAG", "Error getting documents.", task.exception)
+                            canGo = true
                         }
                     }
             }
         }
-        while (boleia.isEmpty()) {
+        while (!canGo) {
             delay(1)
         }
         return boleia
@@ -721,7 +728,7 @@ object Connection {
         return successFail
     }
 
-    suspend fun makeMeDriver(numCC: String, numCarta: String, idUser: String) {
+    suspend fun makeMeDriver(numCC: String, numCarta: String, idUser: String): Int {
         var successFail = -1
 
         val data = hashMapOf(
@@ -765,6 +772,32 @@ object Connection {
         while (successFail == -1) {
             delay(1)
         }
+        return successFail
+    }
+
+    suspend fun searchDriver(idUser: String): Int {
+        var successFail = -1
+        db.collection("condutor")
+            .whereEqualTo("idUser", idUser)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    if (task.result.isEmpty) {
+                        //Não é condutor
+                        successFail = 1
+                    } else {
+                        //É condutor
+                        successFail = 2
+                    }
+                } else {
+                    successFail = 3
+                    Log.w("TAG", "Error getting documents.", task.exception)
+                }
+            }
+        while (successFail == -1) {
+            delay(1)
+        }
+        return successFail
     }
 
 }
