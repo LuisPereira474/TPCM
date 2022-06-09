@@ -651,8 +651,10 @@ object Connection {
                         if (task.isSuccessful) {
                             for (document in task.result!!) {
                                 GlobalScope.launch {
-                                    val boleia = getDadosBoleia(document.data["idBoleia"].toString())
-                                    wishlist[(boleia!!.data["idCriador"] as String?).toString()] = boleia
+                                    val boleia =
+                                        getDadosBoleia(document.data["idBoleia"].toString())
+                                    wishlist[(boleia!!.data["idCriador"] as String?).toString()] =
+                                        boleia
                                     canContinue = true
                                 }
                             }
@@ -683,7 +685,7 @@ object Connection {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     if (!task.result.isEmpty) {
-                        for (document in task.result){
+                        for (document in task.result) {
                             db.collection("wishlist").document(document.id).delete()
                             successFail = 0
                         }
@@ -702,4 +704,96 @@ object Connection {
         return successFail
     }
 
+    @DelicateCoroutinesApi
+    suspend fun evaluateRide(idUser: String, idBoleia: String, evaluation: Float) {
+        var ride: QueryDocumentSnapshot? = null
+        var data = hashMapOf(
+            "idBoleia" to idBoleia,
+            "idUser" to idUser,
+            "avaliacao" to evaluation
+        )
+
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("boleia_utilizador")
+                    .whereEqualTo("idUser", idUser)
+                    .whereEqualTo("idBoleia", idBoleia)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                ride = document
+                                db.collection("boleia_utilizador").document(ride!!.id)
+                                    .set(data, SetOptions.merge())
+                            }
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                        }
+                    }
+
+            }
+        }
+
+    }
+
+    @DelicateCoroutinesApi
+    suspend fun calculateRideEvaluation(idBoleia: String): Float {
+        var sum = 0.0F
+        var count = 0
+        var rideEvaluation = 0.0F
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("boleia_utilizador")
+                    .whereEqualTo("idBoleia", idBoleia)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                sum += document["avaliacao"].toString().toFloat()
+                                count++
+                            }
+
+
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                        }
+                    }
+            }
+        }
+        while (sum == 0.0F) {
+            delay(1)
+        }
+        rideEvaluation = sum / count
+        return rideEvaluation
+
+
+    }
+
+    @DelicateCoroutinesApi
+    suspend fun updateRideEvaluation(idBoleia: String, evaluation: Float) {
+
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("boleia")
+                    .whereEqualTo("idBoleia", idBoleia)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                db.collection("boleia").document(document!!.id)
+                                    .set(
+                                        hashMapOf("avaliacao" to evaluation),
+                                        SetOptions.merge()
+                                    )
+                            }
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                        }
+                    }
+            }
+        }
+
+    }
+
 }
+
