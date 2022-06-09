@@ -39,8 +39,8 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var locationRequest: com.google.android.gms.location.LocationRequest
 
-    private var markerDestino: Marker?= null
-    private var markerPartida: Marker?= null
+    private var markerDestino: Marker? = null
+    private var markerPartida: Marker? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -151,52 +151,55 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
 
     fun searchLocation(partida: String, destino: String) {
 
-        if(destino == ""){
+        if (destino == "") {
             var location: String = partida
             var partidaList: List<Address>? = null
 
             val geoCoder = Geocoder(this)
             try {
 
-                 partidaList  = geoCoder.getFromLocationName(location, 1)
+                partidaList = geoCoder.getFromLocationName(location, 1)
+                val addressPartida = partidaList!![0]
+                Log.d("TAG", "${addressPartida}")
 
+
+                val latLng = LatLng(addressPartida.latitude, addressPartida.longitude)
+                if (markerPartida != null) {
+                    markerPartida?.remove()
+                }
+                var morada = getAddress(addressPartida.latitude, addressPartida.longitude)
+                markerPartida = mMap!!.addMarker(MarkerOptions().position(latLng).title(morada))
+
+                mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12f))
             } catch (e: IOException) {
                 e.printStackTrace()
             }
-            val addressPartida = partidaList!![0]
-            val latLng = LatLng(addressPartida.latitude, addressPartida.longitude)
-            if(markerPartida != null ){
-                markerPartida?.remove()
-            }
-            var morada = getAddress(addressPartida.latitude, addressPartida.longitude)
-            markerPartida = mMap!!.addMarker(MarkerOptions().position(latLng).title(morada))
-
-            mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12f))
 
 
-        }else if(partida == ""){
+        } else if (partida == "") {
             var location: String = destino
             var destinoList: List<Address>? = null
 
             val geoCoder = Geocoder(this)
             try {
 
-                 destinoList  = geoCoder.getFromLocationName(location, 1)
+                destinoList = geoCoder.getFromLocationName(location, 1)
+                val addressDestino = destinoList!![0]
+                Log.d("TAG", "${addressDestino}")
+                val latLng = LatLng(addressDestino.latitude, addressDestino.longitude)
+                if (markerDestino != null) {
+                    markerDestino?.remove()
+                }
 
+                var morada = getAddress(addressDestino.latitude, addressDestino.longitude)
+
+                markerDestino = mMap!!.addMarker(MarkerOptions().position(latLng).title(morada))
+
+                mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12f))
             } catch (e: IOException) {
                 e.printStackTrace()
             }
-            val addressDestino = destinoList!![0]
-            val latLng = LatLng(addressDestino.latitude, addressDestino.longitude)
-            if(markerDestino != null ){
-                markerDestino?.remove()
-            }
 
-            var morada = getAddress(addressDestino.latitude, addressDestino.longitude)
-
-            markerDestino = mMap!!.addMarker(MarkerOptions().position(latLng).title(morada))
-
-            mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12f))
 
         }
     }
@@ -218,6 +221,7 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
         Toast.makeText(applicationContext, "Destino!", Toast.LENGTH_SHORT).show()
 
     }
+
     fun confirm(view: View) {
 
     }
