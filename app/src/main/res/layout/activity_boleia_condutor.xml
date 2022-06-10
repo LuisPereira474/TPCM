@@ -184,25 +184,26 @@
 
         </androidx.cardview.widget.CardView>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/CardInfoBoleia"
-            android:layout_alignLeft="@+id/CardInfoBoleia"
-            android:layout_marginTop="60dp"
-            android:backgroundTint="@color/principal"
-            android:text="@string/botaoLerQrCode"
-            app:cornerRadius="20dp"
-            android:onClick="scanQrCode"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/CardInfoBoleia"
+        android:layout_alignLeft="@+id/CardInfoBoleia"
+        android:layout_marginTop="60dp"
+        android:backgroundTint="@color/principal"
+        android:onClick="scanQrCode"
+        android:text="@string/botaoLerQrCode"
+        app:cornerRadius="20dp" />
 
-        <ImageButton
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_below="@id/CardInfoBoleia"
-            android:layout_alignRight="@+id/CardInfoBoleia"
-            android:layout_marginTop="60dp"
-            android:backgroundTint="@color/white"
-            android:src="@drawable/ic_baseline_chat_24" />
+    <ImageButton
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/CardInfoBoleia"
+        android:layout_alignRight="@+id/CardInfoBoleia"
+        android:layout_marginTop="60dp"
+        android:onClick="openChat"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/ic_baseline_chat_24" />
 
         <!--Nav Bar-->
         <com.google.android.material.bottomnavigation.BottomNavigationView

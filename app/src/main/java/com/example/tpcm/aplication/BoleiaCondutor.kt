@@ -91,4 +91,14 @@ class BoleiaCondutor : AppCompatActivity() {
         val intent = Intent(this@BoleiaCondutor, ScanQrCode::class.java)
         startActivity(intent)
     }
+
+    fun openChat(view: View) {
+        val idBoleia = intent.getStringExtra(PARAM_ID)
+
+        val intent = Intent(this@BoleiaCondutor, Chat::class.java).apply {
+            putExtra(PARAM_ID_BOLEIA, idBoleia)
+        }
+
+        startActivity(intent)
+    }
 }

@@ -24,25 +24,24 @@ class Chat : AppCompatActivity() {
         btnFecharChat.setOnClickListener {
             finish()
         }
-
-
     }
 
 
     fun sendMessage(view: View) {
-        val mensagem = findViewById<EditText>(R.id.chat_input).toString()
+        val etmensagem = findViewById<EditText>(R.id.chat_input)
+        val mensagem = etmensagem.text.toString()
         val idUser = intent.getStringExtra(PARAM_ID_USER).toString()
         val idBoleia = intent.getStringExtra(PARAM_ID_USER).toString()
 
-        GlobalScope.launch {
-            if (mensagem == ""){
-                    Toast.makeText(this@Chat, "Can´t send empty messages", Toast.LENGTH_SHORT).show()
-                } else{
-                    if (Connection.sendMessage(idUser, idBoleia, mensagem) == 1){
-                        Toast.makeText(this@Chat, "Error sending message", Toast.LENGTH_SHORT)
-                        }
-                    }
+        if (mensagem == "") {
+            Toast.makeText(this@Chat, "Can´t send empty messages", Toast.LENGTH_SHORT).show()
+        } else {
+            GlobalScope.launch {
+                if (Connection.sendMessage(idUser, idBoleia, mensagem) == 1) {
+                    Toast.makeText(this@Chat, "Error sending message", Toast.LENGTH_SHORT)
                 }
+            }
+            etmensagem.setText("")
         }
     }
 

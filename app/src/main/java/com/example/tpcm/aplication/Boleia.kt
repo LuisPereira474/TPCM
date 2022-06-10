@@ -134,7 +134,6 @@ class Boleia : AppCompatActivity() {
     fun openChat(idBoleia: String, idUser:String){
         val intent = Intent(this@Boleia, Chat::class.java).apply {
             putExtra(PARAM_ID_BOLEIA, idBoleia)
-            putExtra(PARAM_ID_USER, idUser)
         }
 
         startActivity(intent)

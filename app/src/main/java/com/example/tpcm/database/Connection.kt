@@ -526,11 +526,11 @@ object Connection {
             .add(message)
             .addOnSuccessListener {
                 errorCode = 2
-                Log.d("TAG", "DocumentSnapshot successfully written!")
+                Log.d("TAG", "Message sent Sucessfully!!")
             }
             .addOnFailureListener{e ->
                 errorCode = 1
-                Log.w("TAG", "Error writing document", e)
+                Log.w("TAG", "Error sending Message", e)
             }
         while (errorCode == 0){
             delay(1)
@@ -539,16 +539,16 @@ object Connection {
     }
 
 
-    suspend fun getMessages(idBoleia: String): HashMap<String, QueryDocumentSnapshot> {
-        var message = HashMap<String, QueryDocumentSnapshot>()
-        var canContinue = false
-        GlobalScope.launch {
-            withContext(Dispatchers.Default){
-                db.collection("message").whereEqualTo("idBoleia", idBoleia).get()
+    //suspend fun getMessages(idBoleia: String): HashMap<String, QueryDocumentSnapshot> {
+        //var message = HashMap<String, QueryDocumentSnapshot>()
+        //var canContinue = false
+       // GlobalScope.launch {
+            //withContext(Dispatchers.Default){
+                //db.collection("message").whereEqualTo("idBoleia", idBoleia).get()
 
-            }
-        }
+           //}
+      //  }
 
-    }
+   // }
 
 }
