@@ -9,22 +9,18 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tpcm.aplication.AddBoleiaSemHist
-import com.example.tpcm.aplication.Boleia
+import com.example.tpcm.aplication.ScanQrCode
+import com.example.tpcm.aplication.SearchBoleia
 import com.example.tpcm.aplication.SignUp
 import com.example.tpcm.database.Connection
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_criar_boleia)
-
-//        val intent = Intent(this@MainActivity, PopUpWindow::class.java)
-//        val string: String = getString(R.string.popUpPoints)
-//        intent.putExtra("popuptext", string)
-//        intent.putExtra("popupbtn", "CONFIRMAR")
-//        intent.putExtra("darkstatusbar", false)
-//        startActivity(intent)
+        setContentView(R.layout.activity_main)
     }
 
     fun loginSubmit(view: View) {
@@ -32,19 +28,24 @@ class MainActivity : AppCompatActivity() {
         val password = findViewById<EditText>(R.id.inputPass).text.toString()
         val errorLogin = findViewById<TextView>(R.id.errorLogin)
         var idUser = ""
-        errorLogin.setVisibility(View.INVISIBLE);
+        errorLogin.visibility = View.INVISIBLE;
         if (email.isEmpty() || password.isEmpty()) {
-            errorLogin.setVisibility(View.VISIBLE);
+            errorLogin.visibility = View.VISIBLE;
         } else {
-            idUser = Connection.login(email, password, errorLogin)
-            if (idUser!=""){
-                val sharedPreferences: SharedPreferences =
-                    getSharedPreferences("idUser", Context.MODE_PRIVATE)
-                sharedPreferences.edit()
-                    .putString("idUser", idUser)
-                    .apply()
-                val intent = Intent(this@MainActivity, AddBoleiaSemHist::class.java)
-                startActivity(intent)
+            GlobalScope.launch {
+                idUser = Connection.login(email, password, errorLogin)
+                if (idUser != "") {
+                    val sharedPreferences: SharedPreferences =
+                        getSharedPreferences("idUser", Context.MODE_PRIVATE)
+                    sharedPreferences.edit()
+                        .clear()
+                        .apply()
+                    sharedPreferences.edit()
+                        .putString("idUser", idUser)
+                        .apply()
+                    val intent = Intent(this@MainActivity, SearchBoleia::class.java)
+                    startActivity(intent)
+                }
             }
 
         }

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".aplication.Perfil">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/perfilAvatar"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        app:civ_border_color="@color/black"
+        app:civ_border_width="2dp"
+        android:src="@drawable/avatar_girl"/>
+
+    <TextView
+        android:id="@+id/perfilName"
+        android:layout_alignStart="@+id/perfilAvatar"
+        android:layout_marginStart="170dp"
+        android:layout_marginTop="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Daniel"
+        android:textColor="#767676"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/perfilEmail"
+        android:layout_below="@+id/perfilName"
+        android:layout_alignLeft="@+id/perfilName"
+        android:layout_marginTop="7dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="daniel@email.teste"
+        android:textSize="16dp"
+        />
+
+
+    <TextView
+        android:id="@+id/wishList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/perfilEmail"
+        android:layout_alignLeft="@+id/perfilEmail"
+        android:layout_marginTop="20dp"
+        android:text="@string/wishList"
+        android:textColor="#FF3939"
+        android:drawableEnd="@drawable/ic_baseline_favorite_24"
+        android:drawablePadding="7dp"
+        android:onClick="sendToWishlist"/>
+
+
+    <TextView
+        android:id="@+id/labelPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/points"
+        android:layout_below="@+id/perfilAvatar"
+        android:layout_marginTop="55dp"
+        android:layout_marginStart="50dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/points"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/perfilAvatar"
+        android:layout_alignStart="@+id/labelPoints"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="55dp"
+        android:background="@color/principal"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:text="50"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/claimPointsBtt"
+        android:layout_below="@+id/perfilAvatar"
+        android:layout_alignStart="@+id/points"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="40dp"
+        android:onClick="editProfile"
+        android:text="@string/claimpts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/principal"
+        android:padding="10dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:cornerRadius="20dp"
+        app:strokeColor="@color/principal"
+        app:strokeWidth="1dp"/>
+
+
+    <Button
+        android:id="@+id/EditBtt"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/view"
+        android:layout_marginBottom="40dp"
+        android:onClick="editProfile"
+        android:text="@string/editperfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/principal"
+        android:padding="10dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:cornerRadius="20dp"
+        app:strokeColor="@color/principal"
+        app:strokeWidth="1dp"/>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#BEBEBE"
+        android:layout_above="@+id/registarCondutor"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        />
+
+
+    <Button
+        android:id="@+id/registarCondutor"
+        android:layout_alignBottom="@+id/bottom_navigation"
+        android:layout_marginBottom="110dp"
+        android:layout_centerHorizontal="true"
+        android:onClick="editProfile"
+        android:text="@string/makemedriver"
+        android:drawableRight="@drawable/ic_baseline_card_membership_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/principal"
+        android:padding="10dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:cornerRadius="20dp"
+        app:strokeColor="#BEBEBE"
+        app:strokeWidth="2dp"/>
+
+
+    <!--Nav Bar-->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="#6B6B6B"
+        app:itemIconSize="35dp"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_navigation_menu" />
+
+</RelativeLayout>

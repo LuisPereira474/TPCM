@@ -22,7 +22,6 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
                 <TextView
                     android:id="@+id/tvTituloViagem"
                     android:layout_width="wrap_content"
@@ -61,6 +60,7 @@
                     android:layout_alignLeft="@+id/tvTituloViagem"
                     android:layout_marginTop="5dp"
                     android:text="23 Março 2012" />
+
                 <TextView
                     android:id="@+id/tvModeloCarro"
                     android:layout_width="wrap_content"
@@ -68,7 +68,7 @@
                     android:layout_below="@+id/tvDataBoleia"
                     android:layout_alignLeft="@+id/tvTituloViagem"
                     android:layout_marginTop="5dp"
-                    android:text="Wolksagen Polo 2013 (Preto)"/>
+                    android:text="Wolksagen Polo 2013 (Preto)" />
 
                 <TextView
                     android:id="@+id/tvLabelValor"
@@ -99,66 +99,76 @@
                     android:text="@string/LabelLugaresDisponiveis" />
 
                 <TextView
-                    android:id="@+id/Lugar1"
+                    android:id="@+id/valueLugaresDisponiveis"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvValorBoleia"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="4dp"
+                    android:text="5 Lugares"
+                    android:textStyle="bold"
                     android:layout_toRightOf="@+id/tvLabelLugaresDisponiveis"
-                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />
-                <TextView
-                    android:id="@+id/Lugar2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/Lugar1"
-                    android:layout_alignTop="@+id/Lugar1"
-                    android:layout_below="@+id/tvValorBoleia"
-                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />
+                    android:layout_alignTop="@+id/tvLabelLugaresDisponiveis"
+                    android:layout_marginLeft="5dp"/>
 
-                <TextView
-                    android:id="@+id/Lugar3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/Lugar2"
-                    android:layout_marginLeft="20dp"
-                    android:layout_toRightOf="@+id/tvLabelLugaresDisponiveis"
-                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />
+<!--                <TextView-->
+<!--                    android:id="@+id/Lugar1"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@+id/tvValorBoleia"-->
+<!--                    android:layout_marginLeft="30dp"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:layout_toRightOf="@+id/tvLabelLugaresDisponiveis"-->
+<!--                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />-->
+<!--                <TextView-->
+<!--                    android:id="@+id/Lugar2"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_toRightOf="@+id/Lugar1"-->
+<!--                    android:layout_alignTop="@+id/Lugar1"-->
+<!--                    android:layout_below="@+id/tvValorBoleia"-->
+<!--                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />-->
 
-                <TextView
-                    android:id="@+id/Lugar4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvValorBoleia"
-                    android:layout_alignTop="@+id/Lugar3"
-                    android:layout_toRightOf="@+id/Lugar3"
-                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />
+<!--                <TextView-->
+<!--                    android:id="@+id/Lugar3"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@+id/Lugar2"-->
+<!--                    android:layout_marginLeft="20dp"-->
+<!--                    android:layout_toRightOf="@+id/tvLabelLugaresDisponiveis"-->
+<!--                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />-->
 
-                <TextView
-                    android:id="@+id/Lugar5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/Lugar4"
-                    android:layout_alignTop="@+id/Lugar3"
-                    android:layout_below="@+id/tvValorBoleia"
-                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />
-                <TextView
-                    android:id="@+id/Lugar6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/Lugar3"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_toRightOf="@+id/tvLabelLugaresDisponiveis"
-                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />
-                <TextView
-                    android:id="@+id/Lugar7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/Lugar6"
-                    android:layout_alignTop="@+id/Lugar6"
-                    android:layout_below="@+id/tvValorBoleia"
-                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />
+<!--                <TextView-->
+<!--                    android:id="@+id/Lugar4"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@+id/tvValorBoleia"-->
+<!--                    android:layout_alignTop="@+id/Lugar3"-->
+<!--                    android:layout_toRightOf="@+id/Lugar3"-->
+<!--                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/Lugar5"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_toRightOf="@+id/Lugar4"-->
+<!--                    android:layout_alignTop="@+id/Lugar3"-->
+<!--                    android:layout_below="@+id/tvValorBoleia"-->
+<!--                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />-->
+<!--                <TextView-->
+<!--                    android:id="@+id/Lugar6"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@+id/Lugar3"-->
+<!--                    android:layout_marginLeft="30dp"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:layout_toRightOf="@+id/tvLabelLugaresDisponiveis"-->
+<!--                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />-->
+<!--                <TextView-->
+<!--                    android:id="@+id/Lugar7"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_toRightOf="@+id/Lugar6"-->
+<!--                    android:layout_alignTop="@+id/Lugar6"-->
+<!--                    android:layout_below="@+id/tvValorBoleia"-->
+<!--                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />-->
 
                 <TextView
                     android:id="@+id/tvLabelPontoEncontro"
@@ -189,6 +199,7 @@
                     android:text="@string/LabelAvaliacao" />
 
                 <RatingBar
+                    android:id="@+id/RB_RideEvaluation"
                     android:layout_width="wrap_content"
                     android:layout_height="45dp"
                     android:layout_alignBottom="@+id/tvLabelAvaliacao"
@@ -196,13 +207,24 @@
                     android:layout_marginBottom="-12dp"
                     android:layout_toRightOf="@+id/tvLabelAvaliacao"
                     android:scaleX="0.5"
-                    android:scaleY="0.5"/>
+                    android:scaleY="0.5" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/RB_RideEvaluation"
+                    android:layout_centerHorizontal="true"
+                    android:onClick="evaluateRide"
+                    android:text="@string/submitEvaluation"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
 
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
 
         <Button
+            android:id="@+id/generateQrCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/CardInfoBoleia"
@@ -210,7 +232,7 @@
             android:layout_marginTop="20dp"
             android:backgroundTint="@color/principal"
             android:text="@string/botaoObterQrCode"
-            app:cornerRadius="20dp" />
+            app:cornerRadius="20dp"/>
 
         <ImageButton
             android:layout_width="48dp"

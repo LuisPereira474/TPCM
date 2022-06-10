@@ -25,22 +25,22 @@ class AddBoleiaSemHist : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.nav_search -> {
-                Log.d("teste", "entrou")
-                // Respond to navigation item 2 click
+                val intent = Intent(this@AddBoleiaSemHist, SearchBoleia::class.java)
+                startActivity(intent)
                 true
             }
             R.id.nav_rides -> {
-                Log.d("teste", "entrou")
-                // Respond to navigation item 2 click
+
                 true
             }
             R.id.nav_services -> {
-                Log.d("teste", "entrou")
-                // Respond to navigation item 2 click
+                val intent = Intent(this@AddBoleiaSemHist, HistoricoUser::class.java)
+                startActivity(intent)
                 true
             }
             R.id.nav_profile -> {
-                Log.d("teste", "entrou")
+                val intent = Intent(this@AddBoleiaSemHist, Perfil::class.java)
+                startActivity(intent)
                 // Respond to navigation item 2 click
                 true
             }

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".aplication.HistoricoUser">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/linhasHistorico"
+        android:layout_width="match_parent"
+        android:layout_height="550dp">
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/azul"
+        android:layout_below="@+id/linhasHistorico"
+        android:layout_marginBottom="40dp"
+        android:layout_centerHorizontal="true"
+        android:onClick="addRide"
+        android:text="@string/AddRide"
+        app:cornerRadius="8dp"/>
+
+
+    <Button
+        android:id="@+id/btnHelpPageHistoricoUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:drawableEnd="@drawable/ic_baseline_help_24"
+        android:layout_above="@+id/bottom_navigation"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="310dp"/>
+
+
+    <!--Nav Bar-->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="#6B6B6B"
+        app:itemIconSize="35dp"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_navigation_menu" />
+
+</RelativeLayout>

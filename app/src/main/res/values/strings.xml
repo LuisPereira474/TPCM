@@ -7,14 +7,14 @@
     <string name="email" translatable="false">Email</string>
     <string name="login">Login</string>
     <string name="Back">Back</string>
-    <string name="popUpPoints">Do you really want to confirm the ride?</string>
+    <string name="popUpPoints">Points earned</string>
     <string name="errorLogin">Wrong credentials!</string>
     <string name="erroSignUpEmail">Username or Email already used!</string>
     <string name="erroSignUpPass">Passwords do not match!</string>
     <string name="errorMissingFields">Fields are missing!</string>
     <string name="errorInvalidEmail">Invalid Email!</string>
     <string name="ride">Ride</string>
-    <string name="perfil" translatable="false">Perfil</string>
+    <string name="perfil">Profile</string>
     <string name="AddRide">Create Ride</string>
     <string name="search">Search</string>
     <string name="rides">Rides</string>
@@ -37,4 +37,40 @@
     <string name="confirm">Confirm</string>
     <string name="msgNaoHabilitado">You are not yet able to take rides!!!</string>
     <string name="infoTornarCondutor">Go to My Profile > Become a Driver...</string>
+    <string name="textSearchBoleia">What ride are you looking for?</string>
+    <string name="erroMissingFrom">Missing from!</string>
+    <string name="erroMissingTo">Missing to!</string>
+    <string name="searchNoResults">There are no rides that match your search.</string>
+    <string name="editperfil">Edit Profile</string>
+    <string name="points">Points</string>
+    <string name="claimpts">Claim Bonus</string>
+    <string name="makemedriver">Make me driver</string>
+    <string name="cancel">Cancel</string>
+    <string name="scan">SCAN</string>
+    <string name="botaoLerQrCode">Scan QR Code</string>
+    <string name="wishList">Wish List</string>
+    <string name="moreInfo">More Info</string>
+    <string name="success">Success!</string>
+    <string name="error">Error!</string>
+    <string name="infoQrPage">Your QR Code!</string>
+    <string name="labelQrCodePage">Show at the time of the ride</string>
+    <string name="information">INFORMATION</string>
+    <string name="redflag">Represents the rides already taken, the deadline has passed</string>
+    <string name="greenflag">Represents the rides that are yet to take place</string>
+    <string name="textHelpQrCode">Here, you will have access to the QR Code associated with this trip. You can use it at the time of the ride to prove that it is you by presenting it to the driver of the car</string>
+    <string name="change_pass">Change Password</string>
+    <string name="atual_pass">Current password</string>
+    <string name="new_pass">New password</string>
+    <string name="confirm_pass">Confirm new password</string>
+    <string name="bonus">Bonus:</string>
+    <string name="title_dialog_accept_ride">Do you really want to confirm the ride?</string>
+    <string name="introduzir_cartao_cidadao">Insert ID</string>
+    <string name="cartaConducao">Insert Driver\'s License</string>
+    <string name="errorChangePassWrong">Current password wrong.</string>
+    <string name="right_qrcode">Confirmed passenger!</string>
+    <string name="wrong_qrcode">Code does not match to no passengers!</string>
+    <string name="remove">Remove</string>
+    <string name="text_info_homepage">In the Boleiasss app, you can search for the rides you need, indicating the origin and destination and the date you want. It is possible to consult the rides that you have already taken or those that will still happen. In addition, you can become a driver and take a ride, earning more and more points and enjoying them.</string>
+    <string name="emptyWishlist">Wishlist is empty.</string>
+    <string name="submitEvaluation">Submit</string>
 </resources>
