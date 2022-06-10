@@ -140,10 +140,9 @@
                     android:id="@+id/RB_RideEvaluation"
                     android:layout_width="wrap_content"
                     android:layout_height="45dp"
-                    android:layout_alignBottom="@+id/tvLabelAvaliacao"
-                    android:layout_marginLeft="-46dp"
-                    android:layout_marginBottom="-12dp"
-                    android:layout_toRightOf="@+id/tvLabelAvaliacao"
+                    android:layout_toRightOf="@id/tvLabelAvaliacao"
+                    android:layout_marginTop="335dp"
+                    android:layout_marginLeft="-40dp"
                     android:scaleX="0.5"
                     android:scaleY="0.5" />
 
