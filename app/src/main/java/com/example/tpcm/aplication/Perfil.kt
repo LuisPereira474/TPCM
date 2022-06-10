@@ -8,7 +8,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.graphics.drawable.toDrawable
 import com.example.tpcm.R
 import com.example.tpcm.database.Connection
 import com.google.firebase.firestore.QueryDocumentSnapshot
@@ -73,9 +72,9 @@ class Perfil : AppCompatActivity() {
                 perfilName.text = profile!!.data["nome"].toString()
                 perfilEmail.text = profile!!.data["email"].toString()
                 points.text = profile!!.data["pontos"].toString()
-                if(profile!!.data["sexo"]==true){
+                if (profile!!.data["sexo"] == true) {
                     perfilAvatar.setImageResource(R.drawable.avatar_boy)
-                }else{
+                } else {
                     perfilAvatar.setImageResource(R.drawable.avatar_girl)
                 }
             }
@@ -89,6 +88,11 @@ class Perfil : AppCompatActivity() {
 
     fun sendToWishlist(view: View) {
         val intent = Intent(this@Perfil, WishList::class.java)
+        startActivity(intent)
+    }
+
+    fun makeMeDriver(view: View) {
+        val intent = Intent(this@Perfil, MakeMeDriver::class.java)
         startActivity(intent)
     }
 }

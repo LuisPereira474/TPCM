@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import com.example.tpcm.carAPI.Car
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.SetOptions
@@ -164,7 +165,7 @@ object Connection {
         from: String,
         to: String,
         meeting: String,
-        car: String,
+        car: Car,
         date: String,
         price: String,
         seats: Int,
@@ -172,35 +173,61 @@ object Connection {
         idUser: String
     ): Int {
         var result = 0
+        val from_localidade = from.split("-")[1]
+        val to_localidade = to.split("-")[1]
         val boleia = hashMapOf(
+            "avaliacao" to 3,
             "idCriador" to idUser,
             "idBoleia" to UUID.randomUUID().toString(),
             "from" to from,
             "to" to to,
             "meeting" to meeting,
+            "carBrand" to car.make,
+            "carModel" to car.model,
+            "carYear" to car.year,
+            "carFuelType" to car.fuel_type,
             "car" to car,
             "date" to date,
             "price" to price,
             "seats" to seats,
-            "obs" to obs
+            "obs" to obs,
+            "from_localidade" to from_localidade,
+            "to_localidade" to to_localidade
         )
-        db.collection("boleia")
-            .add(boleia)
-            .addOnSuccessListener {
-                result = 2
-                Log.d(
-                    "TAG",
-                    "DocumentSnapshot successfully written!"
-                )
+        db.collection("condutor")
+            .whereEqualTo("idUser", idUser)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    if (!task.result.isEmpty) {
+                        for (document in task.result!!) {
+                            db.collection("boleia")
+                                .add(boleia)
+                                .addOnSuccessListener {
+                                    result = 2
+                                    Log.d(
+                                        "TAG",
+                                        "DocumentSnapshot successfully written!"
+                                    )
+                                }
+                                .addOnFailureListener { e ->
+                                    result = 1
+                                    Log.w(
+                                        "TAG",
+                                        "Error writing document",
+                                        e
+                                    )
+                                }
+                        }
+                    } else {
+                        result = 1
+                    }
+                } else {
+                    result = 1
+                    Log.w("TAG", "Error getting documents.", task.exception)
+                }
             }
-            .addOnFailureListener { e ->
-                result = 1
-                Log.w(
-                    "TAG",
-                    "Error writing document",
-                    e
-                )
-            }
+
         while (result == 0) {
             delay(1)
         }
@@ -211,6 +238,7 @@ object Connection {
     suspend fun historicoUser(idUser: String): HashMap<Int, QueryDocumentSnapshot> {
         val boleia = HashMap<Int, QueryDocumentSnapshot>()
         var count = 0
+        var canGo = false
         GlobalScope.launch {
             withContext(Dispatchers.Default) {
                 db.collection("boleia")
@@ -218,17 +246,23 @@ object Connection {
                     .get()
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            for (document in task.result!!) {
-                                count++
-                                boleia[count] = document
+                            if (task.result.isEmpty) {
+                                canGo = true
+                            } else {
+                                for (document in task.result!!) {
+                                    count++
+                                    boleia[count] = document
+                                }
+                                canGo = true
                             }
                         } else {
                             Log.w("TAG", "Error getting documents.", task.exception)
+                            canGo = true
                         }
                     }
             }
         }
-        while (boleia.isEmpty()) {
+        while (!canGo) {
             delay(1)
         }
         return boleia
@@ -245,8 +279,8 @@ object Connection {
         GlobalScope.launch {
             withContext(Dispatchers.Default) {
                 db.collection("boleia")
-                    .whereEqualTo("from", from)
-                    .whereEqualTo("to", to)
+                    .whereEqualTo("from_localidade", from)
+                    .whereEqualTo("to_localidade", to)
                     .whereEqualTo("date", date)
                     .get()
                     .addOnCompleteListener { task ->
@@ -381,7 +415,8 @@ object Connection {
         if (seatsAvailabel > 0) {
             val data = hashMapOf(
                 "idUser" to idUser,
-                "idBoleia" to idBoleia
+                "idBoleia" to idBoleia,
+                "avaliacao" to 3
             )
 
             GlobalScope.launch {
@@ -531,7 +566,6 @@ object Connection {
                         if (task.isSuccessful) {
                             for (document in task.result!!) {
                                 db.collection("boleia")
-                                    .whereEqualTo("idCriador", idUser)
                                     .whereEqualTo("idBoleia", document.data["idBoleia"])
                                     .get()
                                     .addOnCompleteListener { task ->
@@ -744,4 +778,170 @@ object Connection {
         return successFail
     }
 
+    suspend fun makeMeDriver(numCC: String, numCarta: String, idUser: String): Int {
+        var successFail = -1
+
+        val data = hashMapOf(
+            "idUser" to idUser,
+            "numCC" to numCC,
+            "numCarta" to numCarta,
+            "avaliacao" to 3
+        )
+
+
+        db.collection("condutor")
+            .whereEqualTo("idUser", idUser)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    if (task.result.isEmpty) {
+                        db.collection("condutor")
+                            .add(data)
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    successFail = 0
+                                    Log.d("TAG", "Success.")
+                                } else {
+                                    Log.w(
+                                        "TAG",
+                                        "Error getting documents.",
+                                        task.exception
+                                    )
+                                    successFail = 1
+                                }
+                            }
+                    } else {
+                        successFail = 2
+                    }
+                } else {
+                    successFail = 3
+                    Log.w("TAG", "Error getting documents.", task.exception)
+                }
+            }
+
+        while (successFail == -1) {
+            delay(1)
+        }
+        return successFail
+    }
+
+    suspend fun searchDriver(idUser: String): Int {
+        var successFail = -1
+        db.collection("condutor")
+            .whereEqualTo("idUser", idUser)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    if (task.result.isEmpty) {
+                        //Não é condutor
+                        successFail = 1
+                    } else {
+                        //É condutor
+                        successFail = 2
+                    }
+                } else {
+                    successFail = 3
+                    Log.w("TAG", "Error getting documents.", task.exception)
+                }
+            }
+        while (successFail == -1) {
+            delay(1)
+        }
+        return successFail
+    }
+
+    @DelicateCoroutinesApi
+    suspend fun evaluateRide(idUser: String, idBoleia: String, evaluation: Float) {
+        var ride: QueryDocumentSnapshot? = null
+        var data = hashMapOf(
+            "idBoleia" to idBoleia,
+            "idUser" to idUser,
+            "avaliacao" to evaluation
+        )
+
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("boleia_utilizador")
+                    .whereEqualTo("idUser", idUser)
+                    .whereEqualTo("idBoleia", idBoleia)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                ride = document
+                                db.collection("boleia_utilizador").document(ride!!.id)
+                                    .set(data, SetOptions.merge())
+                            }
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                        }
+                    }
+
+            }
+        }
+
+    }
+
+    @DelicateCoroutinesApi
+    suspend fun calculateRideEvaluation(idBoleia: String): Float {
+        var sum = 0.0F
+        var count = 0
+        var rideEvaluation = 0.0F
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("boleia_utilizador")
+                    .whereEqualTo("idBoleia", idBoleia)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                sum += document["avaliacao"].toString().toFloat()
+                                count++
+                            }
+
+
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                        }
+                    }
+            }
+        }
+        while (sum == 0.0F) {
+            delay(1)
+        }
+        rideEvaluation = sum / count
+        return rideEvaluation
+
+
+    }
+
+    @DelicateCoroutinesApi
+    suspend fun updateRideEvaluation(idBoleia: String, evaluation: Float) {
+        var canGo = false
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("boleia")
+                    .whereEqualTo("idBoleia", idBoleia)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                db.collection("boleia").document(document!!.id)
+                                    .set(
+                                        hashMapOf("avaliacao" to evaluation),
+                                        SetOptions.merge()
+                                    )
+                                canGo = true
+                            }
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                            canGo = true
+                        }
+                    }
+            }
+        }
+        while (canGo) {
+            delay(1)
+        }
+    }
 }

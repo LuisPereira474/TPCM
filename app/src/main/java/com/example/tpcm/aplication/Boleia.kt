@@ -2,9 +2,12 @@ package com.example.tpcm.aplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tpcm.R
@@ -80,21 +83,36 @@ class Boleia : AppCompatActivity() {
         val tvModeloCarro = findViewById<TextView>(R.id.tvModeloCarro)
         val tvValorBoleia = findViewById<TextView>(R.id.tvValorBoleia)
         val tvPontoEncontro = findViewById<TextView>(R.id.tvPontoEncontro)
+        val rbAvaliacao = findViewById<RatingBar>(R.id.RB_RideEvaluation)
 
         var boleia: QueryDocumentSnapshot?
         var profile: QueryDocumentSnapshot?
         GlobalScope.launch {
             boleia = Connection.getDadosBoleia(idBoleia)
             profile = Connection.getProfileUser(idUser)
+
+            Connection.updateRideEvaluation(idBoleia, Connection.calculateRideEvaluation(idBoleia))
+
+
             runOnUiThread {
-                tvTituloViagem.text =
-                    boleia!!.data["from"].toString() + "-" + boleia!!.data["to"].toString()
+                val from_localidade = boleia!!.data["from"].toString().split("-")[1]
+                val to_localidade = boleia!!.data["to"].toString().split("-")[1]
+                tvTituloViagem.text = "$from_localidade - $to_localidade"
                 tvNomeCondutor.text = profile!!.data["nome"].toString()
                 tvDataBoleia.text = boleia!!.data["date"].toString()
-                tvModeloCarro.text = boleia!!.data["car"].toString()
+                tvModeloCarro.text = boleia!!.data["carBrand"].toString() + " " + boleia!!.data["carModel"].toString() + " " + boleia!!.data["carYear"].toString() + " " + boleia!!.data["carFuelType"].toString()
                 tvValorBoleia.text = boleia!!.data["price"].toString()
-                tvPontoEncontro.text = boleia!!.data["meeting"].toString()
+                tvPontoEncontro.text = boleia!!.data["from"].toString()
                 valueLugaresDisponiveis.text = boleia!!.data["seats"].toString()
+
+                var rating = boleia!!.data["avaliacao"].toString().toFloat()
+
+                if (rating >= 0 && rating <= 5) {
+                    rbAvaliacao.rating = rating
+                } else {
+                    rbAvaliacao.rating = 3.0F
+                }
+
             }
         }
 
@@ -107,4 +125,20 @@ class Boleia : AppCompatActivity() {
         }
         startActivity(intent)
     }
+
+
+    fun evaluateRide(view: View) {
+        val shared = getSharedPreferences("idUser", MODE_PRIVATE)
+        val idUser = shared.getString("idUser", "").toString()
+        val idBoleia = intent.getStringExtra(PARAM_ID)
+        val ratingBar = findViewById<RatingBar>(R.id.RB_RideEvaluation)
+        GlobalScope.launch {
+            if (idBoleia != null) {
+                Connection.evaluateRide(idUser, idBoleia, ratingBar.rating)
+            } else {
+                Log.d("TAGG", "Something went wrong")
+            }
+        }
+    }
+
 }

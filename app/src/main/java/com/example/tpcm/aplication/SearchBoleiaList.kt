@@ -83,9 +83,11 @@ class SearchBoleiaList : AppCompatActivity() {
                 val date = SimpleDateFormat("dd-MM-yyyy").parse(doc.value.data["date"] as String)
 
                 if (date > Calendar.getInstance().time) {
+                    val from_localidade = doc.value.data["from"].toString().split("-")[1]
+                    val to_localidade = doc.value.data["to"].toString().split("-")[1]
                     myList.add(
                         Search(
-                            "${doc.value.data["from"]}-${doc.value.data["to"]}",
+                            "${from_localidade} - ${to_localidade}",
                             "${doc.value.data["date"]}",
                             "${doc.value.data["price"]}",
                             doc.key,

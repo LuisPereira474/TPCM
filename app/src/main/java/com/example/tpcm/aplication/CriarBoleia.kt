@@ -9,22 +9,43 @@ import android.view.*
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import com.example.tpcm.R
+import com.example.tpcm.carAPI.Car
+import com.example.tpcm.carAPI.EndPointsCarAPI
+import com.example.tpcm.carAPI.ServiceBuilderCarAPI
 import com.example.tpcm.database.Connection
-import com.google.android.material.datepicker.MaterialDatePicker.Builder.datePicker
 import kotlinx.android.synthetic.main.dialog_box.*
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 
+const val KEY = "078c45d56bmsh6f45aa6f7fef0f4p16e173jsndf11a2342d51"
+const val HOST = "cars-by-api-ninjas.p.rapidapi.com"
 
 class CriarBoleia : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_criar_boleia)
+
+        val from_mapas = intent.getStringExtra(PARAM_FROM_MAPAS)
+        val to_mapas = intent.getStringExtra(PARAM_TO_MAPAS)
+
+        val from = findViewById<EditText>(R.id.fromCriarBoleia)
+        from.isEnabled = false
+        from.setText(from_mapas)
+        val to = findViewById<EditText>(R.id.toCriarBoleia)
+        to.isEnabled = false
+        to.setText(to_mapas)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -74,9 +95,9 @@ class CriarBoleia : AppCompatActivity() {
         val date: String = sdf.format(calendar.time)
 
         val from = findViewById<EditText>(R.id.fromCriarBoleia).text.toString()
-        val to = findViewById<EditText>(R.id.toCriarBoleia).text.toString()
-        val meeting = findViewById<EditText>(R.id.meetingCriarBoleia).text.toString()
-        val car = findViewById<EditText>(R.id.carCriarBoleia).text.toString()
+        val brandCar = findViewById<EditText>(R.id.brandCarCriarBoleia).text.toString()
+        val modelCar = findViewById<EditText>(R.id.modelCarCriarBoleia).text.toString()
+        val yearCar = findViewById<EditText>(R.id.yearCarCriarBoleia).text.toString().toInt()
         val price = findViewById<EditText>(R.id.priceCriarBoleia).text.toString()
         val seatsEditText = findViewById<EditText>(R.id.seatsCriarBoleia)
         val seats = Integer.parseInt(seatsEditText.text.toString())
@@ -84,8 +105,15 @@ class CriarBoleia : AppCompatActivity() {
         val shared = getSharedPreferences("idUser", MODE_PRIVATE)
         val idUser = shared.getString("idUser", "").toString()
 
+        val from_mapas = intent.getStringExtra(PARAM_FROM_MAPAS)
+        val to_mapas = intent.getStringExtra(PARAM_TO_MAPAS)
+
         GlobalScope.launch {
-            if (Connection.createRide(from,to,meeting,car,date,price,seats,obs,idUser) == 1) {
+        val fuelType = getTypeOfFuel(brandCar, modelCar, yearCar)
+
+
+            if (Connection.createRide(from_mapas.toString(),
+                    to_mapas.toString(),from,Car(brandCar,modelCar, yearCar,fuelType),date,price,seats,obs,idUser) == 1) {
                 runOnUiThread {
                     createDialog(resources.getString(R.string.error))
                 }
@@ -112,9 +140,43 @@ class CriarBoleia : AppCompatActivity() {
 
         dialog.findViewById<Button>(R.id.popup_ok_btt).setOnClickListener {
             dialog.dismiss()
-            val intent = Intent(this@CriarBoleia, AddBoleiaSemHist::class.java)
+            val intent = Intent(this@CriarBoleia, HistoricoUser::class.java)
             startActivity(intent)
         }
 
+    }
+
+    private suspend fun getTypeOfFuel(make: String, model: String, year: Int):String{
+        var typeOfFuel = getString(R.string.undefined)
+        var canGO = false
+        val request = ServiceBuilderCarAPI.buildService(EndPointsCarAPI::class.java)
+        val call = request.getCarsDetails(HOST,KEY,make,model,year)
+
+        call.enqueue(object : Callback<List<Car>> {
+            override fun onResponse(call: Call<List<Car>>, response: Response<List<Car>>) {
+                if (response.isSuccessful) {
+                    if (response.body()!!.isNotEmpty()) {
+                        val carros: List<Car> = response.body()!!
+                        typeOfFuel = carros[0].fuel_type
+                        canGO = true
+                    }else{
+                        Toast.makeText(this@CriarBoleia, getString(R.string.carError), Toast.LENGTH_SHORT).show()
+                        canGO = true
+                    }
+                } else {
+                    canGO=true
+                    Log.d("TAG","erro")
+                }
+            }
+
+            override fun onFailure(call: Call<List<Car>>, t: Throwable) {
+                Toast.makeText(this@CriarBoleia, "${t.message}", Toast.LENGTH_SHORT).show()
+                canGO=true
+            }
+        })
+        while (!canGO){
+            delay(1)
+        }
+        return typeOfFuel
     }
 }
