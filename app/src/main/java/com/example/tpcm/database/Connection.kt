@@ -434,44 +434,62 @@ object Connection {
                                 } else {
                                     db.collection("boleia")
                                         .whereEqualTo("idBoleia", idBoleia)
+                                        .whereEqualTo("idCriador", idUser)
                                         .get()
                                         .addOnCompleteListener { task ->
                                             if (task.isSuccessful) {
-                                                for (document in task.result!!) {
-                                                    seatsAvailabel =
-                                                        Integer.parseInt(document.data["seats"].toString())
-                                                    if (seatsAvailabel > 0) {
-                                                        db.collection("boleia")
-                                                            .document(document.id)
-                                                            .update("seats", seatsAvailabel - 1)
-                                                    }
+                                                if (task.result.size() > 0){
+                                                    Log.d("TAG", "Erro.")
+                                                    successFail = 1
+                                                    canGo = true
+                                                }else{
+                                                    db.collection("boleia")
+                                                        .whereEqualTo("idBoleia", idBoleia)
+                                                        .get()
+                                                        .addOnCompleteListener { task ->
+                                                            if (task.isSuccessful) {
+                                                                for (document in task.result!!) {
+                                                                    seatsAvailabel =
+                                                                        Integer.parseInt(document.data["seats"].toString())
+                                                                    if (seatsAvailabel > 0) {
+                                                                        db.collection("boleia")
+                                                                            .document(document.id)
+                                                                            .update("seats", seatsAvailabel - 1)
+                                                                    }
+                                                                }
+                                                            } else {
+                                                                Log.w(
+                                                                    "TAG",
+                                                                    "Error getting documents.",
+                                                                    task.exception
+                                                                )
+                                                                canGo = true
+                                                            }
+                                                        }
+                                                    db.collection("boleia_utilizador")
+                                                        .add(data)
+                                                        .addOnCompleteListener { task ->
+                                                            canGo = if (task.isSuccessful) {
+                                                                successFail = 2
+                                                                addPoints(idUser, idCriador)
+                                                                Log.d("TAG", "Success.")
+                                                                true
+                                                            } else {
+                                                                Log.w(
+                                                                    "TAG",
+                                                                    "Error getting documents.",
+                                                                    task.exception
+                                                                )
+                                                                true
+                                                            }
+                                                        }
                                                 }
                                             } else {
-                                                Log.w(
-                                                    "TAG",
-                                                    "Error getting documents.",
-                                                    task.exception
-                                                )
+                                                Log.w("TAG", "Error getting documents.", task.exception)
                                                 canGo = true
                                             }
                                         }
-                                    db.collection("boleia_utilizador")
-                                        .add(data)
-                                        .addOnCompleteListener { task ->
-                                            canGo = if (task.isSuccessful) {
-                                                successFail = 2
-                                                addPoints(idUser, idCriador)
-                                                Log.d("TAG", "Success.")
-                                                true
-                                            } else {
-                                                Log.w(
-                                                    "TAG",
-                                                    "Error getting documents.",
-                                                    task.exception
-                                                )
-                                                true
-                                            }
-                                        }
+
                                 }
                             } else {
                                 Log.w("TAG", "Error getting documents.", task.exception)

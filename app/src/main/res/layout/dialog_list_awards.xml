@@ -90,7 +90,7 @@
                 <ImageView
                     android:layout_width="75dp"
                     android:layout_height="75dp"
-                    android:src="@drawable/valeGalp"
+                    android:src="@drawable/valegalp"
                     android:layout_gravity="center"
                     android:layout_alignBottom="@+id/descriptionPointsFirst"
                     android:layout_marginLeft="200dp"
