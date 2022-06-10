@@ -219,14 +219,7 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
         Log.d("**** TPCM", "onResume - startLocationUpdates")
     }
 
-    fun cancel(view: View) {
-        Toast.makeText(applicationContext, "Destino!", Toast.LENGTH_SHORT).show()
 
-    }
-
-    fun confirm(view: View) {
-
-    }
 
 }
 
