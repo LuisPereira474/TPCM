@@ -385,7 +385,7 @@ object Connection {
 
     suspend fun acceptBoleia(idUser: String, idBoleia: String): Int {
         var canGo = false
-        var successFail = 0
+        var successFail = -1
         var seatsAvailabel = -1
         var idCriador = ""
 
@@ -429,7 +429,7 @@ object Connection {
                             if (task.isSuccessful) {
                                 if (task.result.size() > 0) {
                                     Log.d("TAG", "Erro.")
-                                    successFail = 1
+                                    successFail = -4
                                     canGo = true
                                 } else {
                                     db.collection("boleia")
@@ -438,11 +438,11 @@ object Connection {
                                         .get()
                                         .addOnCompleteListener { task ->
                                             if (task.isSuccessful) {
-                                                if (task.result.size() > 0){
+                                                if (task.result.size() > 0) {
                                                     Log.d("TAG", "Erro.")
-                                                    successFail = 1
+                                                    successFail = -2
                                                     canGo = true
-                                                }else{
+                                                } else {
                                                     db.collection("boleia")
                                                         .whereEqualTo("idBoleia", idBoleia)
                                                         .get()
@@ -452,9 +452,35 @@ object Connection {
                                                                     seatsAvailabel =
                                                                         Integer.parseInt(document.data["seats"].toString())
                                                                     if (seatsAvailabel > 0) {
+                                                                        db.collection("boleia_utilizador")
+                                                                            .add(data)
+                                                                            .addOnCompleteListener { task ->
+                                                                                canGo =
+                                                                                    if (task.isSuccessful) {
+                                                                                        GlobalScope.launch {
+                                                                                            successFail =
+                                                                                                addPoints(
+                                                                                                    idUser,
+                                                                                                    idCriador,
+                                                                                                    document.data["carFuelType"].toString()
+                                                                                                )
+                                                                                        }
+                                                                                        true
+                                                                                    } else {
+                                                                                        Log.w(
+                                                                                            "TAG",
+                                                                                            "Error getting documents.",
+                                                                                            task.exception
+                                                                                        )
+                                                                                        true
+                                                                                    }
+                                                                            }
                                                                         db.collection("boleia")
                                                                             .document(document.id)
-                                                                            .update("seats", seatsAvailabel - 1)
+                                                                            .update(
+                                                                                "seats",
+                                                                                seatsAvailabel - 1
+                                                                            )
                                                                     }
                                                                 }
                                                             } else {
@@ -466,26 +492,14 @@ object Connection {
                                                                 canGo = true
                                                             }
                                                         }
-                                                    db.collection("boleia_utilizador")
-                                                        .add(data)
-                                                        .addOnCompleteListener { task ->
-                                                            canGo = if (task.isSuccessful) {
-                                                                successFail = 2
-                                                                addPoints(idUser, idCriador)
-                                                                Log.d("TAG", "Success.")
-                                                                true
-                                                            } else {
-                                                                Log.w(
-                                                                    "TAG",
-                                                                    "Error getting documents.",
-                                                                    task.exception
-                                                                )
-                                                                true
-                                                            }
-                                                        }
+
                                                 }
                                             } else {
-                                                Log.w("TAG", "Error getting documents.", task.exception)
+                                                Log.w(
+                                                    "TAG",
+                                                    "Error getting documents.",
+                                                    task.exception
+                                                )
                                                 canGo = true
                                             }
                                         }
@@ -500,31 +514,39 @@ object Connection {
 
                 }
             }
-            while (!canGo || successFail == 0) {
+            while (!canGo || successFail == -1) {
                 delay(1)
             }
         } else {
-            successFail = 3
+            successFail = -3
         }
         return successFail
     }
 
-    fun addPoints(idUser: String, idCriador: String) {
+    suspend fun addPoints(idUser: String, idCriador: String, fuleType: String): Int {
+        var points = 1
+        var pointsCondutor = 1
+        var canGo = false
+        var canGo2 = false
         db.collection("utilizador")
             .whereEqualTo("idUser", idUser)
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     for (document in task.result!!) {
+                        if (fuleType == "electricity") {
+                            points++
+                        }
                         val data = hashMapOf(
-                            "pontos" to document.data["pontos"].toString().toInt()+1
+                            "pontos" to document.data["pontos"].toString().toInt() + points
                         )
                         db.collection("utilizador").document(document!!.id)
                             .set(data, SetOptions.merge())
-
+                        canGo = true
                     }
                 } else {
                     Log.w("TAG", "Error getting documents.", task.exception)
+                    canGo = true
                 }
             }
         db.collection("utilizador")
@@ -533,17 +555,26 @@ object Connection {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     for (document in task.result!!) {
+                        if (fuleType == "electricity") {
+                            pointsCondutor++
+                        }
                         val data = hashMapOf(
-                            "pontos" to document.data["pontos"].toString().toInt()+1
+                            "pontos" to document.data["pontos"].toString().toInt() + pointsCondutor
                         )
                         db.collection("utilizador").document(document!!.id)
                             .set(data, SetOptions.merge())
-
+                        canGo2 = true
                     }
                 } else {
                     Log.w("TAG", "Error getting documents.", task.exception)
+                    canGo2 = true
                 }
             }
+        while (!canGo && !canGo2) {
+            delay(1)
+        }
+
+        return points
     }
 
     suspend fun getDadosBoleia(idBoleia: String): QueryDocumentSnapshot? {

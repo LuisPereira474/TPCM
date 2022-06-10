@@ -1,11 +1,10 @@
 package com.example.tpcm.aplication
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
+import android.view.*
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tpcm.R
@@ -94,5 +93,28 @@ class Perfil : AppCompatActivity() {
     fun makeMeDriver(view: View) {
         val intent = Intent(this@Perfil, MakeMeDriver::class.java)
         startActivity(intent)
+    }
+
+    private fun createDialog() {
+        val dialog = Dialog(this@Perfil)
+        dialog.setContentView(R.layout.dialog_list_awards)
+        dialog.window?.setBackgroundDrawable(getDrawable(R.drawable.dialog_background))
+        dialog.window?.setLayout(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        dialog.setCancelable(false)
+        dialog.show()
+
+        dialog.findViewById<TextView>(R.id.iconCloseListAwards).setOnClickListener {
+            dialog.dismiss()
+        }
+
+    }
+
+    fun listAwards(view: View) {
+        runOnUiThread {
+            createDialog()
+        }
     }
 }

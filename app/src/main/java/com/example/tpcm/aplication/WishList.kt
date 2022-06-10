@@ -140,19 +140,19 @@ class WishList : AppCompatActivity() {
         val idUser = shared.getString("idUser", "").toString()
         GlobalScope.launch {
             var result = Connection.acceptBoleia(idUser, idBoleia.text.toString())
-            if (result == 1) {
+            if (result == -2 || result == -4) {
                 runOnUiThread {
                     createDialog(resources.getString(R.string.error))
                 }
             }
-            else if(result==3){
+            else if(result==-3){
                 runOnUiThread {
                     createDialog(resources.getString(R.string.seatsFinish))
                 }
             }
             else {
                 runOnUiThread {
-                    createDialog(resources.getString(R.string.success))
+                    createDialogPoints(result)
                 }
             }
         }
@@ -191,6 +191,24 @@ class WishList : AppCompatActivity() {
             dialog.dismiss()
             finish();
             startActivity(intent);
+        }
+
+    }
+
+    private fun createDialogPoints(points : Int) {
+        val dialog = Dialog(this@WishList)
+        dialog.setContentView(R.layout.dialog_points_earned)
+        dialog.window?.setBackgroundDrawable(getDrawable(R.drawable.dialog_background))
+        dialog.window?.setLayout(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        dialog.findViewById<TextView>(R.id.valueBonus).text = points.toString()
+        dialog.setCancelable(false)
+        dialog.show()
+
+        dialog.findViewById<TextView>(R.id.iconClosePopUpConfirmRide).setOnClickListener {
+            dialog.dismiss()
         }
 
     }
