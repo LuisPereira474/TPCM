@@ -37,6 +37,9 @@
             android:name=".aplication.MapsAtividade"
             android:exported="false"/>
         <activity
+            android:name=".aplication.MakeMeDriver"
+            android:exported="false" />
+        <activity
             android:name=".aplication.MoreInfo"
             android:exported="false" />
         <activity
@@ -71,6 +74,9 @@
             android:exported="false" />
         <activity
             android:name=".aplication.AddBoleiaSemHist"
+            android:exported="false" />
+        <activity
+            android:name=".aplication.AddBoleiaNaoHabilitado"
             android:exported="false" />
         <activity
             android:name=".aplication.Boleia"

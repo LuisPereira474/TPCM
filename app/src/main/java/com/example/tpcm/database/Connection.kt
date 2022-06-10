@@ -184,23 +184,40 @@ object Connection {
             "seats" to seats,
             "obs" to obs
         )
-        db.collection("boleia")
-            .add(boleia)
-            .addOnSuccessListener {
-                result = 2
-                Log.d(
-                    "TAG",
-                    "DocumentSnapshot successfully written!"
-                )
+        db.collection("condutor")
+            .whereEqualTo("idUser", idUser)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    if (!task.result.isEmpty) {
+                        for (document in task.result!!) {
+                            db.collection("boleia")
+                                .add(boleia)
+                                .addOnSuccessListener {
+                                    result = 2
+                                    Log.d(
+                                        "TAG",
+                                        "DocumentSnapshot successfully written!"
+                                    )
+                                }
+                                .addOnFailureListener { e ->
+                                    result = 1
+                                    Log.w(
+                                        "TAG",
+                                        "Error writing document",
+                                        e
+                                    )
+                                }
+                        }
+                    } else {
+                        result = 1
+                    }
+                } else {
+                    result = 1
+                    Log.w("TAG", "Error getting documents.", task.exception)
+                }
             }
-            .addOnFailureListener { e ->
-                result = 1
-                Log.w(
-                    "TAG",
-                    "Error writing document",
-                    e
-                )
-            }
+
         while (result == 0) {
             delay(1)
         }
@@ -211,6 +228,7 @@ object Connection {
     suspend fun historicoUser(idUser: String): HashMap<Int, QueryDocumentSnapshot> {
         val boleia = HashMap<Int, QueryDocumentSnapshot>()
         var count = 0
+        var canGo = false
         GlobalScope.launch {
             withContext(Dispatchers.Default) {
                 db.collection("boleia")
@@ -218,17 +236,23 @@ object Connection {
                     .get()
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            for (document in task.result!!) {
-                                count++
-                                boleia[count] = document
+                            if (task.result.isEmpty) {
+                                canGo = true
+                            } else {
+                                for (document in task.result!!) {
+                                    count++
+                                    boleia[count] = document
+                                }
+                                canGo = true
                             }
                         } else {
                             Log.w("TAG", "Error getting documents.", task.exception)
+                            canGo = true
                         }
                     }
             }
         }
-        while (boleia.isEmpty()) {
+        while (!canGo) {
             delay(1)
         }
         return boleia
@@ -698,6 +722,78 @@ object Connection {
                 }
             }
 
+        while (successFail == -1) {
+            delay(1)
+        }
+        return successFail
+    }
+
+    suspend fun makeMeDriver(numCC: String, numCarta: String, idUser: String): Int {
+        var successFail = -1
+
+        val data = hashMapOf(
+            "idUser" to idUser,
+            "numCC" to numCC,
+            "numCarta" to numCarta,
+            "avaliacao" to 0
+        )
+
+
+        db.collection("condutor")
+            .whereEqualTo("idUser", idUser)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    if (task.result.isEmpty) {
+                        db.collection("condutor")
+                            .add(data)
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    successFail = 0
+                                    Log.d("TAG", "Success.")
+                                } else {
+                                    Log.w(
+                                        "TAG",
+                                        "Error getting documents.",
+                                        task.exception
+                                    )
+                                    successFail = 1
+                                }
+                            }
+                    } else {
+                        successFail = 2
+                    }
+                } else {
+                    successFail = 3
+                    Log.w("TAG", "Error getting documents.", task.exception)
+                }
+            }
+
+        while (successFail == -1) {
+            delay(1)
+        }
+        return successFail
+    }
+
+    suspend fun searchDriver(idUser: String): Int {
+        var successFail = -1
+        db.collection("condutor")
+            .whereEqualTo("idUser", idUser)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    if (task.result.isEmpty) {
+                        //Não é condutor
+                        successFail = 1
+                    } else {
+                        //É condutor
+                        successFail = 2
+                    }
+                } else {
+                    successFail = 3
+                    Log.w("TAG", "Error getting documents.", task.exception)
+                }
+            }
         while (successFail == -1) {
             delay(1)
         }
