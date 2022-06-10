@@ -10,6 +10,7 @@ import com.google.firebase.firestore.SetOptions
 import kotlinx.coroutines.*
 import java.util.*
 import java.util.regex.Pattern
+import kotlin.collections.HashMap
 
 object Connection {
     @SuppressLint("StaticFieldLeak")
@@ -509,6 +510,45 @@ object Connection {
             delay(1)
         }
         return boleia
+    }
+
+
+    suspend fun sendMessage(idUser:String, idBoleia: String, message: String) : Int{
+        var errorCode = 0
+        var message = hashMapOf(
+            "idUser" to idUser,
+            "idBoleia" to idBoleia,
+            "message" to message,
+            "idMessage" to UUID.randomUUID().toString()
+        )
+
+        db.collection("message")
+            .add(message)
+            .addOnSuccessListener {
+                errorCode = 2
+                Log.d("TAG", "DocumentSnapshot successfully written!")
+            }
+            .addOnFailureListener{e ->
+                errorCode = 1
+                Log.w("TAG", "Error writing document", e)
+            }
+        while (errorCode == 0){
+            delay(1)
+        }
+        return errorCode
+    }
+
+
+    suspend fun getMessages(idBoleia: String): HashMap<String, QueryDocumentSnapshot> {
+        var message = HashMap<String, QueryDocumentSnapshot>()
+        var canContinue = false
+        GlobalScope.launch {
+            withContext(Dispatchers.Default){
+                db.collection("message").whereEqualTo("idBoleia", idBoleia).get()
+
+            }
+        }
+
     }
 
 }
