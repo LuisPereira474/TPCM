@@ -79,10 +79,11 @@
     <string name="remove">Remove</string>
     <string name="text_info_homepage">In the Boleiasss app, you can search for the rides you need, indicating the origin and destination and the date you want. It is possible to consult the rides that you have already taken or those that will still happen. In addition, you can become a driver and take a ride, earning more and more points and enjoying them.</string>
     <string name="emptyWishlist">Wishlist is empty.</string>
-    <string name="submitEvaluation">Submit</string>
     <string name="missing_citizen_car">Missing Citizen Card number</string>
     <string name="missing_driver_license">Missing Driver´s License number</string>
     <string name="text_dialog_make_me_driver">Enter the values ​​equivalent to those represented in the figures</string>
     <string name="makeMeDriverSuccess">Congratulations, you are now able to create rides!!</string>
     <string name="makeMeDriverError">You are already able to take rides!</string>
+    <string name="undefined">Undefined</string>
+    <string name="carError">The inserted car was not found</string>
 </resources>

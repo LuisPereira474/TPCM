@@ -84,5 +84,6 @@
     <string name="text_dialog_make_me_driver">" Insira os valores equivalentes aos respresentados nas figuras "</string>
     <string name="makeMeDriverSuccess">Parabéns, agora já pode criar boleias!!</string>
     <string name="makeMeDriverError">Já pode prestar boleias!</string>
-    <string name="submitEvaluation">Enviar</string>
+    <string name="undefined">Indefinido</string>
+    <string name="carError">O carro inserido não foi encontrado</string>
 </resources>
