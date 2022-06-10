@@ -30,7 +30,7 @@
 
 
     <Button
-            android:id="@+id/btnHelpPageListSearchBoleia"
+        android:id="@+id/btnHelpPageListSearchBoleia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
@@ -38,6 +38,8 @@
         android:layout_above="@+id/bottom_navigation"
         android:layout_marginBottom="15dp"
         android:layout_marginLeft="310dp"/>
+
+
     <!--Nav Bar-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

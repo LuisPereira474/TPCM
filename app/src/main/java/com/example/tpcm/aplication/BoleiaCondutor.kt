@@ -11,6 +11,7 @@ import android.widget.TextView
 import com.example.tpcm.R
 import com.example.tpcm.database.Connection
 import com.google.firebase.firestore.QueryDocumentSnapshot
+import kotlinx.android.synthetic.main.activity_boleia.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -82,6 +83,7 @@ class BoleiaCondutor : AppCompatActivity() {
                 tvModeloCarro.text = boleia!!.data["car"].toString()
                 tvValorBoleia.text = boleia!!.data["price"].toString()
                 tvPontoEncontro.text = boleia!!.data["meeting"].toString()
+                valueLugaresDisponiveis.text = boleia!!.data["seats"].toString()
             }
         }
 

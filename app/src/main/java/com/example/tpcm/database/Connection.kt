@@ -593,4 +593,207 @@ object Connection {
         return result
     }
 
+    suspend fun addToWishList(idUser: String, idBoleia: String): Int {
+        var successFail = -1
+        val data = hashMapOf(
+            "idUser" to idUser,
+            "idBoleia" to idBoleia
+        )
+        db.collection("wishlist")
+            .whereEqualTo("idBoleia", idBoleia)
+            .whereEqualTo("idUser", idUser)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    if (task.result.isEmpty) {
+
+                        db.collection("wishlist")
+                            .add(data)
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    successFail = 0
+                                    Log.d("TAG", "Success.")
+                                } else {
+                                    Log.w(
+                                        "TAG",
+                                        "Error getting documents.",
+                                        task.exception
+                                    )
+                                    successFail = 1
+                                }
+                            }
+                    } else {
+                        successFail = 2
+                    }
+                } else {
+                    successFail = 3
+                    Log.w("TAG", "Error getting documents.", task.exception)
+                }
+            }
+
+        while (successFail == -1) {
+            delay(1)
+        }
+        return successFail
+    }
+
+
+    @DelicateCoroutinesApi
+    suspend fun getWishlist(idUser: String): HashMap<String, QueryDocumentSnapshot> {
+        val wishlist = HashMap<String, QueryDocumentSnapshot>()
+        var canContinue = false
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("wishlist")
+                    .whereEqualTo("idUser", idUser)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                GlobalScope.launch {
+                                    val boleia =
+                                        getDadosBoleia(document.data["idBoleia"].toString())
+                                    wishlist[(boleia!!.data["idCriador"] as String?).toString()] =
+                                        boleia
+                                    canContinue = true
+                                }
+                            }
+                            if (task.result.isEmpty) {
+                                canContinue = true
+                            }
+                        } else {
+                            canContinue = true
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                        }
+                    }
+            }
+        }
+
+        while (wishlist.isEmpty() && !canContinue) {
+            delay(1)
+        }
+
+        return wishlist
+    }
+
+    suspend fun removeWishList(idUser: String, idBoleia: String): Int {
+        var successFail = -1
+        db.collection("wishlist")
+            .whereEqualTo("idBoleia", idBoleia)
+            .whereEqualTo("idUser", idUser)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    if (!task.result.isEmpty) {
+                        for (document in task.result) {
+                            db.collection("wishlist").document(document.id).delete()
+                            successFail = 0
+                        }
+                    } else {
+                        successFail = 1
+                    }
+                } else {
+                    successFail = 2
+                    Log.w("TAG", "Error getting documents.", task.exception)
+                }
+            }
+
+        while (successFail == -1) {
+            delay(1)
+        }
+        return successFail
+    }
+
+    @DelicateCoroutinesApi
+    suspend fun evaluateRide(idUser: String, idBoleia: String, evaluation: Float) {
+        var ride: QueryDocumentSnapshot? = null
+        var data = hashMapOf(
+            "idBoleia" to idBoleia,
+            "idUser" to idUser,
+            "avaliacao" to evaluation
+        )
+
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("boleia_utilizador")
+                    .whereEqualTo("idUser", idUser)
+                    .whereEqualTo("idBoleia", idBoleia)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                ride = document
+                                db.collection("boleia_utilizador").document(ride!!.id)
+                                    .set(data, SetOptions.merge())
+                            }
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                        }
+                    }
+
+            }
+        }
+
+    }
+
+    @DelicateCoroutinesApi
+    suspend fun calculateRideEvaluation(idBoleia: String): Float {
+        var sum = 0.0F
+        var count = 0
+        var rideEvaluation = 0.0F
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("boleia_utilizador")
+                    .whereEqualTo("idBoleia", idBoleia)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                sum += document["avaliacao"].toString().toFloat()
+                                count++
+                            }
+
+
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                        }
+                    }
+            }
+        }
+        while (sum == 0.0F) {
+            delay(1)
+        }
+        rideEvaluation = sum / count
+        return rideEvaluation
+
+
+    }
+
+    @DelicateCoroutinesApi
+    suspend fun updateRideEvaluation(idBoleia: String, evaluation: Float) {
+
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("boleia")
+                    .whereEqualTo("idBoleia", idBoleia)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                db.collection("boleia").document(document!!.id)
+                                    .set(
+                                        hashMapOf("avaliacao" to evaluation),
+                                        SetOptions.merge()
+                                    )
+                            }
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                        }
+                    }
+            }
+        }
+
+    }
+
 }
+

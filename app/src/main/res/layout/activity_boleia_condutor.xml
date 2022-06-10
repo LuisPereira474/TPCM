@@ -99,66 +99,76 @@
                     android:text="@string/LabelLugaresDisponiveis" />
 
                 <TextView
-                    android:id="@+id/Lugar1"
+                    android:id="@+id/valueLugaresDisponiveis"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvValorBoleiaBoleiaCondutor"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="4dp"
+                    android:text="5 Lugares"
+                    android:textStyle="bold"
                     android:layout_toRightOf="@+id/tvLabelLugaresDisponiveisBoleiaCondutor"
-                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />
-                <TextView
-                    android:id="@+id/Lugar2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/Lugar1"
-                    android:layout_alignTop="@+id/Lugar1"
-                    android:layout_below="@+id/tvValorBoleiaBoleiaCondutor"
-                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />
+                    android:layout_alignTop="@+id/tvLabelLugaresDisponiveisBoleiaCondutor"
+                    android:layout_marginLeft="5dp"/>
 
-                <TextView
-                    android:id="@+id/Lugar3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/Lugar2"
-                    android:layout_marginLeft="20dp"
-                    android:layout_toRightOf="@+id/tvLabelLugaresDisponiveisBoleiaCondutor"
-                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />
+<!--                <TextView-->
+<!--                    android:id="@+id/Lugar1"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@+id/tvValorBoleiaBoleiaCondutor"-->
+<!--                    android:layout_marginLeft="30dp"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:layout_toRightOf="@+id/tvLabelLugaresDisponiveisBoleiaCondutor"-->
+<!--                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />-->
+<!--                <TextView-->
+<!--                    android:id="@+id/Lugar2"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_toRightOf="@+id/Lugar1"-->
+<!--                    android:layout_alignTop="@+id/Lugar1"-->
+<!--                    android:layout_below="@+id/tvValorBoleiaBoleiaCondutor"-->
+<!--                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />-->
 
-                <TextView
-                    android:id="@+id/Lugar4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvValorBoleiaBoleiaCondutor"
-                    android:layout_alignTop="@+id/Lugar3"
-                    android:layout_toRightOf="@+id/Lugar3"
-                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />
+<!--                <TextView-->
+<!--                    android:id="@+id/Lugar3"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@+id/Lugar2"-->
+<!--                    android:layout_marginLeft="20dp"-->
+<!--                    android:layout_toRightOf="@+id/tvLabelLugaresDisponiveisBoleiaCondutor"-->
+<!--                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />-->
 
-                <TextView
-                    android:id="@+id/Lugar5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/Lugar4"
-                    android:layout_alignTop="@+id/Lugar3"
-                    android:layout_below="@+id/tvValorBoleiaBoleiaCondutor"
-                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />
-                <TextView
-                    android:id="@+id/Lugar6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/Lugar3"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_toRightOf="@+id/tvLabelLugaresDisponiveisBoleiaCondutor"
-                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />
-                <TextView
-                    android:id="@+id/Lugar7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/Lugar6"
-                    android:layout_alignTop="@+id/Lugar6"
-                    android:layout_below="@+id/tvValorBoleiaBoleiaCondutor"
-                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />
+<!--                <TextView-->
+<!--                    android:id="@+id/Lugar4"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@+id/tvValorBoleiaBoleiaCondutor"-->
+<!--                    android:layout_alignTop="@+id/Lugar3"-->
+<!--                    android:layout_toRightOf="@+id/Lugar3"-->
+<!--                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/Lugar5"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_toRightOf="@+id/Lugar4"-->
+<!--                    android:layout_alignTop="@+id/Lugar3"-->
+<!--                    android:layout_below="@+id/tvValorBoleiaBoleiaCondutor"-->
+<!--                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />-->
+<!--                <TextView-->
+<!--                    android:id="@+id/Lugar6"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@+id/Lugar3"-->
+<!--                    android:layout_marginLeft="30dp"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:layout_toRightOf="@+id/tvLabelLugaresDisponiveisBoleiaCondutor"-->
+<!--                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />-->
+<!--                <TextView-->
+<!--                    android:id="@+id/Lugar7"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_toRightOf="@+id/Lugar6"-->
+<!--                    android:layout_alignTop="@+id/Lugar6"-->
+<!--                    android:layout_below="@+id/tvValorBoleiaBoleiaCondutor"-->
+<!--                    android:drawableEnd="@drawable/ic_baseline_event_seat_24" />-->
 
                 <TextView
                     android:id="@+id/tvLabelPontoEncontroBoleiaCondutor"
