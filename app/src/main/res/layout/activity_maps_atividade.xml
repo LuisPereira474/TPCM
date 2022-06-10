@@ -23,6 +23,7 @@
             android:textSize="20sp"
             android:hint="@string/departure"
             app:startIconDrawable="@drawable/ic_baseline_place_24"
+            app:startIconTint="#ea4335"
             app:endIconMode="clear_text"
             app:boxBackgroundColor="@color/white"
             >
@@ -63,8 +64,9 @@
             android:paddingHorizontal="12dp"
             android:textSize="20sp"
             android:hint="@string/destination"
-            app:startIconDrawable="@drawable/ic_baseline_signpost_24"
+            app:startIconDrawable="@drawable/ic_baseline_place_destino_24"
             app:endIconMode="clear_text"
+            app:startIconTint="#3590ea"
             app:boxBackgroundColor="@color/white"
             android:layout_below="@+id/ccLabelPartida"
             android:layout_marginBottom="3dp"

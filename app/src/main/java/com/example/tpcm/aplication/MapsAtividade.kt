@@ -1,6 +1,10 @@
 package com.example.tpcm.aplication
 
+import android.app.PendingIntent.getActivity
+import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
@@ -11,6 +15,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.tpcm.R
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
@@ -20,9 +25,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import java.io.IOException
 
 
@@ -192,7 +195,8 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
 
                     var morada = getAddress(addressDestino.latitude, addressDestino.longitude)
 
-                    markerDestino = mMap!!.addMarker(MarkerOptions().position(latLng).title(morada))
+                    markerDestino = mMap!!.addMarker(MarkerOptions().position(latLng).title(morada)
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)))
 
                     mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12f))
                 }else{
@@ -206,6 +210,23 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    private fun bitmapDescriptorFromVector(context: Context, vectorResId: Int): BitmapDescriptor? {
+        val vectorDrawable = ContextCompat.getDrawable(context, vectorResId)
+        vectorDrawable!!.setBounds(
+            0,
+            0,
+            vectorDrawable.intrinsicWidth,
+            vectorDrawable.intrinsicHeight
+        )
+        val bitmap = Bitmap.createBitmap(
+            vectorDrawable.intrinsicWidth,
+            vectorDrawable.intrinsicHeight,
+            Bitmap.Config.ARGB_8888
+        )
+        val canvas = Canvas(bitmap)
+        vectorDrawable.draw(canvas)
+        return BitmapDescriptorFactory.fromBitmap(bitmap)
+    }
 
     override fun onPause() {
         super.onPause()
