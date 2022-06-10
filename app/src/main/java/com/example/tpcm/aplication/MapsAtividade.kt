@@ -1,21 +1,18 @@
 package com.example.tpcm.aplication
 
-import android.app.PendingIntent.getActivity
-import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.Canvas
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.example.tpcm.R
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
@@ -25,9 +22,15 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.*
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
 import java.io.IOException
+import kotlin.math.log
 
+const val PARAM_FROM_MAPAS = "from"
+const val PARAM_TO_MAPAS = "to"
 
 class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
 
@@ -43,6 +46,9 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
 
     private var markerDestino: Marker? = null
     private var markerPartida: Marker? = null
+
+    private var moradaPartida = ""
+    private var moradaChegada = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,6 +67,34 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
             override fun onLocationResult(p0: LocationResult) {
             }
         }
+
+        val edittextPartida = findViewById<View>(R.id.ccInputPartida) as EditText
+        edittextPartida.setOnKeyListener(object : View.OnKeyListener {
+            override fun onKey(v: View?, keyCode: Int, event: KeyEvent): Boolean {
+                // If the event is a key-down event on the "enter" button
+                if (event.action == KeyEvent.ACTION_DOWN &&
+                    keyCode == KeyEvent.KEYCODE_ENTER
+                ) {
+                    searchPartida()
+                    return true
+                }
+                return false
+            }
+        })
+
+        val edittextChegada = findViewById<View>(R.id.ccInputChegada) as EditText
+        edittextChegada.setOnKeyListener(object : View.OnKeyListener {
+            override fun onKey(v: View?, keyCode: Int, event: KeyEvent): Boolean {
+                // If the event is a key-down event on the "enter" button
+                if (event.action == KeyEvent.ACTION_DOWN &&
+                    keyCode == KeyEvent.KEYCODE_ENTER
+                ) {
+                    searchChegada()
+                    return true
+                }
+                return false
+            }
+        })
 
         createLocationRequest()
 
@@ -121,11 +155,12 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
     private fun getAddress(lat: Double, lng: Double): String {
         val geocoder = Geocoder(this)
         val list = geocoder.getFromLocation(lat, lng, 1)
-        return list[0].getAddressLine(0)
+        val result = list[0].getAddressLine(0)
+        return result
     }
 
 
-    fun searchPartida(view: View) {
+    fun searchPartida() {
 
         val textInputLayout = findViewById<EditText>(R.id.ccInputPartida)
 
@@ -133,19 +168,27 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
         val destino = ""
         /*searchLocation(partida)*/
         if (partida == null || partida == "") {
-            Toast.makeText(applicationContext, getString(R.string.locationError), Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                applicationContext,
+                getString(R.string.locationError),
+                Toast.LENGTH_SHORT
+            ).show()
         } else {
             searchLocation(partida, destino)
 
         }
     }
 
-    fun searchChegada(view: View) {
+    fun searchChegada() {
         val textInputLayout = findViewById<EditText>(R.id.ccInputChegada)
         val destino = textInputLayout.text.toString()
         val partida = ""
         if (destino == null || destino == "") {
-            Toast.makeText(applicationContext, getString(R.string.locationError), Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                applicationContext,
+                getString(R.string.locationError),
+                Toast.LENGTH_SHORT
+            ).show()
         } else {
             searchLocation(partida, destino)
         }
@@ -154,8 +197,8 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
     fun searchLocation(partida: String, destino: String) {
 
         if (destino == "") {
-            var location: String = partida
-            var partidaList: List<Address>?
+            val location: String = partida
+            val partidaList: List<Address>?
 
             val geoCoder = Geocoder(this)
             try {
@@ -166,18 +209,21 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
                     if (markerPartida != null) {
                         markerPartida?.remove()
                     }
-                    var morada = getAddress(addressPartida.latitude, addressPartida.longitude)
+                    val morada = getAddress(addressPartida.latitude, addressPartida.longitude)
+                    moradaPartida = morada + "-" + addressPartida.featureName
                     markerPartida = mMap!!.addMarker(MarkerOptions().position(latLng).title(morada))
 
                     mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12f))
-                }else{
-                    Toast.makeText(applicationContext, getString(R.string.locationError), Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(
+                        applicationContext,
+                        getString(R.string.locationError),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             } catch (e: IOException) {
                 e.printStackTrace()
             }
-
-
         } else if (partida == "") {
             val location: String = destino
             val destinoList: List<Address>?
@@ -192,15 +238,20 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
                     if (markerDestino != null) {
                         markerDestino?.remove()
                     }
-
-                    var morada = getAddress(addressDestino.latitude, addressDestino.longitude)
-
-                    markerDestino = mMap!!.addMarker(MarkerOptions().position(latLng).title(morada)
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)))
+                    val morada = getAddress(addressDestino.latitude, addressDestino.longitude)
+                    moradaChegada = morada + "-" + addressDestino.featureName
+                    markerDestino = mMap!!.addMarker(
+                        MarkerOptions().position(latLng).title(morada)
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+                    )
 
                     mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12f))
-                }else{
-                    Toast.makeText(applicationContext, getString(R.string.locationError), Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(
+                        applicationContext,
+                        getString(R.string.locationError),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             } catch (e: IOException) {
                 e.printStackTrace()
@@ -209,24 +260,25 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
 
         }
     }
-
-    private fun bitmapDescriptorFromVector(context: Context, vectorResId: Int): BitmapDescriptor? {
-        val vectorDrawable = ContextCompat.getDrawable(context, vectorResId)
-        vectorDrawable!!.setBounds(
-            0,
-            0,
-            vectorDrawable.intrinsicWidth,
-            vectorDrawable.intrinsicHeight
-        )
-        val bitmap = Bitmap.createBitmap(
-            vectorDrawable.intrinsicWidth,
-            vectorDrawable.intrinsicHeight,
-            Bitmap.Config.ARGB_8888
-        )
-        val canvas = Canvas(bitmap)
-        vectorDrawable.draw(canvas)
-        return BitmapDescriptorFactory.fromBitmap(bitmap)
-    }
+//FUNÇAO PARA MUDAR ICON DO MARKER
+//
+//    private fun bitmapDescriptorFromVector(context: Context, vectorResId: Int): BitmapDescriptor? {
+//        val vectorDrawable = ContextCompat.getDrawable(context, vectorResId)
+//        vectorDrawable!!.setBounds(
+//            0,
+//            0,
+//            vectorDrawable.intrinsicWidth,
+//            vectorDrawable.intrinsicHeight
+//        )
+//        val bitmap = Bitmap.createBitmap(
+//            vectorDrawable.intrinsicWidth,
+//            vectorDrawable.intrinsicHeight,
+//            Bitmap.Config.ARGB_8888
+//        )
+//        val canvas = Canvas(bitmap)
+//        vectorDrawable.draw(canvas)
+//        return BitmapDescriptorFactory.fromBitmap(bitmap)
+//    }
 
     override fun onPause() {
         super.onPause()
@@ -240,6 +292,15 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
         Log.d("**** TPCM", "onResume - startLocationUpdates")
     }
 
+    fun sendToCreateRide(view: View) {
+        if (moradaPartida.isNotEmpty() && moradaChegada.isNotEmpty()) {
+            val intent = Intent(this@MapsAtividade, CriarBoleia::class.java).apply {
+                putExtra(PARAM_FROM_MAPAS, moradaPartida)
+                putExtra(PARAM_TO_MAPAS, moradaChegada)
+            }
+            startActivity(intent)
+        }
+    }
 
 
 }

@@ -46,18 +46,6 @@
                 android:inputType="text"
                 android:padding="10dp" />
 
-            <EditText
-                android:id="@+id/meetingCriarBoleia"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/toCriarBoleia"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="30dp"
-                android:hint="@string/meetingPoint"
-                android:inputType="text"
-                android:padding="10dp"/>
 
             <DatePicker
                 android:id="@+id/dateCriarBoleia"
@@ -73,7 +61,7 @@
                 android:id="@+id/carCriarBoleia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/meetingCriarBoleia"
+                android:layout_below="@+id/toCriarBoleia"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="30dp"

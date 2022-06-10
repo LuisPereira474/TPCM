@@ -92,9 +92,11 @@ class HistoricoUser : AppCompatActivity() {
                 for (doc in document) {
                     val date =
                         SimpleDateFormat("dd-MM-yyyy").parse(doc.value.data["date"] as String)
+                    val from_localidade = doc.value.data["from"].toString().split("-")[1]
+                    val to_localidade = doc.value.data["to"].toString().split("-")[1]
                     myList.add(
                         Historico(
-                            "${doc.value.data["from"]}-${doc.value.data["to"]}",
+                            "${from_localidade} - ${to_localidade}",
                             "${doc.value.data["date"]}",
                             date < Calendar.getInstance().time,
                             "${doc.value.data["idBoleia"]}"
@@ -124,7 +126,7 @@ class HistoricoUser : AppCompatActivity() {
     }
 
     fun addRide(view: View) {
-        val intent = Intent(this@HistoricoUser, CriarBoleia::class.java)
+        val intent = Intent(this@HistoricoUser, MapsAtividade::class.java)
         startActivity(intent)
     }
 

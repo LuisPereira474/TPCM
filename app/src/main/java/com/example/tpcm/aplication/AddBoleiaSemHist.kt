@@ -60,7 +60,7 @@ class AddBoleiaSemHist : AppCompatActivity() {
     }
 
     fun addRide(view: View) {
-        val intent = Intent(this@AddBoleiaSemHist, CriarBoleia::class.java)
+        val intent = Intent(this@AddBoleiaSemHist, MapsAtividade::class.java)
         startActivity(intent)
     }
 }

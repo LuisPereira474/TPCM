@@ -57,8 +57,4 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun goMaps(view: View) {
-        val intent = Intent(this@MainActivity, MapsAtividade::class.java)
-        startActivity(intent)
-    }
 }

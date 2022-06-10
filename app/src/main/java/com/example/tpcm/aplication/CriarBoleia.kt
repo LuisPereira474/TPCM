@@ -25,6 +25,17 @@ class CriarBoleia : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_criar_boleia)
+
+        val from_mapas = intent.getStringExtra(PARAM_FROM_MAPAS)
+        val to_mapas = intent.getStringExtra(PARAM_TO_MAPAS)
+
+        val from = findViewById<EditText>(R.id.fromCriarBoleia)
+        from.isEnabled = false
+        from.setText(from_mapas)
+        val to = findViewById<EditText>(R.id.toCriarBoleia)
+        to.isEnabled = false
+        to.setText(to_mapas)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -72,10 +83,6 @@ class CriarBoleia : AppCompatActivity() {
 
         val sdf = SimpleDateFormat("dd-MM-yyyy")
         val date: String = sdf.format(calendar.time)
-
-        val from = findViewById<EditText>(R.id.fromCriarBoleia).text.toString()
-        val to = findViewById<EditText>(R.id.toCriarBoleia).text.toString()
-        val meeting = findViewById<EditText>(R.id.meetingCriarBoleia).text.toString()
         val car = findViewById<EditText>(R.id.carCriarBoleia).text.toString()
         val price = findViewById<EditText>(R.id.priceCriarBoleia).text.toString()
         val seatsEditText = findViewById<EditText>(R.id.seatsCriarBoleia)
@@ -84,8 +91,13 @@ class CriarBoleia : AppCompatActivity() {
         val shared = getSharedPreferences("idUser", MODE_PRIVATE)
         val idUser = shared.getString("idUser", "").toString()
 
+        val from_mapas = intent.getStringExtra(PARAM_FROM_MAPAS)
+        val to_mapas = intent.getStringExtra(PARAM_TO_MAPAS)
+
+
         GlobalScope.launch {
-            if (Connection.createRide(from,to,meeting,car,date,price,seats,obs,idUser) == 1) {
+            if (Connection.createRide(from_mapas.toString(),
+                    to_mapas.toString(),car,date,price,seats,obs,idUser) == 1) {
                 runOnUiThread {
                     createDialog(resources.getString(R.string.error))
                 }

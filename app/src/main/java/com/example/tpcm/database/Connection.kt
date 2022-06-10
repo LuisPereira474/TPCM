@@ -163,7 +163,6 @@ object Connection {
     suspend fun createRide(
         from: String,
         to: String,
-        meeting: String,
         car: String,
         date: String,
         price: String,
@@ -172,17 +171,21 @@ object Connection {
         idUser: String
     ): Int {
         var result = 0
+        val from_localidade = from.split("-")[1]
+        val to_localidade = to.split("-")[1]
         val boleia = hashMapOf(
+            "avaliacao" to 3,
             "idCriador" to idUser,
             "idBoleia" to UUID.randomUUID().toString(),
             "from" to from,
             "to" to to,
-            "meeting" to meeting,
             "car" to car,
             "date" to date,
             "price" to price,
             "seats" to seats,
-            "obs" to obs
+            "obs" to obs,
+            "from_localidade" to from_localidade,
+            "to_localidade" to to_localidade
         )
         db.collection("condutor")
             .whereEqualTo("idUser", idUser)
@@ -269,8 +272,8 @@ object Connection {
         GlobalScope.launch {
             withContext(Dispatchers.Default) {
                 db.collection("boleia")
-                    .whereEqualTo("from", from)
-                    .whereEqualTo("to", to)
+                    .whereEqualTo("from_localidade", from)
+                    .whereEqualTo("to_localidade", to)
                     .whereEqualTo("date", date)
                     .get()
                     .addOnCompleteListener { task ->
@@ -403,7 +406,8 @@ object Connection {
         if (seatsAvailabel > 0) {
             val data = hashMapOf(
                 "idUser" to idUser,
-                "idBoleia" to idBoleia
+                "idBoleia" to idBoleia,
+                "avaliacao" to 3
             )
 
             GlobalScope.launch {
@@ -735,7 +739,7 @@ object Connection {
             "idUser" to idUser,
             "numCC" to numCC,
             "numCarta" to numCarta,
-            "avaliacao" to 0
+            "avaliacao" to 3
         )
 
 
@@ -867,7 +871,7 @@ object Connection {
 
     @DelicateCoroutinesApi
     suspend fun updateRideEvaluation(idBoleia: String, evaluation: Float) {
-
+        var canGo = false
         GlobalScope.launch {
             withContext(Dispatchers.Default) {
                 db.collection("boleia")
@@ -881,14 +885,18 @@ object Connection {
                                         hashMapOf("avaliacao" to evaluation),
                                         SetOptions.merge()
                                     )
+                                canGo = true
                             }
                         } else {
                             Log.w("TAG", "Error getting documents.", task.exception)
+                            canGo = true
                         }
                     }
             }
         }
-
+        while (canGo) {
+            delay(1)
+        }
     }
 
 }
