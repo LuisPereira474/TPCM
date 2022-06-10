@@ -185,8 +185,7 @@ object Connection {
             "date" to date,
             "price" to price,
             "seats" to seats,
-            "obs" to obs
-            "obs" to seats,
+            "obs" to obs,
             "avaliacao" to 3
         )
         db.collection("boleia")
@@ -384,7 +383,8 @@ object Connection {
         if (seatsAvailabel > 0) {
             val data = hashMapOf(
                 "idUser" to idUser,
-                "idBoleia" to idBoleia
+                "idBoleia" to idBoleia,
+                "avaliacao" to 3
             )
 
             GlobalScope.launch {
