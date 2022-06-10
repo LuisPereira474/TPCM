@@ -526,7 +526,6 @@ object Connection {
                         if (task.isSuccessful) {
                             for (document in task.result!!) {
                                 db.collection("boleia")
-                                    .whereEqualTo("idCriador", idUser)
                                     .whereEqualTo("idBoleia", document.data["idBoleia"])
                                     .get()
                                     .addOnCompleteListener { task ->
