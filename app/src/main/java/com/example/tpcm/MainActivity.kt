@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.tpcm.aplication.AddBoleiaSemHist
 import com.example.tpcm.aplication.ScanQrCode
 import com.example.tpcm.aplication.SearchBoleia
+import com.example.tpcm.aplication.MapsAtividade
 import com.example.tpcm.aplication.SignUp
 import com.example.tpcm.database.Connection
 import kotlinx.coroutines.GlobalScope
@@ -55,6 +56,4 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this@MainActivity, SignUp::class.java)
         startActivity(intent)
     }
-
-
 }

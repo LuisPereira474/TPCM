@@ -33,7 +33,16 @@ class CriarBoleia : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_criar_boleia)
-        getTypeOfFuel("toyota", "corolla", "2000")
+
+        val from_mapas = intent.getStringExtra(PARAM_FROM_MAPAS)
+        val to_mapas = intent.getStringExtra(PARAM_TO_MAPAS)
+
+        val from = findViewById<EditText>(R.id.fromCriarBoleia)
+        from.isEnabled = false
+        from.setText(from_mapas)
+        val to = findViewById<EditText>(R.id.toCriarBoleia)
+        to.isEnabled = false
+        to.setText(to_mapas)
 
     }
 
@@ -82,6 +91,7 @@ class CriarBoleia : AppCompatActivity() {
 
         val sdf = SimpleDateFormat("dd-MM-yyyy")
         val date: String = sdf.format(calendar.time)
+        val car = findViewById<EditText>(R.id.carCriarBoleia).text.toString()
 
         val from = findViewById<EditText>(R.id.fromCriarBoleia).text.toString()
         val to = findViewById<EditText>(R.id.toCriarBoleia).text.toString()
@@ -96,9 +106,15 @@ class CriarBoleia : AppCompatActivity() {
         val shared = getSharedPreferences("idUser", MODE_PRIVATE)
         val idUser = shared.getString("idUser", "").toString()
 
+        val from_mapas = intent.getStringExtra(PARAM_FROM_MAPAS)
+        val to_mapas = intent.getStringExtra(PARAM_TO_MAPAS)
+
+
         //val fuelType = getTypeOfFuel(brandCar, modelCar, yearCar)
 
         GlobalScope.launch {
+            if (Connection.createRide(from_mapas.toString(),
+                    to_mapas.toString(),car,date,price,seats,obs,idUser) == 1) {
             if (Connection.createRide(from,to,meeting, Car(brandCar,modelCar, yearCar,"null"),date,price,seats,obs,idUser) == 1) {
                 runOnUiThread {
                     createDialog(resources.getString(R.string.error))
@@ -126,7 +142,7 @@ class CriarBoleia : AppCompatActivity() {
 
         dialog.findViewById<Button>(R.id.popup_ok_btt).setOnClickListener {
             dialog.dismiss()
-            val intent = Intent(this@CriarBoleia, AddBoleiaSemHist::class.java)
+            val intent = Intent(this@CriarBoleia, HistoricoUser::class.java)
             startActivity(intent)
         }
 

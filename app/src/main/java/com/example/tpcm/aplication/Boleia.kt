@@ -53,7 +53,8 @@ class Boleia : AppCompatActivity() {
                 true
             }
             R.id.nav_rides -> {
-
+                val intent = Intent(this@Boleia, HistBoleiasAceites::class.java)
+                startActivity(intent)
                 true
             }
             R.id.nav_services -> {
@@ -89,14 +90,28 @@ class Boleia : AppCompatActivity() {
         GlobalScope.launch {
             boleia = Connection.getDadosBoleia(idBoleia)
             profile = Connection.getProfileUser(idUser)
+
+            Connection.updateRideEvaluation(idBoleia, Connection.calculateRideEvaluation(idBoleia))
+
+
             runOnUiThread {
-                tvTituloViagem.text = boleia!!.data["from"].toString() + "-" + boleia!!.data["to"].toString()
+                val from_localidade = boleia!!.data["from"].toString().split("-")[1]
+                val to_localidade = boleia!!.data["to"].toString().split("-")[1]
+                tvTituloViagem.text = "$from_localidade - $to_localidade"
                 tvNomeCondutor.text = profile!!.data["nome"].toString()
                 tvDataBoleia.text = boleia!!.data["date"].toString()
                 tvModeloCarro.text = boleia!!.data["carBrand"].toString() + " " + boleia!!.data["carModel"].toString() + " " + boleia!!.data["carYear"].toString() + " " + boleia!!.data["carFuelType"].toString()
                 tvValorBoleia.text = boleia!!.data["price"].toString()
-                tvPontoEncontro.text = boleia!!.data["meeting"].toString()
+                tvPontoEncontro.text = boleia!!.data["from"].toString()
                 valueLugaresDisponiveis.text = boleia!!.data["seats"].toString()
+
+                var rating = boleia!!.data["avaliacao"].toString().toFloat()
+
+                if (rating >= 0 && rating <= 5) {
+                    rbAvaliacao.rating = rating
+                } else {
+                    rbAvaliacao.rating = 3.0F
+                }
 
             }
         }
@@ -112,16 +127,15 @@ class Boleia : AppCompatActivity() {
     }
 
 
-
-    fun evaluateRide(view: View){
+    fun evaluateRide(view: View) {
         val shared = getSharedPreferences("idUser", MODE_PRIVATE)
         val idUser = shared.getString("idUser", "").toString()
         val idBoleia = intent.getStringExtra(PARAM_ID)
         val ratingBar = findViewById<RatingBar>(R.id.RB_RideEvaluation)
         GlobalScope.launch {
             if (idBoleia != null) {
-                Connection.evaluateRide(idUser, idBoleia,ratingBar.rating)
-            }else{
+                Connection.evaluateRide(idUser, idBoleia, ratingBar.rating)
+            } else {
                 Log.d("TAGG", "Something went wrong")
             }
         }
