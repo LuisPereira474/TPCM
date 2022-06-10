@@ -18,19 +18,22 @@ import com.example.tpcm.database.Connection
 import kotlinx.android.synthetic.main.dialog_box.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 
-val KEY = "078c45d56bmsh6f45aa6f7fef0f4p16e173jsndf11a2342d51"
-val HOST = "cars-by-api-ninjas.p.rapidapi.com"
+const val KEY = "078c45d56bmsh6f45aa6f7fef0f4p16e173jsndf11a2342d51"
+const val HOST = "cars-by-api-ninjas.p.rapidapi.com"
 
 class CriarBoleia : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_criar_boleia)
+        getTypeOfFuel("toyota", "corolla", "2000")
 
     }
 
@@ -130,21 +133,40 @@ class CriarBoleia : AppCompatActivity() {
     }
 
     private fun getTypeOfFuel(make: String, model: String, year: String):String{
-        val request = ServiceBuilderCarAPI.buildService(EndPointsCarAPI::class.java)
-        val call = request.getCarsDetails(HOST, KEY ,model, make, year)
-        var typeOfFuel: String = ""
+        Log.d("APII", "aqui")
+        //val request = ServiceBuilderCarAPI.buildService(EndPointsCarAPI::class.java)
 
+        //-------------------------------------------------------------------------------------
+        val client = OkHttpClient()
+
+        val request = Request.Builder()
+            .url("https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=corolla")
+            .get()
+            .addHeader("X-RapidAPI-Key", "078c45d56bmsh6f45aa6f7fef0f4p16e173jsndf11a2342d51")
+            .addHeader("X-RapidAPI-Host", "cars-by-api-ninjas.p.rapidapi.com")
+            .build()
+
+        val response = client.newCall(request).execute()
+        Log.d("APII", "aqui")
+        //-------------------------------------------------------------------------------------
+        Log.d("TAGG", "$response")
+        /*val call = request.getCarsDetails(HOST, KEY ,model, make, year)
+        var typeOfFuel: String = ""
+        Log.d("APII", "aqui")
         call.enqueue(object : Callback<List<Car>> {
             override fun onResponse(call: Call<List<Car>>, response: Response<List<Car>>) {
                 if (response.isSuccessful) {
                     typeOfFuel = response.body()?.get(0)?.fuel_type.toString()
+                    Log.d("APII", " " + response.body())
                 }
             }
 
             override fun onFailure(call: Call<List<Car>>, t: Throwable) {
                 Log.w("TAG", t)
             }
-        })
-        return typeOfFuel
+        })*/
+
+
+        return ""
     }
 }
