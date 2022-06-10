@@ -182,7 +182,8 @@ object Connection {
             "date" to date,
             "price" to price,
             "seats" to seats,
-            "obs" to obs
+            "obs" to seats,
+            "avaliacao" to 3
         )
         db.collection("boleia")
             .add(boleia)
