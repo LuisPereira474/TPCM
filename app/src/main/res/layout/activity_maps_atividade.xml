@@ -130,7 +130,7 @@
         android:src="@drawable/ic_seta"
         app:tint="#FFFFFF"
         app:maxImageSize="35dp"
-        app:fabCustomSize="65dp"
+        app:fabCustomSize="60dp"
         />
 
 
