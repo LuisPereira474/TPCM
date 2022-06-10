@@ -50,10 +50,21 @@
                     android:id="@+id/numberPointsFist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10 Pontos"
+                    android:text="20"
                     android:textStyle="bold"
                     android:layout_marginTop="50dp"
                     android:layout_marginLeft="20dp"
+                    />
+
+                <TextView
+                    android:id="@+id/textPointsFist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/points"
+                    android:textStyle="bold"
+                    android:layout_toRightOf="@id/numberPointsFist"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginLeft="7dp"
                     />
 
                 <TextView
@@ -62,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_baseline_check_box_24"
                     android:layout_alignTop="@+id/numberPointsFist"
-                    android:layout_toRightOf="@+id/numberPointsFist"
+                    android:layout_toRightOf="@+id/textPointsFist"
                     android:layout_marginLeft="17dp"
                     />
 
@@ -70,16 +81,16 @@
                     android:id="@+id/descriptionPointsFirst"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="5 euros em combustivel"
+                    android:text="@string/first_award"
                     android:layout_below="@id/numberPointsFist"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"/>
 
 
                 <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/galp"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:src="@drawable/valeGalp"
                     android:layout_gravity="center"
                     android:layout_alignBottom="@+id/descriptionPointsFirst"
                     android:layout_marginLeft="200dp"
@@ -100,11 +111,22 @@
                     android:id="@+id/numberPointsSecond"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10 Pontos"
+                    android:text="50"
                     android:textStyle="bold"
                     android:layout_marginTop="30dp"
                     android:layout_marginLeft="20dp"
                     android:layout_below="@+id/firstView"
+                    />
+
+                <TextView
+                    android:id="@+id/textPointsSecond"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/points"
+                    android:textStyle="bold"
+                    android:layout_toRightOf="@id/numberPointsSecond"
+                    android:layout_alignTop="@+id/numberPointsSecond"
+                    android:layout_marginLeft="7dp"
                     />
 
                 <TextView
@@ -113,7 +135,7 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_baseline_check_box_24"
                     android:layout_alignTop="@+id/numberPointsSecond"
-                    android:layout_toRightOf="@+id/numberPointsSecond"
+                    android:layout_toRightOf="@+id/textPointsSecond"
                     android:layout_marginLeft="17dp"
                     />
 
@@ -121,16 +143,16 @@
                     android:id="@+id/descriptionPointsSecond"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="5 euros em combustivel"
+                    android:text="@string/second_award"
                     android:layout_below="@id/numberPointsSecond"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"/>
 
 
                 <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/galp"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:src="@drawable/continente"
                     android:layout_gravity="center"
                     android:layout_alignBottom="@+id/descriptionPointsSecond"
                     android:layout_marginLeft="200dp"
@@ -150,11 +172,22 @@
                     android:id="@+id/numberPointsThird"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10 Pontos"
+                    android:text="100"
                     android:textStyle="bold"
                     android:layout_marginTop="30dp"
                     android:layout_marginLeft="20dp"
                     android:layout_below="@+id/secondView"
+                    />
+
+                <TextView
+                    android:id="@+id/textPointsThird"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/points"
+                    android:textStyle="bold"
+                    android:layout_toRightOf="@id/numberPointsThird"
+                    android:layout_alignTop="@+id/numberPointsThird"
+                    android:layout_marginLeft="7dp"
                     />
 
                 <TextView
@@ -163,7 +196,7 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_baseline_check_box_24"
                     android:layout_alignTop="@+id/numberPointsThird"
-                    android:layout_toRightOf="@+id/numberPointsThird"
+                    android:layout_toRightOf="@+id/textPointsThird"
                     android:layout_marginLeft="17dp"
                     />
 
@@ -171,7 +204,7 @@
                     android:id="@+id/descriptionPointsThird"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="5 euros em combustivel"
+                    android:text="@string/third_award"
                     android:layout_below="@id/numberPointsThird"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"/>
@@ -180,7 +213,7 @@
                 <ImageView
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:src="@drawable/galp"
+                    android:src="@drawable/jantar"
                     android:layout_gravity="center"
                     android:layout_alignBottom="@+id/descriptionPointsThird"
                     android:layout_marginLeft="200dp"
@@ -200,7 +233,7 @@
                     android:id="@+id/numberPointsFour"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10 Pontos"
+                    android:text="300"
                     android:textStyle="bold"
                     android:layout_marginTop="30dp"
                     android:layout_marginLeft="20dp"
@@ -208,12 +241,24 @@
                     />
 
                 <TextView
+                    android:id="@+id/textPointsFour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/points"
+                    android:textStyle="bold"
+                    android:layout_toRightOf="@id/numberPointsFour"
+                    android:layout_alignTop="@+id/numberPointsFour"
+                    android:layout_marginLeft="7dp"
+                    />
+
+
+                <TextView
                     android:id="@+id/checkFour"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_baseline_check_box_24"
                     android:layout_alignTop="@+id/numberPointsFour"
-                    android:layout_toRightOf="@+id/numberPointsFour"
+                    android:layout_toRightOf="@+id/textPointsFour"
                     android:layout_marginLeft="17dp"
                     />
 
@@ -221,7 +266,7 @@
                     android:id="@+id/descriptionPointsFour"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="5 euros em combustivel"
+                    android:text="@string/four_award"
                     android:layout_below="@id/numberPointsFour"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"/>
@@ -230,7 +275,7 @@
                 <ImageView
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:src="@drawable/galp"
+                    android:src="@drawable/trotinete"
                     android:layout_gravity="center"
                     android:layout_alignBottom="@+id/descriptionPointsFour"
                     android:layout_marginLeft="200dp"

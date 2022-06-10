@@ -74,4 +74,8 @@
     <string name="emptyWishlist">A ista de desejos está vazia.</string>
     <string name="code">Código</string>
     <string name="seatsFinish">Esta boleia já não tem lugares disponíveis!</string>
+    <string name="first_award">Vale oferta até 6€ Galp</string>
+    <string name="second_award">10€ em compras Continente</string>
+    <string name="third_award">Oferta viagem para duas pessoas</string>
+    <string name="four_award">" Oferta trotinete elétrica "</string>
 </resources>

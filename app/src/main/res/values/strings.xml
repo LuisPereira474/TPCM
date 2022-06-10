@@ -74,4 +74,8 @@
     <string name="emptyWishlist">Wishlist is empty.</string>
     <string name="code">Code</string>
     <string name="seatsFinish">This ride don\'t have any seats available!</string>
+    <string name="first_award">Voucher up to 6€ Galp</string>
+    <string name="second_award">10€ in purchases Continente</string>
+    <string name="third_award">Travel offer for two</string>
+    <string name="four_award">Electric scooter offer</string>
 </resources>
