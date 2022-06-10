@@ -186,7 +186,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvLabelLugaresDisponiveisMoreInfo"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginRight="18dp"
+                    android:layout_marginRight="20dp"
                     android:layout_marginTop="40dp"
                     android:layout_toRightOf="@+id/tvLabelPontoEncontroMoreInfo"
                     android:text="Vila do Conde, Porto, 23, 4452-233" />

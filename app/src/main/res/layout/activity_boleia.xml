@@ -13,10 +13,10 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/CardInfoBoleia"
             android:layout_width="match_parent"
-            android:layout_height="430dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginTop="75dp"
+            android:layout_height="470dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="65dp"
             android:backgroundTint="@color/cinzento"
             app:cornerRadius="50dp">
             <RelativeLayout
@@ -30,14 +30,14 @@
                     android:layout_marginTop="20dp"
                     android:fontFamily="sans-serif-black"
                     android:text="Porto - Viana"
-                    android:textSize="18sp" />
+                    android:textSize="20sp" />
 
                 <ImageView
                     android:layout_width="75dp"
                     android:layout_height="75dp"
                     android:src="@drawable/ic_person"
                     android:layout_toRightOf="@id/tvTituloViagem"
-                    android:layout_marginLeft="45dp"
+                    android:layout_marginLeft="65dp"
                     android:layout_alignTop="@id/tvTituloViagem"
                     />
 
@@ -122,9 +122,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvLabelLugaresDisponiveis"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginEnd="18dp"
                     android:layout_marginTop="30dp"
+                    android:layout_marginRight="20dp"
                     android:layout_toRightOf="@+id/tvLabelPontoEncontro"
                     android:text="Vila do Conde, Porto, 23, 4452-233" />
 
@@ -134,7 +133,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvLabelPontoEncontro"
                     android:layout_alignLeft="@+id/tvTituloViagem"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="55dp"
                     android:text="@string/LabelAvaliacao" />
 
                 <RatingBar
@@ -156,7 +155,8 @@
                     android:onClick="evaluateRide"
                     android:text="@string/submitEvaluation"
                     android:textColor="@color/white"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:layout_marginTop="15dp"/>
 
             </RelativeLayout>
 
@@ -168,7 +168,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/CardInfoBoleia"
             android:layout_alignLeft="@+id/CardInfoBoleia"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:backgroundTint="@color/principal"
             android:text="@string/botaoObterQrCode"
             app:cornerRadius="20dp"/>
@@ -178,7 +178,7 @@
             android:layout_height="48dp"
             android:layout_below="@id/CardInfoBoleia"
             android:layout_alignRight="@+id/CardInfoBoleia"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:backgroundTint="@color/white"
             android:src="@drawable/ic_baseline_chat_24" />
 
