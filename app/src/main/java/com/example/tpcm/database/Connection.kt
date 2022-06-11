@@ -443,6 +443,24 @@ object Connection {
                         }
                     }
 
+                db.collection("chat")
+                    .whereEqualTo("idBoleia", idBoleia)
+                    .get()
+                    .addOnCompleteListener { task->
+                        if(task.isSuccessful){
+                            for(doc in task.result){
+                                var users = ArrayList<String>()
+                                var usersPermitidos = doc["usersPermitidos"]
+                                Log.d("TAG", "$usersPermitidos")
+                                for(user in arrayOf(usersPermitidos)){
+                                    users.add(user.toString())
+                                }
+                                users.add(idUser)
+                                Log.d("TAG",users.toString())
+                            }
+                        }
+                    }
+
 
             }
         }
