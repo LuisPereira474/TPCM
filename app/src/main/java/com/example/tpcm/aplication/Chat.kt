@@ -18,8 +18,7 @@ class Chat : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
 
-        //val idUser = intent.getStringExtra(PARAM_ID_USER).toString()
-        //val idBoleia = intent.getStringExtra(PARAM_ID_USER).toString()
+        val idBoleia = intent.getStringExtra(PARAM_ID).toString()
 
         btnFecharChat.setOnClickListener {
             finish()
@@ -30,8 +29,8 @@ class Chat : AppCompatActivity() {
     fun sendMessage(view: View) {
         val etmensagem = findViewById<EditText>(R.id.chat_input)
         val mensagem = etmensagem.text.toString()
-        val idUser = intent.getStringExtra(PARAM_ID_USER).toString()
-        val idBoleia = intent.getStringExtra(PARAM_ID_USER).toString()
+        val idUser = getSharedPreferences("idUser", MODE_PRIVATE).getString("idUser","").toString()
+        val idBoleia = intent.getStringExtra(PARAM_ID).toString()
 
         if (mensagem == "") {
             Toast.makeText(this@Chat, "Can´t send empty messages", Toast.LENGTH_SHORT).show()

@@ -34,22 +34,17 @@ class Boleia : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_boleia)
 
-        btnAbrirChat.setOnClickListener {
-            val shared = getSharedPreferences("idUser", MODE_PRIVATE)
-            val idUser = shared.getString("idUser", "").toString()
-
-            val idBoleia = intent.getStringExtra(PARAM_ID).toString()
-
-            openChat(idBoleia, idUser);
-        }
-
-
 
 
             val shared = getSharedPreferences("idUser", MODE_PRIVATE)
             val idUser = shared.getString("idUser", "").toString()
 
             val idBoleia = intent.getStringExtra(PARAM_ID)
+        btnAbrirChat.setOnClickListener {
+                if (idBoleia != null) {
+                    openChat(idBoleia, idUser)
+                }
+            }
             if (idBoleia != null) {
                 getDadosBoleia(idBoleia)
             }

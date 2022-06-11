@@ -203,6 +203,7 @@ object Connection {
                     e
                 )
             }
+        createChat(boleia["idBoleia"].toString())
         while (result == 0) {
             delay(1)
         }
@@ -802,7 +803,8 @@ object Connection {
             "idUser" to idUser,
             "idBoleia" to idBoleia,
             "message" to message,
-            "idMessage" to UUID.randomUUID().toString()
+            "idMessage" to UUID.randomUUID().toString(),
+            "date" to Date()
         )
 
         db.collection("message")
@@ -833,5 +835,10 @@ object Connection {
     //  }
 
     // }
+
+    suspend fun createChat(idBoleia: String){
+        db.collection("chat")
+            .add(hashMapOf("idBoleia" to idBoleia))
+    }
 
 }
