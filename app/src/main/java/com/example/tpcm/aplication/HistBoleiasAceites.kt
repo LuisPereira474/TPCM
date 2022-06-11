@@ -1,12 +1,15 @@
 package com.example.tpcm.aplication
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tpcm.R
@@ -15,6 +18,7 @@ import com.example.tpcm.database.Connection
 import com.example.tpcm.models.Aceites
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import kotlinx.android.synthetic.main.activity_hist_boleias_aceites.*
+import kotlinx.android.synthetic.main.activity_historico_user.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -29,6 +33,10 @@ class HistBoleiasAceites : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hist_boleias_aceites)
         getHistorico()
+
+        btnHelpPageHistBoleias.setOnClickListener {
+            createDialog()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -108,5 +116,22 @@ class HistBoleiasAceites : AppCompatActivity() {
                 linhasHistoricoAceites.layoutManager = LinearLayoutManager(this@HistBoleiasAceites)
             }
         }
+    }
+
+    private fun createDialog() {
+        val dialog = Dialog(this@HistBoleiasAceites)
+        dialog.setContentView(R.layout.dialog_help_info)
+        dialog.window?.setBackgroundDrawable(getDrawable(R.drawable.dialog_background))
+        dialog.window?.setLayout(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        dialog.setCancelable(false)
+        dialog.show()
+
+        dialog.findViewById<Button>(R.id.okHelpInfo).setOnClickListener {
+            dialog.dismiss()
+        }
+
     }
 }
