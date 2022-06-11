@@ -269,7 +269,7 @@ class Perfil : AppCompatActivity() {
         )
         dialog.findViewById<TextView>(R.id.titleDescription).text = getString(R.string.prizeCode)
         dialog.findViewById<TextView>(R.id.subtitleDescription).text = getString(R.string.prizeCodeRedeem)
-        dialog.findViewById<TextView>(R.id.code).text = UUID.randomUUID().toString()
+        dialog.findViewById<TextView>(R.id.code).text = UUID.randomUUID().toString().take(26)
         dialog.setCancelable(false)
         dialog.show()
 
