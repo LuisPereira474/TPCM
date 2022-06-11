@@ -176,8 +176,8 @@ object Connection {
         idUser: String
     ): Int {
         var result = 0
-        val from_localidade = from.split("-")[1]
-        val to_localidade = to.split("-")[1]
+        val from_localidade = from.split("_")[1]
+        val to_localidade = to.split("_")[1]
         val boleia = hashMapOf(
             "avaliacao" to 3,
             "idCriador" to idUser,
@@ -334,6 +334,31 @@ object Connection {
         GlobalScope.launch {
             withContext(Dispatchers.Default) {
                 db.collection("utilizador")
+                    .whereEqualTo("idUser", idUser)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                user = document
+                            }
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.exception)
+                        }
+                    }
+            }
+        }
+        while (user == null) {
+            delay(1)
+        }
+        return user
+    }
+
+    @DelicateCoroutinesApi
+    suspend fun getCondutorUser(idUser: String): QueryDocumentSnapshot? {
+        var user: QueryDocumentSnapshot? = null
+        GlobalScope.launch {
+            withContext(Dispatchers.Default) {
+                db.collection("condutor")
                     .whereEqualTo("idUser", idUser)
                     .get()
                     .addOnCompleteListener { task ->

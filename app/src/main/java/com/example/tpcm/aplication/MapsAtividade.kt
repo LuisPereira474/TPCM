@@ -210,7 +210,7 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
                         markerPartida?.remove()
                     }
                     val morada = getAddress(addressPartida.latitude, addressPartida.longitude)
-                    moradaPartida = morada + "-" + addressPartida.featureName
+                    moradaPartida = morada + "_" + addressPartida.featureName
                     markerPartida = mMap!!.addMarker(MarkerOptions().position(latLng).title(morada))
 
                     mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12f))
@@ -239,7 +239,7 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
                         markerDestino?.remove()
                     }
                     val morada = getAddress(addressDestino.latitude, addressDestino.longitude)
-                    moradaChegada = morada + "-" + addressDestino.featureName
+                    moradaChegada = morada + "_" + addressDestino.featureName
                     markerDestino = mMap!!.addMarker(
                         MarkerOptions().position(latLng).title(morada)
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))

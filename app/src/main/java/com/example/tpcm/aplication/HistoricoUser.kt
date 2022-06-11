@@ -92,8 +92,8 @@ class HistoricoUser : AppCompatActivity() {
                 for (doc in document) {
                     val date =
                         SimpleDateFormat("dd-MM-yyyy").parse(doc.value.data["date"] as String)
-                    val from_localidade = doc.value.data["from"].toString().split("-")[1]
-                    val to_localidade = doc.value.data["to"].toString().split("-")[1]
+                    val from_localidade = doc.value.data["from"].toString().split("_")[1]
+                    val to_localidade = doc.value.data["to"].toString().split("_")[1]
                     myList.add(
                         Historico(
                             "${from_localidade} - ${to_localidade}",

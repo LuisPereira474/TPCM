@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -87,8 +88,9 @@ class HistBoleiasAceites : AppCompatActivity() {
 
             for (doc in document!!) {
                 val date = SimpleDateFormat("dd-MM-yyyy").parse(doc.value.data["date"] as String)
-                val from_localidade = doc.value.data["from"].toString().split("-")[1]
-                val to_localidade = doc.value.data["to"].toString().split("-")[1]
+                Log.d("TAG","${doc.value.data["from"].toString()}")
+                val from_localidade = doc.value.data["from"].toString().split("_")[1]
+                val to_localidade = doc.value.data["to"].toString().split("_")[1]
                 myList.add(
                     Aceites(
                         "${from_localidade} - ${to_localidade}",

@@ -77,14 +77,14 @@ class BoleiaCondutor : AppCompatActivity() {
             boleia = Connection.getDadosBoleia(idBoleia)
             profile = Connection.getProfileUser(idUser)
             runOnUiThread {
-                val from_localidade = boleia!!.data["from"].toString().split("-")[1]
-                val to_localidade = boleia!!.data["to"].toString().split("-")[1]
+                val from_localidade = boleia!!.data["from"].toString().split("_")[1]
+                val to_localidade = boleia!!.data["to"].toString().split("_")[1]
                 tvTituloViagem.text = "$from_localidade - $to_localidade"
                 tvNomeCondutor.text = profile!!.data["nome"].toString()
                 tvDataBoleia.text = boleia!!.data["date"].toString()
                 tvModeloCarro.text = boleia!!.data["carBrand"].toString() + " " + boleia!!.data["carModel"].toString() + " " + boleia!!.data["carYear"].toString() + " " + boleia!!.data["carFuelType"].toString()
                 tvValorBoleia.text = boleia!!.data["price"].toString() + "€"
-                tvPontoEncontro.text = boleia!!.data["from"].toString()
+                tvPontoEncontro.text = boleia!!.data["from"].toString().split("_")[0]
                 valueLugaresDisponiveis.text = boleia!!.data["seats"].toString()
             }
         }
