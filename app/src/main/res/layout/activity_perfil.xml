@@ -101,9 +101,9 @@
 
     <Button
         android:id="@+id/EditBtt"
+        android:layout_marginTop="420dp"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/view"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="20dp"
         android:onClick="editProfile"
         android:text="@string/editperfil"
         android:layout_width="wrap_content"
@@ -124,7 +124,7 @@
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:background="#BEBEBE"
-        android:layout_above="@+id/registarCondutor"
+        android:layout_below="@+id/registarCondutor"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
@@ -133,9 +133,9 @@
 
     <Button
         android:id="@+id/registarCondutor"
-        android:layout_alignBottom="@+id/bottom_navigation"
-        android:layout_marginBottom="110dp"
+        android:layout_below="@+id/EditBtt"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
         android:onClick="makeMeDriver"
         android:text="@string/makemedriver"
         android:drawableRight="@drawable/ic_baseline_card_membership_24"
@@ -151,6 +151,25 @@
         app:cornerRadius="20dp"
         app:strokeColor="#BEBEBE"
         app:strokeWidth="2dp"/>
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/view"
+        android:onClick="editProfile"
+        android:text="Logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#C73D3D"
+        android:padding="10dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:cornerRadius="20dp"
+        app:strokeColor="#BEBEBE"
+        app:strokeWidth="1dp"/>
 
 
     <!--Nav Bar-->
