@@ -89,7 +89,7 @@ class SearchBoleiaList : AppCompatActivity() {
                         Search(
                             "${from_localidade} - ${to_localidade}",
                             "${doc.value.data["date"]}",
-                            "${doc.value.data["price"]}",
+                            "${doc.value.data["price"]}€",
                             doc.key,
                             "${doc.value.data["idBoleia"]}"
                         )

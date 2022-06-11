@@ -99,7 +99,7 @@ class WishList : AppCompatActivity() {
                         Wishlist(
                             "${from_localidade} - ${to_localidade}",
                             "${doc.value.data["date"]}",
-                            "${doc.value.data["price"]}",
+                            "${doc.value.data["price"]}€",
                             user!!.data["nome"].toString(),
                             "${doc.value.data["idBoleia"]}"
                         )

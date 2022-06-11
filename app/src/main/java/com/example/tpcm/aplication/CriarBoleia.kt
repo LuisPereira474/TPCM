@@ -98,7 +98,7 @@ class CriarBoleia : AppCompatActivity() {
         val brandCar = findViewById<EditText>(R.id.brandCarCriarBoleia).text.toString()
         val modelCar = findViewById<EditText>(R.id.modelCarCriarBoleia).text.toString()
         val yearCar = findViewById<EditText>(R.id.yearCarCriarBoleia).text.toString().toInt()
-        val price = findViewById<EditText>(R.id.priceCriarBoleia).text.toString()
+        val price = findViewById<EditText>(R.id.priceCriarBoleia).text.toString().toInt()
         val seatsEditText = findViewById<EditText>(R.id.seatsCriarBoleia)
         val seats = Integer.parseInt(seatsEditText.text.toString())
         val obs = findViewById<EditText>(R.id.obsCriarBoleia).text.toString()

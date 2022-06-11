@@ -167,7 +167,7 @@ object Connection {
         meeting: String,
         car: Car,
         date: String,
-        price: String,
+        price: Int,
         seats: Int,
         obs: String,
         idUser: String
