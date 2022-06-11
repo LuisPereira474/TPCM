@@ -101,9 +101,9 @@
 
     <Button
         android:id="@+id/EditBtt"
-        android:layout_marginTop="420dp"
+        android:layout_above="@+id/registarCondutor"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:onClick="editProfile"
         android:text="@string/editperfil"
         android:layout_width="wrap_content"
@@ -119,23 +119,12 @@
         app:strokeColor="@color/principal"
         app:strokeWidth="1dp"/>
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:background="#BEBEBE"
-        android:layout_below="@+id/registarCondutor"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        />
-
 
     <Button
         android:id="@+id/registarCondutor"
-        android:layout_below="@+id/EditBtt"
+        android:layout_above="@+id/view"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:onClick="makeMeDriver"
         android:text="@string/makemedriver"
         android:drawableRight="@drawable/ic_baseline_card_membership_24"
@@ -152,11 +141,22 @@
         app:strokeColor="#BEBEBE"
         app:strokeWidth="2dp"/>
 
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#BEBEBE"
+        android:layout_above="@+id/logout"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        />
+
     <Button
         android:id="@+id/logout"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/view"
-        android:onClick="editProfile"
+        android:layout_above="@+id/bottom_navigation"
+        android:onClick="logout"
         android:text="Logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -169,7 +169,8 @@
         android:textSize="15sp"
         app:cornerRadius="20dp"
         app:strokeColor="#BEBEBE"
-        app:strokeWidth="1dp"/>
+        app:strokeWidth="1dp"
+        android:layout_marginBottom="20dp"/>
 
 
     <!--Nav Bar-->

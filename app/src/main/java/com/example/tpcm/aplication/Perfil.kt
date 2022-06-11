@@ -9,6 +9,7 @@ import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.tpcm.MainActivity
 import com.example.tpcm.R
 import com.example.tpcm.database.Connection
 import com.google.firebase.firestore.QueryDocumentSnapshot
@@ -291,5 +292,11 @@ class Perfil : AppCompatActivity() {
         runOnUiThread {
             createDialog()
         }
+    }
+
+    fun logout(view: View) {
+
+        val intent = Intent(this@Perfil, MainActivity::class.java)
+        startActivity(intent)
     }
 }
