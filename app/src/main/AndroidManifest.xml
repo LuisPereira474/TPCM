@@ -16,10 +16,16 @@
             android:name=".aplication.Chat"
             android:exported="false" />
         <activity
+            android:name=".aplication.MoreInfo"
+            android:exported="false" />
+        <activity
             android:name=".aplication.HistBoleiasAceites"
             android:exported="false" />
         <activity
             android:name=".aplication.QrCode"
+            android:exported="false" />
+        <activity
+            android:name=".aplication.WishList"
             android:exported="false" />
         <activity
             android:name=".aplication.BoleiaCondutor"

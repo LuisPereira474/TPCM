@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Button
 import android.widget.TextView
@@ -11,24 +12,32 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tpcm.R
 import com.example.tpcm.adapters.SearchAdapter
+import com.example.tpcm.adapters.WishListAdapter
 import com.example.tpcm.database.Connection
 import com.example.tpcm.models.Search
+import com.example.tpcm.models.Wishlist
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import kotlinx.android.synthetic.main.activity_search_boleia_list.*
+import kotlinx.android.synthetic.main.activity_wish_list.*
 import kotlinx.android.synthetic.main.dialog_box.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
-class SearchBoleiaList : AppCompatActivity() {
 
-    private lateinit var myList: ArrayList<Search>
+class WishList : AppCompatActivity() {
+
+    private lateinit var myList: ArrayList<Wishlist>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search_boleia_list)
-        getBoleias()
+        setContentView(R.layout.activity_wish_list)
+        getWishlist()
+        backButtonWishList.setOnClickListener{
+            onBackPressed()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -40,22 +49,22 @@ class SearchBoleiaList : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.nav_search -> {
-                val intent = Intent(this@SearchBoleiaList, SearchBoleia::class.java)
+                val intent = Intent(this@WishList, SearchBoleia::class.java)
                 startActivity(intent)
                 true
             }
             R.id.nav_rides -> {
-                val intent = Intent(this@SearchBoleiaList, HistBoleiasAceites::class.java)
+                val intent = Intent(this@WishList, HistBoleiasAceites::class.java)
                 startActivity(intent)
                 true
             }
             R.id.nav_services -> {
-                val intent = Intent(this@SearchBoleiaList, HistoricoUser::class.java)
+                val intent = Intent(this@WishList, HistoricoUser::class.java)
                 startActivity(intent)
                 true
             }
             R.id.nav_profile -> {
-                val intent = Intent(this@SearchBoleiaList, Perfil::class.java)
+                val intent = Intent(this@WishList, Perfil::class.java)
                 startActivity(intent)
                 true
             }
@@ -65,30 +74,31 @@ class SearchBoleiaList : AppCompatActivity() {
         }
     }
 
+
     @SuppressLint("SimpleDateFormat")
-    fun getBoleias() {
-        val from = intent.getStringExtra(PARAM_FROM)
-        val to = intent.getStringExtra(PARAM_TO)
-        val date = intent.getStringExtra(PARAM_DATE)
-        myList = ArrayList<Search>()
+    fun getWishlist() {
+        myList = ArrayList<Wishlist>()
 
         var document: HashMap<String, QueryDocumentSnapshot>? = null
         GlobalScope.launch {
-            val errorNoResults = findViewById<TextView>(R.id.errorNoResults)
-            errorNoResults.visibility = View.INVISIBLE
+            val errorNoResultsWhislist = findViewById<TextView>(R.id.errorNoResultsWhislist)
+            errorNoResultsWhislist.visibility = View.INVISIBLE
 
-            document = Connection.getBoleias(from.toString(), to.toString(), date.toString())
+            val shared = getSharedPreferences("idUser", MODE_PRIVATE)
+            val idUser = shared.getString("idUser", "").toString()
+
+            document = Connection.getWishlist(idUser)
 
             for (doc in document!!) {
                 val date = SimpleDateFormat("dd-MM-yyyy").parse(doc.value.data["date"] as String)
-
+                val user = Connection.getProfileUser(doc.key)
                 if (date > Calendar.getInstance().time) {
                     myList.add(
-                        Search(
+                        Wishlist(
                             "${doc.value.data["from"]}-${doc.value.data["to"]}",
                             "${doc.value.data["date"]}",
                             "${doc.value.data["price"]}",
-                            doc.key,
+                            user!!.data["nome"].toString(),
                             "${doc.value.data["idBoleia"]}"
                         )
                     )
@@ -97,27 +107,27 @@ class SearchBoleiaList : AppCompatActivity() {
             }
             runOnUiThread {
                 if (myList.isEmpty()) {
-                    errorNoResults.visibility = View.VISIBLE
+                    errorNoResultsWhislist.visibility = View.VISIBLE
                 } else {
-                    var adapter = SearchAdapter(myList)
-                    linhasSearch.adapter = adapter
-                    adapter.setOnItemClickListener(object : SearchAdapter.onItemClickListener {
+                    var adapter = WishListAdapter(myList)
+                    linhasWishList.adapter = adapter
+                    adapter.setOnItemClickListener(object : WishListAdapter.onItemClickListener {
                         override fun onItemClick(idBoleia: TextView) {
                             acceptBoleia(idBoleia)
                         }
 
-                        override fun onWishlistClick(idBoleia: TextView) {
-                            addWishlist(idBoleia)
+                        override fun onRemoveWishlistClick(idBoleia: TextView) {
+                            removeWishlist(idBoleia)
                         }
 
                         override fun onRecyclerClick(idBoleia: TextView) {
-                            val intent = Intent(this@SearchBoleiaList, MoreInfo::class.java).apply {
+                            val intent = Intent(this@WishList, MoreInfo::class.java).apply {
                                 putExtra(PARAM_ID_BOLEIA,idBoleia.text.toString())
                             }
                             startActivity(intent)
                         }
                     })
-                    linhasSearch.layoutManager = LinearLayoutManager(this@SearchBoleiaList)
+                    linhasWishList.layoutManager = LinearLayoutManager(this@WishList)
                 }
             }
         }
@@ -128,6 +138,7 @@ class SearchBoleiaList : AppCompatActivity() {
         val idUser = shared.getString("idUser", "").toString()
         GlobalScope.launch {
             if (Connection.acceptBoleia(idUser, idBoleia.text.toString()) == 1) {
+                Connection.removeWishList(idUser, idBoleia.text.toString())
                 runOnUiThread {
                     createDialog(resources.getString(R.string.error))
                 }
@@ -139,11 +150,11 @@ class SearchBoleiaList : AppCompatActivity() {
         }
     }
 
-    fun addWishlist(idBoleia: TextView) {
+    fun removeWishlist(idBoleia: TextView) {
         val shared = getSharedPreferences("idUser", MODE_PRIVATE)
         val idUser = shared.getString("idUser", "").toString()
         GlobalScope.launch {
-            val result = Connection.addToWishList(idUser, idBoleia.text.toString())
+            val result = Connection.removeWishList(idUser, idBoleia.text.toString())
             if (result == 0) {
                 runOnUiThread {
                     createDialog(resources.getString(R.string.success))
@@ -157,7 +168,7 @@ class SearchBoleiaList : AppCompatActivity() {
     }
 
     private fun createDialog(msg: String) {
-        val dialog = Dialog(this@SearchBoleiaList)
+        val dialog = Dialog(this@WishList)
         dialog.setContentView(R.layout.dialog_box)
         dialog.window?.setBackgroundDrawable(getDrawable(R.drawable.dialog_background))
         dialog.window?.setLayout(
@@ -170,6 +181,8 @@ class SearchBoleiaList : AppCompatActivity() {
 
         dialog.findViewById<Button>(R.id.popup_ok_btt).setOnClickListener {
             dialog.dismiss()
+            finish();
+            startActivity(intent);
         }
 
     }

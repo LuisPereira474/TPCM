@@ -1,6 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.TPCM" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowAnimationStyle">@null</item>
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/azul</item>
         <item name="colorPrimaryVariant">@color/principal</item>
