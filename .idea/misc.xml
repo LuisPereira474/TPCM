@@ -55,6 +55,8 @@
         <entry key="..\:/Users/Utilizador/AndroidStudioProjects/TPCM/app/src/main/res/layout/wish_list_line.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Utilizador/AndroidStudioProjects/TPCM/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.3625" />
         <entry key="..\:/Users/Utilizador/AndroidStudioProjects/TPCM/app/src/main/res/menu/nav_menu.xml" value="0.3625" />
+        <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/drawable/rounded_btt_editar.xml" value="0.2995" />
+        <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/drawable/valgalp.xml" value="0.2995" />
         <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_add_boleia_nao_habilitado.xml" value="0.2151268115942029" />
         <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_add_boleia_sem_hist.xml" value="0.175" />
         <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_boleia.xml" value="0.33" />
@@ -75,9 +77,12 @@
         <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_sign_up.xml" value="0.16621376811594202" />
         <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_wish_list.xml" value="0.3269927536231884" />
         <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/boleias_aceites_line.xml" value="0.175" />
+        <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/dialog_box.xml" value="0.2509057971014493" />
         <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/dialog_changepassword.xml" value="0.25" />
         <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/dialog_confirm_ride.xml" value="0.33" />
-        <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/dialog_list_awards.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/dialog_help_make_me_driver.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/dialog_insert_documents.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/dialog_list_awards.xml" value="0.33" />
         <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/dialog_points_earned.xml" value="0.265625" />
         <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/dialog_right_qrcode.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/dialog_wrong_qrcode.xml" value="0.36666666666666664" />

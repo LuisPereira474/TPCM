@@ -993,4 +993,36 @@ object Connection {
             delay(1)
         }
     }
+
+    suspend fun spendPoints(idUser: String, points: Int): Int {
+        var canGo = -1
+        db.collection("utilizador")
+            .whereEqualTo("idUser", idUser)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    for (document in task.result!!) {
+
+                        if (document.data["pontos"].toString().toInt() < points) {
+                            canGo = 2
+                        } else {
+                            var data = hashMapOf(
+                                "pontos" to document.data["pontos"].toString().toInt() - points
+                            )
+                            db.collection("utilizador")
+                                .document(document.id)
+                                .set(data,SetOptions.merge())
+                            canGo = 1
+                        }
+                    }
+                } else {
+                    Log.w("TAG", "Error getting documents.", task.exception)
+                    canGo = 3
+                }
+            }
+        while (canGo == -1) {
+            delay(1)
+        }
+        return canGo
+    }
 }

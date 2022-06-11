@@ -43,7 +43,7 @@
     <string name="searchNoResults">There are no rides that match your search.</string>
     <string name="editperfil">Edit Profile</string>
     <string name="points">Points</string>
-    <string name="claimpts">Claim Bonus</string>
+    <string name="claimpts">Claim Prize</string>
     <string name="makemedriver">Make me driver</string>
     <string name="cancel">Cancel</string>
     <string name="destination">Destination</string>
@@ -92,4 +92,8 @@
     <string name="makeMeDriverError">You are already able to take rides!</string>
     <string name="undefined">Undefined</string>
     <string name="carError">The inserted car was not found</string>
+    <string name="noPrizesSelected">Choose your prize!!</string>
+    <string name="erroPointsPrize">You don\'t have enough points.</string>
+    <string name="prizeCode">Prize Code</string>
+    <string name="prizeCodeRedeem">Use the following code to redeem the prize!!</string>
 </resources>

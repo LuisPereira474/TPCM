@@ -39,7 +39,7 @@
     <string name="perfil">Perfil</string>
     <string name="editperfil">Editar Perfil</string>
     <string name="points">Pontos</string>
-    <string name="claimpts">Reclamar Bónus</string>
+    <string name="claimpts">Reclamar Prémio</string>
     <string name="makemedriver">Tornar-me condutor</string>
     <string name="cancel">Cancelar</string>
     <string name="textSearchBoleia">Que boleia está à procura?</string>
@@ -92,4 +92,8 @@
     <string name="makeMeDriverError">Já pode prestar boleias!</string>
     <string name="undefined">Indefinido</string>
     <string name="carError">O carro inserido não foi encontrado</string>
+    <string name="noPrizesSelected">Escolha o seu prémio!!</string>
+    <string name="erroPointsPrize">Não tem pontos suficientes.</string>
+    <string name="prizeCode">Código do Prémio</string>
+    <string name="prizeCodeRedeem">Use o seguinte código para resgatar o prémio!!</string>
 </resources>
