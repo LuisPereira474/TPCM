@@ -74,10 +74,16 @@ class EditarPerfil : AppCompatActivity() {
                 editName.setText(profile!!.data["nome"].toString(), TextView.BufferType.EDITABLE)
                 editEmail.setText(profile!!.data["email"].toString(), TextView.BufferType.EDITABLE)
 
-                if (profile!!.data["sexo"] == true) {
-                    editPerfilAvatar.setImageResource(R.drawable.avatar_boy)
-                } else {
-                    editPerfilAvatar.setImageResource(R.drawable.avatar_girl)
+                when {
+                    profile!!.data["sexo"].toString().toInt() == 1 -> {
+                        editPerfilAvatar.setImageResource(R.drawable.avatar_boy)
+                    }
+                    profile!!.data["sexo"].toString().toInt() == 2 -> {
+                        editPerfilAvatar.setImageResource(R.drawable.avatar_girl)
+                    }
+                    else -> {
+                        editPerfilAvatar.setImageResource(R.drawable.avatar_other)
+                    }
                 }
             }
         }
