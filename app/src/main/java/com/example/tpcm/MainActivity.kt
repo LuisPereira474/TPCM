@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.tpcm.aplication.AddBoleiaSemHist
 import com.example.tpcm.aplication.ScanQrCode
 import com.example.tpcm.aplication.SearchBoleia
+import com.example.tpcm.aplication.MapsAtividade
 import com.example.tpcm.aplication.SignUp
 import com.example.tpcm.database.Connection
 import kotlinx.coroutines.GlobalScope
@@ -21,6 +22,21 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val sharedPreferences: SharedPreferences =
+            getSharedPreferences("idUser", Context.MODE_PRIVATE)
+        sharedPreferences.edit()
+            .clear()
+            .apply()
+
+    }
+
+    override fun onBackPressed() {
+        if (shouldAllowBack()) {
+            super.onBackPressed()
+        }
+    }
+    private fun shouldAllowBack():Boolean{
+        return false
     }
 
     fun loginSubmit(view: View) {

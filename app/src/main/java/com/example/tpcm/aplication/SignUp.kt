@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -12,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.tpcm.MainActivity
 import com.example.tpcm.R
 import com.example.tpcm.database.Connection
+import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -20,6 +20,23 @@ class SignUp : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+
+        checkboxMasculino.isChecked = false
+        checkboxFeminino.isChecked = false
+        checkboxOther.isChecked = false
+
+        checkboxMasculino.setOnClickListener {
+            checkboxFeminino.isChecked = false
+            checkboxOther.isChecked = false
+        }
+        checkboxFeminino.setOnClickListener {
+            checkboxMasculino.isChecked = false
+            checkboxOther.isChecked = false
+        }
+        checkboxOther.setOnClickListener {
+            checkboxMasculino.isChecked = false
+            checkboxFeminino.isChecked = false
+        }
     }
 
     fun loginPage(view: View) {
@@ -40,16 +57,38 @@ class SignUp : AppCompatActivity() {
         erroSignUpEmail.visibility = View.INVISIBLE;
         errorMissingFields.visibility = View.INVISIBLE;
         errorInvalidEmail.visibility = View.INVISIBLE;
+        errorNoCheckSex.visibility = View.INVISIBLE;
 
         if (email.isEmpty() || password.isEmpty() || nome.isEmpty()) {
             errorMissingFields.visibility = View.VISIBLE;
+        } else if (!checkboxMasculino.isChecked && !checkboxFeminino.isChecked && !checkboxOther.isChecked) {
+            errorNoCheckSex.visibility = View.VISIBLE
         } else if (password != confPassword) {
             erroSignUpPass.visibility = View.VISIBLE;
         } else {
             GlobalScope.launch {
+                var gender = 0
+                when {
+                    checkboxMasculino.isChecked -> {
+                        gender = 1
+                    }
+                    checkboxFeminino.isChecked -> {
+                        gender = 2
+                    }
+                    checkboxOther.isChecked -> {
+                        gender = 3
+                    }
+                }
                 val idUser =
-                    Connection.singUp(email, nome, password, erroSignUpEmail, errorInvalidEmail)
-                if (idUser!="") {
+                    Connection.singUp(
+                        email,
+                        nome,
+                        password,
+                        erroSignUpEmail,
+                        errorInvalidEmail,
+                        gender
+                    )
+                if (idUser != "") {
                     val sharedPreferences: SharedPreferences =
                         getSharedPreferences("idUser", Context.MODE_PRIVATE)
                     sharedPreferences.edit()

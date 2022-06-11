@@ -2,8 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.tpcm">
 
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- Premissão para aceder a localização -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -12,6 +17,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TPCM">
+
+        <!--
+             TODO: Before you run your application, you need a Google Maps API key.
+
+             To get one, follow the directions here:
+
+                https://developers.google.com/maps/documentation/android-sdk/get-api-key
+
+             Once you have your API key (it starts with "AIza"), define a new property in your
+             project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
+             "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyB9W-3rfRDLxijeO_FnQL8YNGBUspxeI9Y" />
+
+        <activity
+            android:name=".aplication.MapsAtividade"
+            android:exported="false"/>
+        <activity
+            android:name=".aplication.MakeMeDriver"
+            android:exported="false" />
         <activity
             android:name=".aplication.Chat"
             android:exported="false" />
@@ -52,6 +79,9 @@
             android:name=".aplication.AddBoleiaSemHist"
             android:exported="false" />
         <activity
+            android:name=".aplication.AddBoleiaNaoHabilitado"
+            android:exported="false" />
+        <activity
             android:name=".aplication.Boleia"
             android:exported="false" />
         <activity
@@ -75,6 +105,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
