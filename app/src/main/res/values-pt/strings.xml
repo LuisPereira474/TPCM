@@ -96,4 +96,11 @@
     <string name="erroPointsPrize">Não tem pontos suficientes.</string>
     <string name="prizeCode">Código do Prémio</string>
     <string name="prizeCodeRedeem">Use o seguinte código para resgatar o prémio!!</string>
+    <string name="sex">Sexo:</string>
+    <string name="avaliacao_condutor">Avaliação condutor:</string>
+    <string name="sex_label">Sexo</string>
+    <string name="male">Masculino</string>
+    <string name="female">Feminino</string>
+    <string name="errorNoCheckSex">Por favor escolha masculino, feminino ou outro</string>
+    <string name="other">Outro</string>
 </resources>

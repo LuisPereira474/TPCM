@@ -13,10 +13,10 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/CardInfoBoleiaMoreInfo"
             android:layout_width="match_parent"
-            android:layout_height="450dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginTop="75dp"
+            android:layout_height="500dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="45dp"
+            android:layout_marginTop="60dp"
             android:backgroundTint="@color/cinzento"
             app:cornerRadius="50dp">
             <RelativeLayout
@@ -77,7 +77,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvModeloCarroMoreInfo"
                     android:layout_alignLeft="@+id/tvTituloViagemMoreInfo"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="35dp"
                     android:text="@string/LabelValor"/>
 
                 <TextView
@@ -87,7 +87,7 @@
                     android:layout_below="@+id/tvModeloCarroMoreInfo"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/tvLabelValorMoreInfo"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="35dp"
                     android:text="5€"/>
 
                 <TextView
@@ -107,6 +107,44 @@
                     android:textStyle="bold"
                     android:layout_toRightOf="@+id/tvLabelLugaresDisponiveisMoreInfo"
                     android:layout_alignTop="@+id/tvLabelLugaresDisponiveisMoreInfo"
+                    android:layout_marginLeft="5dp"/>
+
+
+                <TextView
+                    android:id="@+id/tvLabelSexoMoreInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvLabelLugaresDisponiveisMoreInfo"
+                    android:layout_alignLeft="@+id/tvTituloViagemMoreInfo"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/sex" />
+
+                <TextView
+                    android:id="@+id/valueSexoMoreInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Masculino"
+                    android:layout_toRightOf="@+id/tvLabelSexoMoreInfo"
+                    android:layout_alignTop="@+id/tvLabelSexoMoreInfo"
+                    android:layout_marginLeft="5dp"/>
+
+
+                <TextView
+                    android:id="@+id/tvLabelAvalCondMoreInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvLabelSexoMoreInfo"
+                    android:layout_alignLeft="@+id/tvTituloViagemMoreInfo"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/avaliacao_condutor" />
+
+                <TextView
+                    android:id="@+id/valueAvalCondMoreInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10"
+                    android:layout_toRightOf="@+id/tvLabelAvalCondMoreInfo"
+                    android:layout_alignTop="@+id/tvLabelAvalCondMoreInfo"
                     android:layout_marginLeft="5dp"/>
 
                 <!--                <TextView-->
@@ -175,19 +213,19 @@
                     android:id="@+id/tvLabelPontoEncontroMoreInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvLabelLugaresDisponiveisMoreInfo"
+                    android:layout_below="@+id/tvLabelAvalCondMoreInfo"
                     android:layout_alignLeft="@+id/tvTituloViagemMoreInfo"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="30dp"
                     android:text="@string/LabelPontoEncontro" />
 
                 <TextView
                     android:id="@+id/tvPontoEncontroMoreInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvLabelLugaresDisponiveisMoreInfo"
+                    android:layout_below="@+id/tvLabelAvalCondMoreInfo"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="20dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="30dp"
                     android:layout_toRightOf="@+id/tvLabelPontoEncontroMoreInfo"
                     android:text="Vila do Conde, Porto, 23, 4452-233" />
 
@@ -203,7 +241,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/CardInfoBoleiaMoreInfo"
             android:layout_alignLeft="@+id/CardInfoBoleiaMoreInfo"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:backgroundTint="@color/principal"
             android:text="@string/Back"
             app:cornerRadius="20dp"/>
