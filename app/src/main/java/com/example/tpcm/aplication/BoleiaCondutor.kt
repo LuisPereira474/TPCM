@@ -83,7 +83,7 @@ class BoleiaCondutor : AppCompatActivity() {
                 tvNomeCondutor.text = profile!!.data["nome"].toString()
                 tvDataBoleia.text = boleia!!.data["date"].toString()
                 tvModeloCarro.text = boleia!!.data["carBrand"].toString() + " " + boleia!!.data["carModel"].toString() + " " + boleia!!.data["carYear"].toString() + " " + boleia!!.data["carFuelType"].toString()
-                tvValorBoleia.text = boleia!!.data["price"].toString()
+                tvValorBoleia.text = boleia!!.data["price"].toString() + "€"
                 tvPontoEncontro.text = boleia!!.data["from"].toString()
                 valueLugaresDisponiveis.text = boleia!!.data["seats"].toString()
             }
