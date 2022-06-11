@@ -1,6 +1,7 @@
 package com.example.tpcm.database
 
 import android.annotation.SuppressLint
+import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.widget.TextView
@@ -13,6 +14,7 @@ import com.google.firebase.firestore.SetOptions
 import kotlinx.coroutines.*
 import java.util.*
 import java.util.regex.Pattern
+import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
 object Connection {
@@ -1098,10 +1100,25 @@ object Connection {
     //  }
 
     // }
-
+    @DelicateCoroutinesApi
     suspend fun createChat(idBoleia: String){
-        db.collection("chat")
-            .add(hashMapOf("idBoleia" to idBoleia))
+        GlobalScope.launch {
+            val usersPermitidos = ArrayList<String>()
+            db.collection("boleia_utilizador")
+                .whereEqualTo("idBoleia", idBoleia)
+                .get()
+                .addOnCompleteListener{ task ->
+                    if(task.isSuccessful){
+                        for(doc in task.result){
+                            usersPermitidos.add(doc["idUser"].toString())
+                        }
+                    }
+                }
+
+            db.collection("chat")
+                .add(hashMapOf("idBoleia" to idBoleia, "usersPermitidos" to usersPermitidos))
+        }
+
     }
 }
 
