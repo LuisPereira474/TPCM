@@ -152,7 +152,7 @@
                 <ImageView
                     android:layout_width="75dp"
                     android:layout_height="75dp"
-                    android:src="@drawable/continente"
+                    android:src="@drawable/cont"
                     android:layout_gravity="center"
                     android:layout_alignBottom="@+id/descriptionPointsSecond"
                     android:layout_marginLeft="200dp"
@@ -275,7 +275,7 @@
                 <ImageView
                     android:layout_width="75dp"
                     android:layout_height="75dp"
-                    android:src="@drawable/trotinete"
+                    android:src="@drawable/tr"
                     android:layout_alignBottom="@+id/descriptionPointsFour"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="20dp"
