@@ -74,10 +74,16 @@ class Perfil : AppCompatActivity() {
                 perfilName.text = profile!!.data["nome"].toString()
                 perfilEmail.text = profile!!.data["email"].toString()
                 points.text = profile!!.data["pontos"].toString()
-                if (profile!!.data["sexo"] == true) {
-                    perfilAvatar.setImageResource(R.drawable.avatar_boy)
-                } else {
-                    perfilAvatar.setImageResource(R.drawable.avatar_girl)
+                when {
+                    profile!!.data["sexo"].toString().toInt() == 1 -> {
+                        perfilAvatar.setImageResource(R.drawable.avatar_boy)
+                    }
+                    profile!!.data["sexo"].toString().toInt() == 2 -> {
+                        perfilAvatar.setImageResource(R.drawable.avatar_girl)
+                    }
+                    else -> {
+                        perfilAvatar.setImageResource(R.drawable.avatar_other)
+                    }
                 }
             }
         }

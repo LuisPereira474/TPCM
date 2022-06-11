@@ -54,7 +54,8 @@ object Connection {
         nome: String,
         password: String,
         erroSignUpEmail: TextView,
-        errorInvalidEmail: TextView
+        errorInvalidEmail: TextView,
+        sexo : Int
     ): String {
         val user = hashMapOf(
             "email" to email,
@@ -63,7 +64,7 @@ object Connection {
             "nome" to nome,
             "password" to password,
             "pontos" to 0,
-            "sexo" to true
+            "sexo" to sexo
         )
         var idUser = ""
         var canContinue = false
