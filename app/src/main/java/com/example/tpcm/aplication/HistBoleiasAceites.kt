@@ -79,9 +79,11 @@ class HistBoleiasAceites : AppCompatActivity() {
 
             for (doc in document!!) {
                 val date = SimpleDateFormat("dd-MM-yyyy").parse(doc.value.data["date"] as String)
+                val from_localidade = doc.value.data["from"].toString().split("-")[1]
+                val to_localidade = doc.value.data["to"].toString().split("-")[1]
                 myList.add(
                     Aceites(
-                        "${doc.value.data["from"]}-${doc.value.data["to"]}",
+                        "${from_localidade} - ${to_localidade}",
                         "${doc.value.data["date"]}",
                         date < Calendar.getInstance().time,
                         "${doc.value.data["idBoleia"]}"

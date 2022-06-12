@@ -8,6 +8,7 @@ import android.view.*
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tpcm.R
 import com.example.tpcm.database.Connection
@@ -73,10 +74,16 @@ class EditarPerfil : AppCompatActivity() {
                 editName.setText(profile!!.data["nome"].toString(), TextView.BufferType.EDITABLE)
                 editEmail.setText(profile!!.data["email"].toString(), TextView.BufferType.EDITABLE)
 
-                if (profile!!.data["sexo"] == true) {
-                    editPerfilAvatar.setImageResource(R.drawable.avatar_boy)
-                } else {
-                    editPerfilAvatar.setImageResource(R.drawable.avatar_girl)
+                when {
+                    profile!!.data["sexo"].toString().toInt() == 1 -> {
+                        editPerfilAvatar.setImageResource(R.drawable.avatar_boy)
+                    }
+                    profile!!.data["sexo"].toString().toInt() == 2 -> {
+                        editPerfilAvatar.setImageResource(R.drawable.avatar_girl)
+                    }
+                    else -> {
+                        editPerfilAvatar.setImageResource(R.drawable.avatar_other)
+                    }
                 }
             }
         }
@@ -102,9 +109,19 @@ class EditarPerfil : AppCompatActivity() {
             errorMissingFields.visibility = View.VISIBLE;
         } else {
             GlobalScope.launch {
-                Connection.editProfile(idUser, editName.text.toString(), editEmail.text.toString())
-                val intent = Intent(this@EditarPerfil, Perfil::class.java)
-                startActivity(intent)
+                val result = Connection.editProfile(
+                    idUser,
+                    editName.text.toString(),
+                    editEmail.text.toString()
+                )
+                if (result == 0) {
+                    val intent = Intent(this@EditarPerfil, Perfil::class.java)
+                    startActivity(intent);
+                } else {
+                    runOnUiThread {
+                        Toast.makeText(applicationContext, getString(R.string.errorInvalidEmail), Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
         }
     }
@@ -130,26 +147,40 @@ class EditarPerfil : AppCompatActivity() {
         dialog.findViewById<Button>(R.id.confirmChangePass).setOnClickListener {
             runOnUiThread {
                 dialog.findViewById<TextView>(R.id.erroChangePassWrong).visibility = View.INVISIBLE
-                dialog.findViewById<TextView>(R.id.erroChangePassDoNotMatch).visibility = View.INVISIBLE
+                dialog.findViewById<TextView>(R.id.erroChangePassDoNotMatch).visibility =
+                    View.INVISIBLE
                 dialog.findViewById<TextView>(R.id.erroChangePassEmpty).visibility = View.INVISIBLE
             }
             GlobalScope.launch {
-                if (dialog.findViewById<EditText>(R.id.valueNewPass).text.isEmpty() || dialog.findViewById<EditText>(R.id.valueConfirmNewPass).text.isEmpty() || dialog.findViewById<EditText>(R.id.valueCurrentPass).text.isEmpty()) {
+                if (dialog.findViewById<EditText>(R.id.valueNewPass).text.isEmpty() || dialog.findViewById<EditText>(
+                        R.id.valueConfirmNewPass
+                    ).text.isEmpty() || dialog.findViewById<EditText>(R.id.valueCurrentPass).text.isEmpty()
+                ) {
                     runOnUiThread {
-                        dialog.findViewById<TextView>(R.id.erroChangePassEmpty).visibility = View.VISIBLE
+                        dialog.findViewById<TextView>(R.id.erroChangePassEmpty).visibility =
+                            View.VISIBLE
                     }
-                } else if (dialog.findViewById<EditText>(R.id.valueNewPass).text.toString() == dialog.findViewById<EditText>(R.id.valueConfirmNewPass).text.toString()) {
-                    val result = Connection.changePasswords(idUser,dialog.findViewById<EditText>(R.id.valueCurrentPass).text.toString(),dialog.findViewById<EditText>(R.id.valueNewPass).text.toString())
+                } else if (dialog.findViewById<EditText>(R.id.valueNewPass).text.toString() == dialog.findViewById<EditText>(
+                        R.id.valueConfirmNewPass
+                    ).text.toString()
+                ) {
+                    val result = Connection.changePasswords(
+                        idUser,
+                        dialog.findViewById<EditText>(R.id.valueCurrentPass).text.toString(),
+                        dialog.findViewById<EditText>(R.id.valueNewPass).text.toString()
+                    )
                     if (!result) {
                         runOnUiThread {
-                            dialog.findViewById<TextView>(R.id.erroChangePassWrong).visibility = View.VISIBLE
+                            dialog.findViewById<TextView>(R.id.erroChangePassWrong).visibility =
+                                View.VISIBLE
                         }
-                    }else{
+                    } else {
                         dialog.dismiss()
                     }
                 } else {
                     runOnUiThread {
-                        dialog.findViewById<TextView>(R.id.erroChangePassDoNotMatch).visibility = View.VISIBLE
+                        dialog.findViewById<TextView>(R.id.erroChangePassDoNotMatch).visibility =
+                            View.VISIBLE
                     }
                 }
             }

@@ -93,11 +93,13 @@ class WishList : AppCompatActivity() {
                 val date = SimpleDateFormat("dd-MM-yyyy").parse(doc.value.data["date"] as String)
                 val user = Connection.getProfileUser(doc.key)
                 if (date > Calendar.getInstance().time) {
+                    val from_localidade = doc.value.data["from"].toString().split("-")[1]
+                    val to_localidade = doc.value.data["to"].toString().split("-")[1]
                     myList.add(
                         Wishlist(
-                            "${doc.value.data["from"]}-${doc.value.data["to"]}",
+                            "${from_localidade} - ${to_localidade}",
                             "${doc.value.data["date"]}",
-                            "${doc.value.data["price"]}",
+                            "${doc.value.data["price"]}€",
                             user!!.data["nome"].toString(),
                             "${doc.value.data["idBoleia"]}"
                         )
@@ -137,14 +139,20 @@ class WishList : AppCompatActivity() {
         val shared = getSharedPreferences("idUser", MODE_PRIVATE)
         val idUser = shared.getString("idUser", "").toString()
         GlobalScope.launch {
-            if (Connection.acceptBoleia(idUser, idBoleia.text.toString()) == 1) {
-                Connection.removeWishList(idUser, idBoleia.text.toString())
+            var result = Connection.acceptBoleia(idUser, idBoleia.text.toString())
+            if (result == -2 || result == -4) {
                 runOnUiThread {
                     createDialog(resources.getString(R.string.error))
                 }
-            } else {
+            }
+            else if(result==-3){
                 runOnUiThread {
-                    createDialog(resources.getString(R.string.success))
+                    createDialog(resources.getString(R.string.seatsFinish))
+                }
+            }
+            else {
+                runOnUiThread {
+                    createDialogPoints(result)
                 }
             }
         }
@@ -183,6 +191,24 @@ class WishList : AppCompatActivity() {
             dialog.dismiss()
             finish();
             startActivity(intent);
+        }
+
+    }
+
+    private fun createDialogPoints(points : Int) {
+        val dialog = Dialog(this@WishList)
+        dialog.setContentView(R.layout.dialog_points_earned)
+        dialog.window?.setBackgroundDrawable(getDrawable(R.drawable.dialog_background))
+        dialog.window?.setLayout(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        dialog.findViewById<TextView>(R.id.valueBonus).text = points.toString()
+        dialog.setCancelable(false)
+        dialog.show()
+
+        dialog.findViewById<TextView>(R.id.iconClosePopUpConfirmRide).setOnClickListener {
+            dialog.dismiss()
         }
 
     }

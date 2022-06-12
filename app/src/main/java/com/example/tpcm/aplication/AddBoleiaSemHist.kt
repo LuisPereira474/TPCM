@@ -16,6 +16,15 @@ class AddBoleiaSemHist : AppCompatActivity() {
         setContentView(R.layout.activity_add_boleia_sem_hist)
     }
 
+    override fun onBackPressed() {
+        if (shouldAllowBack()) {
+            super.onBackPressed()
+        }
+    }
+    private fun shouldAllowBack():Boolean{
+        return false
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.bottom_navigation_menu, menu)
@@ -30,7 +39,8 @@ class AddBoleiaSemHist : AppCompatActivity() {
                 true
             }
             R.id.nav_rides -> {
-
+                val intent = Intent(this@AddBoleiaSemHist, HistBoleiasAceites::class.java)
+                startActivity(intent)
                 true
             }
             R.id.nav_services -> {
@@ -41,18 +51,16 @@ class AddBoleiaSemHist : AppCompatActivity() {
             R.id.nav_profile -> {
                 val intent = Intent(this@AddBoleiaSemHist, Perfil::class.java)
                 startActivity(intent)
-                // Respond to navigation item 2 click
                 true
             }
             else -> {
-                Log.d("teste", "entrou")
                 super.onOptionsItemSelected(item)
             }
         }
     }
 
     fun addRide(view: View) {
-        val intent = Intent(this@AddBoleiaSemHist, CriarBoleia::class.java)
+        val intent = Intent(this@AddBoleiaSemHist, MapsAtividade::class.java)
         startActivity(intent)
     }
 }

@@ -83,13 +83,15 @@ class MoreInfo : AppCompatActivity() {
             boleia = Connection.getDadosBoleia(idBoleia)
             profile = Connection.getProfileUser(idUser)
             runOnUiThread {
+                val from_localidade = boleia!!.data["from"].toString().split("-")[1]
+                val to_localidade = boleia!!.data["to"].toString().split("-")[1]
                 tvTituloViagem.text =
-                    boleia!!.data["from"].toString() + "-" + boleia!!.data["to"].toString()
+                    from_localidade + "-" + to_localidade
                 tvNomeCondutor.text = profile!!.data["nome"].toString()
                 tvDataBoleia.text = boleia!!.data["date"].toString()
-                tvModeloCarro.text = boleia!!.data["car"].toString()
-                tvValorBoleia.text = boleia!!.data["price"].toString()
-                tvPontoEncontro.text = boleia!!.data["meeting"].toString()
+                tvModeloCarro.text = boleia!!.data["carBrand"].toString() + " " + boleia!!.data["carModel"].toString() + " " + boleia!!.data["carYear"].toString() + " " + boleia!!.data["carFuelType"].toString()
+                tvValorBoleia.text = boleia!!.data["price"].toString()+ "€"
+                tvPontoEncontro.text = boleia!!.data["from"].toString()
                 valueLugaresDisponiveisMoreInfo.text = boleia!!.data["seats"].toString()
             }
         }
