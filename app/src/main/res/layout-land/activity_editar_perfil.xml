@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".aplication.EditarPerfil">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/editPerfilAvatar"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="48dp"
+        app:civ_border_color="@color/black"
+        app:civ_border_width="2dp"
+        />
+
+    <RelativeLayout
+        android:id="@+id/editImagePerfil"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/rounded_btt_editar"
+        android:layout_toRightOf="@+id/editPerfilAvatar"
+        android:layout_marginLeft="-48dp"
+        android:layout_marginTop="133dp"
+        android:drawablePadding="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_baseline_add_a_photo_24"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/editNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/username"
+        android:layout_toRightOf="@+id/editPerfilAvatar"
+        android:textStyle="bold"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="30dp"
+        android:textSize="18dp"
+        />
+
+    <EditText
+        android:id="@+id/editName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/editNameLabel"
+        android:layout_marginLeft="17dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginTop="17dp"
+        android:inputType="text"/>
+
+    <TextView
+        android:id="@+id/editEmailLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/email"
+        android:layout_below="@+id/editNameLabel"
+        android:layout_alignLeft="@+id/editNameLabel"
+        android:layout_marginTop="60dp"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        />
+
+    <EditText
+        android:id="@+id/editEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       android:layout_below="@+id/editName"
+        android:layout_alignLeft="@+id/editName"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="80dp"
+        android:inputType="text"/>
+
+
+    <Button
+        android:id="@+id/btnChangePass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editEmail"
+        android:layout_alignLeft="@+id/editEmailLabel"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#FFFFFF"
+        android:onClick="changePasswordPopUp"
+        android:text="@string/change_pass"
+        android:textColor="#979797"
+        app:cornerRadius="20dp"
+        app:strokeColor="#707070"
+        app:strokeWidth="1dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnChangePass"
+        android:layout_marginTop="40dp">
+
+        <Button
+            android:id="@+id/goBack"
+            android:layout_weight="1"
+            android:onClick="goProfile"
+            android:text="@string/cancel"
+            android:layout_marginHorizontal="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/principal"
+            android:padding="10dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            app:cornerRadius="20dp"
+            app:strokeColor="@color/principal"
+            app:strokeWidth="1dp"
+            />
+
+        <Button
+            android:id="@+id/confirmEdit"
+            android:text="@string/confirm"
+            android:layout_marginHorizontal="30dp"
+            android:layout_weight="1"
+            android:onClick="editProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/principal"
+            android:padding="10dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            app:cornerRadius="20dp"
+            app:strokeColor="@color/principal"
+            app:strokeWidth="1dp"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/errorMissingFieldsEditarPerfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/errorMissingFields"
+        android:layout_below="@+id/btnChangePass"
+        android:layout_alignLeft="@+id/btnChangePass"
+        android:textColor="#FF0000"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:textSize="16sp"
+        android:visibility="invisible"/>
+
+    <!--Nav Bar-->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="#6B6B6B"
+        app:itemIconSize="35dp"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_navigation_menu" />
+
+</RelativeLayout>

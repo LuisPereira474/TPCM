@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".aplication.Boleia">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/CardInfoBoleia"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="25dp"
+            android:backgroundTint="@color/cinzento"
+            app:cornerRadius="50dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvTituloViagem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="sans-serif-black"
+                    android:text="Porto - Viana"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:src="@drawable/ic_person"
+                    android:layout_toRightOf="@id/tvTituloViagem"
+                    android:layout_marginLeft="65dp"
+                    android:layout_alignTop="@id/tvTituloViagem"
+                    />
+
+                <TextView
+                    android:id="@+id/tvNomeCondutor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvTituloViagem"
+                    android:layout_alignLeft="@+id/tvTituloViagem"
+                    android:layout_marginTop="20dp"
+                    android:clickable="true"
+                    android:text="Zé Pedro"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tvDataBoleia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvNomeCondutor"
+                    android:layout_alignLeft="@+id/tvTituloViagem"
+                    android:layout_marginTop="5dp"
+                    android:text="23 Março 2012" />
+
+                <TextView
+                    android:id="@+id/tvModeloCarro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvDataBoleia"
+                    android:layout_alignLeft="@+id/tvTituloViagem"
+                    android:layout_marginTop="5dp"
+                    android:text="Wolksagen Polo 2013 (Preto)" />
+
+                <TextView
+                    android:id="@+id/tvLabelValor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvModeloCarro"
+                    android:layout_alignLeft="@+id/tvTituloViagem"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/LabelValor"/>
+
+                <TextView
+                    android:id="@+id/tvValorBoleia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvModeloCarro"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/tvLabelValor"
+                    android:layout_marginTop="30dp"
+                    android:text="5€"/>
+
+                <TextView
+                    android:id="@+id/tvLabelLugaresDisponiveis"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvLabelValor"
+                    android:layout_alignLeft="@+id/tvTituloViagem"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/LabelLugaresDisponiveis" />
+
+                <TextView
+                    android:id="@+id/valueLugaresDisponiveis"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5 Lugares"
+                    android:textStyle="bold"
+                    android:layout_toRightOf="@+id/tvLabelLugaresDisponiveis"
+                    android:layout_alignTop="@+id/tvLabelLugaresDisponiveis"
+                    android:layout_marginLeft="5dp"/>
+
+                <TextView
+                    android:id="@+id/tvLabelPontoEncontro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tvLabelValor"
+                    android:layout_marginTop="150dp"
+                    android:layout_marginLeft="230dp"
+                    android:text="@string/LabelPontoEncontro" />
+
+                <TextView
+                    android:id="@+id/tvPontoEncontro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/tvLabelPontoEncontro"
+                    android:layout_toRightOf="@+id/tvLabelPontoEncontro"
+                    android:text="Vila do Conde, Porto, 23, 4452-233" />
+
+                <TextView
+                    android:id="@+id/tvLabelAvaliacao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvLabelPontoEncontro"
+                    android:layout_alignLeft="@+id/tvLabelPontoEncontro"
+                    android:layout_marginTop="25dp"
+                    android:text="@string/LabelAvaliacao" />
+
+                <RatingBar
+                    android:id="@+id/RB_RideEvaluation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_alignBottom="@+id/tvLabelAvaliacao"
+                    android:layout_marginLeft="-46dp"
+                    android:layout_marginBottom="-12dp"
+                    android:layout_toRightOf="@+id/tvLabelAvaliacao"
+                    android:scaleX="0.5"
+                    android:scaleY="0.5" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/RB_RideEvaluation"
+                    android:onClick="evaluateRide"
+                    android:text="@string/submitEvaluation"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:layout_marginTop="180dp"
+                    android:layout_marginLeft="-20dp"/>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/generateQrCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/bottom_navigation"
+            android:layout_marginLeft="60dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/principal"
+            android:text="@string/botaoObterQrCode"
+            app:cornerRadius="20dp"/>
+
+        <ImageButton
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_above="@+id/bottom_navigation"
+            android:layout_marginLeft="600dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/ic_baseline_chat_24" />
+
+        <!--Nav Bar-->
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_alignParentBottom="true"
+            android:background="#6B6B6B"
+            app:itemIconSize="35dp"
+            app:itemIconTint="@color/white"
+            app:itemTextColor="@color/white"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/bottom_navigation_menu" />
+    </RelativeLayout>
+
+</LinearLayout>

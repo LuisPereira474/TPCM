@@ -105,12 +105,69 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+
+
+    <CheckBox
+        android:id="@+id/checkboxMasculino"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ccLabelConfirmPasse"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/checkboxMasculino"
+        android:layout_marginLeft="-15dp"
+        android:layout_marginTop="12dp"
+        android:layout_toRightOf="@+id/checkboxMasculino"
+        android:text="@string/male"
+        android:textSize="15sp" />
+
+    <CheckBox
+        android:id="@+id/checkboxFeminino"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/checkboxMasculino"
+        android:layout_marginLeft="70dp"
+        android:layout_toRightOf="@+id/checkboxMasculino" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/checkboxFeminino"
+        android:layout_marginLeft="-15dp"
+        android:layout_marginTop="12dp"
+        android:layout_toRightOf="@+id/checkboxFeminino"
+        android:text="@string/female"
+        android:textSize="15sp" />
+
+    <CheckBox
+        android:id="@+id/checkboxOther"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/checkboxFeminino"
+        android:layout_marginLeft="60dp"
+        android:layout_toRightOf="@+id/checkboxFeminino" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/checkboxOther"
+        android:layout_marginLeft="-15dp"
+        android:layout_marginTop="12dp"
+        android:layout_toRightOf="@+id/checkboxOther"
+        android:text="@string/other"
+        android:textSize="15sp" />
+
+
     <TextView
         android:id="@+id/erroSignUpEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/erroSignUpEmail"
-        android:layout_below="@+id/ccLabelConfirmPasse"
+        android:layout_below="@+id/checkboxMasculino"
         android:textColor="#FF0000"
         android:layout_marginStart="60dp"
         android:layout_marginTop="5dp"
@@ -121,7 +178,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/erroSignUpPass"
-        android:layout_below="@+id/ccLabelConfirmPasse"
+        android:layout_below="@+id/checkboxMasculino"
         android:textColor="#FF0000"
         android:layout_marginStart="60dp"
         android:layout_marginTop="5dp"
@@ -132,7 +189,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/errorMissingFields"
-        android:layout_below="@+id/ccLabelConfirmPasse"
+        android:layout_below="@+id/checkboxMasculino"
         android:textColor="#FF0000"
         android:layout_marginStart="60dp"
         android:layout_marginTop="5dp"
@@ -144,18 +201,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/errorInvalidEmail"
-        android:layout_below="@+id/ccLabelConfirmPasse"
+        android:layout_below="@+id/checkboxMasculino"
         android:textColor="#FF0000"
         android:layout_marginStart="60dp"
         android:layout_marginTop="5dp"
         android:textSize="16sp"
         android:visibility="invisible"/>
 
+    <TextView
+        android:id="@+id/errorNoCheckSex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkboxMasculino"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/errorNoCheckSex"
+        android:textColor="#FF0000"
+        android:textSize="16sp"
+        android:visibility="invisible" />
+
     <Button
         android:id="@+id/loginBtt"
-        android:layout_alignTop="@id/ccLabelConfirmPasse"
+        android:layout_below="@id/errorInvalidEmail"
         android:layout_marginStart="90dp"
-        android:layout_marginTop="120dp"
+
         android:onClick="loginPage"
         android:text="@string/Back"
         android:layout_width="wrap_content"
@@ -177,7 +246,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/loginBtt"
-        android:layout_marginTop="237dp"
+        android:layout_marginTop="270dp"
         android:layout_marginLeft="50dp"
         android:background="@android:color/transparent"
         android:drawableEnd="@drawable/ic_baseline_arrow_forward_24"
@@ -185,15 +254,15 @@
 
 
 
-        <ImageView
-            android:layout_width="300dp"
-            android:layout_height="100dp"
-            android:src="@drawable/logo_withoutback"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="290dp"
-            android:layout_marginRight="30dp"
+<!--        <ImageView-->
+<!--            android:layout_width="300dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:src="@drawable/logo_withoutback"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_marginTop="290dp"-->
+<!--            android:layout_marginRight="30dp"-->
 
-            />
+<!--            />-->
 
 
 
