@@ -15,7 +15,7 @@
         android:text="@string/makemedriver"
         android:textStyle="bold"
         android:textSize="30sp"
-        android:layout_marginTop="20dp"
+
         android:layout_centerHorizontal="true"/>
 
     <View
@@ -26,7 +26,7 @@
         android:layout_below="@+id/titlePageMakeMeDriver"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -35,7 +35,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"
         android:layout_marginRight="50dp"
         android:layout_below="@+id/view"
@@ -60,7 +60,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"
         android:layout_marginRight="50dp"
         android:layout_below="@+id/textCartaoCidadao"
@@ -114,7 +114,7 @@
         android:layout_marginRight="90dp"
         android:layout_marginLeft="90dp"
         android:layout_above="@+id/bottom_navigation"
-        android:layout_marginBottom="15dp">
+        android:layout_marginBottom="20dp">
 
         <Button
             android:id="@+id/goBackMakeMeDriver"

@@ -99,14 +99,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnChangePass"
-        android:layout_marginTop="40dp">
+        android:layout_marginTop="27dp">
 
         <Button
             android:id="@+id/goBack"
             android:layout_weight="1"
             android:onClick="goProfile"
             android:text="@string/cancel"
-            android:layout_marginHorizontal="30dp"
+            android:layout_marginHorizontal="50dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/principal"
@@ -124,7 +124,7 @@
         <Button
             android:id="@+id/confirmEdit"
             android:text="@string/confirm"
-            android:layout_marginHorizontal="30dp"
+            android:layout_marginHorizontal="50dp"
             android:layout_weight="1"
             android:onClick="editProfile"
             android:layout_width="wrap_content"
