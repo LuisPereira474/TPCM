@@ -5,10 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tpcm.R
 import com.example.tpcm.database.Connection
@@ -17,11 +14,17 @@ import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+
+
+
 class EditarPerfil : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_perfil)
         getProfile()
+
+        var profileImage = findViewById<CircleImageView>(R.id.editPerfilAvatar)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
