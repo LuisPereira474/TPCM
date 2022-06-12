@@ -30,7 +30,6 @@ class ChatAdapter(
 
     override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
         val currentLinha = linhas[position]
-        //holder.foto.setImageResource(foto)
         holder.nameUser.text = currentLinha.nameUser
         holder.message.text = currentLinha.message
     }
@@ -45,7 +44,6 @@ class MessageViewHolder(
 ) : RecyclerView.ViewHolder(itemView) {
     val nameUser : TextView = itemView.chat_username
     val message : TextView = itemView.chat_message
-    val foto : CircleImageView = itemView.chat_profilePic
     }
 }
 

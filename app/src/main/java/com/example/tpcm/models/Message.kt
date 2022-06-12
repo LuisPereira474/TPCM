@@ -6,6 +6,7 @@ data class Message(
     val message: String,
     val nameUser: String,
     val idBoleia: String,
-    val date: Date
+    val date: Date,
+    val idUser: String
 )
 

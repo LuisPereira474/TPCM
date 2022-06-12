@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.tpcm.R
 import com.example.tpcm.carAPI.Car
+import com.example.tpcm.models.Message
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.SetOptions
@@ -58,7 +59,7 @@ object Connection {
         password: String,
         erroSignUpEmail: TextView,
         errorInvalidEmail: TextView,
-        sexo : Int
+        sexo: Int
     ): String {
         val user = hashMapOf(
             "email" to email,
@@ -234,7 +235,6 @@ object Connection {
                     Log.w("TAG", "Error getting documents.", task.exception)
                 }
             }
-        createChat(boleia["idBoleia"].toString())
 
         while (result == 0) {
             delay(1)
@@ -384,7 +384,7 @@ object Connection {
     }
 
     @DelicateCoroutinesApi
-    suspend fun editProfile(idUser: String, editName: String, editEmail: String):Int {
+    suspend fun editProfile(idUser: String, editName: String, editEmail: String): Int {
         var user: QueryDocumentSnapshot? = null
         var result = -1
         val data = hashMapOf(
@@ -408,9 +408,9 @@ object Connection {
                                 Log.w("TAG", "Error getting documents.", task.exception)
                             }
                         }
-                    result=0
-                }else{
-                    result=1
+                    result = 0
+                } else {
+                    result = 1
                 }
             }
         }
@@ -440,24 +440,6 @@ object Connection {
                         } else {
                             Log.w("TAG", "Error getting documents.", task.exception)
                             canGo = true
-                        }
-                    }
-
-                db.collection("chat")
-                    .whereEqualTo("idBoleia", idBoleia)
-                    .get()
-                    .addOnCompleteListener { task->
-                        if(task.isSuccessful){
-                            for(doc in task.result){
-                                var users = ArrayList<String>()
-                                var usersPermitidos = doc["usersPermitidos"]
-                                Log.d("TAG", "$usersPermitidos")
-                                for(user in arrayOf(usersPermitidos)){
-                                    users.add(user.toString())
-                                }
-                                users.add(idUser)
-                                Log.d("TAG",users.toString())
-                            }
                         }
                     }
 
@@ -1066,7 +1048,7 @@ object Connection {
                             )
                             db.collection("utilizador")
                                 .document(document.id)
-                                .set(data,SetOptions.merge())
+                                .set(data, SetOptions.merge())
                             canGo = 1
                         }
                     }
@@ -1080,64 +1062,70 @@ object Connection {
         }
         return canGo
     }
-    suspend fun sendMessage(idUser:String, idBoleia: String, message: String) : Int{
-        var errorCode = 0
-        var message = hashMapOf(
-            "idUser" to idUser,
-            "idBoleia" to idBoleia,
-            "message" to message,
-            "idMessage" to UUID.randomUUID().toString(),
-            "date" to Date()
-        )
 
-        db.collection("message")
-            .add(message)
-            .addOnSuccessListener {
-                errorCode = 2
-                Log.d("TAG", "Message sent Sucessfully!!")
+    suspend fun sendMessage(idUser: String, idBoleia: String, message: String): Int {
+        var errorCode = 0
+
+        db.collection("utilizador")
+            .whereEqualTo("idUser", idUser)
+            .get()
+            .addOnCompleteListener{task->
+                if(task.isSuccessful){
+                    for(doc in task.result){
+                        db.collection("message")
+                            .add(hashMapOf(
+                                "idUser" to idUser,
+                                "idBoleia" to idBoleia,
+                                "message" to message,
+                                "idMessage" to UUID.randomUUID().toString(),
+                                "date" to Date(),
+                                "nomeUser" to doc["nome"].toString()
+                            ))
+                            .addOnSuccessListener {
+                                errorCode = 2
+                                Log.d("TAG", "Message sent Sucessfully!!")
+                            }
+                            .addOnFailureListener { e ->
+                                errorCode = 1
+                                Log.w("TAG", "Error sending Message", e)
+                            }
+                    }
+                }
             }
-            .addOnFailureListener{e ->
-                errorCode = 1
-                Log.w("TAG", "Error sending Message", e)
-            }
-        while (errorCode == 0){
+
+        while (errorCode == 0) {
             delay(1)
         }
         return errorCode
     }
 
-
-    //suspend fun getMessages(idBoleia: String): HashMap<String, QueryDocumentSnapshot> {
-    //var message = HashMap<String, QueryDocumentSnapshot>()
-    //var canContinue = false
-    // GlobalScope.launch {
-    //withContext(Dispatchers.Default){
-    //db.collection("message").whereEqualTo("idBoleia", idBoleia).get()
-
-    //}
-    //  }
-
-    // }
     @DelicateCoroutinesApi
-    suspend fun createChat(idBoleia: String){
-        GlobalScope.launch {
-            val usersPermitidos = ArrayList<String>()
-            db.collection("boleia_utilizador")
-                .whereEqualTo("idBoleia", idBoleia)
-                .get()
-                .addOnCompleteListener{ task ->
-                    if(task.isSuccessful){
-                        for(doc in task.result){
-                            usersPermitidos.add(doc["idUser"].toString())
-                        }
+    fun getMessages(idBoleia: String): ArrayList<Message> {
+        var messages = ArrayList<Message>()
+
+        db.collection("message")
+            .whereEqualTo("idBoleia", idBoleia)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    for (doc in task.result) {
+                        messages.add(
+                            Message(
+                                doc["message"].toString(),
+                                doc["nomeUser"].toString(),
+                                idBoleia,
+                                Date(),
+                                doc["idUser"].toString()
+                            )
+                        )
                     }
                 }
+            }
 
-            db.collection("chat")
-                .add(hashMapOf("idBoleia" to idBoleia, "usersPermitidos" to usersPermitidos))
-        }
-
+        Log.d("TAG", "$messages")
+        return messages
     }
+
 }
 
 

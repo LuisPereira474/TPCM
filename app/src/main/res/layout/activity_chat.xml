@@ -74,8 +74,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/layout_send_msg"
-            android:layout_below="@+id/chat_titulo"
-            />
+            android:layout_below="@+id/chat_titulo" />
 
 
     </RelativeLayout>
