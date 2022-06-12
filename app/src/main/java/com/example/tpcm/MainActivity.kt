@@ -22,6 +22,21 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val sharedPreferences: SharedPreferences =
+            getSharedPreferences("idUser", Context.MODE_PRIVATE)
+        sharedPreferences.edit()
+            .clear()
+            .apply()
+
+    }
+
+    override fun onBackPressed() {
+        if (shouldAllowBack()) {
+            super.onBackPressed()
+        }
+    }
+    private fun shouldAllowBack():Boolean{
+        return false
     }
 
     fun loginSubmit(view: View) {

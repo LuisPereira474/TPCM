@@ -30,17 +30,7 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="20dp"
                     android:fontFamily="sans-serif-black"
-                    android:text="Porto - Viana"
                     android:textSize="20sp" />
-
-                <ImageView
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_person"
-                    android:layout_toRightOf="@id/tvTituloViagem"
-                    android:layout_marginLeft="65dp"
-                    android:layout_alignTop="@id/tvTituloViagem"
-                    />
 
                 <TextView
                     android:id="@+id/tvNomeCondutor"
@@ -50,7 +40,6 @@
                     android:layout_alignLeft="@+id/tvTituloViagem"
                     android:layout_marginTop="20dp"
                     android:clickable="true"
-                    android:text="Zé Pedro"
                     android:textSize="20sp" />
 
                 <TextView
@@ -59,8 +48,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvNomeCondutor"
                     android:layout_alignLeft="@+id/tvTituloViagem"
-                    android:layout_marginTop="5dp"
-                    android:text="23 Março 2012" />
+                    android:layout_marginTop="5dp" />
 
                 <TextView
                     android:id="@+id/tvModeloCarro"
@@ -68,8 +56,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvDataBoleia"
                     android:layout_alignLeft="@+id/tvTituloViagem"
-                    android:layout_marginTop="5dp"
-                    android:text="Wolksagen Polo 2013 (Preto)" />
+                    android:layout_marginTop="5dp"/>
 
                 <TextView
                     android:id="@+id/tvLabelValor"
@@ -87,8 +74,7 @@
                     android:layout_below="@+id/tvModeloCarro"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/tvLabelValor"
-                    android:layout_marginTop="30dp"
-                    android:text="5€"/>
+                    android:layout_marginTop="30dp"/>
 
                 <TextView
                     android:id="@+id/tvLabelLugaresDisponiveis"
@@ -103,7 +89,6 @@
                     android:id="@+id/valueLugaresDisponiveis"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="5 Lugares"
                     android:textStyle="bold"
                     android:layout_toRightOf="@+id/tvLabelLugaresDisponiveis"
                     android:layout_alignTop="@+id/tvLabelLugaresDisponiveis"
@@ -125,8 +110,7 @@
                     android:layout_below="@+id/tvLabelLugaresDisponiveis"
                     android:layout_marginTop="30dp"
                     android:layout_marginRight="20dp"
-                    android:layout_toRightOf="@+id/tvLabelPontoEncontro"
-                    android:text="Vila do Conde, Porto, 23, 4452-233" />
+                    android:layout_toRightOf="@+id/tvLabelPontoEncontro"/>
 
                 <TextView
                     android:id="@+id/tvLabelAvaliacao"
