@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_background">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/popup_help"
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="0dp"
+        app:cardMaxElevation="0dp"
+        app:cardPreventCornerOverlap="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/popup_help_view"
+            android:layout_width="300dp"
+            android:layout_height="400dp"
+            android:layout_centerInParent="true"
+            android:layout_margin="2dp"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="3dp"
+            app:cardElevation="0dp"
+            app:cardMaxElevation="0dp"
+            app:cardPreventCornerOverlap="false">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/iconCloseListAwards"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_baseline_cancel_24"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="3dp"/>
+
+                <TextView
+                    android:id="@+id/numberPointsFist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20"
+                    android:textStyle="bold"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    />
+
+                <TextView
+                    android:id="@+id/textPointsFist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/points"
+                    android:textStyle="bold"
+                    android:layout_toRightOf="@id/numberPointsFist"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="7dp"
+                    />
+
+                <CheckBox
+                    android:id="@+id/checkFirst"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/numberPointsFist"
+                    android:layout_toEndOf="@+id/textPointsFist"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="-14dp"
+                    />
+
+                <TextView
+                    android:id="@+id/descriptionPointsFirst"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/first_award"
+                    android:layout_below="@id/numberPointsFist"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginLeft="20dp"/>
+
+
+                <ImageView
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:src="@drawable/valegalp"
+                    android:layout_gravity="center"
+                    android:layout_alignBottom="@+id/descriptionPointsFirst"
+                    android:layout_marginLeft="200dp"
+                    />
+
+                <View
+                    android:id="@+id/firstView"
+                    android:layout_width="250dp"
+                    android:layout_height="2dp"
+                    android:layout_below="@id/descriptionPointsFirst"
+                    android:layout_marginTop="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@android:color/darker_gray"
+                    />
+
+
+                <TextView
+                    android:id="@+id/numberPointsSecond"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="50"
+                    android:textStyle="bold"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_below="@+id/firstView"
+                    />
+
+                <TextView
+                    android:id="@+id/textPointsSecond"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/points"
+                    android:textStyle="bold"
+                    android:layout_toRightOf="@id/numberPointsSecond"
+                    android:layout_alignTop="@+id/numberPointsSecond"
+                    android:layout_marginLeft="7dp"
+                    />
+
+                <CheckBox
+                    android:id="@+id/checkSecond"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/numberPointsSecond"
+                    android:layout_toRightOf="@+id/textPointsSecond"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="-14dp"
+                    />
+
+                <TextView
+                    android:id="@+id/descriptionPointsSecond"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/second_award"
+                    android:layout_below="@id/numberPointsSecond"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginLeft="20dp"/>
+
+
+                <ImageView
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:src="@drawable/cont"
+                    android:layout_gravity="center"
+                    android:layout_alignBottom="@+id/descriptionPointsSecond"
+                    android:layout_marginLeft="200dp"
+                    />
+
+                <View
+                    android:id="@+id/secondView"
+                    android:layout_width="250dp"
+                    android:layout_height="2dp"
+                    android:layout_below="@id/descriptionPointsSecond"
+                    android:layout_marginTop="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@android:color/darker_gray"
+                    />
+
+                <TextView
+                    android:id="@+id/numberPointsThird"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100"
+                    android:textStyle="bold"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_below="@+id/secondView"
+                    />
+
+                <TextView
+                    android:id="@+id/textPointsThird"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/points"
+                    android:textStyle="bold"
+                    android:layout_toRightOf="@id/numberPointsThird"
+                    android:layout_alignTop="@+id/numberPointsThird"
+                    android:layout_marginLeft="7dp"
+                    />
+
+                <CheckBox
+                    android:id="@+id/checkThird"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/numberPointsThird"
+                    android:layout_toRightOf="@+id/textPointsThird"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginTop="-14dp"
+                    />
+
+                <TextView
+                    android:id="@+id/descriptionPointsThird"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/third_award"
+                    android:layout_below="@id/numberPointsThird"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginLeft="20dp"/>
+
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/jantar"
+                    android:layout_gravity="center"
+                    android:layout_alignBottom="@+id/descriptionPointsThird"
+                    android:layout_marginLeft="200dp"
+                    />
+
+                <View
+                    android:id="@+id/thirdView"
+                    android:layout_width="250dp"
+                    android:layout_height="2dp"
+                    android:layout_below="@id/descriptionPointsThird"
+                    android:layout_marginTop="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@android:color/darker_gray"
+                    />
+
+                <TextView
+                    android:id="@+id/numberPointsFour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="300"
+                    android:textStyle="bold"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_below="@+id/thirdView"
+                    />
+
+                <TextView
+                    android:id="@+id/textPointsFour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/points"
+                    android:textStyle="bold"
+                    android:layout_toRightOf="@id/numberPointsFour"
+                    android:layout_alignTop="@+id/numberPointsFour"
+                    android:layout_marginLeft="7dp"
+                    />
+
+
+                <CheckBox
+                    android:id="@+id/checkFourth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/numberPointsFour"
+                    android:layout_toRightOf="@+id/textPointsFour"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginTop="-14dp"
+                    />
+
+                <TextView
+                    android:id="@+id/descriptionPointsFour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/four_award"
+                    android:layout_below="@id/numberPointsFour"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginLeft="20dp"/>
+
+
+                <ImageView
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:src="@drawable/tr"
+                    android:layout_alignBottom="@+id/descriptionPointsFour"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="20dp"
+                    />
+
+                <View
+                    android:id="@+id/fourthView"
+                    android:layout_width="250dp"
+                    android:layout_height="2dp"
+                    android:layout_below="@id/descriptionPointsFour"
+                    android:layout_marginTop="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@android:color/darker_gray"
+                    />
+
+                <Button
+                    android:id="@+id/listAwardsConfirmBtt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cornerRadius="20dp"
+                    android:backgroundTint="@color/principal"
+                    android:text="@string/confirm"
+                    android:textSize="19sp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:layout_below="@+id/fourthView"
+                    android:layout_marginTop="10dp"
+                    android:layout_centerHorizontal="true"/>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

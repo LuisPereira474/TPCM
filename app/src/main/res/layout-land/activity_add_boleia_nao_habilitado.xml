@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".aplication.AddBoleiaNaoHabilitado"
+    android:orientation="vertical"
+    >
+
+
+
+    <TextView
+        android:id="@+id/msgNaoHabilitado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/msgNaoHabilitado"
+        android:textColor="@color/azul"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"
+        android:textSize="30dp"
+        android:padding="40dp"/>
+
+    <TextView
+        android:id="@+id/infoTornarCondutor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/infoTornarCondutor"
+        android:textColor="@color/azul"
+        android:textStyle="bold"
+       android:layout_below="@+id/msgNaoHabilitado"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="50dp"
+        android:textSize="17dp"/>
+
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:src="@drawable/logo_withoutback"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="240dp"
+                android:layout_marginRight="30dp"
+
+                />
+
+
+
+    <!--Nav Bar-->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="#6B6B6B"
+        app:itemIconSize="35dp"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_navigation_menu" />
+
+</RelativeLayout>
