@@ -110,7 +110,7 @@ class ScanQrCode : AppCompatActivity() {
     }
 
     fun backScanPage(view: View) {
-        val intent = Intent(this@ScanQrCode, BoleiaCondutor::class.java)
+        val intent = Intent(this@ScanQrCode, HistoricoUser::class.java)
         startActivity(intent)
     }
 }
