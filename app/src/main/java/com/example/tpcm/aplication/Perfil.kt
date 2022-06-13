@@ -1,7 +1,9 @@
 package com.example.tpcm.aplication
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
 import android.widget.Button
@@ -295,7 +297,11 @@ class Perfil : AppCompatActivity() {
     }
 
     fun logout(view: View) {
-
+        val sharedPreferences: SharedPreferences =
+            getSharedPreferences("idUser", Context.MODE_PRIVATE)
+        sharedPreferences.edit()
+            .clear()
+            .apply()
         val intent = Intent(this@Perfil, MainActivity::class.java)
         startActivity(intent)
     }

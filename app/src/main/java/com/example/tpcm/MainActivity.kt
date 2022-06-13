@@ -22,11 +22,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val sharedPreferences: SharedPreferences =
-            getSharedPreferences("idUser", Context.MODE_PRIVATE)
-        sharedPreferences.edit()
-            .clear()
-            .apply()
 
     }
 
