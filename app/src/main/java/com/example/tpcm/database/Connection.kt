@@ -1125,6 +1125,7 @@ object Connection {
         while(!canGo){
             delay(1)
         }
+        messages.sortBy{it.date}
         return messages
     }
 
