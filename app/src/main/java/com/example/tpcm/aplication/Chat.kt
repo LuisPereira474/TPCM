@@ -38,6 +38,9 @@ class Chat : AppCompatActivity() {
             GlobalScope.launch {
                 if (Connection.sendMessage(idUser, idBoleia, mensagem) == 1) {
                     Toast.makeText(this@Chat, "Error sending message", Toast.LENGTH_SHORT)
+                }else{
+                    finish();
+                    startActivity(intent);
                 }
 
 
