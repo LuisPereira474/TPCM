@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/rua">
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/emailNameLabel"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginRight="50dp"
+        android:paddingStart="8dp"
+        android:textSize="20sp"
+        android:hint="@string/email"
+        app:startIconDrawable="@drawable/ic_email"
+        app:endIconMode="clear_text"
+
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/passwordLabel"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginRight="50dp"
+        android:paddingStart="8dp"
+        android:textSize="20sp"
+        android:hint="@string/password"
+        app:startIconDrawable="@drawable/ic_lock"
+        app:endIconMode="password_toggle"
+        android:layout_alignTop="@id/emailNameLabel"
+
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/errorLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/errorLogin"
+        android:layout_below="@+id/passwordLabel"
+        android:textColor="#FF0000"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="5dp"
+        android:textSize="16sp"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/signUpBtt"
+       android:layout_toRightOf="@+id/passwordLabel"
+        android:layout_alignTop="@+id/passwordLabel"
+        android:onClick="signUpPage"
+        android:text="@string/signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/principal"
+        android:padding="10dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:layout_marginLeft="20dp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="19sp"
+        app:cornerRadius="20dp"
+        app:strokeColor="@color/principal"
+        app:strokeWidth="1dp"/>
+
+
+    <Button
+        android:id="@+id/submitBtt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/signUpBtt"
+        android:layout_marginTop="227dp"
+        android:layout_marginLeft="55dp"
+        android:background="@android:color/transparent"
+        android:drawableRight="@drawable/ic_baseline_arrow_forward_24"
+        android:onClick="loginSubmit"/>
+
+
+
+        <ImageView
+            android:layout_width="400dp"
+            android:layout_height="130dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/logo_withoutback"/>
+
+
+</RelativeLayout>
