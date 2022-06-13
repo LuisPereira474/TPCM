@@ -84,7 +84,7 @@ class MoreInfo : AppCompatActivity() {
         var condutor: QueryDocumentSnapshot?
         GlobalScope.launch {
             boleia = Connection.getDadosBoleia(idBoleia)
-            profile = Connection.getProfileUser(idUser)
+            profile = Connection.getProfileUser(boleia!!.data["idCriador"] as String)
             condutor = Connection.getCondutorUser(idUser)
             var sexo = ""
             when {

@@ -75,7 +75,7 @@ class BoleiaCondutor : AppCompatActivity() {
         var profile: QueryDocumentSnapshot?
         GlobalScope.launch {
             boleia = Connection.getDadosBoleia(idBoleia)
-            profile = Connection.getProfileUser(idUser)
+            profile = Connection.getProfileUser(boleia!!.data["idCriador"] as String)
             runOnUiThread {
                 val from_localidade = boleia!!.data["from"].toString().split("_")[1]
                 val to_localidade = boleia!!.data["to"].toString().split("_")[1]
