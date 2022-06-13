@@ -102,7 +102,7 @@ class MoreInfo : AppCompatActivity() {
                 val from_localidade = boleia!!.data["from"].toString().split("_")[1]
                 val to_localidade = boleia!!.data["to"].toString().split("_")[1]
                 val meeting = boleia!!.data["from"].toString().split("_")[0]
-                Log.d("TAG",meeting)
+
                 tvTituloViagem.text =
                     from_localidade + "-" + to_localidade
                 tvNomeCondutor.text = profile!!.data["nome"].toString()

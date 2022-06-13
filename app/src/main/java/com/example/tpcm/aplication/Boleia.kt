@@ -108,7 +108,7 @@ class Boleia : AppCompatActivity() {
         var profile: QueryDocumentSnapshot?
         GlobalScope.launch {
             boleia = Connection.getDadosBoleia(idBoleia)
-            profile = Connection.getProfileUser(idUser)
+            profile = Connection.getProfileUser(boleia!!.data["idCriador"] as String)
 
             Connection.updateRideEvaluation(idBoleia, Connection.calculateRideEvaluation(idBoleia))
 

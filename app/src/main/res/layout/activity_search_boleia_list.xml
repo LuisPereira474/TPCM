@@ -29,15 +29,6 @@
         />
 
 
-    <Button
-        android:id="@+id/btnHelpPageListSearchBoleia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:drawableEnd="@drawable/ic_baseline_help_24"
-        android:layout_above="@+id/bottom_navigation"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="310dp"/>
 
 
     <!--Nav Bar-->
