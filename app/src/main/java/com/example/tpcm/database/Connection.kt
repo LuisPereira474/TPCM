@@ -1100,9 +1100,9 @@ object Connection {
     }
 
     @DelicateCoroutinesApi
-    fun getMessages(idBoleia: String): ArrayList<Message> {
+    suspend fun getMessages(idBoleia: String): ArrayList<Message> {
         var messages = ArrayList<Message>()
-
+        var canGo = false
         db.collection("message")
             .whereEqualTo("idBoleia", idBoleia)
             .get()
@@ -1119,10 +1119,12 @@ object Connection {
                             )
                         )
                     }
+                    canGo = true
                 }
             }
-
-        Log.d("TAG", "$messages")
+        while(!canGo){
+            delay(1)
+        }
         return messages
     }
 

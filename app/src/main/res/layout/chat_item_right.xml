@@ -17,8 +17,8 @@
             android:layout_alignParentEnd="true"
             android:layout_marginRight="8dp"
             android:background="@drawable/custom_chat_box"
-            android:paddingVertical="8dp"
             android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
             android:text="mensagem toda cenas da vida que quero enviar para a situação"
             android:textColor="#FFFFFF" />
 

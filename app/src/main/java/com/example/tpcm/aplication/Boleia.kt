@@ -40,9 +40,9 @@ class Boleia : AppCompatActivity() {
             val idUser = shared.getString("idUser", "").toString()
 
             val idBoleia = intent.getStringExtra(PARAM_ID)
-        btnAbrirChat.setOnClickListener {
+            btnAbrirChat.setOnClickListener {
                 if (idBoleia != null) {
-                    openChat(idBoleia, idUser)
+                    openChat(idBoleia)
                 }
             }
             if (idBoleia != null) {
@@ -161,7 +161,7 @@ class Boleia : AppCompatActivity() {
     }
 
 
-    fun openChat(idBoleia: String, idUser:String){
+    fun openChat(idBoleia: String){
         val intent = Intent(this@Boleia, Chat::class.java).apply {
             putExtra(PARAM_ID_BOLEIA, idBoleia)
         }

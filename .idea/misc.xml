@@ -145,12 +145,14 @@
         <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/search_line.xml" value="0.25" />
         <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/layout/wish_list_line.xml" value="0.31068840579710144" />
         <entry key="..\:/Users/Vale/AndroidStudioProjects/TPCM/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/migue/AndroidStudioProjects/TPCM/app/src/main/res/drawable/custom_chat_box.xml" value="0.1115" />
         <entry key="..\:/Users/migue/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_add_boleia_sem_hist.xml" value="0.1640625" />
-        <entry key="..\:/Users/migue/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_chat.xml" value="0.1" />
+        <entry key="..\:/Users/migue/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_chat.xml" value="0.2" />
         <entry key="..\:/Users/migue/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_criar_boleia.xml" value="0.2" />
         <entry key="..\:/Users/migue/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_historico_user.xml" value="0.1" />
         <entry key="..\:/Users/migue/AndroidStudioProjects/TPCM/app/src/main/res/layout/activity_perfil.xml" value="0.2" />
-        <entry key="..\:/Users/migue/AndroidStudioProjects/TPCM/app/src/main/res/layout/chat_item_left.xml" value="0.4" />
+        <entry key="..\:/Users/migue/AndroidStudioProjects/TPCM/app/src/main/res/layout/chat_item_left.xml" value="0.264" />
+        <entry key="..\:/Users/migue/AndroidStudioProjects/TPCM/app/src/main/res/layout/chat_item_right.xml" value="0.536" />
       </map>
     </option>
   </component>

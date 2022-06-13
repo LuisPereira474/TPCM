@@ -17,12 +17,12 @@ class Chat : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
-        displayMessages()
-        val idBoleia = intent.getStringExtra(PARAM_ID).toString()
 
         btnFecharChat.setOnClickListener {
-            finish()
+            onBackPressed()
         }
+        displayMessages()
+
     }
 
 
@@ -30,7 +30,7 @@ class Chat : AppCompatActivity() {
         val etmensagem = findViewById<EditText>(R.id.chat_input)
         val mensagem = etmensagem.text.toString()
         val idUser = getSharedPreferences("idUser", MODE_PRIVATE).getString("idUser","").toString()
-        val idBoleia = intent.getStringExtra(PARAM_ID).toString()
+        val idBoleia = intent.getStringExtra(PARAM_ID_BOLEIA).toString()
 
         if (mensagem == "") {
             Toast.makeText(this@Chat, "Can´t send empty messages", Toast.LENGTH_SHORT).show()
@@ -47,18 +47,20 @@ class Chat : AppCompatActivity() {
 
         }
 
+        displayMessages()
 
     }
 
     private fun displayMessages(){
-        GlobalScope.launch {
-            val messages = Connection.getMessages(intent.getStringExtra(PARAM_ID).toString())
-            runOnUiThread {
-                var adapter = ChatAdapter(messages)
-                chat_recycler.adapter = adapter
 
+        GlobalScope.launch {
+            val messages = Connection.getMessages(intent.getStringExtra(PARAM_ID_BOLEIA).toString())
+            runOnUiThread {
+                var adapter = ChatAdapter(messages, getSharedPreferences("idUser", MODE_PRIVATE).getString("idUser","").toString(), getDrawable(R.drawable.custom_chat_box))
+                chat_recycler.adapter = adapter
                 chat_recycler.layoutManager = LinearLayoutManager(this@Chat)
             }
+
         }
     }
 
