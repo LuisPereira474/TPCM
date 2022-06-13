@@ -1,18 +1,16 @@
 package com.example.tpcm.database
 
 import android.annotation.SuppressLint
-import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
-import com.example.tpcm.R
 import com.example.tpcm.carAPI.Car
 import com.example.tpcm.models.Message
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.SetOptions
 import kotlinx.coroutines.*
+import java.text.SimpleDateFormat
 import java.util.*
 import java.util.regex.Pattern
 import kotlin.collections.ArrayList
@@ -1072,13 +1070,15 @@ object Connection {
             .addOnCompleteListener{task->
                 if(task.isSuccessful){
                     for(doc in task.result){
+                        val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+                        val currentDate = sdf.format(Date())
                         db.collection("message")
                             .add(hashMapOf(
                                 "idUser" to idUser,
                                 "idBoleia" to idBoleia,
                                 "message" to message,
                                 "idMessage" to UUID.randomUUID().toString(),
-                                "date" to Date(),
+                                "date" to currentDate,
                                 "nomeUser" to doc["nome"].toString()
                             ))
                             .addOnSuccessListener {
@@ -1114,7 +1114,7 @@ object Connection {
                                 doc["message"].toString(),
                                 doc["nomeUser"].toString(),
                                 idBoleia,
-                                Date(),
+                                doc["date"].toString(),
                                 doc["idUser"].toString()
                             )
                         )

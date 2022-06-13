@@ -56,7 +56,7 @@ class Chat : AppCompatActivity() {
         GlobalScope.launch {
             val messages = Connection.getMessages(intent.getStringExtra(PARAM_ID_BOLEIA).toString())
             runOnUiThread {
-                var adapter = ChatAdapter(messages, getSharedPreferences("idUser", MODE_PRIVATE).getString("idUser","").toString(), getDrawable(R.drawable.custom_chat_box))
+                var adapter = ChatAdapter(messages)
                 chat_recycler.adapter = adapter
                 chat_recycler.layoutManager = LinearLayoutManager(this@Chat)
             }
