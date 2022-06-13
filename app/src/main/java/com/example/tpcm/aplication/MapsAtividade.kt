@@ -7,8 +7,7 @@ import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
-import android.view.View
+import android.view.*
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -100,6 +99,40 @@ class MapsAtividade : AppCompatActivity(), OnMapReadyCallback {
 
     }
 
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.bottom_navigation_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.nav_search -> {
+                val intent = Intent(this@MapsAtividade, SearchBoleia::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.nav_rides -> {
+                val intent = Intent(this@MapsAtividade, HistBoleiasAceites::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.nav_services -> {
+                val intent = Intent(this@MapsAtividade, HistoricoUser::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.nav_profile -> {
+                val intent = Intent(this@MapsAtividade, Perfil::class.java)
+                startActivity(intent)
+                true
+            }
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
+        }
+    }
 
     /**
      * Manipulates the map once available.
