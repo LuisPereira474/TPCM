@@ -40,6 +40,9 @@
             android:name=".aplication.MakeMeDriver"
             android:exported="false" />
         <activity
+            android:name=".aplication.Chat"
+            android:exported="false" />
+        <activity
             android:name=".aplication.MoreInfo"
             android:exported="false" />
         <activity

@@ -1,5 +1,6 @@
 package com.example.tpcm.aplication
 
+import android.content.ClipData
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,35 +9,53 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.RatingBar
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AlertDialog
 import com.example.tpcm.R
+import kotlinx.android.synthetic.main.activity_boleia.*
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
 import com.example.tpcm.database.Connection
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import kotlinx.android.synthetic.main.activity_boleia.*
+import kotlinx.android.synthetic.main.search_line.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.io.Console
 
 const val PARAM_ID_BOLEIA = "idBoleia"
 const val PARAM_ID_USER = "idUser"
 
 class Boleia : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_boleia)
 
-        val shared = getSharedPreferences("idUser", MODE_PRIVATE)
-        val idUser = shared.getString("idUser", "").toString()
 
-        val idBoleia = intent.getStringExtra(PARAM_ID)
-        if (idBoleia != null) {
-            getDadosBoleia(idBoleia)
-        }
-        generateQrCode.setOnClickListener {
-            if (idBoleia != null) {
-                getQrCode(idBoleia, idUser)
+
+            val shared = getSharedPreferences("idUser", MODE_PRIVATE)
+            val idUser = shared.getString("idUser", "").toString()
+
+            val idBoleia = intent.getStringExtra(PARAM_ID)
+            btnAbrirChat.setOnClickListener {
+                if (idBoleia != null) {
+                    openChat(idBoleia)
+                }
             }
-        }
+            if (idBoleia != null) {
+                getDadosBoleia(idBoleia)
+            }
+            generateQrCode.setOnClickListener {
+                if (idBoleia != null) {
+                    getQrCode(idBoleia, idUser)
+                }
+            }
+
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -140,5 +159,15 @@ class Boleia : AppCompatActivity() {
             }
         }
     }
+
+
+    fun openChat(idBoleia: String){
+        val intent = Intent(this@Boleia, Chat::class.java).apply {
+            putExtra(PARAM_ID_BOLEIA, idBoleia)
+        }
+
+        startActivity(intent)
+    }
+
 
 }

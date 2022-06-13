@@ -60,7 +60,6 @@
     <string name="redflag">Represents the rides already taken, the deadline has passed</string>
     <string name="greenflag">Represents the rides that are yet to take place</string>
     <string name="textHelpQrCode">Here, you will have access to the QR Code associated with this trip. You can use it at the time of the ride to prove that it is you by presenting it to the driver of the car</string>
-    <string name="submitEvaluation">Submit</string>
     <string name="change_pass">Change Password</string>
     <string name="atual_pass">Current password</string>
     <string name="new_pass">New password</string>
@@ -103,4 +102,6 @@
     <string name="female">Female</string>
     <string name="errorNoCheckSex">Please choose male, female or other</string>
     <string name="other">Other</string>
+    <string name="submitEvaluation">Submit</string>
+    <string name="type_message">Type your message...</string>
 </resources>

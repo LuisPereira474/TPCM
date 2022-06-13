@@ -103,4 +103,5 @@
     <string name="female">Feminino</string>
     <string name="errorNoCheckSex">Por favor escolha masculino, feminino ou outro</string>
     <string name="other">Outro</string>
+    <string name="type_message">Escreva a sua mensagem...</string>
 </resources>
