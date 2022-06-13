@@ -140,7 +140,7 @@ object Connection {
                         }
                 } else {
                     Log.w("TAG", "Invalid Email")
-                    errorInvalidEmail.visibility = View.VISIBLE;
+                    canContinue = true
                 }
             }
         }

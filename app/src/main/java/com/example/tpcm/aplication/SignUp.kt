@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -99,6 +100,10 @@ class SignUp : AppCompatActivity() {
                         .apply()
                     val intent = Intent(this@SignUp, SearchBoleia::class.java)
                     startActivity(intent)
+                }else{
+                    runOnUiThread {
+                        errorInvalidEmail.visibility = View.VISIBLE
+                    }
                 }
             }
         }
